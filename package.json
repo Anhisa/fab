@@ -2,13 +2,17 @@
   "name": "diplomacia-digital",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/diplomacia-digital",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "@wordpress/core-data": "^4.5.0",
+    "axios": "^0.27.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "react-simple-maps": "^2.3.0",
     "tar-pack": "^3.4.1",
@@ -26,6 +30,9 @@
       "not dead",
       "not op_mini all"
     ],
+
+    "proxy": "https://fundacionandresbello.local/wp-json/fab/v1",
+
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

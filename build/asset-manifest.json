@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.d4c72c31.css",
-    "main.js": "/static/js/main.3a9061e2.js",
-    "static/js/787.d6bffb6c.chunk.js": "/static/js/787.d6bffb6c.chunk.js",
-    "index.html": "/index.html",
-    "main.d4c72c31.css.map": "/static/css/main.d4c72c31.css.map",
-    "main.3a9061e2.js.map": "/static/js/main.3a9061e2.js.map",
-    "787.d6bffb6c.chunk.js.map": "/static/js/787.d6bffb6c.chunk.js.map"
+    "main.css": "/diplomacia-digital/static/css/main.a90205b9.css",
+    "main.js": "/diplomacia-digital/static/js/main.2acec1c3.js",
+    "static/js/787.d6bffb6c.chunk.js": "/diplomacia-digital/static/js/787.d6bffb6c.chunk.js",
+    "index.html": "/diplomacia-digital/index.html",
+    "main.a90205b9.css.map": "/diplomacia-digital/static/css/main.a90205b9.css.map",
+    "main.2acec1c3.js.map": "/diplomacia-digital/static/js/main.2acec1c3.js.map",
+    "787.d6bffb6c.chunk.js.map": "/diplomacia-digital/static/js/787.d6bffb6c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d4c72c31.css",
-    "static/js/main.3a9061e2.js"
+    "static/css/main.a90205b9.css",
+    "static/js/main.2acec1c3.js"
   ]
 }
