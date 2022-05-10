@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import { Home } from '../components/Home';
-import { AccountDetails } from '../components/AccountDetails';
+import { Home } from '../pages/Home';
+import { AccountDetails } from '../pages/AccountDetails';
 
 function App() {
   return (

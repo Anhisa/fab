@@ -13,8 +13,6 @@ function Home() {
         <Map />
         <MapIslands id="islands" />
       </div>
-      {/* <div className="map-container">
-      </div> */}
       <AccountList />
       <button type="button" className="button">
         click aquí
