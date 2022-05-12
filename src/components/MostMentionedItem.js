@@ -1,36 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { useGetData } from '../hooks/useGetData';
 
 const api = 'https://fundacionandresbello.local/wp-json/fab/v1/most-mentioned';
 
 const MostMentionedItem = () => {
-  const [mostMenItems, setMostMenItems] = useState([]);
+  const data = useGetData(api);
+  const item = data.data;
+  let accountId = '19';
+  let periodId = '4';
+  const tweetNumber = item
+    .filter(
+      (item) =>
+        item.official_account_id === accountId && item.period_id === periodId
+    )
+    .map((item) => parseInt(item.mentions_number));
+  const totaltweets = tweetNumber.reduce(
+    (totaltweetsNumber, item) => totaltweetsNumber + item,
+    0
+  );
+  const accountInfo = [];
+  const account = item
+    .filter(
+      (item) =>
+        item.official_account_id === accountId && item.period_id === periodId
+    )
+    .find((item) => item.official_account_id === accountId);
+  if (account) {
+    accountInfo.push(account.official_account);
+    accountInfo.push(account.period_id);
+  }
 
-  useEffect(async () => {
-    const response = await axios(api);
-    setMostMenItems(response.data);
-  }, []);
+
 
   return (
     <div>
-      {mostMenItems
+      <h1>cuenta oficial: {accountInfo[0]}</h1>
+      <h1>periodo: {accountInfo[1]}</h1>
+      <h1>menciones totales del periodo: {totaltweets}</h1>
+      {data.data
         .filter(
-          (mostMenItem) =>
-            mostMenItem.official_account_id === '12' &&
-            mostMenItem.period_id === '1'
+          (data) =>
+            data.official_account_id === accountId &&
+            data.period_id === periodId
         )
-        .map((mostMenItem) => (
-          <div key={mostMenItem.users_most_metioned_id}>
-            <h2>{mostMenItem.official_account}</h2>
-            <h4>{mostMenItem.official_account_name_spa}</h4>
-            <span>
-              {mostMenItem.user_account} -{' '}
-              {mostMenItem.most_mentioned_description_spa} -{' '}
-              {mostMenItem.most_mentioned_category_spa} -{' '}
-              {mostMenItem.most_mentioned_category_desc_spa} -{' '}
-              {parseInt(mostMenItem.mentions_number)} - {mostMenItem.period_id} -{' '}
-              {mostMenItem.user_accounts_verified}
-            </span>
+        .map((data) => (
+          <div key={`mentioned-${data.users_most_metioned_id}`}>
+            <h4>cuenta mencionada: {data.user_account}</h4>
+            <p>descripción: {data.most_mentioned_description_spa}</p>
+            <p>categoría: {data.most_mentioned_category_spa}</p>
+            <p>
+              descripción de la categoría:
+              {data.most_mentioned_category_desc_spa}
+            </p>
+            <p>número de menciones: {parseInt(data.mentions_number)}</p>
+            <p>cuenta verificada: {data.user_accounts_verified}</p>
           </div>
         ))}
     </div>

@@ -1,9 +1,9 @@
 import React from 'react';
-import {useGetData} from '../hooks/useGetData';
+import { useGetData } from '../hooks/useGetData';
 
-const api = 'https://fundacionandresbello.local/wp-json/fab/v1/most-replied';
+const api = 'https://fundacionandresbello.local/wp-json/fab/v1/ht-most-used';
 
-export const MostRepliedItem = () => {
+export const HtMostUsedItem = () => {
   const data = useGetData(api);
   const item = data.data;
   let accountId = '15';
@@ -13,7 +13,7 @@ export const MostRepliedItem = () => {
       (item) =>
         item.official_account_id === accountId && item.period_id === periodId
     )
-    .map((item) => parseInt(item.tweets_number));
+    .map((item) => parseInt(item.ht_mentions_number));
   const totaltweets = tweetNumber.reduce(
     (totaltweetsNumber, item) => totaltweetsNumber + item,
     0
@@ -30,7 +30,7 @@ export const MostRepliedItem = () => {
     accountInfo.push(account.period_id);
   }
 
-
+  console.log(accountInfo);
   return (
     <div>
       <h1>cuenta oficial: {accountInfo[0]}</h1>
@@ -38,19 +38,16 @@ export const MostRepliedItem = () => {
       <h1>menciones totales del periodo: {totaltweets}</h1>
       {data.data
         .filter(
-          (data) =>
-            data.official_account_id === accountId &&
-            data.period_id === periodId
+          (data) => data.official_account_id === accountId && data.period_id === periodId
         )
         .map((data) => (
-          <div key={data.users_most_replied_id}>
+          <div key={`ht-${data.ht_most_used_id}`}>
+            <h2>Hashtag: {data.ht}</h2>
+            <h4>descripción: {data.official_account_name_spa}</h4>
             <span>
-              {data.user_account} -{' '}
-              {data.most_replied_description_spa} -{' '}
-              {data.most_replied_category_spa} -{' '}
-              {data.most_replied_category_desc_spa} -{' '}
-              {parseInt(data.tweets_number)} - {data.period_id} -{' '}
-              {data.user_accounts_verified}
+              categoría: {data.ht_category_spa} - descripción de la
+              categoría: {data.ht_category_desc_spa} - número de
+              menciones: {parseInt(data.ht_mentions_number)} - periodo: {data.period_id}
             </span>
           </div>
         ))}

@@ -4,7 +4,7 @@ import axios from 'axios';
 const api =
   'https://fundacionandresbello.local/wp-json/fab/v1/official-accounts';
 
-const AccountItem = () => {
+export const AccountItem = () => {
   const [accounts, setAccounts] = useState([]);
 
   useEffect(async () => {
@@ -25,4 +25,3 @@ const AccountItem = () => {
   );
 };
 
-export { AccountItem };

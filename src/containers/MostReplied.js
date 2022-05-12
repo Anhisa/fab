@@ -2,7 +2,7 @@ import React from 'react';
 import { MostRepliedItem } from '../components/MostRepliedItem';
 
 
-const MostRepliedItems = () => {
+export const MostRepliedItems = () => {
 
   return (
     <section>
@@ -11,4 +11,4 @@ const MostRepliedItems = () => {
   );
 };
 
-export { MostRepliedItems };
+

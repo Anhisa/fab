@@ -9,7 +9,10 @@
     "@testing-library/user-event": "^13.5.0",
     "@wordpress/core-data": "^4.5.0",
     "axios": "^0.27.2",
+    "chart.js": "^3.7.1",
+    "date-fns": "^2.28.0",
     "react": "^17.0.0",
+    "react-chartjs-2": "^4.1.0",
     "react-dom": "^17.0.0",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
@@ -30,9 +33,7 @@
       "not dead",
       "not op_mini all"
     ],
-
     "proxy": "https://fundacionandresbello.local/wp-json/fab/v1",
-
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

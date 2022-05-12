@@ -34,8 +34,8 @@ function MapIslands() {
     <ComposableMap
       projection="geoAzimuthalEqualArea"
       projectionConfig={{
-        rotate: [63, -14, 0],
-        scale: 3850,
+        rotate: [61.5, -14, 0],
+        scale: 7950,
       }}
     >
       <Geographies geography={geoUrl} id="islands">

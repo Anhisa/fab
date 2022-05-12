@@ -8,7 +8,7 @@ import {
 } from 'react-simple-maps';
 
 const geoUrl =
-  'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json';
+  'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json';
 
 /* const markers = [
   { markerOffset: -25, name: "Buenos Aires", coordinates: [-58.3816, -34.6037] },
@@ -40,7 +40,7 @@ function Map() {
           geographies
             .filter(
               (d) =>
-                d.properties.NAME === 'France' ||
+                d.properties.NAME === 'French Guyana' ||
                 d.properties.SUBREGION === 'South America' ||
                 d.properties.SUBREGION === 'Central America' ||
                 d.properties.SUBREGION === 'Caribbean'
