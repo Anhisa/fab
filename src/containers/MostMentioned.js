@@ -1,14 +1,16 @@
 import React from 'react';
 import { MostMentionedItem } from '../components/MostMentionedItem';
+import { MostMentionedChart } from '../components/MostMentionedChart'
 
 
-const MostMentionedItems = () => {
+export const MostMentionedItems = () => {
 
   return (
     <section>
         <MostMentionedItem />
+        <MostMentionedChart />
     </section>
   );
 };
 
-export { MostMentionedItems };
+

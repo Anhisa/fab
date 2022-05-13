@@ -2,7 +2,7 @@ import '../styles/App.css';
 import { Map } from '../components/Map';
 import { Layout } from '../containers/Layout';
 import { MapIslands } from '../components/MapIslands';
-import {AccountList} from '../components/CountryDetails';
+import {AccountList} from '../containers/CountryDetails';
 
 // import userQueries from './queries.php';
 

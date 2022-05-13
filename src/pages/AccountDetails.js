@@ -7,7 +7,7 @@ import { HtMostUsedItems } from '../containers/HtMostUsed';
 import { useGetData } from '../hooks/useGetData';
 
 const api =
-  'https://fundacionandresbello.local/wp-json/fab/v1/official-accounts';
+  'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
 export const AccountDetails = ({match}) => {
   // const data = useGetData(api);

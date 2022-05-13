@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useGetData} from '../hooks/useGetData';
 
-const api = 'https://fundacionandresbello.local/wp-json/fab/v1/most-retweeted';
+const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
 
 const MostRetweetedItem = () => {
   const data = useGetData(api);

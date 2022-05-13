@@ -1,7 +1,7 @@
 import React from 'react';
 import { useGetData } from '../hooks/useGetData';
 
-const api = 'https://fundacionandresbello.local/wp-json/fab/v1/monthly-tweets';
+const api = 'https://fundacionandresbello.org/wp-json/fab/v1/monthly-tweets';
 
 export const MonthlyTweetsItem = () => {
   const data = useGetData(api);

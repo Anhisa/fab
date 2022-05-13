@@ -1,9 +1,10 @@
 import React from 'react';
 import { useGetData } from '../hooks/useGetData';
 
-const api = 'https://fundacionandresbello.local/wp-json/fab/v1/most-mentioned';
 
-const MostMentionedItem = () => {
+const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-mentioned';
+
+export const MostMentionedItem = () => {
   const data = useGetData(api);
   const item = data.data;
   let accountId = '19';
@@ -60,4 +61,4 @@ const MostMentionedItem = () => {
   );
 };
 
-export { MostMentionedItem };
+

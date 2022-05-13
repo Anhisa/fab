@@ -39,11 +39,7 @@ function Map() {
         {({ geographies }) =>
           geographies
             .filter(
-              (d) =>
-                d.properties.NAME === 'French Guyana' ||
-                d.properties.SUBREGION === 'South America' ||
-                d.properties.SUBREGION === 'Central America' ||
-                d.properties.SUBREGION === 'Caribbean'
+              (d) => d.properties.REGION_WB === 'Latin America & Caribbean'
             )
             .map((geo) => (
               <Geography

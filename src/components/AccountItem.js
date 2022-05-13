@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const api =
-  'https://fundacionandresbello.local/wp-json/fab/v1/official-accounts';
+  'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
 export const AccountItem = () => {
   const [accounts, setAccounts] = useState([]);

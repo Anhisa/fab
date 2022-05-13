@@ -1,7 +1,7 @@
 import React from 'react';
 import { useGetData } from '../hooks/useGetData';
 
-const api = 'https://fundacionandresbello.local/wp-json/fab/v1/ht-most-used';
+const api = 'https://fundacionandresbello.org/wp-json/fab/v1/ht-most-used';
 
 export const HtMostUsedItem = () => {
   const data = useGetData(api);
