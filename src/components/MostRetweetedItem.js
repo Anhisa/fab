@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import {useGetData} from '../hooks/useGetData';
+import React from 'react';
+import { useGetData } from '../hooks/useGetData';
+import 'bootstrap/dist/css/bootstrap.css';
+import DataTable from 'react-data-table-component';
 
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
+const api = 'https://fundacionandresbello.local/wp-json/fab/v1/most-retweeted';
 
-const MostRetweetedItem = () => {
-  const data = useGetData(api);
-  const item = data.data;
-  let accountId = '21';
-  let periodId = '3';
-  const tweetNumber = item
+export const MostRetweetedItem = () => {
+  const response = useGetData(api);
+  const items = response.data;
+  let accountId = '15';
+  let periodId = '1';
+  const tweetNumber = items
     .filter(
       (item) =>
         item.official_account_id === accountId && item.period_id === periodId
@@ -19,7 +21,7 @@ const MostRetweetedItem = () => {
     0
   );
   const accountInfo = [];
-  const account = item
+  const account = items
     .filter(
       (item) =>
         item.official_account_id === accountId && item.period_id === periodId
@@ -28,33 +30,102 @@ const MostRetweetedItem = () => {
   if (account) {
     accountInfo.push(account.official_account);
     accountInfo.push(account.period_id);
+    accountInfo.push(account.official_account_name_spa);
+    accountInfo.push(account.most_retweeted_category_desc_spa);
   }
 
-  return (
-    <div>
-      <h1>cuenta oficial: {accountInfo[0]}</h1>
-      <h1>periodo: {accountInfo[1]}</h1>
-      <h1>menciones totales del periodo: {totaltweets}</h1>
-      {data.data
-        .filter(
-          (data) =>
-            data.official_account_id === accountId &&
-            data.period_id === periodId
-        )
-        .map((data) => (
-          <div key={data.users_most_retweeted_id}>
-            <span>
-              {data.user_account} -{' '}
-              {data.most_retweeted_description_spa} -{' '}
-              {data.most_retweeted_category_spa} -{' '}
-              {data.most_retweeted_category_desc_spa} -{' '}
-              {parseInt(data.tweets_number)} - {data.period_id} -{' '}
-              {data.user_accounts_verified}
-            </span>
+  const data = items.filter(
+    (item) =>
+      item.official_account_id === accountId && item.period_id === periodId
+  );
+
+  const columns = [
+    {
+      name: 'Cuenta retuiteada',
+      selector: (row) => row.user_account,
+      sortable: true,
+    },
+    {
+      name: 'Nombre de la cuenta',
+      selector: (row) => row.most_retweeted_description_spa,
+      sortable: true,
+    },
+    {
+      name: 'Categoría',
+      selector: (row) => row.most_retweeted_category_spa,
+      sortable: true,
+    },
+    {
+      name: 'Número de tweets',
+      selector: (row) => parseInt(row.tweets_number),
+      sortable: true,
+      right: true,
+    },
+    {
+      button: true,
+      cell: () => (
+        <div className="App">
+        <div className="openbtn text-center">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
+          >
+            Abrir modal
+          </button>
+          <div className="modal" tabIndex="-1" id="myModal">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title">Modal title</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div className="modal-body">
+                  <p>Modal body text goes here.</p>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="button" class="btn btn-primary">
+                    Save changes
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-        ))}
+        </div>
+      </div>
+      ),
+    },
+  ];
+
+  return (
+    <div className="App">
+      <div className="card">
+        <h3> {accountInfo[2]} </h3>
+        <h3> {accountInfo[0]} </h3>
+        <h5>Periodo - {accountInfo[1]} </h5>
+        <h5>Tweets totales periodo - {totaltweets} </h5>
+        <DataTable
+          title="Cuentas más retuiteadas"
+          columns={columns}
+          data={data}
+          defaultSortFieldID={1}
+        />
+      </div>
     </div>
+
+
   );
 };
-
-export { MostRetweetedItem };

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { AccountItem } from '../components/AccountItem';
+import React from 'react';
+import { CountryItem } from '../components/CountryItem';
 
-export const AccountList = () => {
+export const CountryList = () => {
   return (
     <section>
-      <AccountItem />
+      <CountryItem />
     </section>
   );
 };

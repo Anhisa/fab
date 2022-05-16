@@ -24,10 +24,10 @@ Filler
 );
 import { useGetData } from '../hooks/useGetData';
 
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-mentioned';
+const api = 'https://fundacionandresbello.org/wp-json/fab/v1/ht-most-used';
 
 
-export const MostMentionedChart = () => {
+export const HtMostUsedChart = () => {
   const response = useGetData(api);
   const items = response.data;
   const accountId = '19';
@@ -38,14 +38,14 @@ export const MostMentionedChart = () => {
       item.official_account_id === accountId
       && item.period_id === periodId
   )
-  .map(item => item.user_account)
+  .map(item => item.ht)
 
   const dataSet = items.filter(
     (item) =>
       item.official_account_id === accountId
       && item.period_id === periodId
   )
-  .map(item => parseInt(item.mentions_number))
+  .map(item => parseInt(item.ht_mentions_number))
   console.log(labels);
 
   const accountInfo = [];

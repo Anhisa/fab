@@ -26,13 +26,13 @@ const geoUrl =
 ];
  */
 
-function Map() {
+export function Map() {
   return (
     <ComposableMap
       projection="geoAzimuthalEqualArea"
       projectionConfig={{
-        rotate: [65, 12, 0],
-        scale: 387,
+        rotate: [73, 11, 0],
+        scale: 587,
       }}
     >
       <Geographies geography={geoUrl}>
@@ -77,4 +77,4 @@ function Map() {
   );
 }
 
-export { Map };
+

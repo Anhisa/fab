@@ -1,11 +1,10 @@
 import React from 'react';
 
-const Layout = ({children}) => {
+export const Layout = ({children}) => {
   return (
-      <div className="layout">
+      <div className="container-xl">
         {children}
       </div>
   );
 }
 
-export {Layout};

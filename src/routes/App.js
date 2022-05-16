@@ -7,12 +7,11 @@ import { useGetData } from '../hooks/useGetData';
 
 const api = 'https://fundacionandresbello.local/wp-json/fab/v1/official-accounts';
 
-function App() {
+export const App = () => {
   const data = useGetData(api)
   const item = data.data;
   const accounts = item.map(item => (item.official_account))
 
-  console.log (accounts)
   return (
     <Routes>
         <Route path="/diplomacia-digital" element={<Home />} />
@@ -21,4 +20,4 @@ function App() {
   );
 }
 
-export default App;
+

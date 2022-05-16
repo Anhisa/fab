@@ -1,14 +1,20 @@
 import React from 'react';
 import { MostRetweetedItem } from '../components/MostRetweetedItem';
+import { MostRetweetedChart } from '../components/MostRetweetedChart';
 
 
-const MostRetweetedItems = () => {
+export const MostRetweetedItems = () => {
 
   return (
-    <section>
-        <MostRetweetedItem />
+    <section className="row">
+      <div className="col-8">
+        <MostRetweetedItem  />
+      </div>
+      <div className="col-4">
+        <MostRetweetedChart />
+      </div>
     </section>
   );
 };
 
-export { MostRetweetedItems };
+
