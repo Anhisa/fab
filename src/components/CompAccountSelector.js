@@ -42,8 +42,16 @@ export const CompAccountSelector = () => {
               <em>Ninguna</em>
             </MenuItem>
             {items.map((item) => (
-            <MenuItem key = {`oa-${item.official_account_id}`}value={item.official_account_id}>{item.official_account} - {item.official_account_name_spa}</MenuItem>
-              ))}
+              <MenuItem
+                key={`oa-${item.official_account_id}`}
+                value={item.official_account_id}
+              >
+                <div>
+                  <h6>{item.official_account}</h6>
+                  <p>{item.official_account_name_spa}</p>
+                </div>
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         <FormControl
@@ -62,8 +70,16 @@ export const CompAccountSelector = () => {
               <em>Ninguna</em>
             </MenuItem>
             {items.map((item) => (
-            <MenuItem key = {`oa-${item.official_account_id}`}value={item.official_account_id}>{item.official_account} - {item.official_account_name_spa}</MenuItem>
-              ))}
+              <MenuItem
+                key={`oa-${item.official_account_id}`}
+                value={item.official_account_id}
+              >
+                <div>
+                  <h6>{item.official_account}</h6>
+                  <p>{item.official_account_name_spa}</p>
+                </div>
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </div>
