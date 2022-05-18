@@ -20,11 +20,8 @@ import { usePeriod } from '../hooks/usePeriod';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
 
-<<<<<<< HEAD
-=======
 export const MostRetweetedItem2 = ({ periodId={startDate:1, endDate:1}, accountId }) => {
   // period id = [1,3] or id = [2,4]
->>>>>>> 0bf0211b7fc5c4aebeee128030574e1d926dfe99
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
