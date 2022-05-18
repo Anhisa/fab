@@ -19,7 +19,7 @@ import { usePeriod } from '../hooks/usePeriod';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
 
-export const MostRetweetedItem2 = ({ periodId, accountId }) => {
+export const MostRetweetedItem2 = ({ periodId={startDate:1, endDate:1}, accountId }) => {
   // period id = [1,3] or id = [2,4]
 
   // let periodId = '4'; //default
@@ -49,7 +49,7 @@ export const MostRetweetedItem2 = ({ periodId, accountId }) => {
         item.official_account_id === accountId &&  (parseInt(item.period_id ) >= periodId.startDate && parseInt(item.period_id ) <= periodId.endDate)
     )
     //console.log('account', account);
-    // .find((item) => item.official_account_id === accountId);
+    .find((item) => item.official_account_id === accountId);
   if (account) {
     accountInfo.push(account.official_account);
     accountInfo.push(account.period_id);
