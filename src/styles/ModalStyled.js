@@ -7,8 +7,7 @@ export const ModalStyled = styled.div`
   width: 500px;
   height: 500px;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 10;
-  
+  z-index: 10;  
   justify-content: center;
   align-items: center;
   .is-active {
