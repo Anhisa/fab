@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ComposableMap,
   Geographies,
@@ -8,6 +8,8 @@ import {
 } from 'react-simple-maps';
 import { useGetData } from '../hooks/useGetData';
 import { CountryList } from '../containers/CountryDetails';
+import { ModalStyled } from '../styles/ModalStyled';
+import { MapStyled } from '../styles/MapStyled';
 
 const geoUrl =
   'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json';
@@ -33,18 +35,22 @@ const markers = [
   { markerOffset: 12, name: 'Lima', coordinates: [-77.0428, -12.0464] },
 ];
 
-export const Map = () => {
+export const Map = ({setAccounts}) => {
   const response = useGetData(api);
-  const items = response.data;
+  const items = response.data;  
 
-  const handleOnClick = (props) => {
-    const countryId = items.map((item) => item.country_id);
-    const itemValue = props.target.attributes.value;
-    console.log(countryId);
-    console.log(itemValue);
+  const handleOnClick = (props) => {    
+    const itemValue = props.target.attributes.value;   
+    const filteredAccounts = items.filter((item) => item.country_id === itemValue.value);
+    console.log(filteredAccounts);
+    setAccounts(filteredAccounts);
+
+
   };
 
+
   return (
+    
     <ComposableMap
       projection="geoAzimuthalEqualArea"
       projectionConfig={{
@@ -52,7 +58,7 @@ export const Map = () => {
         scale: 587,
       }}
     >
-      <Geographies geography={geoUrl}>
+      <Geographies geography={geoUrl} style={{cursor:"pointer"}} >
         {({ geographies }) =>
           geographies
             .filter(
@@ -60,6 +66,7 @@ export const Map = () => {
             )
             .map((geo) => (
               <Geography
+                className='geo'
                 key={geo.rsmKey}
                 geography={geo}
                 fill="#BBB"
@@ -94,5 +101,8 @@ export const Map = () => {
       ))}{' '}
       */
     </ComposableMap>
+   
+    
+
   );
 };

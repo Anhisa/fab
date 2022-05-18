@@ -28,11 +28,12 @@ const  valuetext = (value) => {
   return value;
 }
 
-export const CompPeriodSlider = () => {
-  const [value, setValue] = React.useState([1, 1]);
+export const CompPeriodSlider = ({setPeriod}) => {
+  const [value, setValue] = useState([1, 1]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    setPeriod(newValue);
   };
 
   return (

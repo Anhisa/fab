@@ -5,21 +5,52 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import 'bootstrap/dist/css/bootstrap.css';
 
-export const CompCategoryCb = () => {
+export const CompCategoryCb = ({ setCategories }) => {
+  const handleSelect = (event) => {
+    setCategories((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.checked,
+    }));
+  };
 
   return (
     <div>
       <h5>Criterios</h5>
-      <FormGroup className = "container-fluid row">
-        <div className = "col-6">
-        <FormControlLabel control={<Checkbox defaultChecked />} label="Usuarios más retuiteados" />
-        <FormControlLabel control={<Checkbox defaultChecked />} label="Usuarios que más han recibido respuestas" />
+      <FormGroup className="container-fluid row">
+        <div className="col-6">
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="Usuarios más retuiteados"
+            name="mostRetweeted"
+            onChange={handleSelect}
+          />
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="Usuarios que más han recibido respuestas"
+            name="mostReplied"
+            onChange={handleSelect}
+          />
         </div>
-        <div className = "col-6">
-        <FormControlLabel control={<Checkbox defaultChecked />} label="Usuarios más mencionados" />
-        <FormControlLabel control={<Checkbox defaultChecked />} label="Hashtags más utilizados" />
+        <div className="col-6">
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="Usuarios más mencionados"
+            name="mostMentioned"
+            onChange={handleSelect}
+          />
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="Hashtags más utilizados"
+            name="mostHashtags"
+            onChange={handleSelect}
+          />
         </div>
       </FormGroup>
     </div>
   );
 };
+
+// mostRetweeted: false,
+// hashtags: false,
+// mostMentioned: false,
+// mostReplied: false,

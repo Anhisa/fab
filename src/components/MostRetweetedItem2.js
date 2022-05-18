@@ -18,7 +18,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { usePeriod } from '../hooks/usePeriod';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
-let periodId = '4';
+let periodId = '4'; //default
 let accountId = '14';
 
 export const MostRetweetedItem2 = ({ MostRetweetedItem }) => {
