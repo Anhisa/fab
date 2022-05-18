@@ -24,7 +24,7 @@ const marks = [
 ];
 
 const  valuetext = (value) => {
-  console.log(value)
+  // console.log(value)
   return value;
 }
 
@@ -33,7 +33,13 @@ export const CompPeriodSlider = ({setPeriod}) => {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    setPeriod(newValue);
+    let stringValueEnd = newValue[1]
+    let stringValueStart = newValue[0]
+
+    setPeriod({
+      startDate:stringValueStart,
+      endDate: stringValueEnd,
+    });
   };
 
   return (

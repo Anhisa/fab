@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { useGetData } from '../hooks/useGetData';
+
 import { CompAccountSelector } from '../components/CompAccountSelector';
 import { CompCategoryCb } from '../components/CompCategoryCb';
 import { CompPeriodSlider } from '../components/CompPeriodSlider';
-import { TableContext } from '../context/TableContext';
+
 
 import Button from '@mui/material/Button';
 import 'bootstrap/dist/css/bootstrap.css';
 
-export const ComparativeTool = () => {
+export const ComparativeTool = ({setDataComparing}) => {
   const [accounts, setAccounts] = useState({
-    accountA: '',
-    accountB: '',
+    accountIdA: '',
+    accountIdB: '',
   })
   const [categories, setCategories] = useState({
     mostRetweeted: true,
@@ -21,18 +21,27 @@ export const ComparativeTool = () => {
   })
 
   const [period, setPeriod] = useState({
-    startDate: 0,
-    endDate: 0,  
+    startDate: 1,
+    endDate: 1,  
   })
-  console.log(categories)
+  
+  const handleComparison = () => {
+    setDataComparing({
+      accounts,
+      categories,
+      period,
+    })
+  }
+ 
   return (
     <div>
       {/* <TableContext> */}
         <CompAccountSelector setAccounts={setAccounts} />
         <CompCategoryCb setCategories={setCategories} />
         <CompPeriodSlider setPeriod={setPeriod} />
-        <Button variant="contained">COMPARAR</Button>
+        <Button variant="contained" onClick={handleComparison}>COMPARAR</Button>
       {/* </TableContext> */}
+      
     </div>
   );
 };

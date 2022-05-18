@@ -6,10 +6,7 @@ import {
   Marker,
   // ZoomableGroup
 } from 'react-simple-maps';
-import { useGetData } from '../hooks/useGetData';
-import { CountryList } from '../containers/CountryDetails';
-import { ModalStyled } from '../styles/ModalStyled';
-import { MapStyled } from '../styles/MapStyled';
+
 
 const geoUrl =
   'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json';
@@ -35,9 +32,9 @@ const markers = [
   { markerOffset: 12, name: 'Lima', coordinates: [-77.0428, -12.0464] },
 ];
 
-export const Map = ({setAccounts}) => {
-  const response = useGetData(api);
-  const items = response.data;  
+export const Map = ({setAccounts, items}) => {
+  // const response = useGetData(api);
+  // const items = response.data;  
 
   const handleOnClick = (props) => {    
     const itemValue = props.target.attributes.value;   

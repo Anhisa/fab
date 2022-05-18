@@ -115,7 +115,7 @@ export const MostRetweetedItem = () => {
       <div className="card">
         <h3> {accountInfo[2]} </h3>
         <h3> {accountInfo[0]} </h3>
-        <h5>Periodo - {accountInfo[1]} </h5>
+        <h5>Periodo de {periodId.startDate.toString()} a {periodId.endDate.toString()} </h5>
         <h5>Tweets totales periodo - {totaltweets} </h5>
         <DataTable
           title="Cuentas más retuiteadas"
