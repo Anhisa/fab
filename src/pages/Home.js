@@ -4,10 +4,14 @@ import { Layout } from '../containers/Layout';
 import { MapIslands } from '../components/MapIslands';
 import { CountryList } from '../containers/CountryDetails';
 import { ComparativeTool } from '../containers/ComparativeTool';
+import { useState } from 'react';
+import { MapStyled } from '../styles/MapStyled';
 
 // import userQueries from './queries.php';
 
 export const Home = () => {
+  const [modal, setModal] = useState(false);
+  const [accounts, setAccounts] = useState([]);
   return (
     <Layout>
       <div className="banner-container">
@@ -23,12 +27,15 @@ export const Home = () => {
         </p>
       </div>
       <div className="row">
-        <div className="map-container col-7">
-          <Map />
-        </div>
+        <MapStyled className="map-container col-7">
+      
+          <Map setAccounts={setAccounts} />
+          
+        </MapStyled>
         <div className="col-5">
-          <CountryList />
+          <CountryList accounts={accounts} />
           <ComparativeTool />
+          
         </div>
       </div>
     </Layout>

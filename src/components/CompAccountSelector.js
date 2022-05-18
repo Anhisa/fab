@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
-export const CompAccountSelector = () => {
+export const CompAccountSelector = ({setAccounts}) => {
   const [accountA, setAccountA] = React.useState('');
   const [accountB, setAccountB] = React.useState('');
 
@@ -17,9 +17,19 @@ export const CompAccountSelector = () => {
 
   const handleChangeA = (event) => {
     setAccountA(event.target.value);
+    setAccounts(prevState => ({
+      ...prevState,
+      accountA: event.target.value,
+      }))
+    console.log('accountA', event.target.value);
   };
   const handleChangeB = (event) => {
+    setAccounts(prevState => ({
+      ...prevState,
+      accountB: event.target.value,
+      }))
     setAccountB(event.target.value);
+    // console.log('accountB', event.target.value);
   };
 
   return (
