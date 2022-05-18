@@ -13,6 +13,7 @@ import { MostRepliedItems } from '../containers/MostReplied';
 import { useGetData } from '../hooks/useGetData';
 import { ComparisonStyled } from '../styles/ComparisonStyled';
 import { TableContext } from '../context/TableContext';
+import { CollapsableTableStyled } from '../styles/collapsableTable';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
@@ -50,10 +51,27 @@ export const Home = () => {
         </div>
       )
     }
+
+    const handleOpen = () => {
+      const table = document.getElementById('table');      
+      if(table.classList.contains('closed')) {
+        table.classList.remove('closed');
+        table.classList.add('open');
+      } else {
+        table.classList.add('closed');
+        table.classList.remove('open');
+      }      
+
+
+    }
     return (
       <>
         {categories.mostRetweeted && (
-          <ComparisonStyled>
+          <CollapsableTableStyled>
+          <button className="collapsable-button" onClick={handleOpen}>
+            <h1>Most Retweeted</h1>
+          </button>
+          <ComparisonStyled className='closed' id='table'>
             <div className="left">
               <MostRetweetedItems accountId={accountIdA} periodId={period} />
             </div>
@@ -61,6 +79,7 @@ export const Home = () => {
               <MostRetweetedItems accountId={accountIdB} periodId={period} />
             </div>
           </ComparisonStyled>
+          </CollapsableTableStyled>
         )}
         {categories.mostReplied && <MostRepliedItems />}
         {categories.mostHashtags && <HtMostUsedItems />}
