@@ -1,3 +1,3 @@
-import React from 'react';
+import {createContext} from 'react';
 
-export const TableContext = React.createContext(null);
+export const TableContext = createContext(null);

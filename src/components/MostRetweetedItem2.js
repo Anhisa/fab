@@ -19,8 +19,6 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { usePeriod } from '../hooks/usePeriod';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
-let periodId = '4'; //default
-let accountId = '14';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -55,10 +53,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export const MostRetweetedItem2 = ({ MostRetweetedItem }) => {
   const response = useGetData(api);
   const items = response.data;
+
+
   const tweetNumber = items
     .filter(
       (item) =>
-        item.official_account_id === accountId && item.period_id === periodId
+        item.official_account_id === accountId && (parseInt(item.period_id ) >= periodId.startDate && parseInt(item.period_id ) <= periodId.endDate)
     )
     .map((item) => parseInt(item.tweets_number));
 
@@ -66,14 +66,15 @@ export const MostRetweetedItem2 = ({ MostRetweetedItem }) => {
     (totaltweetsNumber, item) => totaltweetsNumber + item,
     0
   );
-
+    //console.log('tweetNumber',totaltweets);
   const accountInfo = [];
   const account = items
     .filter(
       (item) =>
-        item.official_account_id === accountId && item.period_id === periodId
+        item.official_account_id === accountId &&  (parseInt(item.period_id ) >= periodId.startDate && parseInt(item.period_id ) <= periodId.endDate)
     )
-    .find((item) => item.official_account_id === accountId);
+    //console.log('account', account);
+    // .find((item) => item.official_account_id === accountId);
   if (account) {
     accountInfo.push(account.official_account);
     accountInfo.push(account.period_id);
@@ -83,10 +84,10 @@ export const MostRetweetedItem2 = ({ MostRetweetedItem }) => {
 
   const data = items.filter(
     (item) =>
-      item.official_account_id === accountId && item.period_id === periodId
+      item.official_account_id === accountId &&   (parseInt(item.period_id ) >= periodId.startDate && parseInt(item.period_id ) <= periodId.endDate)
   );
 
-  console.log(data);
+  // console.log(data);
 
   function createData(
     userAccountDesc,
@@ -193,7 +194,7 @@ export const MostRetweetedItem2 = ({ MostRetweetedItem }) => {
       <div className="card">
         <h3> {accountInfo[2]} </h3>
         <h3> {accountInfo[0]} </h3>
-        <h5>Periodo - {accountInfo[1]} </h5>
+        <h5>Periodo de {periodId.startDate.toString()} a {periodId.endDate.toString()} </h5>
         <h5>Tweets totales periodo - {totaltweets} </h5>
         <TableContainer component={Paper}>
           <Table aria-label="collapsible table">

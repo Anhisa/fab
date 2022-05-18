@@ -19,14 +19,14 @@ export const CompAccountSelector = ({setAccounts}) => {
     setAccountA(event.target.value);
     setAccounts(prevState => ({
       ...prevState,
-      accountA: event.target.value,
+      accountIdA: event.target.value,
       }))
     console.log('accountA', event.target.value);
   };
   const handleChangeB = (event) => {
     setAccounts(prevState => ({
       ...prevState,
-      accountB: event.target.value,
+      accountIdB: event.target.value,
       }))
     setAccountB(event.target.value);
     // console.log('accountB', event.target.value);

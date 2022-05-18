@@ -27,33 +27,33 @@ import { useGetData } from '../hooks/useGetData';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/ht-most-used';
 
 
-export const HtMostUsedChart = () => {
+export const HtMostUsedChart = ({accountId, periodId}) => {
   const response = useGetData(api);
   const items = response.data;
-  const accountId = '19';
-  const periodId = '4';
+  // const accountId = '19';
+  // const periodId = '4';
 
   const labels = items.filter(
     (item) =>
       item.official_account_id === accountId
-      && item.period_id === periodId
+      && (parseInt(item.period_id ) >= periodId.startDate && parseInt(item.period_id ) <= periodId.endDate)
   )
   .map(item => item.ht)
 
   const dataSet = items.filter(
     (item) =>
       item.official_account_id === accountId
-      && item.period_id === periodId
+      && (parseInt(item.period_id ) >= periodId.startDate && parseInt(item.period_id ) <= periodId.endDate)
   )
   .map(item => parseInt(item.ht_mentions_number))
-  console.log(labels);
+  // console.log(labels);
 
   const accountInfo = [];
   const account = items
     .filter(
       (item) =>
         item.official_account_id === accountId
-        && item.period_id === periodId
+        && (parseInt(item.period_id ) >= periodId.startDate && parseInt(item.period_id ) <= periodId.endDate)
     )
     .find((item) => item.official_account_id === accountId);
   if (account) {
