@@ -46,7 +46,7 @@ export const MonthlyTweetsChart = () => {
       && item.period_id === periodId
   )
   .map(item => parseInt(item.tweets_number))
-  console.log(labels);
+//  console.log(labels);
 
   const accountInfo = [];
   const account = items

@@ -24,15 +24,22 @@ const marks = [
 ];
 
 const  valuetext = (value) => {
-  console.log(value)
+  // console.log(value)
   return value;
 }
 
-export const CompPeriodSlider = () => {
-  const [value, setValue] = React.useState([1, 1]);
+export const CompPeriodSlider = ({setPeriod}) => {
+  const [value, setValue] = useState([1, 1]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    let stringValueEnd = newValue[1]
+    let stringValueStart = newValue[0]
+
+    setPeriod({
+      startDate:stringValueStart,
+      endDate: stringValueEnd,
+    });
   };
 
   return (

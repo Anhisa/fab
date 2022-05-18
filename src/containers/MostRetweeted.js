@@ -3,15 +3,15 @@ import { MostRetweetedItem2 } from '../components/MostRetweetedItem2';
 import { MostRetweetedChart } from '../components/MostRetweetedChart';
 
 
-export const MostRetweetedItems = () => {
-
+export const MostRetweetedItems = ({periodId , accountId}) => {
+  
   return (
-    <section className="row">
-      <div className="col-8">
-        <MostRetweetedItem2  />
+    <section className="column">
+      <div >
+        <MostRetweetedItem2 periodId={periodId} accountId={accountId} />
       </div>
-      <div className="col-4">
-        <MostRetweetedChart />
+      <div>
+        <MostRetweetedChart periodId={periodId} accountId={accountId}/>
       </div>
     </section>
   );
