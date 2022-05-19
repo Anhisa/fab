@@ -93,8 +93,8 @@ export const MostRetweetedItem2 = ({
 
     return (
       <React.Fragment>
-        <StyledTableRow  sx={{ '& > *': { borderBottom: 'unset' } }}>
-          <StyledTableCell>
+        <TableRow  sx={{ '& > *': { borderBottom: 'unset' } }}>
+          <TableCell>
             <IconButton
               aria-label="expand row"
               size="small"
@@ -102,16 +102,16 @@ export const MostRetweetedItem2 = ({
             >
               {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
             </IconButton>
-          </StyledTableCell>
-          <StyledTableCell component="th" scope="row">
+          </TableCell>
+          <TableCell component="th" scope="row">
             {row.userAccountDesc}
-          </StyledTableCell>
-          <StyledTableCell key= {`rowInfo1-${row.users_most_retweeted_id}`} align="right">{row.userAccount}</StyledTableCell>
-          <StyledTableCell key= {`rowInfo2-${row.users_most_retweeted_id}`} align="right">{row.categoría}</StyledTableCell>
-          <StyledTableCell key= {`rowInfo3-${row.users_most_retweeted_id}`} align="right">{row.tweets_number}</StyledTableCell>
-        </StyledTableRow>
-        <StyledTableRow>
-          <StyledTableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          </TableCell>
+          <TableCell key= {`rowInfo1-${row.users_most_retweeted_id}`} align="right">{row.userAccount}</TableCell>
+          <TableCell key= {`rowInfo2-${row.users_most_retweeted_id}`} align="right">{row.categoría}</TableCell>
+          <TableCell key= {`rowInfo3-${row.users_most_retweeted_id}`} align="right">{row.tweets_number}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
             <Collapse in={open} timeout="auto" unmountOnExit>
               <Box sx={{ margin: 1 }}>
                 {/* <Typography variant="h6" gutterBottom component="div">
@@ -119,26 +119,26 @@ export const MostRetweetedItem2 = ({
                 </Typography> */}
                 <Table size="small" aria-label="purchases">
                   <TableHead>
-                    <StyledTableRow>
-                      <StyledTableCell>Descripción de la Categoría</StyledTableCell>
-                    </StyledTableRow>
+                    <TableRow>
+                      <TableCell>Descripción de la Categoría</TableCell>
+                    </TableRow>
                   </TableHead>
                   <TableBody>
                     {row.history.map((historyRow) => (
-                      <StyledTableRow
+                      <TableRow
                         key={`catDesc-${historyRow.official_account_id}`}
                       >
-                        <StyledTableCell key= {`rowInfo4-${row.users_most_retweeted_id}`} component="th" scope="row">
+                        <TableCell key= {`rowInfo4-${row.users_most_retweeted_id}`} component="th" scope="row">
                           {historyRow.catDesc}
-                        </StyledTableCell>
-                      </StyledTableRow>
+                        </TableCell>
+                      </TableRow>
                     ))}
                   </TableBody>
                 </Table>
               </Box>
             </Collapse>
-          </StyledTableCell>
-        </StyledTableRow>
+          </TableCell>
+        </TableRow>
       </React.Fragment>
     );
   }
@@ -155,13 +155,13 @@ export const MostRetweetedItem2 = ({
         <TableContainer component={Paper}>
           <Table aria-label="collapsible table">
             <TableHead>
-              <StyledTableRow>
-                <StyledTableCell />
-                <StyledTableCell>Nombre de la cuenta</StyledTableCell>
-                <StyledTableCell align="right">Cuenta</StyledTableCell>
-                <StyledTableCell align="right">Categoría</StyledTableCell>
-                <StyledTableCell align="right">Número de Tweets</StyledTableCell>
-              </StyledTableRow>
+              <TableRow>
+                <TableCell />
+                <TableCell>Nombre de la cuenta</TableCell>
+                <TableCell align="right">Cuenta</TableCell>
+                <TableCell align="right">Categoría</TableCell>
+                <TableCell align="right">Número de Tweets</TableCell>
+              </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
