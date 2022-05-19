@@ -41,8 +41,6 @@ export const Map = ({setAccounts, items}) => {
     const filteredAccounts = items.filter((item) => item.country_id === itemValue.value);
     console.log(filteredAccounts);
     setAccounts(filteredAccounts);
-
-
   };
 
 

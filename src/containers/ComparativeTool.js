@@ -31,6 +31,7 @@ export const ComparativeTool = ({setDataComparing}) => {
       categories,
       period,
     })
+    
   }
  
   return (

@@ -1,23 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { MostMentionedItem } from '../components/MostMentionedItem';
 import { MostMentionedChart } from '../components/MostMentionedChart'
 import { TableContext } from '../context/TableContext';
+import { useFilterData } from '../hooks/useFilterData';
 
-
+const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-mentioned';
 export const MostMentionedItems = () => {
-  const context = React.useContext(TableContext);
-  const { accounts, period } = context;
+const context = useContext(TableContext);
+const { period } = context;
+ const data = useFilterData(api, 'most-mentioned');
+  if(!data){
+    return <div>Loading...</div>
+  }
+  console.log('dataMentiones' , data)
 
   return (
     <>
-      {Object.values(accounts).map((accountId, index) => {
+      {Object.values(data).map((accountId, index) => {
         return (
           <section className="column" key={index}>
             <div >
-              <MostMentionedItem accountId={accountId} periodId={period} />
+              <MostMentionedItem newData={accountId} periodId={period} />
             </div>
             <div>
-              <MostMentionedChart accountId={accountId} periodId={period}/>
+              <MostMentionedChart newData={accountId} periodId={period}/>
             </div>
           </section>
         );
