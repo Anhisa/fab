@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useGetData } from '../hooks/useGetData';
 
 
@@ -15,7 +16,7 @@ export const MostMentionedItem = ({newData, periodId}) => {
 
   return (
     <div>
-      <h1>cuenta oficial: {newData[0].official_account ?? ''}</h1>
+      <h1>cuenta oficial:</h1> <Link to={`/diplomacia-digital/${newData[0].official_account}`}>{newData[0].official_account}</Link> 
       <h1>Periodo de {periodId.startDate.toString()} a {periodId.endDate.toString()}</h1>
       <h1>menciones totales del periodo: {totaltweets}</h1>
       {newData

@@ -14,40 +14,57 @@ const apiUsuarios =
 
 export const AccountDetails = () => {
   const { account } = useParams();
-  const response = useGetData(apiUsuarios);
-  const items = response.data;
+  const { loading, data } = useGetData(apiUsuarios);
+  const items = data;
 
   const userId = items.filter((item) => item.official_account === account);
   console.log(userId);
-  const [dataSearch, setDataSearch] = useState({
-    accounts: 'undefined',
-    period: {
-      startDate: 1,
-      endDate: 4,
-    },
-  });
-  useEffect(() => {
+  const [dataSearch, setDataSearch] = useState(false);
+  function handleRefresh() {
     setDataSearch({
-      accounts: userId[0].official_account_id,
+      accounts: {
+        accountIdA: userId[0].official_account_id,
+      },
       period: {
         startDate: 1,
         endDate: 4,
       },
     });
-  }, [items]);
+  }
+  useEffect(() => {
+    if (!loading) {
+      setDataSearch({
+        accounts: {
+          accountIdA: userId[0].official_account_id,
+        },
+        period: {
+          startDate: 1,
+          endDate: 4,
+        },
+      });
+    }
+  }, [loading]);
+  if (loading) {
+    return <div>Loading</div>;
+  }
+ 
 
-  console.log(dataSearch);
   return (
-    <TableContext.Provider value={dataSearch}>
-      {dataSearch.accounts !== 'undefined' && (
-        <>
-          <HtMostUsedItems />
-          <MostRetweetedItem2 accountId={dataSearch.accounts}/>
-          <MostRepliedItems />
-          <MostMentionedItems />
-        </>
+    <>
+    <h1>VIsta usuarios</h1>
+    <button onClick={handleRefresh}>refresh</button>
+      {dataSearch !== false && (
+        <TableContext.Provider value={dataSearch}>
+          <>
+            <HtMostUsedItems />
+            <MostRetweetedItems />
+            <MostRepliedItems />
+            <MostMentionedItems />
+          </>
+
+          {/* <MonthlyTweetsItems /> */}
+        </TableContext.Provider>
       )}
-      {/* <MonthlyTweetsItems /> */}
-    </TableContext.Provider>
+    </>
   );
 };

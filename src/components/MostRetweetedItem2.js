@@ -15,18 +15,17 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import {Link} from 'react-router-dom';
 import { usePeriod } from '../hooks/usePeriod';
 
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
-
 export const MostRetweetedItem2 = ({
-  newData, period
+  newData,
+  period = { startDate: 1, endDate: 4 },
 }) => {
-// console.log(newData[0], 'newData');
-console.log(period, 'period');
-  
-  const tweetNumber = newData    
-    .map((item) => parseInt(item.tweets_number));
+  console.log('newdata', newData);
+  console.log(period, 'period');
+
+  const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
 
   const totaltweets = tweetNumber.reduce(
     (totaltweetsNumber, item) => totaltweetsNumber + item,
@@ -34,21 +33,14 @@ console.log(period, 'period');
   );
   //console.log('tweetNumber',totaltweets);
   const accountInfo = [];
-  const account = newData[0]    
-   
+  const account = newData[0];
+
   if (account) {
     accountInfo.push(account.official_account);
     // accountInfo.push(account.period_id);
     accountInfo.push(account.official_account_name_spa);
     accountInfo.push(account.most_retweeted_category_desc_spa);
   }
-
-  
-
-
-
-
-
 
   function createData(
     userAccountDesc,
@@ -154,10 +146,9 @@ console.log(period, 'period');
     <div className="App">
       <div className="card">
         <h3> {accountInfo[2]} </h3>
-        <h3> {accountInfo[0]} </h3>
+        <h3> <Link to={`/diplomacia-digital/${accountInfo[0]}`}>{accountInfo[0]}</Link> </h3>
         <h5>
-          Periodo de {period.startDate.toString()} a
-          {period.endDate.toString()}
+          Periodo de {period.startDate.toString()} a{period.endDate.toString()}
         </h5>
         <h5>Tweets totales periodo - {totaltweets} </h5>
         <TableContainer component={Paper}>

@@ -86,6 +86,7 @@ function sortArray(array, from) {
 
 export const useFilterData = (api, from) => {
   const context = useContext(TableContext);
+  // console.log('context', context);
   const { accounts, period } = context;
   const [filteredData, setFilteredData] = useState([]);
   const { loading, data } = useGetData(api);
@@ -106,8 +107,7 @@ export const useFilterData = (api, from) => {
         );
 
         if (from === 'ht-most-used') {
-          let repeatedAccountArrayHt = filterDuplicatesHt(data);
-          console.log('repeatedAccountArrayHt', repeatedAccountArrayHt);
+          let repeatedAccountArrayHt = filterDuplicatesHt(data);          
           newArray = addDuplicates(repeatedAccountArrayHt, from);
           let sortedArray = sortArray(newArray, from);
           if(sortedArray.length > 10){
@@ -156,7 +156,7 @@ function filterDuplicates(data) {
   return arrayDuplicates;
 }
 function filterDuplicatesHt(data) {
-  console.log('data desde funcion', data);
+  
   let htAccountCheck = [];
   let arrayDuplicates = [];
   // Devuelve un array con los elementos duplicados
