@@ -1,7 +1,7 @@
 import React from 'react';
-import { useGetData } from '../hooks/useGetData';
 import DataTable from 'react-data-table-component';
-
+import { Link } from 'react-router-dom';
+import VerifiedIcon from '@mui/icons-material/Verified';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
 export const CountryItem = ({accounts}) => {
@@ -17,10 +17,10 @@ export const CountryItem = ({accounts}) => {
       selector: (row) => row.official_account_category_spa,
     },
     {
-      selector: (row) => row.official_account,
+      selector: (row) => <Link to={`/diplomacia-digital/${row.official_account}`}>  {row.official_account} </Link>,
     },
     {
-      selector: (row) => row.official_account_verified,
+      selector: (row) => row.official_account_verified === 'si'? <VerifiedIcon color='primary'/> : <VerifiedIcon color='disabled'/>,
     },
   ];
 

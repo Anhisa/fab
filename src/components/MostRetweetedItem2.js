@@ -16,80 +16,32 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import {Link} from 'react-router-dom';
 import { usePeriod } from '../hooks/usePeriod';
 
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
+export const MostRetweetedItem2 = ({
+  newData,
+  period = { startDate: 1, endDate: 4 },
+}) => {
+  console.log('newdata', newData);
+  console.log(period, 'period');
 
-export const MostRetweetedItem2 = ({ periodId={startDate:1, endDate:1}, accountId }) => {
-  // period id = [1,3] or id = [2,4]
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.text.primary,
-    padding: 5
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 12,
-    ease: theme.transitions.easing.easeInOut,
-    padding: 8
-
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.background.paper,
-    padding: 0,
-
-
-
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
-
-
-export const MostRetweetedItem2 = ({ MostRetweetedItem }) => {
-  const response = useGetData(api);
-  const items = response.data;
-
-
-  const tweetNumber = items
-    .filter(
-      (item) =>
-        item.official_account_id === accountId && (parseInt(item.period_id ) >= periodId.startDate && parseInt(item.period_id ) <= periodId.endDate)
-    )
-    .map((item) => parseInt(item.tweets_number));
+  const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
 
   const totaltweets = tweetNumber.reduce(
     (totaltweetsNumber, item) => totaltweetsNumber + item,
     0
   );
-    //console.log('tweetNumber',totaltweets);
+  //console.log('tweetNumber',totaltweets);
   const accountInfo = [];
-  const account = items
-    .filter(
-      (item) =>
-        item.official_account_id === accountId &&  (parseInt(item.period_id ) >= periodId.startDate && parseInt(item.period_id ) <= periodId.endDate)
-    )
-    //console.log('account', account);
-    .find((item) => item.official_account_id === accountId);
+  const account = newData[0];
+
   if (account) {
     accountInfo.push(account.official_account);
-    accountInfo.push(account.period_id);
+    // accountInfo.push(account.period_id);
     accountInfo.push(account.official_account_name_spa);
     accountInfo.push(account.most_retweeted_category_desc_spa);
   }
-
-  const data = items.filter(
-    (item) =>
-      item.official_account_id === accountId &&   (parseInt(item.period_id ) >= periodId.startDate && parseInt(item.period_id ) <= periodId.endDate)
-  );
-
-  // console.log(data);
 
   function createData(
     userAccountDesc,
@@ -111,7 +63,7 @@ export const MostRetweetedItem2 = ({ MostRetweetedItem }) => {
     };
   }
 
-  const rows = data.map((item) =>
+  const rows = newData.map((item) =>
     createData(
       item.most_retweeted_description_spa,
       item.user_account,
@@ -195,8 +147,10 @@ export const MostRetweetedItem2 = ({ MostRetweetedItem }) => {
     <div className="App">
       <div className="card">
         <h3> {accountInfo[2]} </h3>
-        <h3> {accountInfo[0]} </h3>
-        <h5>Periodo de {periodId.startDate.toString()} a {periodId.endDate.toString()} </h5>
+        <h3> <Link to={`/diplomacia-digital/${accountInfo[0]}`}>{accountInfo[0]}</Link> </h3>
+        <h5>
+          Periodo de {period.startDate.toString()} a{period.endDate.toString()}
+        </h5>
         <h5>Tweets totales periodo - {totaltweets} </h5>
         <TableContainer component={Paper}>
           <Table aria-label="collapsible table">

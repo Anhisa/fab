@@ -22,44 +22,17 @@ Tooltip,
 Legend,
 Filler
 );
-import { useGetData } from '../hooks/useGetData';
-
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/ht-most-used';
 
 
-export const HtMostUsedChart = ({accountId, periodId}) => {
-  const response = useGetData(api);
-  const items = response.data;
+export const HtMostUsedChart = ({newData, periodId}) => {
+  
   // const accountId = '19';
   // const periodId = '4';
 
-  const labels = items.filter(
-    (item) =>
-      item.official_account_id === accountId
-      && (parseInt(item.period_id ) >= periodId.startDate && parseInt(item.period_id ) <= periodId.endDate)
-  )
-  .map(item => item.ht)
+  const labels = newData.map(item => item.ht)
 
-  const dataSet = items.filter(
-    (item) =>
-      item.official_account_id === accountId
-      && (parseInt(item.period_id ) >= periodId.startDate && parseInt(item.period_id ) <= periodId.endDate)
-  )
-  .map(item => parseInt(item.ht_mentions_number))
-  // console.log(labels);
+  const dataSet = newData.map(item => item.ht_mentions_number)
 
-  const accountInfo = [];
-  const account = items
-    .filter(
-      (item) =>
-        item.official_account_id === accountId
-        && (parseInt(item.period_id ) >= periodId.startDate && parseInt(item.period_id ) <= periodId.endDate)
-    )
-    .find((item) => item.official_account_id === accountId);
-  if (account) {
-    accountInfo.push(account.official_account);
-    accountInfo.push(account.period_id);
-  }
 
 
 const options = {
@@ -83,7 +56,7 @@ const options = {
   const data = {
       datasets: [
         {
-          label: "Cuenta Oficial "+accountInfo[0],
+          label: "Cuenta Oficial "+ newData[0].official_account,
           data: dataSet,
           tension: 0.3,
           borderColor: "rgb(75, 192, 192)",
