@@ -7,21 +7,21 @@ export const HtMostUsedItem = ({ newData, periodId }) => {
   // let accountId = '15';
   // let periodId = '4';
   const tweetNumber = newData.map(item => parseInt(item.ht_mentions_number));
-  
+
 
   console.log('tweetNumber', tweetNumber);
   const totaltweets = tweetNumber.reduce(
-    (totaltweetsNumber, item) => 
+    (totaltweetsNumber, item) =>
     {return totaltweetsNumber + item},
     0
   );
-  
+
   console.log('total tweets', totaltweets )
 
   //console.log(accountInfo);
   return (
     <div>
-      <h1>cuenta oficial:</h1> <Link to={`/diplomacia-digital/${newData[0].official_account}`}>{newData[0].official_account}</Link> 
+      <h1>cuenta oficial:</h1> <Link to={`/diplomacia-digital/${newData[0].official_account}`}>{newData[0].official_account}</Link>
       <h1>
         Periodo de {periodId.startDate.toString()} a{' '}
         {periodId.endDate.toString()}
