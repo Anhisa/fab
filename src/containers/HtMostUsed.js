@@ -15,10 +15,8 @@ export const HtMostUsedItems = () => {
   if(!data){
     return <div>Loading...</div>
   }
-  console.log('data', data)
   return (
     <>
-    <h1>Most used hashtags</h1>
 
     {Object.values(data).map((accountId, index) => {
       return (
