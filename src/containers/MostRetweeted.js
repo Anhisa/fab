@@ -17,8 +17,10 @@ export const MostRetweetedItems = () => {
     return <div>Loading...</div>
   }
   console.log('data', data)
+  
   return (
     <>
+   
     <h1>Most retweeted</h1>
    {data.map((accountId, index) => {
      return (

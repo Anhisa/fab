@@ -13,17 +13,21 @@ function mergeSort(startArray, from) {
   const leftArray = startArray.slice(0, mid);
   const rightArray = startArray.slice(mid, length);
 
-    if(from ===  'most-mentioned'){
-      return mergeMentions(mergeSort(leftArray, from), mergeSort(rightArray, from));     
-    }
-    if(from === 'most-retweeted' || from === 'most-replied'){
-      return mergeTweets(mergeSort(leftArray, from), mergeSort(rightArray, from));
-    }
-    if(from === 'ht-most-used'){
-      return mergeHtMentions(mergeSort(leftArray, from), mergeSort(rightArray, from));
-    }
- 
-  
+  if (from === 'most-mentioned') {
+    return mergeMentions(
+      mergeSort(leftArray, from),
+      mergeSort(rightArray, from)
+    );
+  }
+  if (from === 'most-retweeted' || from === 'most-replied') {
+    return mergeTweets(mergeSort(leftArray, from), mergeSort(rightArray, from));
+  }
+  if (from === 'ht-most-used') {
+    return mergeHtMentions(
+      mergeSort(leftArray, from),
+      mergeSort(rightArray, from)
+    );
+  }
 }
 
 function mergeMentions(leftArray, rightArray) {
@@ -66,22 +70,9 @@ function mergeHtMentions(leftArray, rightArray) {
 
 // Toma las cuentas y el periodo del contexto y devuelve un array con los datos de los usuarios
 function sortArray(array, from) {
-  switch (from) {
-    case 'most-replied':
-    case 'most-retweeted':
-      let sortedArray1 = mergeSort(array, from);
-      return sortedArray1;     
-    
-      
-    case 'most-mentioned':
-      let sortedArray = mergeSort(array, from);
+  let sortedArray = mergeSort(array, from);
 
-      return sortedArray;
-    case 'ht-most-used':
-      let sortedArray2 = mergeSort(array, from);
-      return sortedArray2;
-      
-  }
+  return sortedArray;
 }
 
 export const useFilterData = (api, from) => {
@@ -105,24 +96,33 @@ export const useFilterData = (api, from) => {
             parseInt(item.period_id) >= period.startDate &&
             parseInt(item.period_id) <= period.endDate
         );
+        if(data.length === 0){
+          return;
+        }
 
         if (from === 'ht-most-used') {
-          let repeatedAccountArrayHt = filterDuplicatesHt(data);          
+          let repeatedAccountArrayHt = filterDuplicatesHt(data);
           newArray = addDuplicates(repeatedAccountArrayHt, from);
-          let sortedArray = sortArray(newArray, from);
-          if(sortedArray.length > 10){
-            sortedArray = sortedArray.slice(0, 10);
+          console.log('newArray lenght', newArray.length);
+          if (newArray.length > 3) {
+            let sortedArray = sortArray(newArray, from);
+            console.log('sortedArray 😎', sortedArray);
+            if (sortedArray.length > 10) {
+              sortedArray = sortedArray.slice(0, 10);
+            }
+            accountsData.push(sortedArray);
+          } else {
+
+            accountsData.push(newArray);
           }
-          
-          accountsData.push(sortedArray);
         } else {
           let repeatedAccountArray = filterDuplicates(data);
           newArray = addDuplicates(repeatedAccountArray, from);
           let sortedArray = sortArray(newArray, from);
-          if(sortedArray.length> 10){
+          if (sortedArray.length > 10) {
             sortedArray = sortedArray.slice(0, 10);
           }
-          
+
           accountsData.push(sortedArray);
         }
       }
@@ -156,7 +156,6 @@ function filterDuplicates(data) {
   return arrayDuplicates;
 }
 function filterDuplicatesHt(data) {
-  
   let htAccountCheck = [];
   let arrayDuplicates = [];
   // Devuelve un array con los elementos duplicados
