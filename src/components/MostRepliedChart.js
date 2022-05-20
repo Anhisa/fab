@@ -22,46 +22,14 @@ Tooltip,
 Legend,
 Filler
 );
-import { useGetData } from '../hooks/useGetData';
-
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-replied';
 
 
-export const MostRepliedChart = ({accountId, periodId}) => {
-  const response = useGetData(api);
-  const items = response.data;
-  // const accountId = '19';
- 
-  // const periodId = '1';
+export const MostRepliedChart = ({newData, period}) => {
+  
 
-  const labels = items.filter(
-    (item) =>
-      item.official_account_id === accountId
-      && (parseInt(item.period_id ) >= periodId.startDate && parseInt(item.period_id ) <= periodId.endDate)
-  )
-  .map(item => item.user_account)
+  const labels = newData.map(item => item.user_account)
 
-  const dataSet = items.filter(
-    (item) =>
-      item.official_account_id === accountId
-      && (parseInt(item.period_id ) >= periodId.startDate && parseInt(item.period_id ) <= periodId.endDate)
-  )
-  .map(item => parseInt(item.tweets_number))
-
-
-  const accountInfo = [];
-  const account = items
-    .filter(
-      (item) =>
-        item.official_account_id === accountId
-        && (parseInt(item.period_id ) >= periodId.startDate && parseInt(item.period_id ) <= periodId.endDate)
-    )
-    .find((item) => item.official_account_id === accountId);
-  if (account) {
-    accountInfo.push(account.official_account);
-    accountInfo.push(account.period_id);
-  }
-
+  const dataSet = newData.map(item => item.tweets_number)
 
 const options = {
   fill: true,
@@ -84,7 +52,7 @@ const options = {
   const data = {
       datasets: [
         {
-          label: "Cuenta Oficial "+accountInfo[0],
+          label: "Cuenta Oficial "+ newData[0].official_account,
           data: dataSet,
           tension: 0.3,
           borderColor: "rgb(75, 192, 192)",

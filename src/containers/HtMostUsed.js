@@ -1,22 +1,31 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { HtMostUsedChart } from '../components/HtMostUsedChart';
 import { HtMostUsedItem } from '../components/HtMostUsedItem';
 import { TableContext } from '../context/TableContext';
+import { useFilterData } from '../hooks/useFilterData';
 
-
+const api = 'https://fundacionandresbello.org/wp-json/fab/v1/ht-most-used';
 export const HtMostUsedItems = () => {
-  const context = React.useContext(TableContext);
-  const { accounts, period } = context;
+  const context = useContext(TableContext);
+  const { period } = context;  
+  const data = useFilterData(api, 'ht-most-used');
+  useEffect(()=> {
+    console.log("refresh")
+  },[data])
+  if(!data){
+    return <div>Loading...</div>
+  }
   return (
     <>
-    {Object.values(accounts).map((accountId, index) => {
+
+    {Object.values(data).map((accountId, index) => {
       return (
         <section className="column" key={index}>
           <div >
-            <HtMostUsedItem accountId={accountId} periodId={period} />
+            <HtMostUsedItem newData={accountId} periodId={period} />
           </div>
           <div>
-            <HtMostUsedChart accountId={accountId} periodId={period}/>
+            <HtMostUsedChart newData={accountId} periodId={period}/>
           </div>
         </section>
       );
