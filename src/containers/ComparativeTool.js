@@ -18,6 +18,7 @@ export const ComparativeTool = ({setDataComparing}) => {
     mostHashtags: true,
     mostMentioned: true,
     mostReplied: true,
+    monthlyTweets: true,
   })
 
   const [period, setPeriod] = useState({
@@ -31,6 +32,7 @@ export const ComparativeTool = ({setDataComparing}) => {
       categories,
       period,
     })
+    
   }
  
   return (

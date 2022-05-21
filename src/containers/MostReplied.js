@@ -1,36 +1,48 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { MostRepliedChart } from '../components/MostRepliedChart';
 import { MostRepliedItem } from '../components/MostRepliedItem';
 import { TableContext } from '../context/TableContext';
+import { useFilterData } from '../hooks/useFilterData';
 
-
+const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-replied';
 export const MostRepliedItems = () => {
-  const context = React.useContext(TableContext);
-  const { accounts, period } = context;
-  //console.log(period)
- 
-  return (
-    <>
-    {Object.values(accounts).map((accountId, index) => {
-      return (
-        <section className="column" key={index}>
-          <div >
-            <MostRepliedItem accountId={accountId} periodId={period} />
-          </div>
-          <div>
-            <MostRepliedChart accountId={accountId} periodId={period}/>
-          </div>
-        </section>
-      );
-    }) }
+  const [loading, setLoading] = useState(true);
+  const context = useContext(TableContext);
+  const { period } = context;
+  const data = useFilterData(api, 'most-replied');
+  const [innerData, setInnerData] = useState(data);
 
-    </>
+  useEffect(() => {
+    if (!data) {
+      setLoading(true);
+    } else {
+      if(data.length > 0){
+      setInnerData(data);
+      setLoading(false); 
+      }
+    }
+  }, [data]);
+
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  return (
+    <section className='closed' id='most-replied'>
     
-    // <section>
-    //     <MostRepliedItem />
-    //     <MostRepliedChart />
-    // </section>
+    
+      {Object.values(innerData).map((accountId, index) => {
+        return (
+          <section className="column" key={index}>
+            <div>
+              <MostRepliedItem newData={accountId} periodId={period} />
+            </div>
+            <div>
+              <MostRepliedChart newData={accountId} periodId={period} />
+            </div>
+          </section>
+        );
+      })}
+    </section>
   );
 };
-
-

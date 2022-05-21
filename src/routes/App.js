@@ -15,7 +15,7 @@ export const App = () => {
   return (
     <Routes>
         <Route path="/diplomacia-digital" element={<Home />} />
-        <Route path={`/diplomacia-digital/:accounts`} element ={<AccountDetails />} />
+        <Route path={`/diplomacia-digital/:account`} element ={<AccountDetails />} />
     </Routes>
   );
 }
