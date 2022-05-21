@@ -9,18 +9,18 @@ Title,
 Tooltip,
 Legend,
 Filler,
+BarElement,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import {  Line } from "react-chartjs-2";
+import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(
-CategoryScale,
-LinearScale,
-PointElement,
-LineElement,
-Title,
-Tooltip,
-Legend,
-Filler
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
 );
 
 
@@ -68,5 +68,5 @@ const options = {
       labels,
     };
 
-  return <Line data={data} options={options} />;
+  return <Bar data={data} options={options} />;
 }

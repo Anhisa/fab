@@ -8,7 +8,7 @@ export const useGetData = (api) => {
   useEffect(async () => {
     // setLoading(true);
     const response = await axios(api);
-    console.log(response);
+   
     if(response.status === 200){
     setData(response.data);
     setLoading(false);

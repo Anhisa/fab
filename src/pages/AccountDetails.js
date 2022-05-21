@@ -8,9 +8,10 @@ import { MostRetweetedItem2 } from '../components/MostRetweetedItem2';
 import { useParams } from 'react-router';
 import { useGetData } from '../hooks/useGetData';
 import { TableContext } from '../context/TableContext';
+import ViewUserCard from '../components/ViewUserCard';
 
 const apiUsuarios =
-  'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
+  'https://fundacionandresbello.org/wp-json/fab/v1/official-fol';
 
 export const AccountDetails = () => {
   const { account } = useParams();
@@ -18,7 +19,7 @@ export const AccountDetails = () => {
   const items = data;
 
   const userId = items.filter((item) => item.official_account === account);
-  console.log(userId);
+ 
   const [dataSearch, setDataSearch] = useState(false);
   function handleRefresh() {
     setDataSearch({
@@ -51,7 +52,8 @@ export const AccountDetails = () => {
 
   return (
     <>
-    <h1>VIsta usuarios</h1>
+    <h1>Vista usuarios</h1>
+    <ViewUserCard data={userId}/>
     <button onClick={handleRefresh}>refresh</button>
       {dataSearch !== false && (
         <TableContext.Provider value={dataSearch}>

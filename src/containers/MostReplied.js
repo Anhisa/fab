@@ -18,21 +18,19 @@ export const MostRepliedItems = () => {
     } else {
       if(data.length > 0){
       setInnerData(data);
-      setLoading(false);
-      console.log('data mostReplied', data);
+      setLoading(false); 
       }
     }
   }, [data]);
 
-  //console.log(period)
-  console.log('innerData', innerData)
+
   if (loading) {
     return <div>Loading...</div>;
   }
   return (
-    <>
+    <section className='closed' id='most-replied'>
     
-      <h1> Most replied </h1>
+    
       {Object.values(innerData).map((accountId, index) => {
         return (
           <section className="column" key={index}>
@@ -45,6 +43,6 @@ export const MostRepliedItems = () => {
           </section>
         );
       })}
-    </>
+    </section>
   );
 };
