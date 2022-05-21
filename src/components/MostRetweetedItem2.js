@@ -23,8 +23,6 @@ export const MostRetweetedItem2 = ({
   newData,
   period = { startDate: 1, endDate: 4 },
 }) => {
-  console.log('newdata', newData);
-  console.log(period, 'period');
 
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
 

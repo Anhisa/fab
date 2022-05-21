@@ -10,17 +10,17 @@ const context = useContext(TableContext);
 const { period } = context;
  const data = useFilterData(api, 'most-mentioned');
  useEffect(()=> {
-   console.log("refresh")
+  
  },[data])
   if(!data){
     return <div>Loading...</div>
   }
-    console.log('data', data)
+   
   
   return (
-    <>
+    <section className='closed' id='most-mentioned'>
     
-    <h1>Most mentioned</h1>
+   
       {Object.values(data).map((accountId, index) => {
         return (
           <section className="column" key={index}>
@@ -33,7 +33,7 @@ const { period } = context;
           </section>
         );
       })}
-    </>
+    </section>
   );
 };
 
