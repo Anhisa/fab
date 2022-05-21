@@ -44,6 +44,13 @@ export const CompCategoryCb = ({ setCategories }) => {
             name="mostHashtags"
             onChange={handleSelect}
           />
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="Usuarios que mensual"
+            name="monthlyTweets"
+            onChange={handleSelect}
+          />
+
         </div>
       </FormGroup>
     </div>

@@ -19,7 +19,11 @@ function mergeSort(startArray, from) {
       mergeSort(rightArray, from)
     );
   }
-  if (from === 'most-retweeted' || from === 'most-replied') {
+  if (
+    from === 'most-retweeted' ||
+    from === 'most-replied' ||
+    from === 'monthly-tweets'
+  ) {
     return mergeTweets(mergeSort(leftArray, from), mergeSort(rightArray, from));
   }
   if (from === 'ht-most-used') {
@@ -96,27 +100,46 @@ export const useFilterData = (api, from) => {
             parseInt(item.period_id) >= period.startDate &&
             parseInt(item.period_id) <= period.endDate
         );
-        if(data.length === 0){
-          return;
+        if (data.length === 0) {
+          return console.log(
+            `No hay data en ${account} desde ${period.startDate} hasta ${period.endDate} peticion desde ${from}`
+          );
         }
 
         if (from === 'ht-most-used') {
           let repeatedAccountArrayHt = filterDuplicatesHt(data);
           newArray = addDuplicates(repeatedAccountArrayHt, from);
-          console.log('newArray lenght', newArray.length);
+
           if (newArray.length > 3) {
             let sortedArray = sortArray(newArray, from);
-            console.log('sortedArray 😎', sortedArray);
+
             if (sortedArray.length > 10) {
               sortedArray = sortedArray.slice(0, 10);
             }
             accountsData.push(sortedArray);
           } else {
-
             accountsData.push(newArray);
           }
-        } else {
+        } else if(from === 'monthly-tweets') {
+          console.log('filter',data)
+         
+          let innerArray = data
+// 
+//           if (innerArray.length > 3) {
+//             let sortedArray = sortArray(innerArray, from);
+// 
+//             if (sortedArray.length > 10) {
+//               sortedArray = sortedArray
+//               
+//             }
+//             accountsData.push(sortedArray);
+//           } else {
+            accountsData.push(innerArray);
+          // }
+        } 
+        else {
           let repeatedAccountArray = filterDuplicates(data);
+          console.log('repeatedAccountArray', repeatedAccountArray);
           newArray = addDuplicates(repeatedAccountArray, from);
           let sortedArray = sortArray(newArray, from);
           if (sortedArray.length > 10) {
@@ -152,7 +175,6 @@ function filterDuplicates(data) {
     }
   });
 
-  console.log('duplicates', arrayDuplicates);
   return arrayDuplicates;
 }
 function filterDuplicatesHt(data) {
@@ -278,9 +300,33 @@ function addDuplicates(arrayDuplicades, from) {
       });
       return newArray;
 
+    case 'monthly-tweets': // tweets_number
+      newArray = arrayDuplicades.map((item) => {
+        let monthly_tweets_id = '';
+        let user_account = '';
+        let month = '';
+        let official_account = '';
+        let tweets_number = item.reduce((acc, item) => {
+          user_account = item.user_account;
+          monthly_tweets_id = item.monthly_tweets_id;
+          month =  new Date(item.month).toLocaleString('es-ES', { month: 'long' , timeZone: 'UTC' });;
+
+          official_account = item.official_account;
+
+          return acc + parseInt(item.tweets_number);
+        }, 0);
+        return {
+          monthly_tweets_id,
+          user_account,
+          tweets_number,
+          month,
+          official_account,
+        };
+      });
+      return newArray;
+
     case 'ht-most-used': // hashtags_number
       newArray = arrayDuplicades.map((item, index) => {
-        console.log('index', index, 'item', item[0]);
         let ht_category_desc_spa = '';
         let ht_category_spa = '';
         let ht_most_used_id = '';

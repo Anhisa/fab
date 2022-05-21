@@ -11,17 +11,14 @@ export const MostRetweetedItems = () => {
     
   const data = useFilterData(api, 'most-retweeted');
   useEffect(()=> {
-    console.log("refresh")
+    
   },[data])
   if(!data){
     return <div>Loading...</div>
   }
-  console.log('data', data)
-  
+ 
   return (
-    <>
-   
-    <h1>Most retweeted</h1>
+    <section className='closed' id='most-retweet'>   
    {data.map((accountId, index) => {
      return (
       <section className="column" key={index}>
@@ -40,6 +37,6 @@ export const MostRetweetedItems = () => {
     </section>
    )})
    } 
-   </>
+   </section>
   );
 };

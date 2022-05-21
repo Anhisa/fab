@@ -21,7 +21,7 @@ export const CompAccountSelector = ({setAccounts}) => {
       ...prevState,
       accountIdA: event.target.value,
       }))
-    console.log('accountA', event.target.value);
+    
   };
   const handleChangeB = (event) => {
     setAccounts(prevState => ({

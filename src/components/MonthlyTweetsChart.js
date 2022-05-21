@@ -22,40 +22,24 @@ Tooltip,
 Legend,
 Filler
 );
-import { useGetData } from '../hooks/useGetData';
-
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/monthly-tweets';
 
 
-export const MonthlyTweetsChart = () => {
-  const response = useGetData(api);
-  const items = response.data;
-  const accountId = '19';
-  const periodId = '4';
 
-  const labels = items.filter(
-    (item) =>
-      item.official_account_id === accountId
-      && item.period_id === periodId
-  )
-  .map(item => item.month)
 
-  const dataSet = items.filter(
-    (item) =>
-      item.official_account_id === accountId
-      && item.period_id === periodId
-  )
-  .map(item => parseInt(item.tweets_number))
+export const MonthlyTweetsChart = ({newData}) => {
+
+// 
+//   const labels = newData.map(item =>  new Date(item.month).toLocaleString('es-ES', { month: 'long' , timeZone: 'UTC' }))
+let labels = newData.map(item =>  item.month)
+labels = labels.map(item => new Date(item).toLocaleString('es-ES', { month: 'long' , timeZone: 'UTC' }) + ' ' + new Date(item).getUTCFullYear());
+console.log(labels)
+
+  const dataSet = newData.map(item => parseInt(item.tweets_number))
 //  console.log(labels);
 
   const accountInfo = [];
-  const account = items
-    .filter(
-      (item) =>
-        item.official_account_id === accountId
-        && item.period_id === periodId
-    )
-    .find((item) => item.official_account_id === accountId);
+  const account = newData[0]
+
   if (account) {
     accountInfo.push(account.official_account);
     accountInfo.push(account.period_id);

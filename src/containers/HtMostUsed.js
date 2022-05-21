@@ -9,14 +9,13 @@ export const HtMostUsedItems = () => {
   const context = useContext(TableContext);
   const { period } = context;  
   const data = useFilterData(api, 'ht-most-used');
-  useEffect(()=> {
-    console.log("refresh")
+  useEffect(()=> {    
   },[data])
   if(!data){
     return <div>Loading...</div>
   }
   return (
-    <>
+    <section className='closed' id='most-ht'>
 
     {Object.values(data).map((accountId, index) => {
       return (
@@ -31,10 +30,7 @@ export const HtMostUsedItems = () => {
       );
     })
   }
-  </>
-    // <section>
-    //     <HtMostUsedItem />
-    //     <HtMostUsedChart />
-    // </section>
+  </section>
+
   );
 };
