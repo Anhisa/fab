@@ -5,30 +5,29 @@ export const ViewUserCardStyled = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 700px;
+  width: 600px;
   height: 300px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border-radius: 20px;
-  border: 1px solid #e0e0e0;
-  margin: 100px auto;
+  border: 1px solid #e0e0e0;  
   padding: 15px;
-  .left{
+  .innerLeft{
     display: flex;
     flex-direction: column;
     width: 50%;
-    height: 100%;
+    align-items: flex-start;
     margin-right: 20px;
   }
-  .right{
+  .innerRight{
     display: flex;
     flex-direction: column;
-    height: 100%;
+    align-items: flex-start;
     width: 50%;
+    margin: 0;
   }
   hr{
     width: 100%;
     margin:0;    
-
     border-top: 1.2px dashed black;
 
   }
@@ -80,7 +79,7 @@ export const UserCardStyled = styled.div`
       flex-direction: row;      
      
       p{
-        font-size: 1.2rem;
+        font-size: 1rem;
         margin-top: 0;
         margin-bottom: 0;
         font-weight: bold;

@@ -60,7 +60,7 @@ export const Map = ({setAccounts, items}) => {
               (d) => d.properties.REGION_WB === 'Latin America & Caribbean'
             )
             .map((geo) => (
-              console.log('country id', geo.properties.COUNTRY_ID),
+              
               <Geography
                 className='geo'
                 key={geo.rsmKey}

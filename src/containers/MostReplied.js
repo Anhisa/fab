@@ -6,27 +6,21 @@ import { useFilterData } from '../hooks/useFilterData';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-replied';
 export const MostRepliedItems = () => {
-  const [loading, setLoading] = useState(true);
   const context = useContext(TableContext);
   const { period } = context;
   const data = useFilterData(api, 'most-replied');
   const [innerData, setInnerData] = useState(data);
 
   useEffect(() => {
-    if (!data) {
-      setLoading(true);
-    } else {
-      if(data.length > 0){
+    if (data !== false) {
       setInnerData(data);
-      setLoading(false); 
-      }
     }
-  }, [data]);
+  }, [data,context]);
 
-
-  if (loading) {
+  if (!data || data.length === 0) {
     return <div>Loading...</div>;
   }
+
   return (
     <section className='closed' id='most-replied'>
     

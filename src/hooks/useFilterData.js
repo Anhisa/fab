@@ -81,9 +81,10 @@ function sortArray(array, from) {
 
 export const useFilterData = (api, from) => {
   const context = useContext(TableContext);
+
   // console.log('context', context);
   const { accounts, period } = context;
-  const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState(false);
   const { loading, data } = useGetData(api);
 
   const items = data;
@@ -121,7 +122,7 @@ export const useFilterData = (api, from) => {
             accountsData.push(newArray);
           }
         } else if(from === 'monthly-tweets') {
-          console.log('filter',data)
+          
          
           let innerArray = data
 // 
@@ -139,7 +140,7 @@ export const useFilterData = (api, from) => {
         } 
         else {
           let repeatedAccountArray = filterDuplicates(data);
-          console.log('repeatedAccountArray', repeatedAccountArray);
+          
           newArray = addDuplicates(repeatedAccountArray, from);
           let sortedArray = sortArray(newArray, from);
           if (sortedArray.length > 10) {
@@ -152,13 +153,9 @@ export const useFilterData = (api, from) => {
     });
 
     setFilteredData(accountsData);
-  }, [data, context]);
+  }, [loading, items, accounts, period, from]);
 
-  if (!loading) {
-    return filteredData;
-  } else {
-    return false;
-  }
+  return filteredData;
 };
 //Crear un array con los datos de los usuarios que se repiten
 function filterDuplicates(data) {

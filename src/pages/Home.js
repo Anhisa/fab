@@ -3,7 +3,7 @@ import { Map } from '../components/Map';
 import { Layout } from '../containers/Layout';
 import { CountryList } from '../containers/CountryDetails';
 import { ComparativeTool } from '../containers/ComparativeTool';
-import {  useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { MapStyled } from '../styles/styledComponents/MapStyled';
 import { useGetData } from '../hooks/useGetData';
 
@@ -36,6 +36,8 @@ export const Home = () => {
       endDate: 1,
     },
   });
+  useEffect(() => {    
+  }, [dataComparing]);
 
 
   return (

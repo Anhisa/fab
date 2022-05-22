@@ -29,16 +29,13 @@ const  valuetext = (value) => {
 }
 
 export const CompPeriodSlider = ({setPeriod}) => {
-  const [value, setValue] = useState([1, 1]);
+  const [value, setValue] = useState([1, 4]);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-    let stringValueEnd = newValue[1]
-    let stringValueStart = newValue[0]
-
+    setValue(newValue);  
     setPeriod({
-      startDate:stringValueStart,
-      endDate: stringValueEnd,
+      startDate:newValue[0],
+      endDate:  newValue[1],
     });
   };
 
@@ -47,7 +44,7 @@ export const CompPeriodSlider = ({setPeriod}) => {
       <h4>¿En qué periodo?</h4>
       <Box sx={{ width: 300, marginLeft: 10 }}>
         <Slider
-          getAriaLabel={() => 'Temperature range'}
+          getAriaLabel={() => 'Period range'}
           value={value}
           onChange={handleChange}
           valueLabelDisplay="off"

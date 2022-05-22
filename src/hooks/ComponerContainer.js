@@ -5,45 +5,23 @@ import { MostMentionedItems } from '../containers/MostMentioned';
 import { MostRepliedItems } from '../containers/MostReplied';
 import { MostRetweetedItems } from '../containers/MostRetweeted';
 import { TableContext } from '../context/TableContext';
+import handleClick from '../helpers/HandleClick';
 import { CollapsableTableStyled } from '../styles/styledComponents/CollapsableTableStyled';
 import { useFilterData } from './useFilterData';
 
 export const ComponentContainer = () => {
-  const context = useContext(TableContext);
-  const [data, setData] = useState([]);
+  const context = useContext(TableContext);  
   const { categories, accounts } = context;
   const { accountIdA, accountIdB } = accounts;
-  const { period } = context;
-  let filterData = useFilterData();
-  useEffect(() => {
-    if (filterData !== false) {
-      setData(filterData);
-    }
-  }, [context, filterData]);
-  if (!data) {
-    return <div>Loading...</div>;
-  }
 
-  if (accountIdA === '' || accountIdB === '') {
+  if (accountIdA === '' || accountIdB === '' || accountIdA === accountIdB) {
     return (
       <div>
-        <h1>Please select two accounts to compare</h1>
+        <h1>Please select two different accounts to compare</h1>
       </div>
     );
   }
-  function handleClick(e) {   
-    console.log(e.target.name);
-    const element = document.getElementById(e.target.name);
-    if (element.classList.contains('closed')) {
-      element.classList.remove('closed');
-      element.classList.add('open');
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    else {
-      element.classList.add('closed');
-      element.classList.remove('open');
-    }
-  }
+
   return (
     <>
       {categories.monthlyTweets && (
@@ -54,7 +32,7 @@ export const ComponentContainer = () => {
           
         </CollapsableTableStyled>
       )}
-      {categories.mostRetweeted && categories.monthlyTweets && (
+      {categories.mostRetweeted  && (
         <CollapsableTableStyled>
           <button name='most-retweet' onClick={handleClick}>Most retweeted</button>          
             <MostRetweetedItems />

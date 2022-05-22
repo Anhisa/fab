@@ -27,16 +27,18 @@ export const ComparativeTool = ({setDataComparing}) => {
   })
   
   const handleComparison = () => {
+   
     setDataComparing({
       accounts,
       categories,
       period,
-    })
+    })   
+
     
   }
  
   return (
-    <div>
+    <>
       {/* <TableContext> */}
         <CompAccountSelector setAccounts={setAccounts} />
         <CompCategoryCb setCategories={setCategories} />
@@ -44,6 +46,6 @@ export const ComparativeTool = ({setDataComparing}) => {
         <Button variant="contained" onClick={handleComparison}>COMPARAR</Button>
       {/* </TableContext> */}
       
-    </div>
+    </>
   );
 };
