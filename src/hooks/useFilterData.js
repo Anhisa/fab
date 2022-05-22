@@ -102,14 +102,15 @@ export const useFilterData = (api, from) => {
             parseInt(item.period_id) <= period.endDate
         );
         if (data.length === 0) {
-          return console.log(
-            `No hay data en ${account} desde ${period.startDate} hasta ${period.endDate} peticion desde ${from}`
-          );
+          return data
+          
         }
 
         if (from === 'ht-most-used') {
           let repeatedAccountArrayHt = filterDuplicatesHt(data);
+          console.log('ht repeated', repeatedAccountArrayHt);
           newArray = addDuplicates(repeatedAccountArrayHt, from);
+          console.log('newArray', newArray);
 
           if (newArray.length > 3) {
             let sortedArray = sortArray(newArray, from);
@@ -338,7 +339,7 @@ function addDuplicates(arrayDuplicades, from) {
         official_account = item[0].official_account;
         ht = item[0].ht;
         official_account_name_spa = item[0].official_account_name_spa;
-        ht_mentions_number = item[0].ht_mentions_number;
+        ht_mentions_number = parseInt(item[0].ht_mentions_number);
 
         return {
           ht_category_desc_spa,

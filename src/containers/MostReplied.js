@@ -1,25 +1,27 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, memo } from 'react';
 import { MostRepliedChart } from '../components/MostRepliedChart';
 import { MostRepliedItem } from '../components/MostRepliedItem';
 import { TableContext } from '../context/TableContext';
 import { useFilterData } from '../hooks/useFilterData';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-replied';
-export const MostRepliedItems = () => {
-  const context = useContext(TableContext);
-  const { period } = context;
-  const data = useFilterData(api, 'most-replied');
+export const MostRepliedItems = memo((period) => {
+    const data = useFilterData(api, 'most-replied');
   const [innerData, setInnerData] = useState(data);
 
   useEffect(() => {
     if (data !== false) {
       setInnerData(data);
     }
-  }, [data,context]);
+  }, [data,period]);
 
-  if (!data || data.length === 0) {
+  if (!data ) {
     return <div>Loading...</div>;
   }
+  if(data.length === 0){
+    return <div>No data</div>
+  }
+
 
   return (
     <section className='closed' id='most-replied'>
@@ -39,4 +41,4 @@ export const MostRepliedItems = () => {
       })}
     </section>
   );
-};
+});

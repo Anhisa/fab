@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { HtMostUsedItems } from '../containers/HtMostUsed';
 import { MonthlyTweetsItems } from '../containers/MonthlyTweets';
 import { MostMentionedItems } from '../containers/MostMentioned';
@@ -7,13 +7,14 @@ import { MostRetweetedItems } from '../containers/MostRetweeted';
 import { TableContext } from '../context/TableContext';
 import handleClick from '../helpers/HandleClick';
 import { CollapsableTableStyled } from '../styles/styledComponents/CollapsableTableStyled';
-import { useFilterData } from './useFilterData';
 
-export const ComponentContainer = () => {
-  const context = useContext(TableContext);  
+
+export const ComponentContainer = ({context}) => {
+
   const { categories, accounts } = context;
   const { accountIdA, accountIdB } = accounts;
 
+  useEffect(() => {} , [accountIdA, accountIdB]);
   if (accountIdA === '' || accountIdB === '' || accountIdA === accountIdB) {
     return (
       <div>
@@ -24,45 +25,52 @@ export const ComponentContainer = () => {
 
   return (
     <>
+     <TableContext.Provider value={context}>
       {categories.monthlyTweets && (
         <CollapsableTableStyled>
-          <button name='monthy-tweets' onClick={handleClick}>Monthy tweets</button>
-         
-            <MonthlyTweetsItems />
-          
+          <button name="monthy-tweets" onClick={handleClick}>
+            Monthy tweets
+          </button>
+
+          <MonthlyTweetsItems period={context.period}/>
         </CollapsableTableStyled>
       )}
-      {categories.mostRetweeted  && (
+      {categories.mostRetweeted && (
         <CollapsableTableStyled>
-          <button name='most-retweet' onClick={handleClick}>Most retweeted</button>          
-            <MostRetweetedItems />
-          
+          <button name="most-retweet" onClick={handleClick}>
+            Most retweeted
+          </button>
+          <MostRetweetedItems period={context.period} />
         </CollapsableTableStyled>
       )}
       {categories.mostReplied && (
         <CollapsableTableStyled>
-          <button name='most-replied' onClick={handleClick}>Most Replied</button>
-        
-            <MostRepliedItems />
-  
+          <button name="most-replied" onClick={handleClick}>
+            Most Replied
+          </button>
+
+          <MostRepliedItems period={context.period} />
         </CollapsableTableStyled>
       )}
       {categories.mostHashtags && (
         <CollapsableTableStyled>
-          <button name='most-ht' onClick={handleClick}>Most used hashtags</button>
-          
-            <HtMostUsedItems />
-          
+          <button name="most-ht" onClick={handleClick}>
+            Most used hashtags
+          </button>
+
+          <HtMostUsedItems  period={context.period} />
         </CollapsableTableStyled>
       )}
       {categories.mostMentioned && (
         <CollapsableTableStyled>
-          <button name='most-mentioned' onClick={handleClick}>Most mentioned</button>
-          
-            <MostMentionedItems />
-          
+          <button name="most-mentioned" onClick={handleClick}>
+            Most mentioned
+          </button>
+
+          <MostMentionedItems  period={context.period} />
         </CollapsableTableStyled>
       )}
+      </TableContext.Provider>
     </>
   );
 };

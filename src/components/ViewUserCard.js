@@ -10,6 +10,7 @@ const ViewUserCard = ({data, period}) => {
     3: 'Enero 1,2021 a Junio 31,2021',
     4: 'Julio 1,2021 a Diciembre 31,2021',
   }
+  console.log(data)
 
   return (
     <ViewUserCardStyled>
@@ -21,11 +22,11 @@ const ViewUserCard = ({data, period}) => {
         <UserCard name={"Período"} data={'Julio 1, 2020 - Diciembre 31, 2020'}/>
       </div>
       <div className="innerRight">
-        <UserCard  name={'Nº Seguidores'} data={data[period].followers_number}/>
+        <UserCard  name={'Nº Seguidores'} data={data[period]?.followers_number ?? 'No hay data en el periodo seleccionado'}/>
         <hr/>
-        <UserCard name={'Nº cuentas seguidas'} data={data[period].following_number} />
+        <UserCard name={'Nº cuentas seguidas'} data={data[period]?.following_number ?? 'No hay data en el periodo seleccionado'} />
         <hr/>
-        <UserCard  name={"Total tuits período"} data={data[period].total_tweets_period}/>
+        <UserCard  name={"Total tuits período"} data={data[period]?.total_tweets_period ?? 'No hay data en el periodo seleccionado'} />
       </div>
     </ViewUserCardStyled>
   );

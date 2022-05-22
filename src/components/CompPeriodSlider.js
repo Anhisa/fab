@@ -23,19 +23,20 @@ const marks = [
   },
 ];
 
-const  valuetext = (value) => {
+const valuetext = (value) => {
   // console.log(value)
   return value;
-}
+};
 
-export const CompPeriodSlider = ({setPeriod}) => {
+export const CompPeriodSlider = ({ setPeriod }) => {
   const [value, setValue] = useState([1, 4]);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);  
+    setValue(newValue);
+
     setPeriod({
-      startDate:newValue[0],
-      endDate:  newValue[1],
+      startDate: newValue[0],
+      endDate: newValue[1],
     });
   };
 

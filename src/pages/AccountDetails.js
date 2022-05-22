@@ -11,11 +11,13 @@ import { TableContext } from '../context/TableContext';
 import ViewUserCard from '../components/ViewUserCard';
 import { CollapsableTableStyled } from '../styles/styledComponents/CollapsableTableStyled';
 import handleClick from '../helpers/HandleClick';
-import { UserCardStyled, ContainerButtons } from '../styles/styledComponents/userCardStyled'
+import {
+  UserCardStyled,
+  ContainerButtons,
+} from '../styles/styledComponents/userCardStyled';
 import HeaderUserCard from '../components/HeaderUserCard';
 import { AccountDetailsStyled } from '../styles/styledComponents/AccountDetailsStyled';
 import { CompPeriodSlider } from '../components/CompPeriodSlider';
-
 
 const apiUsuarios =
   'https://fundacionandresbello.org/wp-json/fab/v1/official-fol';
@@ -23,30 +25,29 @@ const apiUsuarios =
 export const AccountDetails = () => {
   const { account } = useParams();
   const { loading, data } = useGetData(apiUsuarios);
-  const items = data;
+ 
   const [period, setPeriod] = useState({
     startDate: 1,
-          endDate: 4,
+    endDate: 4,
   });
 
-  
   const [dataSearch, setDataSearch] = useState(false);
-  
+
   useEffect(() => {
     if (!loading) {
-      const userId = items.filter((item) => item.official_account === account);
-      
+      const userId = data.filter((item) => item.official_account === account);
+
       setDataSearch({
         country: userId[0].country_id,
         dataUser: userId,
-        userOfficialName : userId[0].official_account_name_spa,
+        userOfficialName: userId[0].official_account_name_spa,
         accounts: {
           accountIdA: userId[0].official_account_id,
         },
         period: period,
       });
     }
-  }, [loading, items, account, period]);
+  }, [loading, data, account, period]);
   if (loading) {
     return <div>Loading</div>;
   }
@@ -55,50 +56,54 @@ export const AccountDetails = () => {
     <AccountDetailsStyled>
       {dataSearch !== false && (
         <TableContext.Provider value={dataSearch}>
-          <HeaderUserCard countryId={dataSearch.country} userName={dataSearch.userOfficialName}/>
+          <HeaderUserCard
+            countryId={dataSearch.country}
+            userName={dataSearch.userOfficialName}
+          />
           <UserCardStyled>
-            
-            <div className='left'>
-            <ViewUserCard data={dataSearch.dataUser} period={dataSearch.period.endDate - 1} />
+            <div className="left">
+              <ViewUserCard
+                data={dataSearch.dataUser}
+                period={dataSearch.period.endDate - 1}
+              />
             </div>
-            <div className='right'>
-            <MonthlyTweetsItems />
+            <div className="right">
+              <MonthlyTweetsItems period={period} />
             </div>
           </UserCardStyled>
           <div>
-            <hr/>
+            <hr />
             <CompPeriodSlider setPeriod={setPeriod} />
-            <hr/>
+            <hr />
           </div>
-          
-          <CollapsableTableStyled>
+
+          <CollapsableTableStyled usuario="usuario">
             <button name="most-retweet" onClick={handleClick}>
               Most retweeted
             </button>
-            <MostRetweetedItems />
+            <MostRetweetedItems period={period} />
           </CollapsableTableStyled>
-          <CollapsableTableStyled>
+          <CollapsableTableStyled usuario="usuario">
             <button name="most-replied" onClick={handleClick}>
               Most Replied
             </button>
 
-            <MostRepliedItems />
+            <MostRepliedItems period={period} />
           </CollapsableTableStyled>
-          <CollapsableTableStyled>
+          <CollapsableTableStyled usuario="usuario">
             <button name="most-ht" onClick={handleClick}>
               Most used hashtags
             </button>
 
-            <HtMostUsedItems />
+            <HtMostUsedItems period={period} />
           </CollapsableTableStyled>
-          <CollapsableTableStyled>
+          <CollapsableTableStyled usuario="usuario">
             <button name="most-mentioned" onClick={handleClick}>
               Most mentioned
             </button>
 
-            <MostMentionedItems />
+            <MostMentionedItems period={period} />
           </CollapsableTableStyled>
-          
         </TableContext.Provider>
       )}
     </AccountDetailsStyled>

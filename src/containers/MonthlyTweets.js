@@ -1,25 +1,26 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, memo } from 'react';
 import { MonthlyTweetsItem } from '../components/MonthlyTweetsItem';
 import { MonthlyTweetsChart } from '../components/MonthlyTweetsChart';
 import { TableContext } from '../context/TableContext';
 import { useFilterData } from '../hooks/useFilterData';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/monthly-tweets';
-export const MonthlyTweetsItems = () => {
+export const MonthlyTweetsItems = memo((period) => {
   const data = useFilterData(api, 'monthly-tweets');
   const [innerData, setInnerData] = useState(false);
-console.log('monthly-tweets', data)
-  const context = useContext(TableContext);
-  const { period } = context;
-
-  useEffect(() => {
+ 
+  console.log('MonthlyTweetsItems', period);
+  useEffect(() => {   
     if (data !== false) {
       setInnerData(data);
     }
-  }, [data, context]);
+  }, [data, period]);
 
-  if (!innerData) {
+  if (!data) {
     return <div>Loading...</div>;
+  }
+  if (innerData.length === 0) {
+    return <div>No hay data en el periodo seleccionado</div>;
   }
 
   return (
@@ -27,13 +28,10 @@ console.log('monthly-tweets', data)
       {Object.values(data).map((accountId, index) => {
         return (
           <section className="column" key={index}>
-            
-          
-              <MonthlyTweetsChart newData={accountId} periodId={period} />
-          
+            <MonthlyTweetsChart newData={accountId} periodId={period} />
           </section>
         );
       })}
     </section>
   );
-};
+});

@@ -23,7 +23,7 @@ export const ComparativeTool = ({setDataComparing}) => {
 
   const [period, setPeriod] = useState({
     startDate: 1,
-    endDate: 1,  
+    endDate: 4,  
   })
   
   const handleComparison = () => {

@@ -3,14 +3,13 @@ import { Map } from '../components/Map';
 import { Layout } from '../containers/Layout';
 import { CountryList } from '../containers/CountryDetails';
 import { ComparativeTool } from '../containers/ComparativeTool';
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MapStyled } from '../styles/styledComponents/MapStyled';
 import { useGetData } from '../hooks/useGetData';
 
 import { TableContext } from '../context/TableContext';
 
 import { ComponentContainer } from '../hooks/ComponerContainer';
-
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
@@ -33,16 +32,13 @@ export const Home = () => {
     },
     period: {
       startDate: 1,
-      endDate: 1,
+      endDate: 4,
     },
   });
-  useEffect(() => {    
-  }, [dataComparing]);
-
+  useEffect(() => {}, [dataComparing]);
 
   return (
     <Layout>
-      
       <div className="banner-container">
         <h2 className="banner-title">
           LA DIPLOMACIA DIGITAL DE LA REPÚBLICA POPULAR DE CHINA RPCh EN AMÉRICA
@@ -55,7 +51,7 @@ export const Home = () => {
           diplomáticos de la RPCh en ALC.
         </p>
       </div>
-     
+
       <div className="row">
         <MapStyled className="map-container col-7">
           <Map items={items} setAccounts={setAccounts} />
@@ -64,9 +60,8 @@ export const Home = () => {
           <CountryList accounts={accounts} />
           <ComparativeTool setDataComparing={setDataComparing} />
         </div>
-        <TableContext.Provider value={dataComparing}>
-          <ComponentContainer/>
-        </TableContext.Provider>
+
+        <ComponentContainer context={dataComparing} />
       </div>
     </Layout>
   );
