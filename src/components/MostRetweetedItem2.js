@@ -21,8 +21,9 @@ import { usePeriod } from '../hooks/usePeriod';
 
 export const MostRetweetedItem2 = ({
   newData,
-  period = { startDate: 1, endDate: 4 },
+  period ,
 }) => {
+  console.log('most retweet period', period.period);
 
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
 
@@ -147,7 +148,7 @@ export const MostRetweetedItem2 = ({
         <h3> {accountInfo[2]} </h3>
         <h3> <Link to={`/diplomacia-digital/${accountInfo[0]}`}>{accountInfo[0]}</Link> </h3>
         <h5>
-          Periodo de {period.startDate.toString()} a{period.endDate.toString()}
+          Periodo de {period.period.startDate.toString()} a{period.period.endDate.toString()}
         </h5>
         <h5>Tweets totales periodo - {totaltweets} </h5>
         <TableContainer component={Paper}>

@@ -1,20 +1,28 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState, memo } from 'react';
 import { MostMentionedItem } from '../components/MostMentionedItem';
 import { MostMentionedChart } from '../components/MostMentionedChart'
 import { TableContext } from '../context/TableContext';
 import { useFilterData } from '../hooks/useFilterData';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-mentioned';
-export const MostMentionedItems = () => {
-const context = useContext(TableContext);
-const { period } = context;
+export const MostMentionedItems = memo(({period}) => {
+
+const [innerData, setInnerData] = useState([]);
+
  const data = useFilterData(api, 'most-mentioned');
+
  useEffect(()=> {
-  
- },[data])
-  if(!data){
+   if(data !== false){
+     setInnerData(data);
+   }  
+ },[data, period])
+  if(!data ){
     return <div>Loading...</div>
   }
+  if(data.length === 0){
+    return <div>No data</div>
+  }
+
    
   
   return (
@@ -35,6 +43,6 @@ const { period } = context;
       })}
     </section>
   );
-};
+});
 
 

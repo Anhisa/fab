@@ -23,7 +23,7 @@ export const MonthlyTweetsItem = ({ newData }) => {
   );
   const accountInfo = [];
   const account = newData[0];
-  console.log('account', account);
+  
   if (account) {
     accountInfo.push(account.official_account);
     accountInfo.push(account.period_id);
@@ -61,15 +61,13 @@ export const MonthlyTweetsItem = ({ newData }) => {
 
   Row.propTypes = {
     row: PropTypes.shape({
-      month: PropTypes.string.isRequired,
+      stringMonth: PropTypes.string.isRequired,
       tweets_number: PropTypes.number.isRequired,
     }),
   };
 
   function Row({row}) {
-   
-    console.log(row)
-
+     
     return (
       <>
         <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
