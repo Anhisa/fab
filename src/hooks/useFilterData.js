@@ -333,13 +333,18 @@ function addDuplicates(arrayDuplicades, from) {
         let ht = '';
         let ht_mentions_number = '';
 
-        ht_category_desc_spa = item[0].ht_category_desc_spa;
-        ht_category_spa = item[0].ht_category_spa;
-        ht_most_used_id = item[0].ht_most_used_id;
-        official_account = item[0].official_account;
-        ht = item[0].ht;
-        official_account_name_spa = item[0].official_account_name_spa;
-        ht_mentions_number = parseInt(item[0].ht_mentions_number);
+        ht_mentions_number = item.reduce((acc, innerItem) => {
+
+        ht_category_desc_spa = innerItem.ht_category_desc_spa;
+        ht_category_spa = innerItem.ht_category_spa;
+        ht_most_used_id = innerItem.ht_most_used_id;
+        official_account = innerItem.official_account;
+        ht = innerItem.ht;
+        official_account_name_spa = innerItem.official_account_name_spa;
+        return acc + parseInt(innerItem.ht_mentions_number);
+
+        }, 0);
+        
 
         return {
           ht_category_desc_spa,
