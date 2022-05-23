@@ -39,12 +39,6 @@ padding: 2px 5px 5px 5px;
 }
 .rdt_Table{
   width: 100%;
-  .rdt_TableCell{
-    padding: 0px;
-    margin: 0px;   
-    width: 300px;
-  
-      }
 }
   
 `

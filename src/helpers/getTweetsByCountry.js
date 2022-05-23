@@ -17,7 +17,7 @@ export function useGetTweetsByCountry(){
       arrayDuplicate = addDuplicates(array);
       setFilteredData(arrayDuplicate);
   
-      console.log('array duplicados', arrayDuplicate)
+      
   }, [data, loading]);
   return filteredData
 }

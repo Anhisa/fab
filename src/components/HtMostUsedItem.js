@@ -59,7 +59,7 @@ export const HtMostUsedItem = ({ newData, periodId }) => {
       ],
     };
   }
-  // console.log(newData);
+  
   const rows = newData.map((item) =>
     createData(
       item.official_account_name_spa,

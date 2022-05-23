@@ -9,8 +9,8 @@ import { CreateChart } from '../helpers/createChart';
 import { StyledDataTable } from '../styles/styledComponents/StyledDataTable';
 
 
-export const MostMentionedItemCHANGE = ({newData, periodId}) => {
- 
+export const MostMentionedItemCHANGE = ({newData, periodId, comparisonView, arrayBar}) => {
+ console.log('arrayBar', arrayBar);
   const tweetNumber = newData.map((item) => parseInt(item.mentions_number));
   const totaltweets = tweetNumber.reduce(
     (totaltweetsNumber, item) => totaltweetsNumber + item,
@@ -54,22 +54,17 @@ export const MostMentionedItemCHANGE = ({newData, periodId}) => {
       
     )
   );
-  let barData = CreateChart(tweetNumber);
+  
   rows = rows.map((item, index) => {
     return {
       ...item,
-      tweets_number: barData[index],
+      tweets_number: arrayBar[index],
     };
   });
   const columns = [
     {
       name: 'Usuario/ Nombre cuenta',
-      selector: (row) => (
-        <UserAccount
-          userAccount={row.userAccount}
-          userAccountDesc={row.userAccountDesc}
-        />
-      ),
+      selector: (row) =>  <UserAccount userAccount={row.userAccount} userAccountDesc={comparisonView? false : row.userAccountDesc } /> ,
       sortable: true,
       wrap: true,
     },
@@ -81,6 +76,7 @@ export const MostMentionedItemCHANGE = ({newData, periodId}) => {
       grow: 2,
       wrap: false,
       maxWidth: '300px',
+      omit: comparisonView
     },
     {
       name: 'Verificado',
@@ -91,6 +87,7 @@ export const MostMentionedItemCHANGE = ({newData, periodId}) => {
       wrap: false,
       center: true,
       width: '150px',
+      omit: comparisonView
     },
     {
       name: 'Número de Tweets',
@@ -105,19 +102,7 @@ export const MostMentionedItemCHANGE = ({newData, periodId}) => {
   ]
   const ExpandedComponent = ({ data }) => data.catDesc;
 
-  DataTable.propTypes = {
-    data: PropTypes.shape({
-      userAccountDesc: PropTypes.string.isRequired,
-      userAccount: PropTypes.string.isRequired,
-      categoría: PropTypes.string.isRequired,
-      tweets_number: PropTypes.number.isRequired,
-     
-      
-          catDesc: PropTypes.string.isRequired,
-        
-      
-    }).isRequired,
-  };
+ 
 
   return (
     <StyledDataTable className="dataTable">
@@ -138,24 +123,3 @@ export const MostMentionedItemCHANGE = ({newData, periodId}) => {
  
 };
 
-
-/*
-  <div>
-      <h1>cuenta oficial:</h1> <Link to={`/diplomacia-digital/${newData[0].official_account}`}>{newData[0].official_account}</Link> 
-      <h1>Periodo de {periodId.startDate.toString()} a {periodId.endDate.toString()}</h1>
-      <h1>menciones totales del periodo: {totaltweets}</h1>
-      {newData
-        .map((data) => (
-          <div key={`mentioned-${data.users_most_metioned_id}`}>
-            <h4>cuenta mencionada: {data.user_account}</h4>
-            <p>descripción: {data.most_mentioned_description_spa}</p>
-            <p>categoría: {data.most_mentioned_category_spa}</p>
-            <p>
-              descripción de la categoría:
-              {data.most_mentioned_category_desc_spa}
-            </p>
-            <p>número de menciones: {parseInt(data.mentions_number)}</p>
-            <p>cuenta verificada: {data.user_accounts_verified}</p>
-          </div>
-        ))}
-    </div> */

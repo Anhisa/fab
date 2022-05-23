@@ -42,7 +42,6 @@ export const Home = () => {
     x: 0,
     y: 0,
   });
-
   useEffect(() => {}, [dataComparing]);
 
   return (

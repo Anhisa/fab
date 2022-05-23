@@ -9,7 +9,7 @@ export const MonthlyTweetsItems = memo((period) => {
   const data = useFilterData(api, 'monthly-tweets');
   const [innerData, setInnerData] = useState(false);
  
-  console.log('MonthlyTweetsItems', period);
+  
   useEffect(() => {   
     if (data !== false) {
       setInnerData(data);

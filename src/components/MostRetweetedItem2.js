@@ -23,7 +23,7 @@ export const MostRetweetedItem2 = ({
   newData,
   period ,
 }) => {
-  console.log('most retweet period', period.period);
+  
 
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
 
@@ -31,7 +31,7 @@ export const MostRetweetedItem2 = ({
     (totaltweetsNumber, item) => totaltweetsNumber + item,
     0
   );
-  //console.log('tweetNumber',totaltweets);
+  
   const accountInfo = [];
   const account = newData[0];
 

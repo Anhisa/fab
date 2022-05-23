@@ -10,7 +10,7 @@ const ViewUserCard = ({data, period}) => {
     3: 'Enero 1,2021 a Junio 31,2021',
     4: 'Julio 1,2021 a Diciembre 31,2021',
   }
-  console.log(data)
+  
 
   return (
     <ViewUserCardStyled>
