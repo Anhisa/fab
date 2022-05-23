@@ -48,8 +48,7 @@ export const Home = () => {
     <Layout>
       <div className="banner-container">
         <h2 className="banner-title">
-          LA DIPLOMACIA DIGITAL DE LA REPÚBLICA POPULAR DE CHINA RPCh EN AMÉRICA
-          LATINA Y EL CARIBE
+          CHINA LATAM TWITTER DATABASE
         </h2>
         <p className="banner-desc">
           En esta investigación se recopilaron los resultados obtenidos a partir

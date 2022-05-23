@@ -7,7 +7,8 @@ import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import { styled } from '@mui/material/styles';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
@@ -90,8 +91,8 @@ export const MostRetweetedItem2 = ({
     const [open, setOpen] = React.useState(false);
 
     return (
-      <>
-        <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+      <React.Fragment>
+        <TableRow  sx={{ '& > *': { borderBottom: 'unset' } }}>
           <TableCell>
             <IconButton
               aria-label="expand row"
@@ -104,29 +105,29 @@ export const MostRetweetedItem2 = ({
           <TableCell component="th" scope="row">
             {row.userAccountDesc}
           </TableCell>
-          <TableCell align="right">{row.userAccount}</TableCell>
-          <TableCell align="right">{row.categoría}</TableCell>
-          <TableCell align="right">{row.tweets_number}</TableCell>
+          <TableCell key= {`rowInfo1-${row.users_most_retweeted_id}`} align="right">{row.userAccount}</TableCell>
+          <TableCell key= {`rowInfo2-${row.users_most_retweeted_id}`} align="right">{row.categoría}</TableCell>
+          <TableCell key= {`rowInfo3-${row.users_most_retweeted_id}`} align="right">{row.tweets_number}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
             <Collapse in={open} timeout="auto" unmountOnExit>
               <Box sx={{ margin: 1 }}>
-                <Typography variant="h6" gutterBottom component="div">
+                {/* <Typography variant="h6" gutterBottom component="div">
                   Descripción de la Categoría
-                </Typography>
+                </Typography> */}
                 <Table size="small" aria-label="purchases">
-                  {/* <TableHead>
+                  <TableHead>
                     <TableRow>
                       <TableCell>Descripción de la Categoría</TableCell>
                     </TableRow>
-                  </TableHead> */}
+                  </TableHead>
                   <TableBody>
                     {row.history.map((historyRow) => (
                       <TableRow
                         key={`catDesc-${historyRow.official_account_id}`}
                       >
-                        <TableCell component="th" scope="row">
+                        <TableCell key= {`rowInfo4-${row.users_most_retweeted_id}`} component="th" scope="row">
                           {historyRow.catDesc}
                         </TableCell>
                       </TableRow>
@@ -137,7 +138,7 @@ export const MostRetweetedItem2 = ({
             </Collapse>
           </TableCell>
         </TableRow>
-      </>
+      </React.Fragment>
     );
   }
 
@@ -162,8 +163,10 @@ export const MostRetweetedItem2 = ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row, index) => (
-                <Row key={index} row={row} />
+              {rows.map((row) => (
+                <Row
+                key={`rowItem-${row.users_most_retweeted_id}`}
+                row={row} />
               ))}
             </TableBody>
           </Table>
