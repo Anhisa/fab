@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const CollapsableTableStyled = styled.div`
+.column{
+  width: ${props => props.usuario === 'usuario' ? '100%' : '50%'};
+}
   button {
     background: #f5f5f5;
     border: 1px solid #ccc;

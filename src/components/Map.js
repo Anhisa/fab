@@ -39,7 +39,7 @@ export const Map = ({setAccounts, items}) => {
   const handleOnClick = (props) => {    
     const itemValue = props.target.attributes.value;   
     const filteredAccounts = items.filter((item) => item.country_id === itemValue.value);
-   
+    console.log(props.clientX, props.clientY);
     setAccounts(filteredAccounts);
   };
 
@@ -60,7 +60,7 @@ export const Map = ({setAccounts, items}) => {
               (d) => d.properties.REGION_WB === 'Latin America & Caribbean'
             )
             .map((geo) => (
-              console.log('country id', geo.properties.COUNTRY_ID),
+              
               <Geography
                 className='geo'
                 key={geo.rsmKey}

@@ -81,9 +81,10 @@ function sortArray(array, from) {
 
 export const useFilterData = (api, from) => {
   const context = useContext(TableContext);
+
   // console.log('context', context);
   const { accounts, period } = context;
-  const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState(false);
   const { loading, data } = useGetData(api);
 
   const items = data;
@@ -101,14 +102,15 @@ export const useFilterData = (api, from) => {
             parseInt(item.period_id) <= period.endDate
         );
         if (data.length === 0) {
-          return console.log(
-            `No hay data en ${account} desde ${period.startDate} hasta ${period.endDate} peticion desde ${from}`
-          );
+          return data
+          
         }
 
         if (from === 'ht-most-used') {
           let repeatedAccountArrayHt = filterDuplicatesHt(data);
+          console.log('ht repeated', repeatedAccountArrayHt);
           newArray = addDuplicates(repeatedAccountArrayHt, from);
+          console.log('newArray', newArray);
 
           if (newArray.length > 3) {
             let sortedArray = sortArray(newArray, from);
@@ -121,7 +123,7 @@ export const useFilterData = (api, from) => {
             accountsData.push(newArray);
           }
         } else if(from === 'monthly-tweets') {
-          console.log('filter',data)
+          
          
           let innerArray = data
 // 
@@ -139,7 +141,7 @@ export const useFilterData = (api, from) => {
         } 
         else {
           let repeatedAccountArray = filterDuplicates(data);
-          console.log('repeatedAccountArray', repeatedAccountArray);
+          
           newArray = addDuplicates(repeatedAccountArray, from);
           let sortedArray = sortArray(newArray, from);
           if (sortedArray.length > 10) {
@@ -152,13 +154,9 @@ export const useFilterData = (api, from) => {
     });
 
     setFilteredData(accountsData);
-  }, [data, context]);
+  }, [loading, items, accounts, period, from]);
 
-  if (!loading) {
-    return filteredData;
-  } else {
-    return false;
-  }
+  return filteredData;
 };
 //Crear un array con los datos de los usuarios que se repiten
 function filterDuplicates(data) {
@@ -335,13 +333,18 @@ function addDuplicates(arrayDuplicades, from) {
         let ht = '';
         let ht_mentions_number = '';
 
-        ht_category_desc_spa = item[0].ht_category_desc_spa;
-        ht_category_spa = item[0].ht_category_spa;
-        ht_most_used_id = item[0].ht_most_used_id;
-        official_account = item[0].official_account;
-        ht = item[0].ht;
-        official_account_name_spa = item[0].official_account_name_spa;
-        ht_mentions_number = item[0].ht_mentions_number;
+        ht_mentions_number = item.reduce((acc, innerItem) => {
+
+        ht_category_desc_spa = innerItem.ht_category_desc_spa;
+        ht_category_spa = innerItem.ht_category_spa;
+        ht_most_used_id = innerItem.ht_most_used_id;
+        official_account = innerItem.official_account;
+        ht = innerItem.ht;
+        official_account_name_spa = innerItem.official_account_name_spa;
+        return acc + parseInt(innerItem.ht_mentions_number);
+
+        }, 0);
+        
 
         return {
           ht_category_desc_spa,
