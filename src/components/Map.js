@@ -51,11 +51,6 @@ export const Map = ({ setAccounts, items, setMouse }) => {
   };
 
   let tweetsByCountry = useGetTweetsByCountry();
-  console.log(tweetsByCountry, '⛳');
-  console.log(
-    tweetsByCountry.map((country) => country.total_tweets_period),
-    '⛳'
-  );
 
   const colorScale = scaleLinear()
     .domain([0, 11161])

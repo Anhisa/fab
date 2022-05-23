@@ -8,7 +8,7 @@ const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 export const CountryItem = ({accounts}) => {
   // const {official_account_name_spa,official_account_category_spa, official_account, official_account_verified} = item;
   // const data = {official_account_category_spa, official_account, official_account_verified};
-  // 
+  //
   // const response = useGetData(api);
   // const items = response.data;
   // const countryId = '14';
@@ -27,13 +27,13 @@ export const CountryItem = ({accounts}) => {
     {
       name:'Verificado',
       selector: (row) => row.official_account_verified === 'si'? <VerifiedIcon color='primary'/> : <VerifiedIcon color='disabled'/>,
-    
-      
+
+
     },
   ];
 
   return <DataTable title={
-    <div style={{display:'flex','flex-direction': 'row'}}>
+    <div style={{display:'flex','flexDirection': 'row'}}>
   <p>{accounts[0].country_name_spa}</p>
   <img src={getFlag(accounts[0].country_name_eng)} alt={`Bandera de ${accounts[0].country_name_spa}`} style={{width:'80px'}}/>
   </div>
