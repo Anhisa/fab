@@ -11,7 +11,7 @@ import { TableContext } from '../context/TableContext';
 
 import { ComponentContainer } from '../hooks/ComponerContainer';
 import { DetachableTable } from '../styles/styledComponents/detachableTable';
-import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
+
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
@@ -42,8 +42,6 @@ export const Home = () => {
     x: 0,
     y: 0,
   });
-  let tweetsByCountry =  useGetTweetsByCountry()
-  
   useEffect(() => {}, [dataComparing]);
 
   return (
