@@ -67,7 +67,7 @@ export const Home = () => {
           />
         </MapStyled>
         <DetachableTable
-          className="closed"
+          className="table closed"
           top={mousePosition.y}
           left={mousePosition.x}
         >

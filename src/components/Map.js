@@ -34,15 +34,22 @@ export const Map = ({ setAccounts, items, setMouse }) => {
   function handleMoveEnd(position) {
     setPosition(position);
   }
-  // const response = useGetData(api);
-  // const items = response.data;
 
   const handleOnClick = (props) => {
     const itemValue = props.target.attributes.value;
     const filteredAccounts = items.filter(
       (item) => item.country_id === itemValue.value
     );
-    console.log(props.clientX, props.clientY);
+    const table = document.querySelector('.table');
+    cosole.log(table);
+    if(!table.classList.contains('open')){
+      table.classList.add('open');
+      table.classList.remove('closed');
+    } else {
+      table.classList.remove('open');
+      table.classList.add('closed');
+    }
+    
     setMouse({
       x: props.pageX,
       y: props.pageY,
@@ -51,11 +58,7 @@ export const Map = ({ setAccounts, items, setMouse }) => {
   };
 
   let tweetsByCountry = useGetTweetsByCountry();
-  console.log(tweetsByCountry, '⛳');
-  console.log(
-    tweetsByCountry.map((country) => country.total_tweets_period),
-    '⛳'
-  );
+
 
   const colorScale = scaleLinear()
     .domain([0, 11161])
