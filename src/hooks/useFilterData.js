@@ -82,7 +82,6 @@ function sortArray(array, from) {
 export const useFilterData = (api, from) => {
   const context = useContext(TableContext);
 
-  // console.log('context', context);
   const { accounts, period } = context;
   const [filteredData, setFilteredData] = useState(false);
   const { loading, data } = useGetData(api);

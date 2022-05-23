@@ -7,7 +7,7 @@ import { BarContainer, IsVerified, UserAccount } from './partsDataTable';
 import { CreateChart } from '../helpers/createChart';
 import { StyledDataTable } from '../styles/styledComponents/StyledDataTable';
 
-export const MostRepliedItemCHANGE = ({ newData, periodId }) => {
+export const MostRepliedItemCHANGE = ({ newData, periodId, comparisonView, arrayBar }) => {
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
   const totaltweets = tweetNumber.reduce(
     (totaltweetsNumber, item) => totaltweetsNumber + item,
@@ -50,22 +50,17 @@ export const MostRepliedItemCHANGE = ({ newData, periodId }) => {
     )
   );
   const ExpandedComponent = ({ data }) => data.catDesc;
-  let barData = CreateChart(tweetNumber);
+  
   rows = rows.map((item, index) => {
     return {
       ...item,
-      tweets_number: barData[index],
+      tweets_number: arrayBar[index],
     };
   });
   const columns = [
     {
       name: 'Usuario/ Nombre cuenta',
-      selector: (row) => (
-        <UserAccount
-          userAccount={row.userAccount}
-          userAccountDesc={row.userAccountDesc}
-        />
-      ),
+      selector: (row) => <UserAccount userAccount={row.userAccount} userAccountDesc={comparisonView? false : row.userAccountDesc } /> ,
       sortable: true,
       wrap: true,
     },
@@ -77,6 +72,7 @@ export const MostRepliedItemCHANGE = ({ newData, periodId }) => {
       grow: 2,
       wrap: false,
       maxWidth: '300px',
+      omit: comparisonView
     },
     {
       name: 'Verificado',
@@ -87,6 +83,7 @@ export const MostRepliedItemCHANGE = ({ newData, periodId }) => {
       wrap: false,
       center: true,
       width: '150px',
+      omit: comparisonView
     },
     {
       name: 'Número de Tweets',

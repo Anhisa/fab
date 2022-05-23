@@ -43,7 +43,7 @@ export const Home = () => {
     y: 0,
   });
   let tweetsByCountry =  useGetTweetsByCountry()
-  console.log(tweetsByCountry, '⛳')
+  
   useEffect(() => {}, [dataComparing]);
 
   return (

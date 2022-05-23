@@ -24,7 +24,7 @@ const marks = [
 ];
 
 const valuetext = (value) => {
-  // console.log(value)
+  
   return value;
 };
 

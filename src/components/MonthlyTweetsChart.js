@@ -38,7 +38,7 @@ export const MonthlyTweetsChart = ({ newData }) => {
   );
 
   const dataSet = newData.map((item) => parseInt(item.tweets_number));
-  //  console.log(labels);
+  
 
   const accountInfo = [];
   const account = newData[0];

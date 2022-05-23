@@ -36,7 +36,7 @@ const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
       const filteredAccounts = items.filter(
         (item) => item.country_id === itemValue.value
       );
-      console.log(props.clientX, props.clientY);
+      
       setMouse({
         x: props.pageX,
         y: props.pageY,

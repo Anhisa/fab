@@ -1,19 +1,32 @@
 import React from 'react'
 import VerifiedIcon from '@mui/icons-material/Verified';
 export const UserAccount = ({userAccount, userAccountDesc}) => {
-  return (
-    <>
-      <h5 style={{
-          color: '#121f45',
-        }}>
-          {userAccount}
-      </h5>
-      <p>
-          {userAccountDesc}
-      </p>
-    </>
-    
-  )
+  if(userAccountDesc){
+
+    return (
+      <>
+        <h6 style={{
+            color: '#121f45',
+          }}>
+            {userAccount}
+        </h6>
+        <p>
+            {userAccountDesc}
+        </p>
+      </>
+      
+    )
+  } else {
+    return (
+      <>
+        <h6 style={{
+            color: '#121f45',
+          }}>
+            {userAccount}
+        </h6>
+      </>
+    )
+  }
 }
 
 export const IsVerified = ({isVerified}) => {

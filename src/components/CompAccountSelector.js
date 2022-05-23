@@ -29,7 +29,7 @@ export const CompAccountSelector = ({setAccounts}) => {
       accountIdB: event.target.value,
       }))
     setAccountB(event.target.value);
-    // console.log('accountB', event.target.value);
+    
   };
 
   return (
