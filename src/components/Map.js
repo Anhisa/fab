@@ -27,7 +27,7 @@ const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
     function handleMoveEnd(position) {
       setPosition(position);
-    }
+        }
     // const response = useGetData(api);
     // const items = response.data;
 
