@@ -12,22 +12,9 @@ const geoUrl =
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
-  
-    
-  export const Map = ({setAccounts, items, setMouse}) => {
-  const [position, setPosition] = useState({ coordinates: [-75, -10], zoom: 1 });
-  // const response = useGetData(api);
-  // const items = response.data;  
+  export const Map = ({ setAccounts, items, setMouse }) => {
+    const [position, setPosition] = useState({ coordinates: [-75, -10], zoom: 1 });
 
-  const handleOnClick = (props) => {    
-    const itemValue = props.target.attributes.value;   
-    const filteredAccounts = items.filter((item) => item.country_id === itemValue.value);
-    setMouse({
-      x: props.pageX,
-      y: props.pageY,
-    })
-    
-    setAccounts(filteredAccounts);
     function handleZoomIn() {
       if (position.zoom >= 4) return;
       setPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.1 }));
@@ -50,6 +37,10 @@ const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
         (item) => item.country_id === itemValue.value
       );
       console.log(props.clientX, props.clientY);
+      setMouse({
+        x: props.pageX,
+        y: props.pageY,
+      })
       setAccounts(filteredAccounts);
     };
 
@@ -112,4 +103,4 @@ const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
         </div></>
     );
   };
-  }
+
