@@ -11,7 +11,7 @@ import { TableContext } from '../context/TableContext';
 
 import { ComponentContainer } from '../hooks/ComponerContainer';
 import { DetachableTable } from '../styles/styledComponents/detachableTable';
-import { getTweetsByCountry } from '../helpers/getTweetsByCountry';
+import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
@@ -19,7 +19,7 @@ const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 export const Home = () => {
   const response = useGetData(api);
   const items = response.data;
-  getTweetsByCountry()
+
   const [accounts, setAccounts] = useState([]);
   const [dataComparing, setDataComparing] = useState({
     accounts: {
@@ -42,6 +42,8 @@ export const Home = () => {
     x: 0,
     y: 0,
   });
+  let tweetsByCountry =  useGetTweetsByCountry()
+  console.log(tweetsByCountry, '⛳')
   useEffect(() => {}, [dataComparing]);
 
   return (

@@ -72,7 +72,6 @@ function mergeHtMentions(leftArray, rightArray) {
   return sortedArray.concat(leftArray).concat(rightArray);
 }
 
-
 // Toma las cuentas y el periodo del contexto y devuelve un array con los datos de los usuarios
 function sortArray(array, from) {
   let sortedArray = mergeSort(array, from);
@@ -103,15 +102,13 @@ export const useFilterData = (api, from) => {
             parseInt(item.period_id) <= period.endDate
         );
         if (data.length === 0) {
-          return data
-          
+          return data;
         }
 
         if (from === 'ht-most-used') {
           let repeatedAccountArrayHt = filterDuplicatesHt(data);
-          console.log('ht repeated', repeatedAccountArrayHt);
+
           newArray = addDuplicates(repeatedAccountArrayHt, from);
-          console.log('newArray', newArray);
 
           if (newArray.length > 3) {
             let sortedArray = sortArray(newArray, from);
@@ -123,26 +120,13 @@ export const useFilterData = (api, from) => {
           } else {
             accountsData.push(newArray);
           }
-        } else if(from === 'monthly-tweets') {
-          
-         
-          let innerArray = data
-// 
-//           if (innerArray.length > 3) {
-//             let sortedArray = sortArray(innerArray, from);
-// 
-//             if (sortedArray.length > 10) {
-//               sortedArray = sortedArray
-//               
-//             }
-//             accountsData.push(sortedArray);
-//           } else {
-            accountsData.push(innerArray);
-          // }
-        } 
-        else {
+        } else if (from === 'monthly-tweets') {
+          let innerArray = data;
+
+          accountsData.push(innerArray);
+        } else {
           let repeatedAccountArray = filterDuplicates(data);
-          
+
           newArray = addDuplicates(repeatedAccountArray, from);
           let sortedArray = sortArray(newArray, from);
           if (sortedArray.length > 10) {
@@ -308,7 +292,10 @@ function addDuplicates(arrayDuplicades, from) {
         let tweets_number = item.reduce((acc, item) => {
           user_account = item.user_account;
           monthly_tweets_id = item.monthly_tweets_id;
-          month =  new Date(item.month).toLocaleString('es-ES', { month: 'long' , timeZone: 'UTC' });;
+          month = new Date(item.month).toLocaleString('es-ES', {
+            month: 'long',
+            timeZone: 'UTC',
+          });
 
           official_account = item.official_account;
 
@@ -335,17 +322,14 @@ function addDuplicates(arrayDuplicades, from) {
         let ht_mentions_number = '';
 
         ht_mentions_number = item.reduce((acc, innerItem) => {
-
-        ht_category_desc_spa = innerItem.ht_category_desc_spa;
-        ht_category_spa = innerItem.ht_category_spa;
-        ht_most_used_id = innerItem.ht_most_used_id;
-        official_account = innerItem.official_account;
-        ht = innerItem.ht;
-        official_account_name_spa = innerItem.official_account_name_spa;
-        return acc + parseInt(innerItem.ht_mentions_number);
-
+          ht_category_desc_spa = innerItem.ht_category_desc_spa;
+          ht_category_spa = innerItem.ht_category_spa;
+          ht_most_used_id = innerItem.ht_most_used_id;
+          official_account = innerItem.official_account;
+          ht = innerItem.ht;
+          official_account_name_spa = innerItem.official_account_name_spa;
+          return acc + parseInt(innerItem.ht_mentions_number);
         }, 0);
-        
 
         return {
           ht_category_desc_spa,
@@ -358,5 +342,6 @@ function addDuplicates(arrayDuplicades, from) {
         };
       });
       return newArray;
+    // case 'allCountries':
   }
 }
