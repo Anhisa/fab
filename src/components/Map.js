@@ -95,6 +95,7 @@ export const Map = ({ setAccounts, items, setMouse }) => {
                       }
                       value={geo.properties.COUNTRY_ID}
                       stroke="#D6D6DA"
+                      strokeWidth = "0.4"
                       onClick={handleOnClick}
                     />
                   );
