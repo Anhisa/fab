@@ -3,6 +3,7 @@ import { MostRetweetedItem2 } from '../components/MostRetweetedItem2';
 import { MostRetweetedChart } from '../components/MostRetweetedChart';
 import { useFilterData } from '../hooks/useFilterData';
 import { TableContext } from '../context/TableContext';
+import { MostRetweetedItemChange } from '../components/MostRetweetedItemCHANGE';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
 
 export const MostRetweetedItems = memo((period) => {
@@ -25,11 +26,11 @@ export const MostRetweetedItems = memo((period) => {
         return (
           <section className="column" key={index}>
             <div>
-              <MostRetweetedItem2 newData={accountId} period={period} />
+              <MostRetweetedItemChange newData={accountId} period={period} />
             </div>
-            <div>
+            {/* <div>
               <MostRetweetedChart newData={accountId} period={period} />
-            </div>
+            </div> */}
           </section>
         );
       })}

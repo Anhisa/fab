@@ -72,6 +72,7 @@ function mergeHtMentions(leftArray, rightArray) {
   return sortedArray.concat(leftArray).concat(rightArray);
 }
 
+
 // Toma las cuentas y el periodo del contexto y devuelve un array con los datos de los usuarios
 function sortArray(array, from) {
   let sortedArray = mergeSort(array, from);

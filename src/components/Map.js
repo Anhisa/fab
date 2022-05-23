@@ -32,14 +32,18 @@ const markers = [
   { markerOffset: 12, name: 'Lima', coordinates: [-77.0428, -12.0464] },
 ];
 
-export const Map = ({setAccounts, items}) => {
+export const Map = ({setAccounts, items, setMouse}) => {
   // const response = useGetData(api);
   // const items = response.data;  
 
   const handleOnClick = (props) => {    
     const itemValue = props.target.attributes.value;   
     const filteredAccounts = items.filter((item) => item.country_id === itemValue.value);
-    console.log(props.clientX, props.clientY);
+    setMouse({
+      x: props.pageX,
+      y: props.pageY,
+    })
+    
     setAccounts(filteredAccounts);
   };
 

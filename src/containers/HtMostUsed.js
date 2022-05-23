@@ -26,9 +26,9 @@ export const HtMostUsedItems = memo(({ period }) => {
       {Object.values(innerData).map((accountId, index) => {
         return (
           <section className="column" key={index}>
-            <div>
+            {/* <div>
               <HtMostUsedItem newData={accountId} periodId={period} />
-            </div>
+            </div> */}
             <div>
               <HtMostUsedChart newData={accountId} periodId={period} />
             </div>

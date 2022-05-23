@@ -18,6 +18,7 @@
     "chart.js": "^3.7.1",
     "date-fns": "^2.28.0",
     "react": "^17.0.0",
+    "react-bootstrap": "^2.4.0",
     "react-chartjs-2": "^4.1.0",
     "react-data-table-component": "^7.5.2",
     "react-dom": "^17.0.0",

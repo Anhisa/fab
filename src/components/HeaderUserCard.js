@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { getFlag } from '../helpers/getFlag';
 import { useGetData } from '../hooks/useGetData';
 import { HeaderUserView } from '../styles/styledComponents/userCardStyled';
 const apiCountries =
@@ -15,21 +16,19 @@ const HeaderUserCard = ({ countryId, userName }) => {
   const dataCountries = useGetData(apiCountries);
   let countryName = '';
   let flagUrl = '';
-  let countryNameEng = '';
+
 
   useEffect(() => {
     if (!dataCountries.loading) {
       countryName = dataCountries.data.find(
         (country) => country.country_id === countryId
       );
+  
 
-      countryNameEng = countryName.country_name_eng;
-
-      countryName = countryNameEng.split(' ').join('%20');
-      flagUrl = `${apiFlags}${countryName}`;
+      flagUrl = getFlag(countryName.country_name_eng);
       
       setData({
-        countryName: countryNameEng,
+        countryName: countryName.country_name_spa,
         flagUrl: flagUrl,
       });
     }

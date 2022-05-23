@@ -18,6 +18,7 @@ import {
 import HeaderUserCard from '../components/HeaderUserCard';
 import { AccountDetailsStyled } from '../styles/styledComponents/AccountDetailsStyled';
 import { CompPeriodSlider } from '../components/CompPeriodSlider';
+import { StyledFilterButton } from '../styles/styledComponents/StyledFilterButton';
 
 const apiUsuarios =
   'https://fundacionandresbello.org/wp-json/fab/v1/official-fol';
@@ -25,7 +26,7 @@ const apiUsuarios =
 export const AccountDetails = () => {
   const { account } = useParams();
   const { loading, data } = useGetData(apiUsuarios);
- 
+
   const [period, setPeriod] = useState({
     startDate: 1,
     endDate: 4,
@@ -78,31 +79,48 @@ export const AccountDetails = () => {
           </div>
 
           <CollapsableTableStyled usuario="usuario">
-            <button name="most-retweet" onClick={handleClick}>
-              Most retweeted
-            </button>
+            <StyledFilterButton
+              type="button"
+              name="most-retweet"
+              onClick={handleClick}
+            >
+              Usuarios más retuiteados
+            </StyledFilterButton>
             <MostRetweetedItems period={period} />
           </CollapsableTableStyled>
           <CollapsableTableStyled usuario="usuario">
-            <button name="most-replied" onClick={handleClick}>
-              Most Replied
-            </button>
+            <StyledFilterButton
+              type="button"
+              name="most-replied"
+              onClick={handleClick}
+            >
+              Usuarios que más han recibido respuesta
+            </StyledFilterButton>
 
             <MostRepliedItems period={period} />
           </CollapsableTableStyled>
-          <CollapsableTableStyled usuario="usuario">
-            <button name="most-ht" onClick={handleClick}>
-              Most used hashtags
-            </button>
 
-            <HtMostUsedItems period={period} />
-          </CollapsableTableStyled>
           <CollapsableTableStyled usuario="usuario">
-            <button name="most-mentioned" onClick={handleClick}>
-              Most mentioned
-            </button>
+            <StyledFilterButton
+              type="button"
+              name="most-mentioned"
+              onClick={handleClick}
+            >
+              Usuarios más mencionados
+            </StyledFilterButton>
 
             <MostMentionedItems period={period} />
+          </CollapsableTableStyled>
+          <CollapsableTableStyled usuario="usuario">
+            <StyledFilterButton
+              type="button"
+              name="most-ht"
+              onClick={handleClick}
+            >
+              Most used hashtags
+            </StyledFilterButton>
+
+            <HtMostUsedItems period={period} />
           </CollapsableTableStyled>
         </TableContext.Provider>
       )}

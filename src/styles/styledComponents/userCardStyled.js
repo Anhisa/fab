@@ -28,6 +28,15 @@ export const UserCardStyled = styled.div`
 
 
   }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    .left{
+      width: 100%;
+    }
+    .right{
+      width: 100%;
+    }
+  }
 `;
 export const ContainerButtons = styled.div`
   display: flex;
@@ -42,7 +51,7 @@ export const HeaderUserView = styled.div`
   width: 100%;
 justify-content: flex-start;
   gap: 10px;
-  margin: 0 auto;
+  margin: 50px auto;
   img{
     height: 80px;
 

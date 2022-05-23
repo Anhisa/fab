@@ -10,6 +10,8 @@ import { useGetData } from '../hooks/useGetData';
 import { TableContext } from '../context/TableContext';
 
 import { ComponentContainer } from '../hooks/ComponerContainer';
+import { DetachableTable } from '../styles/styledComponents/detachableTable';
+import { getTweetsByCountry } from '../helpers/getTweetsByCountry';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
@@ -17,6 +19,7 @@ const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 export const Home = () => {
   const response = useGetData(api);
   const items = response.data;
+  getTweetsByCountry()
   const [accounts, setAccounts] = useState([]);
   const [dataComparing, setDataComparing] = useState({
     accounts: {
@@ -34,6 +37,10 @@ export const Home = () => {
       startDate: 1,
       endDate: 4,
     },
+  });
+  const [mousePosition, setMousePosition] = useState({
+    x: 0,
+    y: 0,
   });
   useEffect(() => {}, [dataComparing]);
 
@@ -54,10 +61,20 @@ export const Home = () => {
 
       <div className="row">
         <MapStyled className="map-container col-7">
-          <Map items={items} setAccounts={setAccounts} />
+          <Map
+            items={items}
+            setAccounts={setAccounts}
+            setMouse={setMousePosition}
+          />
         </MapStyled>
-        <div className="col-5">
+        <DetachableTable
+          className="closed"
+          top={mousePosition.y}
+          left={mousePosition.x}
+        >
           <CountryList accounts={accounts} />
+        </DetachableTable>
+        <div className="col-5">
           <ComparativeTool setDataComparing={setDataComparing} />
         </div>
 

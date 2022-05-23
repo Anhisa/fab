@@ -3,6 +3,7 @@ import { MostMentionedItem } from '../components/MostMentionedItem';
 import { MostMentionedChart } from '../components/MostMentionedChart'
 import { TableContext } from '../context/TableContext';
 import { useFilterData } from '../hooks/useFilterData';
+import { MostMentionedItemCHANGE } from '../components/MostMentionedItemCHANGE';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-mentioned';
 export const MostMentionedItems = memo(({period}) => {
@@ -33,11 +34,11 @@ const [innerData, setInnerData] = useState([]);
         return (
           <section className="column" key={index}>
             <div >
-              <MostMentionedItem newData={accountId} periodId={period} />
+              <MostMentionedItemCHANGE newData={accountId} periodId={period} />
             </div>
-            <div>
+            {/* <div>
               <MostMentionedChart newData={accountId} periodId={period}/>
-            </div>
+            </div> */}
           </section>
         );
       })}

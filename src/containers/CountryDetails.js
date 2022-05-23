@@ -7,13 +7,10 @@ export const CountryList = ({accounts}) => {
   }
   
   return (
-    <section>
-      
-      {/* {lists.map((item) => (
-        <CountryItem key={item.id} item={item} />
-      ))} */}
+
+ 
       <CountryItem accounts={accounts} />
       
-    </section>
+  
   );
 };

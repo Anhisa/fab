@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, memo } from 'react';
 import { MostRepliedChart } from '../components/MostRepliedChart';
 import { MostRepliedItem } from '../components/MostRepliedItem';
+import { MostRepliedItemCHANGE } from '../components/MostRepliedItemCHANGE';
 import { TableContext } from '../context/TableContext';
 import { useFilterData } from '../hooks/useFilterData';
 
@@ -31,11 +32,11 @@ export const MostRepliedItems = memo((period) => {
         return (
           <section className="column" key={index}>
             <div>
-              <MostRepliedItem newData={accountId} periodId={period} />
+              <MostRepliedItemCHANGE newData={accountId} periodId={period} />
             </div>
-            <div>
+            {/* <div>
               <MostRepliedChart newData={accountId} periodId={period} />
-            </div>
+            </div> */}
           </section>
         );
       })}
