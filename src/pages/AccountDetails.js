@@ -20,13 +20,14 @@ import { AccountDetailsStyled } from '../styles/styledComponents/AccountDetailsS
 import { CompPeriodSlider } from '../components/CompPeriodSlider';
 import { StyledFilterButton } from '../styles/styledComponents/StyledFilterButton';
 import NavBar from '../components/NavBar';
-
+import ErrorComponent from '../components/errorComponent';
 
 const apiUsuarios =
   'https://fundacionandresbello.org/wp-json/fab/v1/official-fol';
 
 export const AccountDetails = () => {
   const { account } = useParams();
+
   const { loading, data } = useGetData(apiUsuarios);
 
   const [period, setPeriod] = useState({
@@ -39,6 +40,9 @@ export const AccountDetails = () => {
   useEffect(() => {
     if (!loading) {
       const userId = data.filter((item) => item.official_account === account);
+      if (userId.length === 0) {
+        return;
+      }
 
       setDataSearch({
         country: userId[0].country_id,
@@ -54,81 +58,86 @@ export const AccountDetails = () => {
   if (loading) {
     return <div>Loading</div>;
   }
+  if (data.length === 0) {
+    return <div>Error no hay data en ese Usuario</div>;
+  }
 
   return (
     <>
-    <AccountDetailsStyled>
-    <NavBar />
-      {dataSearch !== false && (
+      {dataSearch !== false ? (
         <TableContext.Provider value={dataSearch}>
-          <HeaderUserCard
-            countryId={dataSearch.country}
-            userName={dataSearch.userOfficialName}
-          />
-          <UserCardStyled>
-            <div className="left">
-              <ViewUserCard
-                data={dataSearch.dataUser}
-                period={dataSearch.period.endDate - 1}
-              />
+          <AccountDetailsStyled>
+            <NavBar />
+            <HeaderUserCard
+              countryId={dataSearch.country}
+              userName={dataSearch.userOfficialName}
+            />
+            <UserCardStyled>
+              <div className="left">
+                <ViewUserCard
+                  data={dataSearch.dataUser}
+                  period={dataSearch.period.endDate - 1}
+                />
+              </div>
+              <div className="right">
+                <MonthlyTweetsItems period={period} />
+              </div>
+            </UserCardStyled>
+            <div>
+              <hr />
+              <CompPeriodSlider setPeriod={setPeriod} />
+              <hr />
             </div>
-            <div className="right">
-              <MonthlyTweetsItems period={period} />
-            </div>
-          </UserCardStyled>
-          <div>
-            <hr />
-            <CompPeriodSlider setPeriod={setPeriod} />
-            <hr />
-          </div>
 
-          <CollapsableTableStyled usuario="usuario">
-            <StyledFilterButton
-              type="button"
-              name="most-retweet"
-              onClick={handleClick}
-            >
-              Usuarios más retuiteados
-            </StyledFilterButton>
-            <MostRetweetedItems period={period} />
-          </CollapsableTableStyled>
-          <CollapsableTableStyled usuario="usuario">
-            <StyledFilterButton
-              type="button"
-              name="most-replied"
-              onClick={handleClick}
-            >
-              Usuarios que más han recibido respuesta
-            </StyledFilterButton>
+            <CollapsableTableStyled usuario="usuario">
+              <StyledFilterButton
+                type="button"
+                name="most-retweet"
+                onClick={handleClick}
+              >
+                Usuarios más retuiteados
+              </StyledFilterButton>
+              <MostRetweetedItems period={period} />
+            </CollapsableTableStyled>
+            <CollapsableTableStyled usuario="usuario">
+              <StyledFilterButton
+                type="button"
+                name="most-replied"
+                onClick={handleClick}
+              >
+                Usuarios que más han recibido respuesta
+              </StyledFilterButton>
 
-            <MostRepliedItems period={period} />
-          </CollapsableTableStyled>
+              <MostRepliedItems period={period} />
+            </CollapsableTableStyled>
 
-          <CollapsableTableStyled usuario="usuario">
-            <StyledFilterButton
-              type="button"
-              name="most-mentioned"
-              onClick={handleClick}
-            >
-              Usuarios más mencionados
-            </StyledFilterButton>
+            <CollapsableTableStyled usuario="usuario">
+              <StyledFilterButton
+                type="button"
+                name="most-mentioned"
+                onClick={handleClick}
+              >
+                Usuarios más mencionados
+              </StyledFilterButton>
 
-            <MostMentionedItems period={period} />
-          </CollapsableTableStyled>
-          <CollapsableTableStyled usuario="usuario">
-            <StyledFilterButton
-              type="button"
-              name="most-ht"
-              onClick={handleClick}
-            >
-              Most used hashtags
-            </StyledFilterButton>
+              <MostMentionedItems period={period} />
+            </CollapsableTableStyled>
+            <CollapsableTableStyled usuario="usuario">
+              <StyledFilterButton
+                type="button"
+                name="most-ht"
+                onClick={handleClick}
+              >
+                Most used hashtags
+              </StyledFilterButton>
 
-            <HtMostUsedItems period={period} />
-          </CollapsableTableStyled>
+              <HtMostUsedItems period={period} />
+            </CollapsableTableStyled>
+          </AccountDetailsStyled>
         </TableContext.Provider>
+      ) : (
+        <ErrorComponent />
       )}
-    </AccountDetailsStyled>
     </>
   );
 };
