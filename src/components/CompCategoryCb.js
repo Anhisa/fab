@@ -14,9 +14,10 @@ export const CompCategoryCb = ({ setCategories }) => {
   };
 
   return (
-    <div>
-      <h5>Criterios</h5>
-      <FormGroup className="container-fluid row">
+    <>
+    <div className='btnGroup'>
+      <h5>Criterios:</h5>
+      <FormGroup className="row">
         <div className="col-6">
           <FormControlLabel
             control={<Checkbox defaultChecked />}
@@ -46,7 +47,7 @@ export const CompCategoryCb = ({ setCategories }) => {
           />
           <FormControlLabel
             control={<Checkbox defaultChecked />}
-            label="Usuarios que mensual"
+            label="Tweets mensuales"
             name="monthlyTweets"
             onChange={handleSelect}
           />
@@ -54,6 +55,7 @@ export const CompCategoryCb = ({ setCategories }) => {
         </div>
       </FormGroup>
     </div>
+    </>
   );
 };
 

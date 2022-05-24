@@ -33,11 +33,11 @@ export const CompAccountSelector = ({setAccounts}) => {
   };
 
   return (
-    <>
+    <div className='countSelector'>
       <h4>Cuentas que deseas comparar</h4>
       <div className="selector-wrap container-fluid">
         <FormControl
-          className="container-fluid"
+          className="container-fluid form"
           variant="filled"
           sx={{ m: 1, minWidth: 120 }}
         >
@@ -65,7 +65,7 @@ export const CompAccountSelector = ({setAccounts}) => {
           </Select>
         </FormControl>
         <FormControl
-          className="container-fluid"
+          className="container-fluid form"
           variant="filled"
           sx={{ m: 1, minWidth: 120 }}
         >
@@ -93,6 +93,6 @@ export const CompAccountSelector = ({setAccounts}) => {
           </Select>
         </FormControl>
       </div>
-    </>
+    </div>
   );
 };

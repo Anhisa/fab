@@ -20,7 +20,7 @@ export const Map = ({ setAccounts, items, setMouse, countryListManagment }) => {
     coordinates: [-75, -10],
     zoom: 1,
   });
-  const {open, setOpen} = countryListManagment
+  const { open, setOpen } = countryListManagment;
 
   function handleZoomIn() {
     if (position.zoom >= 4) return;
@@ -36,31 +36,26 @@ export const Map = ({ setAccounts, items, setMouse, countryListManagment }) => {
     setPosition(position);
   }
 
-  const handleOnClick = ({target,pageX,pageY}) => {
-    if(target.attributes.value){
-    const itemValue = target.attributes.value;
-    const filteredAccounts = items.filter(
-      (item) => item.country_id === itemValue.value
-    );
-    setMouse({
-      x: pageX,
-      y: pageY,
-    });
-    setAccounts(filteredAccounts);
-    if(!open){
-      return setOpen(true)
+  const handleOnClick = ({ target, pageX, pageY }) => {
+    if (target.attributes.value) {
+      const itemValue = target.attributes.value;
+      const filteredAccounts = items.filter(
+        (item) => item.country_id === itemValue.value
+      );
+      setMouse({
+        x: pageX,
+        y: pageY,
+      });
+      setAccounts(filteredAccounts);
+      if (!open) {
+        return setOpen(true);
+      }
     }
-  }
-    
-    
-      return setOpen(false)
-  
-    
-  
+
+    return setOpen(false);
   };
 
   let tweetsByCountry = useGetTweetsByCountry();
-
 
   const colorScale = scaleLinear()
     .domain([0, 11161])
@@ -101,8 +96,7 @@ export const Map = ({ setAccounts, items, setMouse, countryListManagment }) => {
                       }
                       value={geo.properties.COUNTRY_ID}
                       stroke="#D6D6DA"
-                      strokeWidth = "0.4"
-                      
+                      strokeWidth="0.4"
                     />
                   );
                 })

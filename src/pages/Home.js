@@ -11,6 +11,8 @@ import { TableContext } from '../context/TableContext';
 
 import { ComponentContainer } from '../hooks/ComponerContainer';
 import { DetachableTable } from '../styles/styledComponents/detachableTable';
+import { HomeStyled } from '../styles/styledComponents/HomeStyled';
+import { ComparativeStyled } from '../styles/styledComponents/ComparativeStyled';
 
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
@@ -47,7 +49,7 @@ export const Home = () => {
   useEffect(() => {}, [dataComparing]);
 
   return (
-    <Layout>
+    <HomeStyled className="container-xl">
       <div className="banner-container">
         <h2 className="banner-title">
           CHINA LATAM TWITTER DATABASE
@@ -61,7 +63,7 @@ export const Home = () => {
       </div>
 
       <div className="row">
-        <MapStyled className="map-container col-7">
+        <MapStyled className="map-container col-6">
           <Map
             items={items}
             setAccounts={setAccounts}
@@ -77,12 +79,12 @@ export const Home = () => {
         >
           <CountryList accounts={accounts} countryListManagment={countryListManagment} />
         </DetachableTable>
-        <div className="col-5">
+        <ComparativeStyled className="col-5">
           <ComparativeTool setDataComparing={setDataComparing} />
-        </div>
+        </ComparativeStyled>
 
         <ComponentContainer context={dataComparing} />
       </div>
-    </Layout>
+    </HomeStyled>
   );
 };
