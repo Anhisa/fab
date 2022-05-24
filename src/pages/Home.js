@@ -37,6 +37,8 @@ export const Home = () => {
       periodB: '',
     },
     isPeriodComparisonActive: false,
+    isCountryFilterActive: false,
+    country_id: '',
     categories: {
       mostRetweeted: true,
       mostHashtags: true,
@@ -80,11 +82,11 @@ export const Home = () => {
           />
         </MapStyled>
         <DetachableTable
-          className="table closed"
+          
           top={mousePosition.y}
           left={mousePosition.x}
         >
-          <CountryList accounts={accounts} countryListManagment={countryListManagment} />
+          <CountryList  accounts={accounts} countryListManagment={countryListManagment} />
         </DetachableTable>
         <div className='right col-6'>
         <ComparativeStyled >

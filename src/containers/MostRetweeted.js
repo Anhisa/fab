@@ -16,15 +16,16 @@ export const MostRetweetedItems = memo((period) => {
   useEffect(() => {
     if (data !== false) {
     if(data.length > 1){     
-      console.log('data 😀😀😀😀',data);
+     
       setComparisonView(true);
     }
     setInnerData(data);      
-     
-    setChartData(CreateChart(data));      
+     arraysBar = CreateChart(data)
+    setChartData(arraysBar);      
+
   }
   }, [period, data]);
-  if (!data) {
+  if (!data || chartData.length === 0) {
     return <div>Loading...</div>;
   }
   if (innerData.length === 0) {
@@ -35,7 +36,7 @@ export const MostRetweetedItems = memo((period) => {
 
   return (
     <section className="closed" id="most-retweet">
-      {data.map((dataAccount, index) => {
+      {innerData.map((dataAccount, index) => {
         return (
           <section className="column" key={index}>
             <div>

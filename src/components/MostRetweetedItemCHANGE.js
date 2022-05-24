@@ -16,41 +16,6 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
     0
   );
   
-  function createData(
-    userAccountDesc,
-    userAccount,
-    categoría,
-    tweets_number,
-    isVerified,
-    catDesc
-  ) {
-    return {
-      userAccountDesc,
-      userAccount,
-      categoría,
-      tweets_number,
-      isVerified,
-      catDesc,
-    };
-  }
-
-  let rows = newData.map((item) =>
-    createData(
-      item.most_retweeted_description_spa,
-      item.user_account,
-      item.most_retweeted_category_spa,
-      parseInt(item.tweets_number),
-      item.user_accounts_verified,
-      item.most_retweeted_category_desc_spa
-    )
-  );
-  rows = rows.map((item, index) => {
-    return {
-      ...item,
-      tweets_number: arrayBar[index],
-  }})
-
-  const ExpandedComponent = ({ data }) => data.catDesc;
   const columns = [
     {
       name: 'Usuario/Nombre de la cuenta',
@@ -63,7 +28,7 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
       minWidth: '150px',
       compact: true,
     },
-
+  
     {
       name: 'Categoría',
       selector: (row) => row.categoría,
@@ -73,7 +38,7 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
       wrap: false,
       maxWidth: '300px',
       omit: comparisonView
-
+  
     },
     {
       name: 'Verificado',
@@ -99,6 +64,25 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
     },
   ];
 
+  let rows = newData.map((item) =>
+    createData(
+      item.most_retweeted_description_spa,
+      item.user_account,
+      item.most_retweeted_category_spa,
+      parseInt(item.tweets_number),
+      item.user_accounts_verified,
+      item.most_retweeted_category_desc_spa
+    )
+  );
+  rows = rows?.map((item, index) => {
+    return {
+      ...item,
+      tweets_number: arrayBar[index],
+  }})
+
+  const ExpandedComponent = ({ data }) => data.catDesc;
+ 
+
   return (
     <StyledDataTable className="dataTable">
       <DataTable
@@ -121,3 +105,22 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
     </StyledDataTable>
   );
 };
+
+
+function createData(
+  userAccountDesc,
+  userAccount,
+  categoría,
+  tweets_number,
+  isVerified,
+  catDesc
+) {
+  return {
+    userAccountDesc,
+    userAccount,
+    categoría,
+    tweets_number,
+    isVerified,
+    catDesc,
+  };
+}
