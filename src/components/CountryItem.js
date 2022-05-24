@@ -51,11 +51,12 @@ export const CountryItem = ({ accounts, countryListManagment }) => {
       )
     }
   }
-  console.log('accounts', accounts);
+  
 
   return (
     <>
     {open && <DataTable
+    className={open ? 'open' : 'closed'}
       title={
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           <p>{accounts[0].country_name_spa}</p>

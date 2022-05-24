@@ -44,7 +44,7 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
       item.most_retweeted_category_desc_spa
     )
   );
-  rows = rows.map((item, index) => {
+  rows = rows?.map((item, index) => {
     return {
       ...item,
       tweets_number: arrayBar[index],

@@ -19,7 +19,7 @@ const CountrySelectFilter = ({ countrys, setCountryFilterActive, setCountryId })
           const country = innerData.find(
             (country) => country.country_id === countryId
           );
-          let countryName = country.country_name_spa;
+          let countryName = country?.country_name_spa || '';
           let countryInId = country.country_id;
           return { countryName, countryInId,};
         });
@@ -34,7 +34,7 @@ const CountrySelectFilter = ({ countrys, setCountryFilterActive, setCountryId })
   }
   function handleChange({target: {value}}) {
     
-    if(value !== null) {
+    if(value !== 'null') {
     setCountryA(value);
     
     setCountryFilterActive(true)
@@ -42,6 +42,7 @@ const CountrySelectFilter = ({ countrys, setCountryFilterActive, setCountryId })
     } else {
       setCountryFilterActive(false)
       setCountryId('')
+      setCountryA('');
     }
 
   }
