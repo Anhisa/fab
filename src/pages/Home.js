@@ -63,12 +63,6 @@ export const Home = () => {
         <h2 className="banner-title">
           CHINA LATAM TWITTER DATABASE
         </h2>
-        <p className="banner-desc">
-          En esta investigación se recopilaron los resultados obtenidos a partir
-          de la revisión de las dinámicas en el uso de las cuentas de Twitter
-          pertenecientes a las representaciones y los representantes
-          diplomáticos de la RPCh en ALC.
-        </p>
       </div>
 
       <div className="row">
@@ -78,11 +72,11 @@ export const Home = () => {
             setAccounts={setAccounts}
             setMouse={setMousePosition}
             countryListManagment={countryListManagment}
-            
+
           />
         </MapStyled>
         <DetachableTable
-          
+
           top={mousePosition.y}
           left={mousePosition.x}
         >
@@ -93,7 +87,7 @@ export const Home = () => {
           <ComparativeTool setDataComparing={setDataComparing} />
         </ComparativeStyled>
         <SelectorComparative setDataComparing={setDataComparing}/>
-         
+
         </div>
         <ComponentContainer context={dataComparing} />
       </div>
