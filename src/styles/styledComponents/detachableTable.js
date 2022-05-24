@@ -11,9 +11,9 @@ export const DetachableTable = styled.section`
   background: lightgrey;
   border-radius: 5px;
   .closed {
-    display: flex;
+    display: none;
   }
   .open {
-    display: none;
+    display: flex;
   }
 `;

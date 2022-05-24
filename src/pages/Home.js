@@ -18,6 +18,8 @@ const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
 export const Home = () => {
   const response = useGetData(api);
+  const [open, setOpen] = useState(false);
+  const countryListManagment = {open, setOpen};
   const items = response.data;
 
   const [accounts, setAccounts] = useState([]);
@@ -64,6 +66,8 @@ export const Home = () => {
             items={items}
             setAccounts={setAccounts}
             setMouse={setMousePosition}
+            countryListManagment={countryListManagment}
+            
           />
         </MapStyled>
         <DetachableTable
@@ -71,7 +75,7 @@ export const Home = () => {
           top={mousePosition.y}
           left={mousePosition.x}
         >
-          <CountryList accounts={accounts} />
+          <CountryList accounts={accounts} countryListManagment={countryListManagment} />
         </DetachableTable>
         <div className="col-5">
           <ComparativeTool setDataComparing={setDataComparing} />
