@@ -15,11 +15,12 @@ const geoUrl =
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
-export const Map = ({ setAccounts, items, setMouse }) => {
+export const Map = ({ setAccounts, items, setMouse, countryListManagment }) => {
   const [position, setPosition] = useState({
     coordinates: [-75, -10],
     zoom: 1,
   });
+  const { open, setOpen } = countryListManagment;
 
   function handleZoomIn() {
     if (position.zoom >= 4) return;
@@ -34,20 +35,24 @@ export const Map = ({ setAccounts, items, setMouse }) => {
   function handleMoveEnd(position) {
     setPosition(position);
   }
-  // const response = useGetData(api);
-  // const items = response.data;
 
-  const handleOnClick = (props) => {
-    const itemValue = props.target.attributes.value;
-    const filteredAccounts = items.filter(
-      (item) => item.country_id === itemValue.value
-    );
-    console.log(props.clientX, props.clientY);
-    setMouse({
-      x: props.pageX,
-      y: props.pageY,
-    });
-    setAccounts(filteredAccounts);
+  const handleOnClick = ({ target, pageX, pageY }) => {
+    if (target.attributes.value) {
+      const itemValue = target.attributes.value;
+      const filteredAccounts = items.filter(
+        (item) => item.country_id === itemValue.value
+      );
+      setMouse({
+        x: pageX,
+        y: pageY,
+      });
+      setAccounts(filteredAccounts);
+      if (!open) {
+        return setOpen(true);
+      }
+    }
+
+    return setOpen(false);
   };
 
   let tweetsByCountry = useGetTweetsByCountry();
@@ -64,6 +69,7 @@ export const Map = ({ setAccounts, items, setMouse }) => {
           rotate: [73, 11, 0],
           scale: 527,
         }}
+        onClick={handleOnClick}
       >
         <ZoomableGroup
           zoom={position.zoom}
@@ -90,8 +96,7 @@ export const Map = ({ setAccounts, items, setMouse }) => {
                       }
                       value={geo.properties.COUNTRY_ID}
                       stroke="#D6D6DA"
-                      strokeWidth = "0.4"
-                      onClick={handleOnClick}
+                      strokeWidth="0.4"
                     />
                   );
                 })

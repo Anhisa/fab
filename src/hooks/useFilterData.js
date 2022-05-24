@@ -82,16 +82,72 @@ function sortArray(array, from) {
 export const useFilterData = (api, from) => {
   const context = useContext(TableContext);
 
+
   const { accounts, period } = context;
   const [filteredData, setFilteredData] = useState(false);
   const { loading, data } = useGetData(api);
-
+  
   const items = data;
-
+  
   const accountsData = [];
-
+  
   useEffect(() => {
-    let newArray;
+    let newArray =  [];
+    if(context.isPeriodComparisonActive){
+      let arrayComparison = context.periodComparison
+      Object.values(arrayComparison).forEach(item => {
+        let {startDate, endDate} = getPeriodNumbers(item)
+        const data = items.filter(
+          (item) =>            
+            parseInt(item.period_id) >= startDate &&
+            parseInt(item.period_id) <= endDate
+        );
+        if (data.length === 0) {
+          return data;
+        }
+        newArray.push(data)
+        if (from === 'ht-most-used') {
+          let repeatedAccountArrayHt = filterDuplicatesHt(data);
+
+          newArray = addDuplicates(repeatedAccountArrayHt, from);
+
+          if (newArray.length > 3) {
+            let sortedArray = sortArray(newArray, from);
+
+            if (sortedArray.length > 10) {
+              sortedArray = sortedArray.slice(0, 10);
+            }
+            accountsData.push(sortedArray);
+          } else {
+            accountsData.push(newArray);
+          }
+        } else if (from === 'monthly-tweets') {
+          let innerArray = data;
+          if(context.isPeriodComparisonActive){
+            let repeatedMonthlyArray = filterDuplicatesMonth(data);            
+            newArray = addDuplicates(repeatedMonthlyArray, from);
+            console.log('newArray', newArray)
+          }
+          accountsData.push(newArray);
+        } else {
+          let repeatedAccountArray = filterDuplicates(data);
+
+          newArray = addDuplicates(repeatedAccountArray, from);
+          
+          let sortedArray = sortArray(newArray, from);
+          if (sortedArray.length > 10) {
+            sortedArray = sortedArray.slice(0, 10);
+          }
+
+          accountsData.push(sortedArray);
+        }
+      })
+      
+     setFilteredData(accountsData);
+     return
+     
+      
+    }
     Object.values(accounts).forEach((account) => {
       if (!loading) {
         const data = items.filter(
@@ -121,7 +177,7 @@ export const useFilterData = (api, from) => {
           }
         } else if (from === 'monthly-tweets') {
           let innerArray = data;
-
+       
           accountsData.push(innerArray);
         } else {
           let repeatedAccountArray = filterDuplicates(data);
@@ -138,7 +194,7 @@ export const useFilterData = (api, from) => {
     });
 
     setFilteredData(accountsData);
-  }, [loading, items, accounts, period, from]);
+  }, [loading, items, accounts, period, from, context]);
 
   return filteredData;
 };
@@ -153,6 +209,22 @@ function filterDuplicates(data) {
         return item.user_account === item2.user_account;
       });
       usersAccountCheck.push(item.user_account);
+      arrayDuplicates.push(duplicates);
+    }
+  });
+
+  return arrayDuplicates;
+}
+function filterDuplicatesMonth(data) {
+  let monthCheck = [];
+  let arrayDuplicates = [];
+  // Devuelve un array con los elementos duplicados
+  data.forEach((item) => {
+    if (!monthCheck.includes(item.month)) {
+      let duplicates = data.filter((item2) => {
+        return item.month === item2.month;
+      });
+      monthCheck.push(item.month);
       arrayDuplicates.push(duplicates);
     }
   });
@@ -291,10 +363,8 @@ function addDuplicates(arrayDuplicades, from) {
         let tweets_number = item.reduce((acc, item) => {
           user_account = item.user_account;
           monthly_tweets_id = item.monthly_tweets_id;
-          month = new Date(item.month).toLocaleString('es-ES', {
-            month: 'long',
-            timeZone: 'UTC',
-          });
+          
+          month = item.month;
 
           official_account = item.official_account;
 
@@ -342,5 +412,46 @@ function addDuplicates(arrayDuplicades, from) {
       });
       return newArray;
     // case 'allCountries':
+  }
+}
+
+
+function getPeriodNumbers(number){
+  let startDate
+  let endDate
+  switch (number) {
+    case 1:
+      return {
+        startDate: 1,
+        endDate: 1,
+      }
+    case 2:
+      return {
+        startDate: 2,
+        endDate: 2,
+      }
+    case 3:
+      return {
+        startDate: 1,
+        endDate: 2,
+      }
+    case 4:
+      return {
+        startDate: 3,
+        endDate: 3,
+      }
+    case 5:
+      return {
+        startDate: 4,
+        endDate: 4,
+      }
+    case 6:
+      return {
+        startDate: 3,
+        endDate: 4,
+      }
+  }
+  return {
+    startDate,endDate
   }
 }

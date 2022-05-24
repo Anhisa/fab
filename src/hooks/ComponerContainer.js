@@ -12,8 +12,9 @@ import { StyledFilterButton } from '../styles/styledComponents/StyledFilterButto
 
 export const ComponentContainer = ({context}) => {
 
-  const { categories, accounts } = context;
+  const { categories, accounts, periodComparison } = context;
   const { accountIdA, accountIdB } = accounts;
+  const {periodA, periodB} = periodComparison
 
   useEffect(() => {} , [accountIdA, accountIdB]);
   if (accountIdA === '' || accountIdB === '' || accountIdA === accountIdB) {

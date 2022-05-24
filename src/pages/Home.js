@@ -11,6 +11,10 @@ import { TableContext } from '../context/TableContext';
 
 import { ComponentContainer } from '../hooks/ComponerContainer';
 import { DetachableTable } from '../styles/styledComponents/detachableTable';
+import { HomeStyled } from '../styles/styledComponents/HomeStyled';
+import { ComparativeStyled } from '../styles/styledComponents/ComparativeStyled';
+import ComparativePerPeriod from '../components/ComparativePerPeriod';
+import SelectorComparative from '../containers/SelectorComparative';
 
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
@@ -18,6 +22,8 @@ const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
 export const Home = () => {
   const response = useGetData(api);
+  const [open, setOpen] = useState(false);
+  const countryListManagment = {open, setOpen};
   const items = response.data;
 
   const [accounts, setAccounts] = useState([]);
@@ -26,6 +32,11 @@ export const Home = () => {
       accountIdA: '',
       accountIdB: '',
     },
+    periodComparison: {
+      periodA: '',
+      periodB: '',
+    },
+    isPeriodComparisonActive: false,
     categories: {
       mostRetweeted: true,
       mostHashtags: true,
@@ -45,7 +56,7 @@ export const Home = () => {
   useEffect(() => {}, [dataComparing]);
 
   return (
-    <Layout>
+    <HomeStyled className="container-xl">
       <div className="banner-container">
         <h2 className="banner-title">
           CHINA LATAM TWITTER DATABASE
@@ -59,26 +70,31 @@ export const Home = () => {
       </div>
 
       <div className="row">
-        <MapStyled className="map-container col-7">
+        <MapStyled className="map-container col-6">
           <Map
             items={items}
             setAccounts={setAccounts}
             setMouse={setMousePosition}
+            countryListManagment={countryListManagment}
+            
           />
         </MapStyled>
         <DetachableTable
-          className="closed"
+          className="table closed"
           top={mousePosition.y}
           left={mousePosition.x}
         >
-          <CountryList accounts={accounts} />
+          <CountryList accounts={accounts} countryListManagment={countryListManagment} />
         </DetachableTable>
-        <div className="col-5">
+        <div className='right col-6'>
+        <ComparativeStyled >
           <ComparativeTool setDataComparing={setDataComparing} />
+        </ComparativeStyled>
+        <SelectorComparative setDataComparing={setDataComparing}/>
+         
         </div>
-
         <ComponentContainer context={dataComparing} />
       </div>
-    </Layout>
+    </HomeStyled>
   );
 };
