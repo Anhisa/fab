@@ -67,7 +67,7 @@ export const Map = ({ setAccounts, items, setMouse, countryListManagment }) => {
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
           rotate: [73, 11, 0],
-          scale: 527,
+          scale: 587,
         }}
         onClick={handleOnClick}
       >
