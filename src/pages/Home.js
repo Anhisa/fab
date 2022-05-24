@@ -37,6 +37,8 @@ export const Home = () => {
       periodB: '',
     },
     isPeriodComparisonActive: false,
+    isCountryFilterActive: false,
+    country_id: '',
     categories: {
       mostRetweeted: true,
       mostHashtags: true,

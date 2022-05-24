@@ -5,38 +5,53 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import { getFlag } from '../helpers/getFlag';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
+const columns = [
+  {
+    name: 'Nombre',
+    selector: (row) => row.official_account_category_spa,
+    sortable: true,
+  },
+  {
+    name: 'Cuenta',
+    selector: (row) => (
+      <Link to={`/diplomacia-digital/${row.official_account}`}>
+        {' '}
+        {row.official_account}{' '}
+      </Link>
+    ),
+    sortable: true,
+  },
+  {
+    name: 'Verificado',
+    selector: (row) =>
+      row.official_account_verified === 'si' ? (
+        <VerifiedIcon color="primary" />
+      ) : (
+        <VerifiedIcon color="disabled" />
+      ),
+  },
+];
 export const CountryItem = ({ accounts, countryListManagment }) => {
   const {open, setOpen} = countryListManagment;
 
-  const columns = [
-    {
-      name: 'Nombre',
-      selector: (row) => row.official_account_category_spa,
-      sortable: true,
-    },
-    {
-      name: 'Cuenta',
-      selector: (row) => (
-        <Link to={`/diplomacia-digital/${row.official_account}`}>
-          {' '}
-          {row.official_account}{' '}
-        </Link>
-      ),
-      sortable: true,
-    },
-    {
-      name: 'Verificado',
-      selector: (row) =>
-        row.official_account_verified === 'si' ? (
-          <VerifiedIcon color="primary" />
-        ) : (
-          <VerifiedIcon color="disabled" />
-        ),
-    },
-  ];
   const handleClose = () => {
     setOpen(false);
   };
+  if (accounts.length === 0) {
+    if(open){
+      return (
+        <div>
+          <h2>
+            Tiene relaciones con taiwan.
+          </h2>
+          <button onClick={handleClose}>
+            Cerrar
+          </button>
+        </div>
+      )
+    }
+  }
+  console.log('accounts', accounts);
 
   return (
     <>

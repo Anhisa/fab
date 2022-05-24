@@ -8,7 +8,7 @@ function getMaxValue(dataAccounts) {
     
     const tweetNumber = item.map((innerItem) =>
       {if(innerItem.tweets_number){
-        console.log('verdaderoo')
+        
         return parseInt(innerItem.tweets_number)
       }
       
@@ -25,7 +25,7 @@ function getMaxValue(dataAccounts) {
     maxValue = Math.max(dataAccounts)
 
   }
-  console.log('max',maxValue)
+
   return maxValue;
 }
 export function CreateChart(dataAccounts) {

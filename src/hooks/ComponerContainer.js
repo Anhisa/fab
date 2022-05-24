@@ -17,7 +17,7 @@ export const ComponentContainer = ({context}) => {
   const {periodA, periodB} = periodComparison
 
   useEffect(() => {
-    console.log('ComponentContainer useEffect');    
+   
   } , [accountIdA, accountIdB, periodA, periodB]);
   if(periodA === periodB){
     if (accountIdA === accountIdB ) {

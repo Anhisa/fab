@@ -1,7 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import React, { useState } from 'react';
-import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
-import { ComparativePeriodStyled, ComparativeStyled } from '../styles/styledComponents/ComparativeStyled';
+
 import 'bootstrap/dist/css/bootstrap.css';
 const periods = [
   {
@@ -33,7 +32,7 @@ const ComparativePerPeriod = ({setDataComparing}) => {
   const [periodA, setPeriodA] = React.useState('');
   const [periodB, setPeriodB] = React.useState('');
 // 
-//   let tweetsByCountry = useGetTweetsByCountry();
+
   const handleChangeA = (event) => {
     setPeriodA(event.target.value);
     setDataComparing(prevState => ({

@@ -97,14 +97,25 @@ export const useFilterData = (api, from) => {
       let arrayComparison = context.periodComparison
       Object.values(arrayComparison).forEach(item => {
         let {startDate, endDate} = getPeriodNumbers(item)
-        const data = items.filter(
-          (item) =>            
-            parseInt(item.period_id) >= startDate &&
-            parseInt(item.period_id) <= endDate
-        );
+        let data 
+        if(!context.isCountryFilterActive){
+           data = items.filter(
+            (item) =>            
+              parseInt(item.period_id) >= startDate &&
+              parseInt(item.period_id) <= endDate
+          );
+        } else {
+          data = items.filter(
+            (item) =>            
+              parseInt(item.period_id) >= startDate &&
+              parseInt(item.period_id) <= endDate &&
+              item.country_id === context.country_id
+          );
+        }
         if (data.length === 0) {
           return data;
         }
+       
         newArray.push(data)
         if (from === 'ht-most-used') {
           let repeatedAccountArrayHt = filterDuplicatesHt(data);
@@ -126,7 +137,7 @@ export const useFilterData = (api, from) => {
           if(context.isPeriodComparisonActive){
             let repeatedMonthlyArray = filterDuplicatesMonth(data);            
             newArray = addDuplicates(repeatedMonthlyArray, from);
-            console.log('newArray', newArray)
+           
           }
           accountsData.push(newArray);
         } else {

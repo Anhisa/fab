@@ -10,7 +10,7 @@ import { StyledDataTable } from '../styles/styledComponents/StyledDataTable';
 
 
 export const MostMentionedItemCHANGE = ({newData, periodId, comparisonView, arrayBar}) => {
- console.log('arrayBar', arrayBar);
+ 
   const tweetNumber = newData.map((item) => parseInt(item.mentions_number));
   const totaltweets = tweetNumber.reduce(
     (totaltweetsNumber, item) => totaltweetsNumber + item,

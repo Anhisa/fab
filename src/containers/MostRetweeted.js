@@ -16,7 +16,7 @@ export const MostRetweetedItems = memo((period) => {
   useEffect(() => {
     if (data !== false) {
     if(data.length > 1){     
-      console.log('data 😀😀😀😀',data);
+     
       setComparisonView(true);
     }
     setInnerData(data);      

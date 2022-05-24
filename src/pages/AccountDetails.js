@@ -19,6 +19,8 @@ import HeaderUserCard from '../components/HeaderUserCard';
 import { AccountDetailsStyled } from '../styles/styledComponents/AccountDetailsStyled';
 import { CompPeriodSlider } from '../components/CompPeriodSlider';
 import { StyledFilterButton } from '../styles/styledComponents/StyledFilterButton';
+import NavBar from '../components/NavBar';
+
 
 const apiUsuarios =
   'https://fundacionandresbello.org/wp-json/fab/v1/official-fol';
@@ -54,7 +56,9 @@ export const AccountDetails = () => {
   }
 
   return (
+    <>
     <AccountDetailsStyled>
+    <NavBar />
       {dataSearch !== false && (
         <TableContext.Provider value={dataSearch}>
           <HeaderUserCard
@@ -125,5 +129,6 @@ export const AccountDetails = () => {
         </TableContext.Provider>
       )}
     </AccountDetailsStyled>
+    </>
   );
 };
