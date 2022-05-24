@@ -62,7 +62,7 @@ export const Map = ({ setAccounts, items, setMouse }) => {
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
           rotate: [73, 11, 0],
-          scale: 587,
+          scale: 527,
         }}
       >
         <ZoomableGroup

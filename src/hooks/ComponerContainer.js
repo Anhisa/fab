@@ -18,9 +18,7 @@ export const ComponentContainer = ({context}) => {
   useEffect(() => {} , [accountIdA, accountIdB]);
   if (accountIdA === '' || accountIdB === '' || accountIdA === accountIdB) {
     return (
-      <div>
-        <h1>Please select two different accounts to compare</h1>
-      </div>
+      []
     );
   }
 
