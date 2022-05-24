@@ -51,7 +51,7 @@ export const MostRepliedItemCHANGE = ({ newData, periodId, comparisonView, array
   );
   const ExpandedComponent = ({ data }) => data.catDesc;
   
-  rows = rows.map((item, index) => {
+  rows = rows?.map((item, index) => {
     return {
       ...item,
       tweets_number: arrayBar[index],

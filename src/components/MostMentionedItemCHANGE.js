@@ -55,7 +55,7 @@ export const MostMentionedItemCHANGE = ({newData, periodId, comparisonView, arra
     )
   );
   
-  rows = rows.map((item, index) => {
+  rows = rows?.map((item, index) => {
     return {
       ...item,
       tweets_number: arrayBar[index],
