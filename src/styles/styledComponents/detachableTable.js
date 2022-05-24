@@ -6,7 +6,7 @@ export const DetachableTable = styled.section`
   top: ${(props) => props.top + 'px'};
   left: ${(props) => props.left + 'px'};
   max-width: fit-content;
-  z-index: 1;
+  z-index: 10;
 
   background: lightgrey;
   border-radius: 5px;
@@ -15,5 +15,10 @@ export const DetachableTable = styled.section`
   }
   .open {
     display: flex;
+  }
+  .rdt_TableRow{
+    &:hover{
+      background-color: #ffce21;
+    }
   }
 `;

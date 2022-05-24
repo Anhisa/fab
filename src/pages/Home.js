@@ -13,6 +13,8 @@ import { ComponentContainer } from '../hooks/ComponerContainer';
 import { DetachableTable } from '../styles/styledComponents/detachableTable';
 import { HomeStyled } from '../styles/styledComponents/HomeStyled';
 import { ComparativeStyled } from '../styles/styledComponents/ComparativeStyled';
+import ComparativePerPeriod from '../components/ComparativePerPeriod';
+import SelectorComparative from '../containers/SelectorComparative';
 
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
@@ -30,6 +32,11 @@ export const Home = () => {
       accountIdA: '',
       accountIdB: '',
     },
+    periodComparison: {
+      periodA: '',
+      periodB: '',
+    },
+    isPeriodComparisonActive: false,
     categories: {
       mostRetweeted: true,
       mostHashtags: true,
@@ -79,10 +86,13 @@ export const Home = () => {
         >
           <CountryList accounts={accounts} countryListManagment={countryListManagment} />
         </DetachableTable>
-        <ComparativeStyled className="col-5">
+        <div className='right col-6'>
+        <ComparativeStyled >
           <ComparativeTool setDataComparing={setDataComparing} />
         </ComparativeStyled>
-
+        <SelectorComparative setDataComparing={setDataComparing}/>
+         
+        </div>
         <ComponentContainer context={dataComparing} />
       </div>
     </HomeStyled>

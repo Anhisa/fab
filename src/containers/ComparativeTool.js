@@ -28,11 +28,14 @@ export const ComparativeTool = ({setDataComparing}) => {
   
   const handleComparison = () => {
    
-    setDataComparing({
-      accounts,
-      categories,
-      period,
-    })   
+    setDataComparing(prev => {
+      return {
+        ...prev,
+        accounts,
+        categories,
+        period,
+        isPeriodComparisonActive: false,
+      }})   
 
     
   }
