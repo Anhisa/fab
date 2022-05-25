@@ -44,7 +44,7 @@ export const Map = ({ setAccounts, items, setMouse, countryListManagment }) => {
       );
       setMouse({
         x: pageX,
-        y: pageY,
+        y: pageY ,
       });
       setAccounts(filteredAccounts);
       if (!open) {

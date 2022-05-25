@@ -55,8 +55,10 @@ export const CountryItem = ({ accounts, countryListManagment }) => {
 
   return (
     <>
+    <div className={open ? 'open' : 'closed'}>
+    <div className='dotted-line'/>
     {open && <DataTable
-    className={open ? 'open' : 'closed'}
+    
       title={
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           <p>{accounts[0].country_name_spa}</p>
@@ -73,6 +75,7 @@ export const CountryItem = ({ accounts, countryListManagment }) => {
       columns={columns}
       data={accounts}
     />}
+    </div>
     </>
   );
 };
