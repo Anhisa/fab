@@ -38,7 +38,7 @@ export const MonthlyTweetsChart = ({ newData }) => {
   );
 
   const dataSet = newData.map((item) => parseInt(item.tweets_number));
-  
+
 
   const accountInfo = [];
   const account = newData[0];
@@ -72,10 +72,10 @@ export const MonthlyTweetsChart = ({ newData }) => {
         label: 'Cuenta Oficial ' + accountInfo[0],
         data: dataSet,
         tension: 0.3,
-        borderColor: 'rgb(75, 192, 192)',
+        borderColor: '#ffce21',
         pointRadius: 6,
         pointBackgroundColor: 'rgb(75, 192, 192)',
-        backgroundColor: 'rgba(75, 192, 192, 0.3)',
+        backgroundColor: '#ffce21',
       },
     ],
     labels,

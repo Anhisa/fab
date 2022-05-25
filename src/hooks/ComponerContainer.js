@@ -16,17 +16,11 @@ export const ComponentContainer = ({context}) => {
   const { accountIdA, accountIdB } = accounts;
   const {periodA, periodB} = periodComparison
 
-  useEffect(() => {
-   
-  } , [accountIdA, accountIdB, periodA, periodB]);
-  if(periodA === periodB){
-    if (accountIdA === accountIdB ) {
-      return (
-        <div>
-          <h1>Please select two different accounts to compare</h1>
-        </div>
-      );
-    }
+  useEffect(() => {} , [accountIdA, accountIdB]);
+  if (accountIdA === '' || accountIdB === '' || accountIdA === accountIdB) {
+    return (
+      []
+    );
   }
 
   return (

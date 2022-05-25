@@ -27,7 +27,7 @@ export const CompCategoryCb = ({ setCategories }) => {
           />
           <FormControlLabel
             control={<Checkbox defaultChecked />}
-            label="Usuarios que más han recibido respuestas"
+            label="Usuarios con más respuestas"
             name="mostReplied"
             onChange={handleSelect}
           />
@@ -41,7 +41,7 @@ export const CompCategoryCb = ({ setCategories }) => {
           />
           <FormControlLabel
             control={<Checkbox defaultChecked />}
-            label="Hashtags más utilizados"
+            label="Hashtags más usados"
             name="mostHashtags"
             onChange={handleSelect}
           />

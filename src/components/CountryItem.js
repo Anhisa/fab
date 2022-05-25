@@ -41,9 +41,10 @@ export const CountryItem = ({ accounts, countryListManagment }) => {
     if(open){
       return (
         <div>
-          <h2>
-            Tiene relaciones con taiwan.
-          </h2>
+          <p>
+          Tiene relaciones diplomáticas <br></br>
+          con La República de China - Taiwán
+          </p>
           <button onClick={handleClose}>
             Cerrar
           </button>
@@ -51,7 +52,7 @@ export const CountryItem = ({ accounts, countryListManagment }) => {
       )
     }
   }
-  
+
 
   return (
     <>
