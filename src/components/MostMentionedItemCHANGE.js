@@ -19,7 +19,7 @@ export const MostMentionedItemCHANGE = ({newData, periodId, comparisonView, arra
     (totaltweetsNumber, item) => totaltweetsNumber + item,
     0
   );
-  const accountInfo = [];
+   const accountInfo = [];
   const account = newData[0];
 
   if (account) {
