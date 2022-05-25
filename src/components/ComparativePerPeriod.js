@@ -33,19 +33,25 @@ const ComparativePerPeriod = ({setDataComparing}) => {
   const [periodB, setPeriodB] = React.useState('');
 // 
 
-  const handleChangeA = (event) => {
-    setPeriodA(event.target.value);
+  const handleChangeA = ({target:{value}}) => {
+    setPeriodA(value);
     setDataComparing(prevState => ({
       ...prevState,
-      periodA: event.target.value,
+      periodA:{
+        id: value,
+        name: periods[value-1].name,
+      },
       }))
   };
-  const handleChangeB = (event) => {
+  const handleChangeB = ({target:{value}}) => {
+    setPeriodB(value);
     setDataComparing(prevState => ({
       ...prevState,
-      periodB: event.target.value,
+      periodB: {
+        id: value,
+        name: periods[value-1].name,
+      },
       }))
-    setPeriodB(event.target.value);
   };
   return (
    
@@ -69,7 +75,7 @@ const ComparativePerPeriod = ({setDataComparing}) => {
                 <em>Ninguna</em>
               </MenuItem>
               {periods.map((item) => (
-                <MenuItem key={`oa-${item.id}`} value={item.id}>
+                <MenuItem key={`oa-${item.id}`} value={item.id} name={item.name}>
                   <div>
                     <h6>{item.name}</h6>
                   </div>
@@ -94,7 +100,7 @@ const ComparativePerPeriod = ({setDataComparing}) => {
                 <em>Ninguna</em>
               </MenuItem>
               {periods.map((item, index) => (
-                <MenuItem key={`oa-${item.id}`} value={item.id}>
+                <MenuItem key={`oa-${item.id}`} value={item.id} name={item.name}>
                   <div>
                     <h6>{item.name}</h6>
                   </div>

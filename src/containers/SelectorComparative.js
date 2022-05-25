@@ -6,10 +6,16 @@ import { CompPeriodSlider } from '../components/CompPeriodSlider';
 import { ComparativePeriodStyled } from '../styles/styledComponents/ComparativeStyled';
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
 import CountrySelectFilter from '../components/countrySelectFilter';
-const SelectorComparative = ({ setDataComparing }) => {
+const SelectorComparative = ({ setDataComparing, countryDataState }) => {
   const [periodComparison, setPeriodComparison] = useState({
-    periodA: '',
-    periodB: '',
+    periodA: {
+      id:'',
+      name: '',
+    },
+    periodB: {
+      id:'',
+      name: '',
+    },
   });
   const [isCountryFilterActive, setCountryFilterActive] = useState(false);
   const [country_id, setCountryId] = useState('');
@@ -24,13 +30,14 @@ const SelectorComparative = ({ setDataComparing }) => {
   
   const handleComparison = () => {
     
+    
     setDataComparing((prev) => {
       return {
         ...prev,
         periodComparison,
         accounts: {
-          accountIdA: '',
-          accountIdB: '',
+          accountIdA: 'null',
+          accountIdB: 'null1',
         },
         categories,
         isPeriodComparisonActive: true,
@@ -43,7 +50,7 @@ const SelectorComparative = ({ setDataComparing }) => {
     <ComparativePeriodStyled>
       <ComparativePerPeriod setDataComparing={setPeriodComparison} />
       <CompCategoryCb setCategories={setCategories} />
-      <CountrySelectFilter countrys={tweetsByCountry} setCountryFilterActive={setCountryFilterActive} setCountryId={setCountryId}/>
+      <CountrySelectFilter countrysWithData={tweetsByCountry} setCountryFilterActive={setCountryFilterActive} setCountryId={setCountryId} countryDataState={countryDataState}/>
       <div className="btnContainer">
         <Button variant="contained" onClick={handleComparison} className="btn">
           COMPARAR

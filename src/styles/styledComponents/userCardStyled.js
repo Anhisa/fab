@@ -8,21 +8,21 @@ export const UserCardStyled = styled.div`
     justify-content: center;
     align-items: center;
     width: 50%;
-    
+
   }
   .right{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%;    
+    width: 50%;
     section{
       height: 100%;
       width: 100%;
       canvas{
         height: 100%;
         width: 100%;
-  
+
       }
     }
 
@@ -51,7 +51,7 @@ export const HeaderUserView = styled.div`
   width: 100%;
 justify-content: flex-start;
   gap: 10px;
-  margin: 50px auto;
+  margin: 10px auto;
   img{
     height: 80px;
 
@@ -70,6 +70,6 @@ justify-content: flex-start;
       font-weight: bold;
       color: #ffce21;
     }
-  
+
   }
   `

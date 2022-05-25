@@ -1,16 +1,21 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import DataTable from 'react-data-table-component';
 
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { BarContainer, IsVerified, UserAccount } from './partsDataTable';
 import { CreateChart } from '../helpers/createChart';
 import { StyledDataTable } from '../styles/styledComponents/StyledDataTable';
+import { tab } from '@testing-library/user-event/dist/tab';
+import { TableContext } from '../context/TableContext';
 
-
-export const MostMentionedItemCHANGE = ({newData, periodId, comparisonView, arrayBar}) => {
- 
+export const MostMentionedItemCHANGE = ({
+  newData,
+  periodId,
+  comparisonView,
+  arrayBar,
+}) => {
   const tweetNumber = newData.map((item) => parseInt(item.mentions_number));
   const totaltweets = tweetNumber.reduce(
     (totaltweetsNumber, item) => totaltweetsNumber + item,
@@ -38,9 +43,8 @@ export const MostMentionedItemCHANGE = ({newData, periodId, comparisonView, arra
       userAccount,
       categoría,
       tweets_number,
-     
-          catDesc,
-     
+
+      catDesc,
     };
   }
 
@@ -50,11 +54,10 @@ export const MostMentionedItemCHANGE = ({newData, periodId, comparisonView, arra
       item.user_account,
       item.most_mentioned_category_spa,
       parseInt(item.mentions_number),
-      item.most_mentioned_category_desc_spa,
-      
+      item.most_mentioned_category_desc_spa
     )
   );
-  
+
   rows = rows?.map((item, index) => {
     return {
       ...item,
@@ -64,7 +67,12 @@ export const MostMentionedItemCHANGE = ({newData, periodId, comparisonView, arra
   const columns = [
     {
       name: 'Usuario/ Nombre cuenta',
-      selector: (row) =>  <UserAccount userAccount={row.userAccount} userAccountDesc={comparisonView? false : row.userAccountDesc } /> ,
+      selector: (row) => (
+        <UserAccount
+          userAccount={row.userAccount}
+          userAccountDesc={comparisonView ? false : row.userAccountDesc}
+        />
+      ),
       sortable: true,
       wrap: true,
     },
@@ -76,18 +84,18 @@ export const MostMentionedItemCHANGE = ({newData, periodId, comparisonView, arra
       grow: 2,
       wrap: false,
       maxWidth: '300px',
-      omit: comparisonView
+      omit: comparisonView,
     },
     {
       name: 'Verificado',
       selector: (row) => <IsVerified isVerified={row.isVerified} />,
-     
+
       id: 'isVerified',
       grow: 2,
       wrap: false,
       center: true,
       width: '150px',
-      omit: comparisonView
+      omit: comparisonView,
     },
     {
       name: 'Número de Tweets',
@@ -99,27 +107,19 @@ export const MostMentionedItemCHANGE = ({newData, periodId, comparisonView, arra
       maxWidth: '400px',
       width: '220px',
     },
-  ]
+  ];
   const ExpandedComponent = ({ data }) => data.catDesc;
-
- 
 
   return (
     <StyledDataTable className="dataTable">
       <DataTable
         columns={columns}
         data={rows}
-        title='Usuarios más mencionados'
+        title="Top 10 usuarios más mencionados"
         expandableRows
         expandableRowsComponent={ExpandedComponent}
         striped={true}
-        />
-        </StyledDataTable>
-  )
-
- 
-
-
- 
+      />
+    </StyledDataTable>
+  );
 };
-
