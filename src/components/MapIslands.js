@@ -30,10 +30,7 @@ const markers = [
   { markerOffset: 12, name: 'Caracas', coordinates: [-66.9036, 10.4806] },
   { markerOffset: 12, name: 'Lima', coordinates: [-77.0428, -12.0464] },
   //mexico
-  { markerOffset: 12, name: 'Ciudad de México', coordinates: [-99.1332, 19.432] },
-  { markerOffset: 12, name: 'Guadalajara', coordinates: [-103.35, 20.67] },
-  //panama
-  { markerOffset: 12, name: 'Panama', coordinates: [-80.78, 8.98] },
+
   
 
 ];

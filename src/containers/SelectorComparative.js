@@ -6,7 +6,7 @@ import { CompPeriodSlider } from '../components/CompPeriodSlider';
 import { ComparativePeriodStyled } from '../styles/styledComponents/ComparativeStyled';
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
 import CountrySelectFilter from '../components/countrySelectFilter';
-const SelectorComparative = ({ setDataComparing }) => {
+const SelectorComparative = ({ setDataComparing, countryDataState }) => {
   const [periodComparison, setPeriodComparison] = useState({
     periodA: {
       id:'',
@@ -29,7 +29,8 @@ const SelectorComparative = ({ setDataComparing }) => {
   let tweetsByCountry = useGetTweetsByCountry();
   
   const handleComparison = () => {
-    console.log('handleComparison');
+    
+    
     setDataComparing((prev) => {
       return {
         ...prev,
@@ -49,7 +50,7 @@ const SelectorComparative = ({ setDataComparing }) => {
     <ComparativePeriodStyled>
       <ComparativePerPeriod setDataComparing={setPeriodComparison} />
       <CompCategoryCb setCategories={setCategories} />
-      <CountrySelectFilter countrys={tweetsByCountry} setCountryFilterActive={setCountryFilterActive} setCountryId={setCountryId}/>
+      <CountrySelectFilter countrysWithData={tweetsByCountry} setCountryFilterActive={setCountryFilterActive} setCountryId={setCountryId} countryDataState={countryDataState}/>
       <div className="btnContainer">
         <Button variant="contained" onClick={handleComparison} className="btn">
           COMPARAR

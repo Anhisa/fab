@@ -22,11 +22,14 @@ const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
 export const Home = () => {
   const response = useGetData(api);
+  const [countriesAllData, setCountriesAllData] = useState([]);
+  const [countrySelectedId, setCountrySelectedId] = useState(null);
+  const countryDataState = [countriesAllData, setCountriesAllData];
   const [open, setOpen] = useState(false);
   const countryListManagment = {open, setOpen};
   const items = response.data;
 
-  const [accounts, setAccounts] = useState([]);
+  const [accountsCountry, setAccountsCountry] = useState([]);
   const [dataComparing, setDataComparing] = useState({
     accounts: {
       accountIdA: '',
@@ -75,9 +78,10 @@ export const Home = () => {
         <MapStyled className="map-container col-6">
           <Map
             items={items}
-            setAccounts={setAccounts}
+            setAccounts={setAccountsCountry}
             setMouse={setMousePosition}
             countryListManagment={countryListManagment}
+            setCountrySelectedId={setCountrySelectedId}
 
           />
         </MapStyled>
@@ -86,13 +90,15 @@ export const Home = () => {
           top={mousePosition.y}
           left={mousePosition.x}
         >
-          <CountryList  accounts={accounts} countryListManagment={countryListManagment} />
+          <CountryList  accountsCountry={accountsCountry} countryListManagment={countryListManagment} 
+            countryDataState={countryDataState} countrySelectedId={countrySelectedId}
+          />
         </DetachableTable>
         <div className='right col-6'>
         <ComparativeStyled >
           <ComparativeTool setDataComparing={setDataComparing} />
         </ComparativeStyled>
-        <SelectorComparative setDataComparing={setDataComparing}/>
+        <SelectorComparative countryDataState={countryDataState} setDataComparing={setDataComparing}/>
 
         </div>
         <ComponentContainer context={dataComparing} />

@@ -1,13 +1,13 @@
 import React from 'react';
 import { CountryItem } from '../components/CountryItem';
 
-export const CountryList = ({accounts, countryListManagment}) => {
+export const CountryList = ({accountsCountry, countryListManagment, countryDataState, countrySelectedId}) => {
 
   
   return (
 
  
-      <CountryItem accounts={accounts} countryListManagment={countryListManagment} />
+      <CountryItem accountsCountry={accountsCountry} countryListManagment={countryListManagment} countryDataState={countryDataState} countrySelectedId={countrySelectedId} />
       
   
   );

@@ -31,16 +31,21 @@ const columns = [
       ),
   },
 ];
-export const CountryItem = ({ accounts, countryListManagment }) => {
+export const CountryItem = ({ accountsCountry, countryListManagment, countryDataState, countrySelectedId }) => {
   const {open, setOpen} = countryListManagment;
-
+  const [countriesData] = countryDataState;
+  function hasRelationWithTaiwan(countryId) {
+    const countryData = countriesData.find(country => country.country_id === countryId);
+    return countryData.official_relations_spa === 'Taiwan';
+  }
+  console.log('accounts', accountsCountry);
   const handleClose = () => {
     setOpen(false);
   };
-  if (accounts.length === 0) {
-    if(open){
+  if (accountsCountry.length === 0) {   
+    if(open &&hasRelationWithTaiwan(countrySelectedId)) {
       return (
-        <div>
+        <div className={open ? 'open' : 'closed'}>
           <p>
           Tiene relaciones diplomáticas <br></br>
           con La República de China - Taiwán
@@ -51,6 +56,17 @@ export const CountryItem = ({ accounts, countryListManagment }) => {
         </div>
       )
     }
+    return (
+      <div className={open ? 'open' : 'closed'}>
+        <p>
+          No hay cuentas o data registradas en este país
+        </p>
+        <button onClick={handleClose}>
+          Cerrar
+        </button>
+      </div>
+    )
+
   }
 
 
@@ -62,10 +78,10 @@ export const CountryItem = ({ accounts, countryListManagment }) => {
     
       title={
         <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <p>{accounts[0].country_name_spa}</p>
+          <p>{accountsCountry[0]?.country_name_spa ?? ''}</p>
           <img
-            src={getFlag(accounts[0].country_name_eng)}
-            alt={`Bandera de ${accounts[0].country_name_spa}`}
+            src={getFlag(accountsCountry[0].country_name_eng)}
+            alt={`Bandera de ${accountsCountry[0].country_name_spa}`}
             style={{ width: '80px' }}
           />
           <button type='button' className='btn btn-primary' onClick={handleClose}>
@@ -74,9 +90,10 @@ export const CountryItem = ({ accounts, countryListManagment }) => {
         </div>
       }
       columns={columns}
-      data={accounts}
+      data={accountsCountry}
     />}
     </div>
     </>
   );
 };
+

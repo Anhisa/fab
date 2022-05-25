@@ -4,17 +4,19 @@ import { useGetData } from '../hooks/useGetData';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/countries';
 
-const CountrySelectFilter = ({ countrys, setCountryFilterActive, setCountryId }) => {
+const CountrySelectFilter = ({ countrysWithData, setCountryFilterActive, setCountryId, countryDataState }) => {
   const [innerData, setInnerData] = useState([]);
   const [countriesData, setCountriesData] = useState([]);
+  const [countriesAllData, setCountriesAllData] = countryDataState;
   const [countryA, setCountryA] = useState('');
-  let countryIds = countrys.map((country) => country.countryId);
+  let countryIds = countrysWithData.map((country) => country.countryId);
   let { data, loading } = useGetData(api);
-  let countryNames = []
+  let countryNames = [] 
   useEffect(() => {
     if (!loading) {
       if (data.length > 0 && countriesData.length === 0 ) {
         setInnerData(data);
+        setCountriesAllData(data);
         countryNames = countryIds.map((countryId) => {
           const country = innerData.find(
             (country) => country.country_id === countryId
