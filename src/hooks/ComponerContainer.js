@@ -15,7 +15,8 @@ export const ComponentContainer = ({context}) => {
   const { categories, accounts, periodComparison,isPeriodComparisonActive  } = context;
   const { accountIdA, accountIdB } = accounts;
   const {periodA, periodB} = periodComparison
-  console.log(periodA, periodB)
+  
+  
 
   useEffect(() => {} , [accountIdA, accountIdB, periodA]);
   if (accountIdA === '' || accountIdB === '' || accountIdA === accountIdB) {

@@ -15,7 +15,7 @@ const geoUrl =
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
-export const Map = ({ setAccounts, items, setMouse, countryListManagment }) => {
+export const Map = ({ setAccounts, items, setMouse, countryListManagment, setCountrySelectedId }) => {
   const [position, setPosition] = useState({
     coordinates: [-75, -10],
     zoom: 1,
@@ -39,6 +39,8 @@ export const Map = ({ setAccounts, items, setMouse, countryListManagment }) => {
   const handleOnClick = ({ target, pageX, pageY }) => {
     if (target.attributes.value) {
       const itemValue = target.attributes.value;
+      console.log(itemValue);
+      
       const filteredAccounts = items.filter(
         (item) => item.country_id === itemValue.value
       );
@@ -47,6 +49,7 @@ export const Map = ({ setAccounts, items, setMouse, countryListManagment }) => {
         y: pageY ,
       });
       setAccounts(filteredAccounts);
+      setCountrySelectedId(itemValue.value);
       if (!open) {
         return setOpen(true);
       }

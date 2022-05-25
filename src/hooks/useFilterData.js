@@ -58,7 +58,8 @@ export const useFilterData = (api, from) => {
               item.country_id === country_id
           );
         }
-        console.log('data', data);
+        
+        
         if (data.length === 0) {
           return;
         }
