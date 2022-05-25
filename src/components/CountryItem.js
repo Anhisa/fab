@@ -42,7 +42,7 @@ export const CountryItem = ({ accountsCountry, countryListManagment, countryData
   const handleClose = () => {
     setOpen(false);
   };
-  if (accountsCountry.length === 0) {   
+  if (accountsCountry.length === 0) {
     if(open &&hasRelationWithTaiwan(countrySelectedId)) {
       return (
         <div className={open ? 'open' : 'closed'}>
@@ -75,7 +75,7 @@ export const CountryItem = ({ accountsCountry, countryListManagment, countryData
     <div className={open ? 'open' : 'closed'}>
     <div className='dotted-line'/>
     {open && <DataTable
-    
+
       title={
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           <p>{accountsCountry[0]?.country_name_spa ?? ''}</p>
@@ -84,9 +84,9 @@ export const CountryItem = ({ accountsCountry, countryListManagment, countryData
             alt={`Bandera de ${accountsCountry[0].country_name_spa}`}
             style={{ width: '80px' }}
           />
-          <button type='button' className='btn btn-primary' onClick={handleClose}>
+          {/* <button type='button' className='btn btn-primary' onClick={handleClose}>
             close
-          </button>
+          </button> */}
         </div>
       }
       columns={columns}
