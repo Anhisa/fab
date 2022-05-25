@@ -1,32 +1,36 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, memo } from 'react';
 import { MostRepliedChart } from '../components/MostRepliedChart';
 import { MostRepliedItem } from '../components/MostRepliedItem';
+import { MostRepliedItemCHANGE } from '../components/MostRepliedItemCHANGE';
 import { TableContext } from '../context/TableContext';
+import { CreateChart } from '../helpers/createChart';
 import { useFilterData } from '../hooks/useFilterData';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-replied';
-export const MostRepliedItems = () => {
-  const [loading, setLoading] = useState(true);
-  const context = useContext(TableContext);
-  const { period } = context;
-  const data = useFilterData(api, 'most-replied');
+export const MostRepliedItems = memo((period) => {
+    const data = useFilterData(api, 'most-replied');
   const [innerData, setInnerData] = useState(data);
+  const [comparisonView, setComparisonView] = useState(false);
+  const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    if (!data) {
-      setLoading(true);
-    } else {
-      if(data.length > 0){
-      setInnerData(data);
-      setLoading(false); 
+    if (data !== false) {
+      if(data.length > 1){     
+        setComparisonView(true);
       }
+      setInnerData(data);
+      setChartData(CreateChart(data));
     }
-  }, [data]);
+  }, [data,period]);
 
-
-  if (loading) {
+  if (!data ) {
     return <div>Loading...</div>;
   }
+  if(data.length === 0){
+    return <div>No data</div>
+  }
+
+
   return (
     <section className='closed' id='most-replied'>
     
@@ -35,14 +39,14 @@ export const MostRepliedItems = () => {
         return (
           <section className="column" key={index}>
             <div>
-              <MostRepliedItem newData={accountId} periodId={period} />
+              <MostRepliedItemCHANGE newData={accountId} periodId={period} arrayBar={chartData[index]} comparisonView={comparisonView}/>
             </div>
-            <div>
+            {/* <div>
               <MostRepliedChart newData={accountId} periodId={period} />
-            </div>
+            </div> */}
           </section>
         );
       })}
     </section>
   );
-};
+});

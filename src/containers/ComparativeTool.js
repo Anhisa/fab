@@ -23,27 +23,34 @@ export const ComparativeTool = ({setDataComparing}) => {
 
   const [period, setPeriod] = useState({
     startDate: 1,
-    endDate: 1,  
+    endDate: 4,  
   })
   
   const handleComparison = () => {
-    setDataComparing({
-      accounts,
-      categories,
-      period,
-    })
+   
+    setDataComparing(prev => {
+      return {
+        ...prev,
+        accounts,
+        categories,
+        period,
+        isPeriodComparisonActive: false,
+      }})   
+
     
   }
  
   return (
-    <div>
-      {/* <TableContext> */}
+    <>
+      
         <CompAccountSelector setAccounts={setAccounts} />
         <CompCategoryCb setCategories={setCategories} />
         <CompPeriodSlider setPeriod={setPeriod} />
-        <Button variant="contained" onClick={handleComparison}>COMPARAR</Button>
-      {/* </TableContext> */}
+        <div className='btnContainer'>
+        <Button variant="contained" onClick={handleComparison} className='btn'>COMPARAR</Button>
+        </div>
       
-    </div>
+      
+    </>
   );
 };

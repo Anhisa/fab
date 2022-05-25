@@ -81,9 +81,16 @@ function sortArray(array, from) {
 
 export const useFilterData = (api, from) => {
   const context = useContext(TableContext);
-  // console.log('context', context);
-  const { accounts, period } = context;
-  const [filteredData, setFilteredData] = useState([]);
+
+  const {
+    accounts,
+    period,
+    isPeriodComparisonActive,
+    periodComparison,
+    isCountryFilterActive,
+    country_id,
+  } = context;
+  const [filteredData, setFilteredData] = useState(false);
   const { loading, data } = useGetData(api);
 
   const items = data;
@@ -91,23 +98,36 @@ export const useFilterData = (api, from) => {
   const accountsData = [];
 
   useEffect(() => {
-    let newArray;
-    Object.values(accounts).forEach((account) => {
-      if (!loading) {
-        const data = items.filter(
-          (item) =>
-            item.official_account_id === account &&
-            parseInt(item.period_id) >= period.startDate &&
-            parseInt(item.period_id) <= period.endDate
-        );
-        if (data.length === 0) {
-          return console.log(
-            `No hay data en ${account} desde ${period.startDate} hasta ${period.endDate} peticion desde ${from}`
+    let newArray = [];
+    if (isPeriodComparisonActive) {
+      let arrayComparison = periodComparison;
+      console.log(arrayComparison);
+      Object.values(arrayComparison).forEach((item) => {
+        let { startDate, endDate } = getPeriodNumbers(item);
+        let data;
+        if (!isCountryFilterActive) {
+          data = items.filter(
+            (item) =>
+              parseInt(item.period_id) >= startDate &&
+              parseInt(item.period_id) <= endDate
+          );
+        } else {
+          data = items.filter(
+            (item) =>
+              parseInt(item.period_id) >= startDate &&
+              parseInt(item.period_id) <= endDate &&
+              item.country_id === country_id
           );
         }
+        console.log('data', data);
+        if (data.length === 0) {
+          return;
+        }
 
+        newArray.push(data);
         if (from === 'ht-most-used') {
           let repeatedAccountArrayHt = filterDuplicatesHt(data);
+
           newArray = addDuplicates(repeatedAccountArrayHt, from);
 
           if (newArray.length > 3) {
@@ -120,26 +140,64 @@ export const useFilterData = (api, from) => {
           } else {
             accountsData.push(newArray);
           }
-        } else if(from === 'monthly-tweets') {
-          console.log('filter',data)
-         
-          let innerArray = data
-// 
-//           if (innerArray.length > 3) {
-//             let sortedArray = sortArray(innerArray, from);
-// 
-//             if (sortedArray.length > 10) {
-//               sortedArray = sortedArray
-//               
-//             }
-//             accountsData.push(sortedArray);
-//           } else {
-            accountsData.push(innerArray);
-          // }
-        } 
-        else {
+        } else if (from === 'monthly-tweets') {
+          let innerArray = data;
+          if (context.isPeriodComparisonActive) {
+            let repeatedMonthlyArray = filterDuplicatesMonth(data);
+            newArray = addDuplicates(repeatedMonthlyArray, from);
+          }
+          accountsData.push(newArray);
+        } else {
           let repeatedAccountArray = filterDuplicates(data);
-          console.log('repeatedAccountArray', repeatedAccountArray);
+
+          newArray = addDuplicates(repeatedAccountArray, from);
+
+          let sortedArray = sortArray(newArray, from);
+          if (sortedArray.length > 10) {
+            sortedArray = sortedArray.slice(0, 10);
+          }
+
+          accountsData.push(sortedArray);
+        }
+      });
+
+      setFilteredData(accountsData);
+      return;
+    }
+    Object.values(accounts).forEach((account) => {
+      if (!loading) {
+        const data = items.filter(
+          (item) =>
+            item.official_account_id === account &&
+            parseInt(item.period_id) >= period.startDate &&
+            parseInt(item.period_id) <= period.endDate
+        );
+        if (data.length === 0) {
+          return data;
+        }
+
+        if (from === 'ht-most-used') {
+          let repeatedAccountArrayHt = filterDuplicatesHt(data);
+
+          newArray = addDuplicates(repeatedAccountArrayHt, from);
+
+          if (newArray.length > 3) {
+            let sortedArray = sortArray(newArray, from);
+
+            if (sortedArray.length > 10) {
+              sortedArray = sortedArray.slice(0, 10);
+            }
+            accountsData.push(sortedArray);
+          } else {
+            accountsData.push(newArray);
+          }
+        } else if (from === 'monthly-tweets') {
+          let innerArray = data;
+
+          accountsData.push(innerArray);
+        } else {
+          let repeatedAccountArray = filterDuplicates(data);
+
           newArray = addDuplicates(repeatedAccountArray, from);
           let sortedArray = sortArray(newArray, from);
           if (sortedArray.length > 10) {
@@ -152,13 +210,19 @@ export const useFilterData = (api, from) => {
     });
 
     setFilteredData(accountsData);
-  }, [data, context]);
+  }, [
+    loading,
+    items,
+    accounts,
+    period,
+    from,
+    isCountryFilterActive,
+    isPeriodComparisonActive,
+    periodComparison,
+    country_id,
+  ]);
 
-  if (!loading) {
-    return filteredData;
-  } else {
-    return false;
-  }
+  return filteredData;
 };
 //Crear un array con los datos de los usuarios que se repiten
 function filterDuplicates(data) {
@@ -171,6 +235,22 @@ function filterDuplicates(data) {
         return item.user_account === item2.user_account;
       });
       usersAccountCheck.push(item.user_account);
+      arrayDuplicates.push(duplicates);
+    }
+  });
+
+  return arrayDuplicates;
+}
+function filterDuplicatesMonth(data) {
+  let monthCheck = [];
+  let arrayDuplicates = [];
+  // Devuelve un array con los elementos duplicados
+  data.forEach((item) => {
+    if (!monthCheck.includes(item.month)) {
+      let duplicates = data.filter((item2) => {
+        return item.month === item2.month;
+      });
+      monthCheck.push(item.month);
       arrayDuplicates.push(duplicates);
     }
   });
@@ -309,7 +389,8 @@ function addDuplicates(arrayDuplicades, from) {
         let tweets_number = item.reduce((acc, item) => {
           user_account = item.user_account;
           monthly_tweets_id = item.monthly_tweets_id;
-          month =  new Date(item.month).toLocaleString('es-ES', { month: 'long' , timeZone: 'UTC' });;
+
+          month = item.month;
 
           official_account = item.official_account;
 
@@ -335,13 +416,15 @@ function addDuplicates(arrayDuplicades, from) {
         let ht = '';
         let ht_mentions_number = '';
 
-        ht_category_desc_spa = item[0].ht_category_desc_spa;
-        ht_category_spa = item[0].ht_category_spa;
-        ht_most_used_id = item[0].ht_most_used_id;
-        official_account = item[0].official_account;
-        ht = item[0].ht;
-        official_account_name_spa = item[0].official_account_name_spa;
-        ht_mentions_number = item[0].ht_mentions_number;
+        ht_mentions_number = item.reduce((acc, innerItem) => {
+          ht_category_desc_spa = innerItem.ht_category_desc_spa;
+          ht_category_spa = innerItem.ht_category_spa;
+          ht_most_used_id = innerItem.ht_most_used_id;
+          official_account = innerItem.official_account;
+          ht = innerItem.ht;
+          official_account_name_spa = innerItem.official_account_name_spa;
+          return acc + parseInt(innerItem.ht_mentions_number);
+        }, 0);
 
         return {
           ht_category_desc_spa,
@@ -354,5 +437,47 @@ function addDuplicates(arrayDuplicades, from) {
         };
       });
       return newArray;
+    // case 'allCountries':
   }
+}
+
+function getPeriodNumbers(number) {
+  let startDate;
+  let endDate;
+  switch (number) {
+    case 1:
+      return {
+        startDate: 1,
+        endDate: 1,
+      };
+    case 2:
+      return {
+        startDate: 2,
+        endDate: 2,
+      };
+    case 3:
+      return {
+        startDate: 1,
+        endDate: 2,
+      };
+    case 4:
+      return {
+        startDate: 3,
+        endDate: 3,
+      };
+    case 5:
+      return {
+        startDate: 4,
+        endDate: 4,
+      };
+    case 6:
+      return {
+        startDate: 3,
+        endDate: 4,
+      };
+  }
+  return {
+    startDate,
+    endDate,
+  };
 }

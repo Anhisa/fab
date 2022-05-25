@@ -16,6 +16,8 @@ const markers = [
     name: 'Buenos Aires',
     coordinates: [-58.3816, -34.6037],
   },
+
+    { markerOffset: 15, name: 'Panama', coordinates: [-80.78, 8.98] },
   { markerOffset: 12, name: 'La Paz', coordinates: [-68.1193, -16.4897] },
   { markerOffset: 12, name: 'Brasilia', coordinates: [-47.8825, -15.7942] },
   { markerOffset: 15, name: 'Santiago', coordinates: [-70.6693, -33.4489] },
@@ -27,6 +29,13 @@ const markers = [
   { markerOffset: 10, name: 'Montevideo', coordinates: [-56.1645, -34.9011] },
   { markerOffset: 12, name: 'Caracas', coordinates: [-66.9036, 10.4806] },
   { markerOffset: 12, name: 'Lima', coordinates: [-77.0428, -12.0464] },
+  //mexico
+  { markerOffset: 12, name: 'Ciudad de México', coordinates: [-99.1332, 19.432] },
+  { markerOffset: 12, name: 'Guadalajara', coordinates: [-103.35, 20.67] },
+  //panama
+  { markerOffset: 12, name: 'Panama', coordinates: [-80.78, 8.98] },
+  
+
 ];
 
 function MapIslands() {

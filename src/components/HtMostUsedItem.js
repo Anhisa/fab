@@ -19,13 +19,13 @@ import {Link} from 'react-router-dom';
 
 
 export const HtMostUsedItem = ({ newData, periodId }) => {
-  
+
   // let accountId = '15';
   // let periodId = '4';
   const tweetNumber = newData.map(item => parseInt(item.ht_mentions_number));
 
   const totaltweets = tweetNumber.reduce(
-    (totaltweetsNumber, item) => 
+    (totaltweetsNumber, item) =>
     {return totaltweetsNumber + item},
     0
   );
@@ -59,7 +59,7 @@ export const HtMostUsedItem = ({ newData, periodId }) => {
       ],
     };
   }
-  console.log(newData);
+  
   const rows = newData.map((item) =>
     createData(
       item.official_account_name_spa,
@@ -67,7 +67,7 @@ export const HtMostUsedItem = ({ newData, periodId }) => {
       item.ht_category_spa,
       parseInt(item.ht_mentions_number),
       item.ht_category_desc_spa,
-      
+
     )
   );
 
@@ -174,9 +174,9 @@ export const HtMostUsedItem = ({ newData, periodId }) => {
 };
 
 
-/* 
+/*
  <div>
-      <h1>cuenta oficial:</h1> <Link to={`/diplomacia-digital/${newData[0].official_account}`}>{newData[0].official_account}</Link> 
+      <h1>cuenta oficial:</h1> <Link to={`/diplomacia-digital/${newData[0].official_account}`}>{newData[0].official_account}</Link>
       <h1>
         Periodo de {periodId.startDate.toString()} a{' '}
         {periodId.endDate.toString()}

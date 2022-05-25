@@ -14,9 +14,10 @@ export const CompCategoryCb = ({ setCategories }) => {
   };
 
   return (
-    <div>
-      <h5>Criterios</h5>
-      <FormGroup className="container-fluid row">
+    <>
+    <div className='btnGroup'>
+      <h5>Criterios:</h5>
+      <FormGroup className="row">
         <div className="col-6">
           <FormControlLabel
             control={<Checkbox defaultChecked />}
@@ -26,7 +27,7 @@ export const CompCategoryCb = ({ setCategories }) => {
           />
           <FormControlLabel
             control={<Checkbox defaultChecked />}
-            label="Usuarios que más han recibido respuestas"
+            label="Usuarios con más respuestas"
             name="mostReplied"
             onChange={handleSelect}
           />
@@ -40,13 +41,13 @@ export const CompCategoryCb = ({ setCategories }) => {
           />
           <FormControlLabel
             control={<Checkbox defaultChecked />}
-            label="Hashtags más utilizados"
+            label="Hashtags más usados"
             name="mostHashtags"
             onChange={handleSelect}
           />
           <FormControlLabel
             control={<Checkbox defaultChecked />}
-            label="Usuarios que mensual"
+            label="Tweets mensuales"
             name="monthlyTweets"
             onChange={handleSelect}
           />
@@ -54,6 +55,7 @@ export const CompCategoryCb = ({ setCategories }) => {
         </div>
       </FormGroup>
     </div>
+    </>
   );
 };
 

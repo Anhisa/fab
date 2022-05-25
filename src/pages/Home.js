@@ -3,13 +3,18 @@ import { Map } from '../components/Map';
 import { Layout } from '../containers/Layout';
 import { CountryList } from '../containers/CountryDetails';
 import { ComparativeTool } from '../containers/ComparativeTool';
-import {  useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MapStyled } from '../styles/styledComponents/MapStyled';
 import { useGetData } from '../hooks/useGetData';
 
 import { TableContext } from '../context/TableContext';
 
 import { ComponentContainer } from '../hooks/ComponerContainer';
+import { DetachableTable } from '../styles/styledComponents/detachableTable';
+import { HomeStyled } from '../styles/styledComponents/HomeStyled';
+import { ComparativeStyled } from '../styles/styledComponents/ComparativeStyled';
+import ComparativePerPeriod from '../components/ComparativePerPeriod';
+import SelectorComparative from '../containers/SelectorComparative';
 
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
@@ -17,13 +22,23 @@ const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
 export const Home = () => {
   const response = useGetData(api);
+  const [open, setOpen] = useState(false);
+  const countryListManagment = {open, setOpen};
   const items = response.data;
+
   const [accounts, setAccounts] = useState([]);
   const [dataComparing, setDataComparing] = useState({
     accounts: {
       accountIdA: '',
       accountIdB: '',
     },
+    periodComparison: {
+      periodA: '',
+      periodB: '',
+    },
+    isPeriodComparisonActive: false,
+    isCountryFilterActive: false,
+    country_id: '',
     categories: {
       mostRetweeted: true,
       mostHashtags: true,
@@ -33,39 +48,49 @@ export const Home = () => {
     },
     period: {
       startDate: 1,
-      endDate: 1,
+      endDate: 4,
     },
   });
-
+  const [mousePosition, setMousePosition] = useState({
+    x: 0,
+    y: 0,
+  });
+  useEffect(() => {}, [dataComparing]);
 
   return (
-    <Layout>
-      
+    <HomeStyled className="container-xl">
       <div className="banner-container">
         <h2 className="banner-title">
-          LA DIPLOMACIA DIGITAL DE LA REPÚBLICA POPULAR DE CHINA RPCh EN AMÉRICA
-          LATINA Y EL CARIBE
+          CHINA LATAM TWITTER DATABASE
         </h2>
-        <p className="banner-desc">
-          En esta investigación se recopilaron los resultados obtenidos a partir
-          de la revisión de las dinámicas en el uso de las cuentas de Twitter
-          pertenecientes a las representaciones y los representantes
-          diplomáticos de la RPCh en ALC.
-        </p>
       </div>
-     
+
       <div className="row">
-        <MapStyled className="map-container col-7">
-          <Map items={items} setAccounts={setAccounts} />
+        <MapStyled className="map-container col-6">
+          <Map
+            items={items}
+            setAccounts={setAccounts}
+            setMouse={setMousePosition}
+            countryListManagment={countryListManagment}
+
+          />
         </MapStyled>
-        <div className="col-5">
-          <CountryList accounts={accounts} />
+        <DetachableTable
+
+          top={mousePosition.y}
+          left={mousePosition.x}
+        >
+          <CountryList  accounts={accounts} countryListManagment={countryListManagment} />
+        </DetachableTable>
+        <div className='right col-6'>
+        <ComparativeStyled >
           <ComparativeTool setDataComparing={setDataComparing} />
+        </ComparativeStyled>
+        <SelectorComparative setDataComparing={setDataComparing}/>
+
         </div>
-        <TableContext.Provider value={dataComparing}>
-          <ComponentContainer/>
-        </TableContext.Provider>
+        <ComponentContainer context={dataComparing} />
       </div>
-    </Layout>
+    </HomeStyled>
   );
 };

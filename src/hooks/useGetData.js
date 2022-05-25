@@ -7,12 +7,14 @@ export const useGetData = (api) => {
 
   useEffect(async () => {
     // setLoading(true);
-    const response = await axios(api);
-   
-    if(response.status === 200){
-    setData(response.data);
-    setLoading(false);
+    if(api){
+      const response = await axios(api);
+      if(response.status === 200){
+      setData(response.data);
+      setLoading(false);
+      } 
     }
+   
   }, []);
   return { data, loading }
 };

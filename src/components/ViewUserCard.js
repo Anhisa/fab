@@ -2,23 +2,31 @@ import React from 'react';
 
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { UserCardStyled, ViewUserCardStyled } from '../styles/styledComponents/ViewUserCardStyled';
-const ViewUserCard = ({data}) => {
+const ViewUserCard = ({data, period}) => {
   const dataLength = data.length - 1;
+  const dataDiccionary = {
+    1: 'Enero 1,2020 a Junio 31,2020',
+    2: 'Julio 1,2020 a Diciembre 31,2020',
+    3: 'Enero 1,2021 a Junio 31,2021',
+    4: 'Julio 1,2021 a Diciembre 31,2021',
+  }
+  
+
   return (
     <ViewUserCardStyled>
-      <div className="left">
+      <div className="innerLeft">
         <UserAccountCard user={data[0].official_account} />
         <hr/>
         <UserCard name={"Institución / Nombre"} data={data[0].official_account_name_spa}/>
         <hr/>
         <UserCard name={"Período"} data={'Julio 1, 2020 - Diciembre 31, 2020'}/>
       </div>
-      <div className="right">
-        <UserCard  name={'Nº Seguidores'} data={data[dataLength].followers_number}/>
+      <div className="innerRight">
+        <UserCard  name={'Nº Seguidores'} data={data[period]?.followers_number ?? 'No hay data en el periodo seleccionado'}/>
         <hr/>
-        <UserCard name={'Nº cuentas seguidas'} data={data[dataLength].following_number} />
+        <UserCard name={'Nº cuentas seguidas'} data={data[period]?.following_number ?? 'No hay data en el periodo seleccionado'} />
         <hr/>
-        <UserCard  name={"Total tuits período"} data={data[dataLength].total_tweets_period}/>
+        <UserCard  name={"Total tuits período"} data={data[period]?.total_tweets_period ?? 'No hay data en el periodo seleccionado'} />
       </div>
     </ViewUserCardStyled>
   );

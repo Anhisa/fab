@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
-export const CompAccountSelector = ({setAccounts}) => {
+export const CompAccountSelector = ({ setAccounts }) => {
   const [accountA, setAccountA] = React.useState('');
   const [accountB, setAccountB] = React.useState('');
 
@@ -17,27 +17,25 @@ export const CompAccountSelector = ({setAccounts}) => {
 
   const handleChangeA = (event) => {
     setAccountA(event.target.value);
-    setAccounts(prevState => ({
+    setAccounts((prevState) => ({
       ...prevState,
       accountIdA: event.target.value,
-      }))
-    
+    }));
   };
   const handleChangeB = (event) => {
-    setAccounts(prevState => ({
+    setAccounts((prevState) => ({
       ...prevState,
       accountIdB: event.target.value,
-      }))
+    }));
     setAccountB(event.target.value);
-    // console.log('accountB', event.target.value);
   };
 
   return (
-    <>
+    <div className="countSelector">
       <h4>Cuentas que deseas comparar</h4>
       <div className="selector-wrap container-fluid">
         <FormControl
-          className="container-fluid"
+          className="container-fluid form"
           variant="filled"
           sx={{ m: 1, minWidth: 120 }}
         >
@@ -57,15 +55,16 @@ export const CompAccountSelector = ({setAccounts}) => {
                 value={item.official_account_id}
               >
                 <div>
+                  <span>{item.country_name_spa}</span>
                   <h6>{item.official_account}</h6>
-                  <p>{item.official_account_name_spa}</p>
+                  <span>{item.official_account_name_spa}</span>
                 </div>
               </MenuItem>
             ))}
           </Select>
         </FormControl>
         <FormControl
-          className="container-fluid"
+          className="container-fluid form"
           variant="filled"
           sx={{ m: 1, minWidth: 120 }}
         >
@@ -85,14 +84,15 @@ export const CompAccountSelector = ({setAccounts}) => {
                 value={item.official_account_id}
               >
                 <div>
+                  <span>{item.country_name_spa}</span>
                   <h6>{item.official_account}</h6>
-                  <p>{item.official_account_name_spa}</p>
+                  <span>{item.official_account_name_spa}</span>
                 </div>
               </MenuItem>
             ))}
           </Select>
         </FormControl>
       </div>
-    </>
+    </div>
   );
 };

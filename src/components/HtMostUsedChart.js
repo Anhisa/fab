@@ -25,7 +25,7 @@ ChartJS.register(
 
 
 export const HtMostUsedChart = ({newData, periodId}) => {
-  
+
   // const accountId = '19';
   // const periodId = '4';
 
@@ -59,10 +59,10 @@ const options = {
           label: "Cuenta Oficial "+ newData[0].official_account,
           data: dataSet,
           tension: 0.3,
-          borderColor: "rgb(75, 192, 192)",
+          borderColor: "#ffce21",
           pointRadius: 6,
           pointBackgroundColor: "rgb(75, 192, 192)",
-          backgroundColor: "rgba(75, 192, 192, 0.3)",
+          backgroundColor: "#ffce21",
         },
       ],
       labels,
