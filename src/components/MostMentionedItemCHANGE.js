@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import DataTable from 'react-data-table-component';
 
@@ -7,9 +7,12 @@ import {Link} from 'react-router-dom';
 import { BarContainer, IsVerified, UserAccount } from './partsDataTable';
 import { CreateChart } from '../helpers/createChart';
 import { StyledDataTable } from '../styles/styledComponents/StyledDataTable';
+import { tab } from '@testing-library/user-event/dist/tab';
+import { TableContext } from '../context/TableContext';
 
 
 export const MostMentionedItemCHANGE = ({newData, periodId, comparisonView, arrayBar}) => {
+
  
   const tweetNumber = newData.map((item) => parseInt(item.mentions_number));
   const totaltweets = tweetNumber.reduce(
@@ -109,7 +112,7 @@ export const MostMentionedItemCHANGE = ({newData, periodId, comparisonView, arra
       <DataTable
         columns={columns}
         data={rows}
-        title='Usuarios más mencionados'
+        title='Top 10 usuarios más mencionados'
         expandableRows
         expandableRowsComponent={ExpandedComponent}
         striped={true}

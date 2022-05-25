@@ -101,9 +101,9 @@ export const useFilterData = (api, from) => {
     let newArray = [];
     if (isPeriodComparisonActive) {
       let arrayComparison = periodComparison;
-      console.log(arrayComparison);
+      
       Object.values(arrayComparison).forEach((item) => {
-        let { startDate, endDate } = getPeriodNumbers(item);
+        let { startDate, endDate } = getPeriodNumbers(item.id);
         let data;
         if (!isCountryFilterActive) {
           data = items.filter(

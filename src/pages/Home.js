@@ -33,8 +33,14 @@ export const Home = () => {
       accountIdB: '',
     },
     periodComparison: {
-      periodA: '',
-      periodB: '',
+      periodA: {
+        id:'',
+        name: '',
+      },
+      periodB: {
+        id:'',
+        name: '',
+      },
     },
     isPeriodComparisonActive: false,
     isCountryFilterActive: false,

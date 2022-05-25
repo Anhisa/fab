@@ -8,8 +8,14 @@ import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
 import CountrySelectFilter from '../components/countrySelectFilter';
 const SelectorComparative = ({ setDataComparing }) => {
   const [periodComparison, setPeriodComparison] = useState({
-    periodA: '',
-    periodB: '',
+    periodA: {
+      id:'',
+      name: '',
+    },
+    periodB: {
+      id:'',
+      name: '',
+    },
   });
   const [isCountryFilterActive, setCountryFilterActive] = useState(false);
   const [country_id, setCountryId] = useState('');
@@ -23,14 +29,14 @@ const SelectorComparative = ({ setDataComparing }) => {
   let tweetsByCountry = useGetTweetsByCountry();
   
   const handleComparison = () => {
-    
+    console.log('handleComparison');
     setDataComparing((prev) => {
       return {
         ...prev,
         periodComparison,
         accounts: {
-          accountIdA: '',
-          accountIdB: '',
+          accountIdA: 'null',
+          accountIdB: 'null1',
         },
         categories,
         isPeriodComparisonActive: true,
