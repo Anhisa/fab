@@ -3,6 +3,12 @@ export function getFlag(countryName) {
   if(countryNameEng === 'Surinam') {
     countryNameEng = 'Suriname';
   }
+
+  if(countryNameEng === 'Bahamas') {
+    countryNameEng = 'The Bahamas';
+  }
+
+
   const apiFlags = `https://countryflagsapi.com/png/`;
   const flagUrl = `${apiFlags}${countryNameEng}`;
   return flagUrl;
