@@ -6,7 +6,7 @@ import { ComparativeTool } from '../containers/ComparativeTool';
 import { useEffect, useState } from 'react';
 import { MapStyled } from '../styles/styledComponents/MapStyled';
 import { useGetData } from '../hooks/useGetData';
-
+import { MapIslands } from '../components/MapIslands'
 import { TableContext } from '../context/TableContext';
 
 import { ComponentContainer } from '../hooks/ComponerContainer';
@@ -15,7 +15,6 @@ import { HomeStyled } from '../styles/styledComponents/HomeStyled';
 import { ComparativeStyled } from '../styles/styledComponents/ComparativeStyled';
 import ComparativePerPeriod from '../components/ComparativePerPeriod';
 import SelectorComparative from '../containers/SelectorComparative';
-
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
@@ -26,7 +25,7 @@ export const Home = () => {
   const [countrySelectedId, setCountrySelectedId] = useState(null);
   const countryDataState = [countriesAllData, setCountriesAllData];
   const [open, setOpen] = useState(false);
-  const countryListManagment = {open, setOpen};
+  const countryListManagment = { open, setOpen };
   const items = response.data;
 
   const [accountsCountry, setAccountsCountry] = useState([]);
@@ -43,11 +42,11 @@ export const Home = () => {
     },
     periodComparison: {
       periodA: {
-        id:'',
+        id: '',
         name: '',
       },
       periodB: {
-        id:'',
+        id: '',
         name: '',
       },
     },
@@ -75,12 +74,10 @@ export const Home = () => {
   return (
     <HomeStyled className="container-xl">
       <div className="banner-container">
-        <h2 className="banner-title">
-          CHINA LATAM TWITTER DATABASE
-        </h2>
+        <h2 className="banner-title">CHINA LATAM TWITTER DATABASE</h2>
       </div>
 
-      <div className="row">
+      <section className="row">
         <MapStyled className="map-container col-6">
           <Map
             items={items}
@@ -88,27 +85,41 @@ export const Home = () => {
             setMouse={setMousePosition}
             countryListManagment={countryListManagment}
             setCountrySelectedId={setCountrySelectedId}
-
           />
         </MapStyled>
-        <DetachableTable
-
-          top={mousePosition.y}
-          left={mousePosition.x}
-        >
-          <CountryList  accountsCountry={accountsCountry} countryListManagment={countryListManagment} 
-            countryDataState={countryDataState} countrySelectedId={countrySelectedId}
+        <MapStyled className="map-container col-6">
+          <MapIslands
+            items={items}
+            setAccounts={setAccountsCountry}
+            setMouse={setMousePosition}
+            countryListManagment={countryListManagment}
+            setCountrySelectedId={setCountrySelectedId}
+          />
+        </MapStyled>
+        <DetachableTable top={mousePosition.y} left={mousePosition.x}>
+          <CountryList
+            accountsCountry={accountsCountry}
+            countryListManagment={countryListManagment}
+            countryDataState={countryDataState}
+            countrySelectedId={countrySelectedId}
           />
         </DetachableTable>
-        <div className='right col-6'>
-        <ComparativeStyled >
-          <ComparativeTool setDataComparing={setDataComparing} />
-        </ComparativeStyled>
-        <SelectorComparative countryDataState={countryDataState} setDataComparing={setDataComparing}/>
+      </section>
+      <section className="row">
 
-        </div>
+          <ComparativeStyled className="col-6">
+            <ComparativeTool setDataComparing={setDataComparing} />
+              </ComparativeStyled>
+              <ComparativeStyled className="col-6">
+              <SelectorComparative
+                countryDataState={countryDataState}
+                setDataComparing={setDataComparing}
+              />
+              </ComparativeStyled>
+
+
         <ComponentContainer context={dataComparing} />
-      </div>
+      </section>
     </HomeStyled>
   );
 };
