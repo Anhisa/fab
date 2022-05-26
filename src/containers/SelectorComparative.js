@@ -36,8 +36,14 @@ const SelectorComparative = ({ setDataComparing, countryDataState }) => {
         ...prev,
         periodComparison,
         accounts: {
-          accountIdA: 'null',
-          accountIdB: 'null1',
+          accountIdA: {
+            id: 'null',
+            name: ''
+          },
+          accountIdB: {
+            id:'null1',
+            name: ''
+          },
         },
         categories,
         isPeriodComparisonActive: true,

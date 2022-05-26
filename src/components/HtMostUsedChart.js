@@ -92,8 +92,9 @@ function createLabels(data){
     labels = labels1.map((item, index) => {
       return item + " / " + labels2[index] === undefined ? "" : item + " / " + labels2[index]
     })
+    return labels
   }
   // combine all labels into one array
  
-  return labels;
+  return labels[0];
 }
