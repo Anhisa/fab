@@ -17,6 +17,7 @@ import ComparativePerPeriod from '../components/ComparativePerPeriod';
 import SelectorComparative from '../containers/SelectorComparative';
 import { SectionToolsStyled } from '../styles/styledComponents/SectionToolsStyled';
 import { SectionMapsStyled } from '../styles/styledComponents/SectionMapStyled';
+import { ComparisonContainerStyled } from '../styles/styledComponents/ComparisonContainerStyled';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
@@ -119,7 +120,9 @@ export const Home = () => {
         </ComparativeStyled>
 
       </SectionToolsStyled>
+      <ComparisonContainerStyled>
         <ComponentContainer context={dataComparing} />
+        </ComparisonContainerStyled>
     </HomeStyled>
   );
 };
