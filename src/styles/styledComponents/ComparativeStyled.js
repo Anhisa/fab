@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 export const ComparativeStyled = styled.section`
   display: flex;
+  width: 50%;
   flex-direction: column;
   background-color: #a4c2d5;
   padding: 20px;
@@ -55,6 +56,13 @@ export const ComparativeStyled = styled.section`
       background-color: white;
 
     }
+  }
+  @media (max-width: 968px) {
+    padding: 10px;
+    margin: 10px;
+    width: 80%;
+    align-items: center;
+
   }
 `
 

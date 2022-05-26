@@ -6,7 +6,7 @@ import { ComparativeTool } from '../containers/ComparativeTool';
 import { useEffect, useState } from 'react';
 import { MapStyled } from '../styles/styledComponents/MapStyled';
 import { useGetData } from '../hooks/useGetData';
-import { MapIslands } from '../components/MapIslands'
+import { MapIslands } from '../components/MapIslands';
 import { TableContext } from '../context/TableContext';
 
 import { ComponentContainer } from '../hooks/ComponerContainer';
@@ -15,6 +15,8 @@ import { HomeStyled } from '../styles/styledComponents/HomeStyled';
 import { ComparativeStyled } from '../styles/styledComponents/ComparativeStyled';
 import ComparativePerPeriod from '../components/ComparativePerPeriod';
 import SelectorComparative from '../containers/SelectorComparative';
+import { SectionToolsStyled } from '../styles/styledComponents/SectionToolsStyled';
+import { SectionMapsStyled } from '../styles/styledComponents/SectionMapStyled';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
@@ -77,7 +79,7 @@ export const Home = () => {
         <h2 className="banner-title">CHINA LATAM TWITTER DATABASE</h2>
       </div>
 
-      <section className="row">
+      <SectionMapsStyled>
         <MapStyled className="map-container col-6">
           <Map
             items={items}
@@ -104,22 +106,20 @@ export const Home = () => {
             countrySelectedId={countrySelectedId}
           />
         </DetachableTable>
-      </section>
-      <section className="row">
-
-          <ComparativeStyled className="col-6">
-            <ComparativeTool setDataComparing={setDataComparing} />
-              </ComparativeStyled>
-              <ComparativeStyled className="col-6">
-              <SelectorComparative
-                countryDataState={countryDataState}
-                setDataComparing={setDataComparing}
-              />
-              </ComparativeStyled>
-
+      </SectionMapsStyled>
+      <SectionToolsStyled>
+        <ComparativeStyled >
+          <ComparativeTool setDataComparing={setDataComparing} />
+        </ComparativeStyled>
+        <ComparativeStyled className="col-6">
+          <SelectorComparative
+            countryDataState={countryDataState}
+            setDataComparing={setDataComparing}
+          />
+        </ComparativeStyled>
 
         <ComponentContainer context={dataComparing} />
-      </section>
+      </SectionToolsStyled>
     </HomeStyled>
   );
 };
