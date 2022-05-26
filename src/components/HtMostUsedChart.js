@@ -25,15 +25,14 @@ ChartJS.register(
 
 
 export const HtMostUsedChart = ({newData}) => {
-console.log(newData);
+
   // const accountId = '19';
   // const periodId = '4';
 
-  const labels = newData[0].map(item => item.ht)
-
+ 
   // const dataSet = newData.map(item => item.ht_mentions_number)
   const dataSets = createDatasets(newData);
-
+  const labels = createLabels(newData);
 
 
 const options = {
@@ -56,7 +55,7 @@ const options = {
 
   const data = {
       datasets: dataSets,
-      labels,
+      labels: labels,
     };
 
   return <Bar data={data} options={options} />;
@@ -79,4 +78,22 @@ function createDatasets(data){
     controlColor++
   })
   return datasets; 
+}
+function createLabels(data){
+  let labels = []
+  data.forEach(item => {
+    labels.push(
+      item.map((item2) => item2.ht)
+    )
+  })
+  if(labels.length > 1){
+    let labels1 = labels[0]
+    let labels2 = labels[1]
+    labels = labels1.map((item, index) => {
+      return item + " / " + labels2[index] === undefined ? "" : item + " / " + labels2[index]
+    })
+  }
+  // combine all labels into one array
+ 
+  return labels;
 }

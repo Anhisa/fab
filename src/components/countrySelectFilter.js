@@ -22,7 +22,7 @@ const CountrySelectFilter = ({ countrysWithData, setCountryFilterActive, setCoun
             (country) => country.country_id === countryId
           );
           let countryName = country?.country_name_spa || '';
-          let countryInId = country.country_id;
+          let countryInId = country?.country_id;
           return { countryName, countryInId,};
         });
         setCountriesData(countryNames);
