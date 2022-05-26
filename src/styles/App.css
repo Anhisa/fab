@@ -49,3 +49,7 @@
 .banner-desc {
   color: aliceblue;
 }
+
+.geo:focus {
+  outline: none;
+}
