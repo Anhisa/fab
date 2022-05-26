@@ -12,5 +12,6 @@ export const ComparisonStyled = styled.div`
   .right{
     width: 50%;
   }
+  
 
 `

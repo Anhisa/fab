@@ -118,8 +118,8 @@ export const Home = () => {
           />
         </ComparativeStyled>
 
-        <ComponentContainer context={dataComparing} />
       </SectionToolsStyled>
+        <ComponentContainer context={dataComparing} />
     </HomeStyled>
   );
 };
