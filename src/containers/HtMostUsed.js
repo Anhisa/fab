@@ -10,31 +10,26 @@ export const HtMostUsedItems = memo(({ period }) => {
 
   const data = useFilterData(api, 'ht-most-used');
   useEffect(() => {
-    if (data !== false) {
+    if (data !== false && data.length > 0) {
       setInnerData(data);
     }
   }, [data, period]);
-  if (!data) {
+
+  if (!innerData) {
     return <div>Loading...</div>;
   }
-  if (data.length === 0) {
-    return <div>No data</div>;
+  if (innerData.length === 0) {
+    return <div>No hay data en el periodo seleccionado</div>;
   }
 
   return (
     <section className="closed" id="most-ht">
-      {Object.values(innerData).map((accountId, index) => {
-        return (
-          <section className="column" key={index}>
-            {/* <div>
+      {/* <div>
               <HtMostUsedItem newData={accountId} periodId={period} />
             </div> */}
-            <div>
-              <HtMostUsedChart newData={accountId} periodId={period} />
-            </div>
-          </section>
-        );
-      })}
+     
+        <HtMostUsedChart newData={innerData} periodId={period} />
+     
     </section>
   );
 });

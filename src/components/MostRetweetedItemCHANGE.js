@@ -7,7 +7,8 @@ import { StyledDataTable } from '../styles/styledComponents/StyledDataTable';
 import { CreateChart } from '../helpers/createChart';
 
 import { BarContainer, IsVerified, UserAccount } from './partsDataTable';
-export const MostRetweetedItemChange = ({ newData, period, comparisonView, arrayBar }) => {
+import { ExpandedComponent } from './ExpandedComponent';
+export const MostRetweetedItemChange = ({ newData, period, comparisonView, arrayBar, title }) => {
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
   
   
@@ -19,7 +20,7 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
   const columns = [
     {
       name: 'Usuario/Nombre de la cuenta',
-      selector: (row) =>  <UserAccount userAccount={row.userAccount} userAccountDesc={comparisonView? false : row.userAccountDesc } />   ,
+      selector: (row) =>  <UserAccount userAccount={row.userAccount} userAccountDesc={row.userAccountDesc } />   ,
     
       id: 'nombreCuenta',
       grow: 2,
@@ -49,7 +50,7 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
       wrap: false,
       center:true,
       width: '150px',
-      omit: comparisonView
+     
     }
     ,
     {
@@ -80,7 +81,7 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
       tweets_number: arrayBar[index],
   }})
 
-  const ExpandedComponent = ({ data }) => data.catDesc;
+ 
  
 
   return (
@@ -90,7 +91,7 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
         title={
           <>
             <p>
-              <b>Usuarios más retuiteados</b>
+              <b>{title}</b>
             </p>
           </>
         }

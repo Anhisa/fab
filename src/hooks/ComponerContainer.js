@@ -16,10 +16,10 @@ export const ComponentContainer = ({context}) => {
   const { accountIdA, accountIdB } = accounts;
   const {periodA, periodB} = periodComparison
   
-  
+ 
 
   useEffect(() => {} , [accountIdA, accountIdB, periodA]);
-  if (accountIdA === '' || accountIdB === '' || accountIdA === accountIdB) {
+  if (accountIdA.id === '' || accountIdB.id === '' || accountIdA.id === accountIdB.id) {
     return (
       []
     );
@@ -32,7 +32,7 @@ export const ComponentContainer = ({context}) => {
         <CollapsableTableStyled>
           <StyledFilterButton name="monthy-tweets" onClick={handleClick}>
            
-            {isPeriodComparisonActive ? ` Monthy tweets  del periodo ${periodA.name} al ${periodB.name}` : ` Monthy tweets  de las cuentas ${accountIdA} y ${accountIdB}`}
+            {isPeriodComparisonActive ? ` Número de tweets por mes  del periodo ${periodA.name} al ${periodB.name}` : ` Número de tweets por mes de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
             
           </StyledFilterButton>
 
@@ -43,16 +43,16 @@ export const ComponentContainer = ({context}) => {
         <CollapsableTableStyled>
           <StyledFilterButton name="most-retweet" onClick={handleClick}>
             
-            {isPeriodComparisonActive ? `Most retweeted del periodo ${periodA.name} al ${periodB.name}` : `Most retweeted de las cuentas ${accountIdA} y ${accountIdB}`}
+            {isPeriodComparisonActive ? `Usuarios más retuiteados del periodo ${periodA.name} al ${periodB.name}` : `Usuarios más retuiteados de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </StyledFilterButton>
-          <MostRetweetedItems period={context.period} />
+          <MostRetweetedItems period={context.period} context={context} />
         </CollapsableTableStyled>
       )}
       {categories.mostReplied && (
         <CollapsableTableStyled>
           <StyledFilterButton name="most-replied" onClick={handleClick}>
             
-            {isPeriodComparisonActive ? `Most Replied del periodo ${periodA.name} al ${periodB.name}` : `Most Replied de las cuentas ${accountIdA} y ${accountIdB}`}
+            {isPeriodComparisonActive ? `Usuarios que más han recibido respuesta del periodo ${periodA.name} al ${periodB.name}` : `Usuarios que más han recibido respuesta de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </StyledFilterButton>
 
           <MostRepliedItems period={context.period} />
@@ -62,7 +62,7 @@ export const ComponentContainer = ({context}) => {
         <CollapsableTableStyled>
           <StyledFilterButton name="most-ht" onClick={handleClick}>
             
-            {isPeriodComparisonActive ? `Most used hashtags del periodo ${periodA.name} al ${periodB.name}` : `Most used hashtags de las cuentas ${accountIdA} y ${accountIdB}`}
+            {isPeriodComparisonActive ? `Hashtags más usados del periodo ${periodA.name} al ${periodB.name}` : `Hashtags más usados de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </StyledFilterButton>
 
           <HtMostUsedItems  period={context.period} />
@@ -71,7 +71,7 @@ export const ComponentContainer = ({context}) => {
       {categories.mostMentioned && (
         <CollapsableTableStyled>
           <StyledFilterButton name="most-mentioned" onClick={handleClick}>
-          {isPeriodComparisonActive ? `Usuarios más mencionados del periodo ${periodA.name} al ${periodB.name}` : `Usuarios más mencionados de las cuentas ${accountIdA} y ${accountIdB}`}
+          {isPeriodComparisonActive ? `Usuarios más mencionados del periodo ${periodA.name} al ${periodB.name}` : `Usuarios más mencionados de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </StyledFilterButton>
 
           <MostMentionedItems  period={context.period} />

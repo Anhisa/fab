@@ -108,7 +108,7 @@ export const useFilterData = (api, from) => {
       if (!loading) {
         const data = items.filter(
           (item) =>
-            item.official_account_id === account &&
+            item.official_account_id === account.id &&
             parseInt(item.period_id) >= period.startDate &&
             parseInt(item.period_id) <= period.endDate
         );

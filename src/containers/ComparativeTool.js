@@ -10,8 +10,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 export const ComparativeTool = ({setDataComparing}) => {
   const [accounts, setAccounts] = useState({
-    accountIdA: '',
-    accountIdB: '',
+    accountIdA: {
+      id: '',
+      name: '',
+    },
+    accountIdB: {
+      id: '',
+      name: '',
+    },
   })
   const [categories, setCategories] = useState({
     mostRetweeted: true,

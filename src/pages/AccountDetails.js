@@ -49,7 +49,10 @@ export const AccountDetails = () => {
         dataUser: userId,
         userOfficialName: userId[0].official_account_name_spa,
         accounts: {
-          accountIdA: userId[0].official_account_id,
+          accountIdA: {
+            id: userId[0].official_account_id,
+            name: userId[0].official_account_name_spa,
+          },
         },
         period: period,
       });
@@ -128,7 +131,7 @@ export const AccountDetails = () => {
                 name="most-ht"
                 onClick={handleClick}
               >
-                Most used hashtags
+                Hashtags más usados
               </StyledFilterButton>
 
               <HtMostUsedItems period={period} />

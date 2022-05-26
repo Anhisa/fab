@@ -9,6 +9,12 @@ import { useFilterData } from '../hooks/useFilterData';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-replied';
 export const MostRepliedItems = memo((period) => {
     const data = useFilterData(api, 'most-replied');
+    const {accounts} =useContext(TableContext);
+  
+    const accountsName = [
+      accounts.accountIdA.name,
+      accounts.accountIdB?.name || '',
+    ];
   const [innerData, setInnerData] = useState(data);
   const [comparisonView, setComparisonView] = useState(false);
   const [chartData, setChartData] = useState([]);
@@ -39,7 +45,7 @@ export const MostRepliedItems = memo((period) => {
         return (
           <section className="column" key={index}>
             <div>
-              <MostRepliedItemCHANGE newData={accountId} periodId={period} arrayBar={chartData[index]} comparisonView={comparisonView}/>
+              <MostRepliedItemCHANGE newData={accountId} arrayBar={chartData[index]} comparisonView={comparisonView} title={accountsName[index]}/>
             </div>
             {/* <div>
               <MostRepliedChart newData={accountId} periodId={period} />

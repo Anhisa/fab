@@ -15,19 +15,28 @@ export const CompAccountSelector = ({ setAccounts }) => {
   const response = useGetData(api);
   const items = response.data;
 
-  const handleChangeA = (event) => {
-    setAccountA(event.target.value);
+  const handleChangeA = ({target:{value}}) => {
+    setAccountA(value);
+    const name = items.find(item => item.official_account_id === value);
+ 
     setAccounts((prevState) => ({
       ...prevState,
-      accountIdA: event.target.value,
+      accountIdA: {
+        id: value,
+        name: name.official_account,
+      },
     }));
   };
-  const handleChangeB = (event) => {
+  const handleChangeB = ({target:{value}}) => {
+    const name = items.find(item => item.official_account_id === value);
     setAccounts((prevState) => ({
       ...prevState,
-      accountIdB: event.target.value,
+      accountIdB: {
+        id: value,
+        name: name.official_account,
+      },
     }));
-    setAccountB(event.target.value);
+    setAccountB(value);
   };
 
   return (
@@ -53,6 +62,7 @@ export const CompAccountSelector = ({ setAccounts }) => {
               <MenuItem
                 key={`oa-${item.official_account_id}`}
                 value={item.official_account_id}
+                
               >
                 <div>
                   <span>{item.country_name_spa}</span>
@@ -82,6 +92,7 @@ export const CompAccountSelector = ({ setAccounts }) => {
               <MenuItem
                 key={`oa-${item.official_account_id}`}
                 value={item.official_account_id}
+               
               >
                 <div>
                   <span>{item.country_name_spa}</span>

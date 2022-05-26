@@ -39,7 +39,7 @@ export const Map = ({ setAccounts, items, setMouse, countryListManagment, setCou
   const handleOnClick = ({ target, pageX, pageY }) => {
     if (target.attributes.value) {
       const itemValue = target.attributes.value;
-      console.log(itemValue);
+    
       
       const filteredAccounts = items.filter(
         (item) => item.country_id === itemValue.value

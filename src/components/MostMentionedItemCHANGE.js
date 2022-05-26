@@ -9,10 +9,11 @@ import { CreateChart } from '../helpers/createChart';
 import { StyledDataTable } from '../styles/styledComponents/StyledDataTable';
 import { tab } from '@testing-library/user-event/dist/tab';
 import { TableContext } from '../context/TableContext';
+import { ExpandedComponent } from './ExpandedComponent';
 
 export const MostMentionedItemCHANGE = ({
   newData,
-  periodId,
+ title,
   comparisonView,
   arrayBar,
 }) => {
@@ -70,7 +71,7 @@ export const MostMentionedItemCHANGE = ({
       selector: (row) => (
         <UserAccount
           userAccount={row.userAccount}
-          userAccountDesc={comparisonView ? false : row.userAccountDesc}
+          userAccountDesc={row.userAccountDesc}
         />
       ),
       sortable: true,
@@ -95,7 +96,7 @@ export const MostMentionedItemCHANGE = ({
       wrap: false,
       center: true,
       width: '150px',
-      omit: comparisonView,
+      
     },
     {
       name: 'Número de Tweets',
@@ -108,14 +109,18 @@ export const MostMentionedItemCHANGE = ({
       width: '220px',
     },
   ];
-  const ExpandedComponent = ({ data }) => data.catDesc;
+
 
   return (
     <StyledDataTable className="dataTable">
       <DataTable
         columns={columns}
         data={rows}
-        title="Top 10 usuarios más mencionados"
+        title={ <>
+          <p>
+            <b>{title}</b>
+          </p>
+        </>}
         expandableRows
         expandableRowsComponent={ExpandedComponent}
         striped={true}

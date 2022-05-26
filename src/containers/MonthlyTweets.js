@@ -11,12 +11,12 @@ export const MonthlyTweetsItems = memo((period) => {
  
   
   useEffect(() => {   
-    if (data !== false) {
+    if (data !== false && data.length > 0) {
       setInnerData(data);
     }
   }, [data, period]);
 
-  if (!data) {
+  if (!innerData) {
     return <div>Loading...</div>;
   }
   if (innerData.length === 0) {
@@ -25,13 +25,11 @@ export const MonthlyTweetsItems = memo((period) => {
 
   return (
     <section className="closed" id="monthy-tweets">
-      {Object.values(data).map((accountId, index) => {
-        return (
-          <section className="column" key={index}>
-            <MonthlyTweetsChart newData={accountId} periodId={period} />
-          </section>
-        );
-      })}
+     
+          
+            <MonthlyTweetsChart newData={innerData} periodId={period} />
+                 
+      
     </section>
   );
 });

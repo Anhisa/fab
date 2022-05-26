@@ -32,8 +32,14 @@ export const Home = () => {
   const [accountsCountry, setAccountsCountry] = useState([]);
   const [dataComparing, setDataComparing] = useState({
     accounts: {
-      accountIdA: '',
-      accountIdB: '',
+      accountIdA: {
+        id: '',
+        name: '',
+      },
+      accountIdB: {
+        id: '',
+        name: '',
+      },
     },
     periodComparison: {
       periodA: {

@@ -24,14 +24,15 @@ ChartJS.register(
 );
 
 
-export const HtMostUsedChart = ({newData, periodId}) => {
-
+export const HtMostUsedChart = ({newData}) => {
+console.log(newData);
   // const accountId = '19';
   // const periodId = '4';
 
-  const labels = newData.map(item => item.ht)
+  const labels = newData[0].map(item => item.ht)
 
-  const dataSet = newData.map(item => item.ht_mentions_number)
+  // const dataSet = newData.map(item => item.ht_mentions_number)
+  const dataSets = createDatasets(newData);
 
 
 
@@ -54,19 +55,28 @@ const options = {
 };
 
   const data = {
-      datasets: [
-        {
-          label: "Cuenta Oficial "+ newData[0].official_account,
-          data: dataSet,
-          tension: 0.3,
-          borderColor: "#ffce21",
-          pointRadius: 6,
-          pointBackgroundColor: "rgb(75, 192, 192)",
-          backgroundColor: "#ffce21",
-        },
-      ],
+      datasets: dataSets,
       labels,
     };
 
   return <Bar data={data} options={options} />;
+}
+
+function createDatasets(data){
+  const datasets = [];
+  let controlColor = 1
+  data.forEach(item => {
+    let color = controlColor === 1 ? 'rgba(255, 206, 33, 0.7' : 'rgba(0, 60, 123, 0.7)'
+    datasets.push({
+      label: "Cuenta Oficial "+ item[0].official_account,
+      data: item.map((item2) => parseInt(item2.ht_mentions_number)),
+      tension: 0.3,
+      borderColor: color,
+      pointRadius: 6,
+      pointBackgroundColor: 'rgb(75, 192, 192)',
+      backgroundColor: color,
+    })
+    controlColor++
+  })
+  return datasets; 
 }

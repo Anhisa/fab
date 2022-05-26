@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 import { BarContainer, IsVerified, UserAccount } from './partsDataTable';
 import { CreateChart } from '../helpers/createChart';
 import { StyledDataTable } from '../styles/styledComponents/StyledDataTable';
+import { ExpandedStyled } from '../styles/styledComponents/ExpandedStyled';
 
-export const MostRepliedItemCHANGE = ({ newData, periodId, comparisonView, arrayBar }) => {
+export const MostRepliedItemCHANGE = ({ newData, title, comparisonView, arrayBar }) => {
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
   const totaltweets = tweetNumber.reduce(
     (totaltweetsNumber, item) => totaltweetsNumber + item,
@@ -49,7 +50,10 @@ export const MostRepliedItemCHANGE = ({ newData, periodId, comparisonView, array
       item.most_replied_category_desc_spa
     )
   );
-  const ExpandedComponent = ({ data }) => data.catDesc;
+  const ExpandedComponent = ({ data }) => <ExpandedStyled>
+    <h3>Categoría:<em>{data.categoría}</em></h3>
+    <span>{data.catDesc}</span>
+  </ExpandedStyled>;
   
   rows = rows?.map((item, index) => {
     return {
@@ -60,7 +64,7 @@ export const MostRepliedItemCHANGE = ({ newData, periodId, comparisonView, array
   const columns = [
     {
       name: 'Usuario/ Nombre cuenta',
-      selector: (row) => <UserAccount userAccount={row.userAccount} userAccountDesc={comparisonView? false : row.userAccountDesc } /> ,
+      selector: (row) => <UserAccount userAccount={row.userAccount} userAccountDesc={ row.userAccountDesc } /> ,
       sortable: true,
       wrap: true,
     },
@@ -83,7 +87,7 @@ export const MostRepliedItemCHANGE = ({ newData, periodId, comparisonView, array
       wrap: false,
       center: true,
       width: '150px',
-      omit: comparisonView
+      // omit: comparisonView
     },
     {
       name: 'Número de Tweets',
@@ -105,7 +109,7 @@ export const MostRepliedItemCHANGE = ({ newData, periodId, comparisonView, array
       title={
         <>
           <p>
-            <b>Usuarios que más han recibido respuesta</b>
+            <b>{title}</b>
           </p>
         </>
       }

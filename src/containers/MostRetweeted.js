@@ -9,6 +9,13 @@ const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
 
 export const MostRetweetedItems = memo((period) => {
   const [innerData, setInnerData] = useState(false);
+  const {accounts} =useContext(TableContext);
+  
+  const accountsName = [
+    accounts.accountIdA.name,
+    accounts.accountIdB?.name || '',
+  ];
+ 
   const [comparisonView, setComparisonView] = useState(false);
   const [chartData, setChartData] = useState([]);
   const data = useFilterData(api, 'most-retweeted');
@@ -31,7 +38,7 @@ export const MostRetweetedItems = memo((period) => {
   if (innerData.length === 0) {
     return <div>No hay data correspondiente al periodo seleccionado</div>;
   } 
-
+0
 
 
   return (
@@ -40,7 +47,9 @@ export const MostRetweetedItems = memo((period) => {
         return (
           <section className="column" key={index}>
             <div>
-              <MostRetweetedItemChange newData={dataAccount} arrayBar={chartData[index]} period={period} comparisonView={comparisonView}/>
+              <MostRetweetedItemChange newData={dataAccount} arrayBar={chartData[index]} period={period} comparisonView={comparisonView} title={
+                accountsName[index]
+              }/>
             </div>
             {/* <div>
               <MostRetweetedChart newData={accountId} period={period} />

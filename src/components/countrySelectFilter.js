@@ -53,7 +53,9 @@ const CountrySelectFilter = ({ countrysWithData, setCountryFilterActive, setCoun
     <div className="countSelector">
       <h4>Filtrar por país:</h4>
       <div className="selectors">
-        <FormControl className="form">
+        <FormControl className="container-fluid form"
+          variant="filled"
+          sx={{ m: 1, minWidth: 120 }}>
           <InputLabel>País seleccionado</InputLabel>
           <Select
             labelId="demo-simple-select-filled-label"

@@ -26,7 +26,10 @@ ChartJS.register(
 export const MonthlyTweetsChart = ({ newData }) => {
   //
   //   const labels = newData.map(item =>  new Date(item.month).toLocaleString('es-ES', { month: 'long' , timeZone: 'UTC' }))
-  let labels = newData.map((item) => item.month);
+  console.log(newData);
+
+  let labels = newData[0]?.map((item) => item.month);
+
   labels = labels.map(
     (item) =>
       new Date(item).toLocaleString('es-ES', {
@@ -37,8 +40,7 @@ export const MonthlyTweetsChart = ({ newData }) => {
       new Date(item).getUTCFullYear()
   );
 
-  const dataSet = newData.map((item) => parseInt(item.tweets_number));
-
+  const dataSets = createDatasets(newData);
 
   const accountInfo = [];
   const account = newData[0];
@@ -67,22 +69,30 @@ export const MonthlyTweetsChart = ({ newData }) => {
   };
 
   const data = {
-    datasets: [
-      {
-        label: 'Cuenta Oficial ' + accountInfo[0],
-        data: dataSet,
-        tension: 0.3,
-        borderColor: '#ffce21',
-        pointRadius: 6,
-        pointBackgroundColor: 'rgb(75, 192, 192)',
-        backgroundColor: '#ffce21',
-      },
-    ],
+    datasets: dataSets,
     labels,
   };
-  useEffect(()=> {
-
-  }, [newData]);
+  useEffect(() => {}, [newData]);
 
   return <Line data={data} options={options} />;
 };
+
+function createDatasets(data) {
+  const datasets = [];
+  let controlColor = 1;
+  data.forEach((item) => {
+    let color =
+      controlColor === 1 ? 'rgba(255, 206, 33, 0.7' : 'rgba(0, 60, 123, 0.7)';
+    datasets.push({
+      label: item[0].official_account,
+      data: item.map((item2) => parseInt(item2.tweets_number)),
+      tension: 0.3,
+      borderColor: color,
+      pointRadius: 6,
+      pointBackgroundColor: 'rgb(75, 192, 192)',
+      backgroundColor: color,
+    });
+    controlColor++;
+  });
+  return datasets;
+}

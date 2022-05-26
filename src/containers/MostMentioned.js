@@ -11,6 +11,12 @@ export const MostMentionedItems = memo(({ period }) => {
   const [innerData, setInnerData] = useState([]);
   const [comparisonView, setComparisonView] = useState(false);
   const [chartData, setChartData] = useState([]);
+  const {accounts} =useContext(TableContext);
+  
+  const accountsName = [
+    accounts.accountIdA.name,
+    accounts.accountIdB?.name || '',
+  ];
   let arraysBar = [];
   const data = useFilterData(api, 'most-mentioned');
 
@@ -40,8 +46,9 @@ export const MostMentionedItems = memo(({ period }) => {
               <MostMentionedItemCHANGE
                 newData={accountId}
                 arrayBar={chartData[index]}
-                period={period}
+                
                 comparisonView={comparisonView}
+                title={accountsName[index]}
               />
             </div>
             {/* <div>
