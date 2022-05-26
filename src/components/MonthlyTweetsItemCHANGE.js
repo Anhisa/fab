@@ -69,9 +69,11 @@ const columns = [
         <DataTable
           columns={columns}
           data={rows}
-          pagination
-          paginationPerPage={10}
-          paginationRowsPerPageOptions={[5, 10, 20, 50]}
+          title="Tweets por mes"
+          subHeader
+          subHeaderAlign="left"
+          highlightOnHover
+                
         />
       </div>
     </div>
