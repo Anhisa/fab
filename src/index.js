@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import { App } from './routes/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { initialState, TableContext } from './context/TableContext';
 
 ReactDOM.render(
   <React.StrictMode>
-      <BrowserRouter>      
+      <BrowserRouter> 
+      <TableContext.Provider value={initialState}>
         <App />
+        </TableContext.Provider>  
       </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

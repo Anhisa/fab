@@ -3,7 +3,7 @@ import { Map } from '../components/Map';
 import { Layout } from '../containers/Layout';
 import { CountryList } from '../containers/CountryDetails';
 import { ComparativeTool } from '../containers/ComparativeTool';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { MapStyled } from '../styles/styledComponents/MapStyled';
 import { useGetData } from '../hooks/useGetData';
 import { MapIslands } from '../components/MapIslands';
@@ -28,45 +28,19 @@ export const Home = () => {
   const [countrySelectedId, setCountrySelectedId] = useState(null);
   const countryDataState = [countriesAllData, setCountriesAllData];
   const [open, setOpen] = useState(false);
+  const {accounts, periodComparison, initialStateCategories, period} = useContext(TableContext);
   const countryListManagment = { open, setOpen };
   const items = response.data;
 
   const [accountsCountry, setAccountsCountry] = useState([]);
   const [dataComparing, setDataComparing] = useState({
-    accounts: {
-      accountIdA: {
-        id: '',
-        name: '',
-      },
-      accountIdB: {
-        id: '',
-        name: '',
-      },
-    },
-    periodComparison: {
-      periodA: {
-        id: '',
-        name: '',
-      },
-      periodB: {
-        id: '',
-        name: '',
-      },
-    },
+    accounts: accounts,
+    periodComparison:periodComparison ,
     isPeriodComparisonActive: false,
     isCountryFilterActive: false,
     country_id: '',
-    categories: {
-      mostRetweeted: true,
-      mostHashtags: true,
-      mostMentioned: true,
-      mostReplied: true,
-      monthlyTweets: true,
-    },
-    period: {
-      startDate: 1,
-      endDate: 4,
-    },
+    categories:  initialStateCategories,
+    period: period,
   });
   const [mousePosition, setMousePosition] = useState({
     x: 0,

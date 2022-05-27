@@ -4,7 +4,7 @@ import { useGetData } from '../hooks/useGetData';
 import { HeaderUserView } from '../styles/styledComponents/userCardStyled';
 const apiCountries =
   'https://fundacionandresbello.org/wp-json/fab/v1/countries';
-const apiFlags = `https://countryflagsapi.com/png/`;
+
 const HeaderUserCard = ({ countryId, userName }) => {
 
   const [data, setData] = useState({

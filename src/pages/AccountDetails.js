@@ -10,7 +10,7 @@ import { useGetData } from '../hooks/useGetData';
 import { TableContext } from '../context/TableContext';
 import ViewUserCard from '../components/ViewUserCard';
 import { CollapsableTableStyled } from '../styles/styledComponents/CollapsableTableStyled';
-import handleClick from '../helpers/HandleClick';
+
 import {
   UserCardStyled,
   ContainerButtons,
@@ -21,6 +21,8 @@ import { CompPeriodSlider } from '../components/CompPeriodSlider';
 import { StyledFilterButton } from '../styles/styledComponents/StyledFilterButton';
 import NavBar from '../components/NavBar';
 import ErrorComponent from '../components/errorComponent';
+import { AccountPeriodContainer } from '../styles/styledComponents/AccountPeriodContainer';
+import ComparativeUserViewContainer from '../containers/ComparativeUserView/ComparativeUserViewContainer';
 
 const apiUsuarios =
   'https://fundacionandresbello.org/wp-json/fab/v1/official-fol';
@@ -86,56 +88,13 @@ export const AccountDetails = () => {
                 <MonthlyTweetsItems period={period} />
               </div>
             </UserCardStyled>
-            <div>
               <hr />
+            <AccountPeriodContainer>
               <CompPeriodSlider setPeriod={setPeriod} />
+            </AccountPeriodContainer>
               <hr />
-            </div>
 
-            <CollapsableTableStyled usuario="usuario">
-              <StyledFilterButton
-                type="button"
-                name="most-retweet"
-                onClick={handleClick}
-              >
-                Usuarios más retuiteados
-              </StyledFilterButton>
-              <MostRetweetedItems period={period} />
-            </CollapsableTableStyled>
-            <CollapsableTableStyled usuario="usuario">
-              <StyledFilterButton
-                type="button"
-                name="most-replied"
-                onClick={handleClick}
-              >
-                Usuarios que más han recibido respuesta
-              </StyledFilterButton>
-
-              <MostRepliedItems period={period} />
-            </CollapsableTableStyled>
-
-            <CollapsableTableStyled usuario="usuario">
-              <StyledFilterButton
-                type="button"
-                name="most-mentioned"
-                onClick={handleClick}
-              >
-                Usuarios más mencionados
-              </StyledFilterButton>
-
-              <MostMentionedItems period={period} />
-            </CollapsableTableStyled>
-            <CollapsableTableStyled usuario="usuario">
-              <StyledFilterButton
-                type="button"
-                name="most-ht"
-                onClick={handleClick}
-              >
-                Hashtags más usados
-              </StyledFilterButton>
-
-              <HtMostUsedItems period={period} />
-            </CollapsableTableStyled>
+            <ComparativeUserViewContainer  period={period}/>
           </AccountDetailsStyled>
         </TableContext.Provider>
       ) : (

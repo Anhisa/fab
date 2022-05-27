@@ -26,8 +26,7 @@ ChartJS.register(
 export const MonthlyTweetsChart = ({ newData }) => {
   //
   //   const labels = newData.map(item =>  new Date(item.month).toLocaleString('es-ES', { month: 'long' , timeZone: 'UTC' }))
-  console.log(newData);
-
+ 
   let labels = newData[0]?.map((item) => item.month);
 
   labels = labels.map(
@@ -65,6 +64,17 @@ export const MonthlyTweetsChart = ({ newData }) => {
       legend: {
         display: true,
       },
+      title: {
+        display: true,
+        text: 'Tweets mensuales',
+        position: 'top',       
+        fullSize: true,
+        font:{
+          size: 20,
+          weight: 'bold',
+        }     
+
+      }
     },
   };
 
@@ -87,7 +97,7 @@ function createDatasets(data) {
       label: item[0].official_account,
       data: item.map((item2) => parseInt(item2.tweets_number)),
       tension: 0.3,
-      borderColor: color,
+      borderColor: 'black',
       pointRadius: 6,
       pointBackgroundColor: 'rgb(75, 192, 192)',
       backgroundColor: color,

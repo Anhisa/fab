@@ -5,7 +5,7 @@ export const ViewUserCardStyled = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 600px;
+  padding:10px;
   height: 300px;
   font-size: 1rem;
   border-radius: 20px;

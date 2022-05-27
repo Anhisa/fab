@@ -2,6 +2,7 @@ import styled from 'styled-components';
 export const UserCardStyled = styled.div`
   display: flex;
   flex-direction: row;
+  padding: 25px;
   .left{
     display: flex;
     flex-direction: column;
@@ -19,6 +20,7 @@ export const UserCardStyled = styled.div`
     section{
       height: 100%;
       width: 100%;
+      /* background-color: lightgray; */
       canvas{
         height: 100%;
         width: 100%;
@@ -28,7 +30,7 @@ export const UserCardStyled = styled.div`
 
 
   }
-  @media (max-width: 768px) {
+  @media (max-width: 968px) {
     flex-direction: column;
     .left{
       width: 100%;
@@ -48,6 +50,7 @@ export const ContainerButtons = styled.div`
 export const HeaderUserView = styled.div`
   display: flex;
   flex-direction: row;
+  padding: 25px;
   width: 100%;
 justify-content: flex-start;
   gap: 10px;

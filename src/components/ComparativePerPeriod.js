@@ -1,5 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
+
 
 import 'bootstrap/dist/css/bootstrap.css';
 const periods = [
@@ -29,6 +30,7 @@ const periods = [
   },
 ];
 const ComparativePerPeriod = ({setDataComparing}) => {
+  
   const [periodA, setPeriodA] = React.useState('');
   const [periodB, setPeriodB] = React.useState('');
 // 
@@ -62,7 +64,7 @@ const ComparativePerPeriod = ({setDataComparing}) => {
           className="container-fluid form"
           variant="filled"
           sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-filled-label">
+            <InputLabel id="label1">
               Periodo 1
             </InputLabel>
             <Select
@@ -87,7 +89,7 @@ const ComparativePerPeriod = ({setDataComparing}) => {
             className="container-fluid form"
             variant="filled"
             sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-filled-label">
+              <InputLabel id="label2">
               Periodo 2
             </InputLabel>
             <Select

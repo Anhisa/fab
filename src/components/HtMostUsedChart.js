@@ -49,7 +49,12 @@ const options = {
   plugins: {
     legend: {
       display: true,
+      position: 'top',      
     },
+    title: {
+      display: true,
+      text: 'Mentions por hashtags',
+    }
   },
 };
 
@@ -95,8 +100,6 @@ function createLabels(data){
       
     })
     return labels
-  }
-  // combine all labels into one array
- 
+  } 
   return labels[0];
 }
