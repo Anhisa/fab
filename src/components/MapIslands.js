@@ -11,13 +11,13 @@ import {
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
 
 const geoUrl =
-  'https://raw.githubusercontent.com/Anhisa/caribbean/main/islandsMap.json';
+  'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
 export const MapIslands = ({ setAccounts, items, setMouse, countryListManagment, setCountrySelectedId }) => {
   const [position, setPosition] = useState({
-    coordinates: [-62, 14.6],
+    coordinates: [-73, 16],
     zoom: 1,
   });
   const { open, setOpen } = countryListManagment;
@@ -69,8 +69,8 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagment,
       <ComposableMap
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
-          // rotate: [38.5, -67.5, 0],
-          scale: 5000,
+          rotate: [49, -67.5, 0],
+          scale: 1700,
         }}
         onClick={handleOnClick}
       >
@@ -87,7 +87,7 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagment,
                 )
                 .map((geo) => {
                   const d = tweetsByCountry.find(
-                    (s) => s.countryId === geo.properties.country_id
+                    (s) => s.countryId === geo.properties.COUNTRY_ID
                   );
                   return (
                     <Geography
@@ -97,7 +97,7 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagment,
                       fill={
                         d ? colorScale(d['total_tweets_period']) : '#F5F4F6'
                       }
-                      value={geo.properties.country_id}
+                      value={geo.properties.COUNTRY_ID}
                       stroke="#D6D6DA"
                       strokeWidth="0.4"
                     />
