@@ -11,7 +11,14 @@ import { MostRetweetedItems } from '../MostRetweeted';
 const ComparativeUserViewContainer = ({ period }) => {
   return (
     <ComparativeUserViewContainerStyle usuario="usuario">
-      <CollapsableTableStyled >
+          <CollapsableTableStyled className='table hashtags'>
+        <StyledFilterButton type="button" name="most-ht" onClick={handleClick}>
+          Hashtags más usados
+        </StyledFilterButton>
+
+        <HtMostUsedItems period={period} />
+      </CollapsableTableStyled>
+      <CollapsableTableStyled className='table'>
         <StyledFilterButton
           type="button"
           name="most-retweet"
@@ -21,7 +28,7 @@ const ComparativeUserViewContainer = ({ period }) => {
         </StyledFilterButton>
         <MostRetweetedItems period={period} />
       </CollapsableTableStyled>
-      <CollapsableTableStyled usuario="usuario">
+      <CollapsableTableStyled className='table'>
         <StyledFilterButton
           type="button"
           name="most-replied"
@@ -33,7 +40,7 @@ const ComparativeUserViewContainer = ({ period }) => {
         <MostRepliedItems period={period} />
       </CollapsableTableStyled>
 
-      <CollapsableTableStyled usuario="usuario">
+      <CollapsableTableStyled className='table'>
         <StyledFilterButton
           type="button"
           name="most-mentioned"
@@ -44,13 +51,7 @@ const ComparativeUserViewContainer = ({ period }) => {
 
         <MostMentionedItems period={period} />
       </CollapsableTableStyled>
-      <CollapsableTableStyled usuario="usuario">
-        <StyledFilterButton type="button" name="most-ht" onClick={handleClick}>
-          Hashtags más usados
-        </StyledFilterButton>
-
-        <HtMostUsedItems period={period} />
-      </CollapsableTableStyled>
+  
     </ComparativeUserViewContainerStyle>
   );
 };
