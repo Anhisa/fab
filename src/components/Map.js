@@ -15,7 +15,13 @@ const geoUrl =
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
-export const Map = ({ setAccounts, items, setMouse, countryListManagment, setCountrySelectedId }) => {
+export const Map = ({
+  setAccounts,
+  items,
+  setMouse,
+  countryListManagment,
+  setCountrySelectedId,
+}) => {
   const [position, setPosition] = useState({
     coordinates: [-75, -10],
     zoom: 1,
@@ -39,14 +45,13 @@ export const Map = ({ setAccounts, items, setMouse, countryListManagment, setCou
   const handleOnClick = ({ target, pageX, pageY }) => {
     if (target.attributes.value) {
       const itemValue = target.attributes.value;
-    
-      
+
       const filteredAccounts = items.filter(
         (item) => item.country_id === itemValue.value
       );
       setMouse({
         x: pageX,
-        y: pageY ,
+        y: pageY,
       });
       setAccounts(filteredAccounts);
       setCountrySelectedId(itemValue.value);
@@ -67,10 +72,12 @@ export const Map = ({ setAccounts, items, setMouse, countryListManagment, setCou
   return (
     <>
       <ComposableMap
+        height={1000}
+        width={1000}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
-          rotate: [73, 11, 0],
-          scale: 587,
+          rotate: [77, 12, 0],
+          scale: 740,
         }}
         onClick={handleOnClick}
       >
@@ -83,7 +90,9 @@ export const Map = ({ setAccounts, items, setMouse, countryListManagment, setCou
             {({ geographies }) =>
               geographies
                 .filter(
-                  (d) => d.properties.REGION_WB === 'Latin America & Caribbean'
+                  (d) =>
+                    d.properties.SUBREGION === 'South America' ||
+                    d.properties.SUBREGION === 'Central America'
                 )
                 .map((geo) => {
                   const d = tweetsByCountry.find(
