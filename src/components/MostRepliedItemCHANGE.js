@@ -61,21 +61,38 @@ export const MostRepliedItemCHANGE = ({ newData, title, comparisonView, arrayBar
       tweets_number: arrayBar[index],
     };
   });
+  
+  if(newData.length === 0){
+    return (
+      <StyledDataTable className="dataTable">
+        <div className="noData">
+          <h1>No hay datos para mostrar</h1>
+        </div>
+      </StyledDataTable>
+    )
+
+  }
   const columns = [
     {
       name: 'Usuario/ Nombre cuenta',
       selector: (row) => <UserAccount userAccount={row.userAccount} userAccountDesc={ row.userAccountDesc } /> ,
       sortable: true,
       wrap: true,
+      maxWidth: '400px',
+      minWidth: '200px',
+      compact: true,
     },
     {
       name: 'Categoría',
       selector: (row) => row.categoría,
       sortable: true,
       id: 'categoria',
-      grow: 2,
-      wrap: false,
-      maxWidth: '300px',
+      wrap: true,
+     
+      
+      maxWidth: '350px',
+    
+      compact: true,
       omit: comparisonView
     },
     {
@@ -96,7 +113,7 @@ export const MostRepliedItemCHANGE = ({ newData, title, comparisonView, arrayBar
       id: 'tweetsNumber',
       grow: 2,
       wrap: false,
-      maxWidth: '400px',
+      maxWidth: '500px',
       width: '220px',
     },
   ];

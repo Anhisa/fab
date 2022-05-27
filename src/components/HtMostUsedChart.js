@@ -90,7 +90,9 @@ function createLabels(data){
     let labels1 = labels[0]
     let labels2 = labels[1]
     labels = labels1.map((item, index) => {
-      return item + " / " + labels2[index] === undefined ? "" : item + " / " + labels2[index]
+      let isLabelUndefined = labels2[index] === undefined
+      return isLabelUndefined ? item : item + ' - ' + labels2[index]
+      
     })
     return labels
   }

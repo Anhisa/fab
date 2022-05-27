@@ -5,6 +5,7 @@ import { useFilterData } from '../hooks/useFilterData';
 import { TableContext } from '../context/TableContext';
 import { MostRetweetedItemChange } from '../components/MostRetweetedItemCHANGE';
 import { CreateChart } from '../helpers/createChart';
+import { Spinner } from 'react-bootstrap';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
 
 export const MostRetweetedItems = memo((period) => {
@@ -33,7 +34,9 @@ export const MostRetweetedItems = memo((period) => {
   }
   }, [period, data]);
   if (!data || chartData.length === 0) {
-    return <div>Loading...</div>;
+    return   <Spinner animation="border" role="status">
+    <span className="visually-hidden">Loading...</span>
+  </Spinner>
   }
   if (innerData.length === 0) {
     return <div>No hay data correspondiente al periodo seleccionado</div>;

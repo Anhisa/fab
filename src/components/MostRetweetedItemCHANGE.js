@@ -25,8 +25,8 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
       id: 'nombreCuenta',
       grow: 2,
       wrap: true,
-      maxWidth: '300px',
-      minWidth: '150px',
+      maxWidth: '400px',
+      minWidth: '200px',
       compact: true,
     },
   
@@ -36,8 +36,12 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
       sortable: true,
       id: 'categoria',
       grow: 2,
-      wrap: false,
-      maxWidth: '300px',
+      wrap: true,
+      maxWidth: '350px',
+      minWidth: '200px',
+      compact: true,
+      
+
       omit: comparisonView
   
     },
@@ -60,7 +64,7 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
       id: 'tweetsNumber',
       grow: 2,
       wrap: false,
-      maxWidth: '400px',
+      maxWidth: '500px',
       width: '220px'
     },
   ];

@@ -62,7 +62,7 @@ export const MostMentionedItemCHANGE = ({
   rows = rows?.map((item, index) => {
     return {
       ...item,
-      tweets_number: arrayBar[index],
+      tweets_number: arrayBar[index]??0,
     };
   });
   const columns = [
@@ -76,6 +76,9 @@ export const MostMentionedItemCHANGE = ({
       ),
       sortable: true,
       wrap: true,
+      maxWidth: '400px',
+      minWidth: '200px',
+      compact: true,
     },
     {
       name: 'Categoría',
@@ -83,8 +86,10 @@ export const MostMentionedItemCHANGE = ({
       sortable: true,
       id: 'categoria',
       grow: 2,
-      wrap: false,
-      maxWidth: '300px',
+      wrap: true,
+      maxWidth: '350px',
+      minWidth: '200px',
+      compact: true,
       omit: comparisonView,
     },
     {
@@ -105,10 +110,11 @@ export const MostMentionedItemCHANGE = ({
       id: 'tweetsNumber',
       grow: 2,
       wrap: false,
-      maxWidth: '400px',
+      maxWidth: '500px',
       width: '220px',
     },
   ];
+  
 
 
   return (

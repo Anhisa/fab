@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState, memo } from 'react';
+import { Spinner } from 'react-bootstrap';
 import { HtMostUsedChart } from '../components/HtMostUsedChart';
 import { HtMostUsedItem } from '../components/HtMostUsedItem';
 import { TableContext } from '../context/TableContext';
@@ -16,7 +17,11 @@ export const HtMostUsedItems = memo(({ period }) => {
   }, [data, period]);
 
   if (!innerData) {
-    return <div>Loading...</div>;
+    return (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
   }
   if (innerData.length === 0) {
     return <div>No hay data en el periodo seleccionado</div>;
@@ -27,9 +32,8 @@ export const HtMostUsedItems = memo(({ period }) => {
       {/* <div>
               <HtMostUsedItem newData={accountId} periodId={period} />
             </div> */}
-     
-        <HtMostUsedChart newData={innerData} periodId={period} />
-     
+
+      <HtMostUsedChart newData={innerData} periodId={period} />
     </section>
   );
 });
