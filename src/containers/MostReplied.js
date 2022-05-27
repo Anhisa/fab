@@ -60,7 +60,7 @@ export const MostRepliedItems = memo((period) => {
           </section>
         );
       })}
-      {
+      {comparisonView &&
      Object.values(innerData).length === 1&& (
       <StyledDataTable className="dataTable">
         <div className="column">
