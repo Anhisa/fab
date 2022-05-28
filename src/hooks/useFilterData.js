@@ -55,7 +55,7 @@ export const useFilterData = (api, from) => {
             (item) =>
               parseInt(item.period_id) >= startDate &&
               parseInt(item.period_id) <= endDate &&
-              item.country_id === country_id
+              item.country_id === country_id.id
           );
         }
         
@@ -82,11 +82,15 @@ export const useFilterData = (api, from) => {
           }
         } else if (from === 'monthly-tweets') {
           let innerArray = data;
+          
           if (context.isPeriodComparisonActive) {
             let repeatedMonthlyArray = filterDuplicatesMonth(data);
+            
             newArray = addDuplicates(repeatedMonthlyArray, from);
+            
           }
           accountsData.push(newArray);
+          
         } else {
           let repeatedAccountArray = filterDuplicates(data);
 
@@ -106,6 +110,7 @@ export const useFilterData = (api, from) => {
     }
     Object.values(accounts).forEach((account) => {
       if (!loading) {
+        
         const data = items.filter(
           (item) =>
             item.official_account_id === account.id &&
@@ -115,7 +120,7 @@ export const useFilterData = (api, from) => {
         if (data.length === 0) {
           return data;
         }
-
+        
         if (from === 'ht-most-used') {
           let repeatedAccountArrayHt = filterDuplicatesHt(data);
 
@@ -133,6 +138,7 @@ export const useFilterData = (api, from) => {
           }
         } else if (from === 'monthly-tweets') {
           let innerArray = data;
+          
 
           accountsData.push(innerArray);
         } else {

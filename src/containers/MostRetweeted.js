@@ -1,36 +1,28 @@
-import React, { useContext, useEffect, useState, memo } from 'react';
-import { MostRetweetedItem2 } from '../components/MostRetweetedItem2';
-import { MostRetweetedChart } from '../components/MostRetweetedChart';
+import React, { useEffect, useState, memo } from 'react';
+
 import { useFilterData } from '../hooks/useFilterData';
-import { TableContext } from '../context/TableContext';
 import { MostRetweetedItemChange } from '../components/MostRetweetedItemCHANGE';
 import { CreateChart } from '../helpers/createChart';
 import { Spinner } from 'react-bootstrap';
+
+import useActiveNames from '../hooks/useActiveNames';
+import usePeriodComparison from '../hooks/periodComparison';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
 
 export const MostRetweetedItems = memo((period) => {
   const [innerData, setInnerData] = useState(false);
-  const {accounts} =useContext(TableContext);
-  
-  const accountsName = [
-    accounts.accountIdA.name,
-    accounts.accountIdB?.name || '',
-  ];
- 
-  const [comparisonView, setComparisonView] = useState(false);
+  const accountsNames = useActiveNames()
+  const {isPeriodComparisonActive} = usePeriodComparison();
+
+  // const [comparisonView, setComparisonView] = useState(false);
   const [chartData, setChartData] = useState([]);
   const data = useFilterData(api, 'most-retweeted');
   let arraysBar = [];
   useEffect(() => {
-    if (data !== false) {
-    if(data.length > 1){     
-     
-      setComparisonView(true);
-    }
+    if (data !== false) {  
     setInnerData(data);      
      arraysBar = CreateChart(data)
-    setChartData(arraysBar);      
-
+    setChartData(arraysBar);  
   }
   }, [period, data]);
   if (!data || chartData.length === 0) {
@@ -50,8 +42,8 @@ export const MostRetweetedItems = memo((period) => {
         return (
           <section className="column" key={index}>
             <div>
-              <MostRetweetedItemChange newData={dataAccount} arrayBar={chartData[index]} period={period} comparisonView={comparisonView} title={
-                accountsName[index]
+              <MostRetweetedItemChange newData={dataAccount} arrayBar={chartData[index]} period={period} comparisonView={isPeriodComparisonActive} title={
+                accountsNames[index]
               }/>
             </div>
             {/* <div>

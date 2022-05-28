@@ -24,14 +24,18 @@ ChartJS.register(
 );
 
 
-export const HtMostUsedChart = ({newData}) => {
+export const HtMostUsedChart = ({newData, title}) => {
 
   // const accountId = '19';
   // const periodId = '4';
 
  
   // const dataSet = newData.map(item => item.ht_mentions_number)
-  const dataSets = createDatasets(newData);
+  let dataSets = createDatasets(newData, title);
+  dataSets = sortLongestArray(dataSets);
+  
+
+
   const labels = createLabels(newData);
 
 
@@ -66,13 +70,13 @@ const options = {
   return <Bar data={data} options={options} />;
 }
 
-function createDatasets(data){
+function createDatasets(data, title){
   const datasets = [];
-  let controlColor = 1
+  let controlColor = 0
   data.forEach(item => {
-    let color = controlColor === 1 ? 'rgba(255, 206, 33, 0.7' : 'rgba(0, 60, 123, 0.7)'
+    let color = controlColor === 0 ? 'rgba(255, 206, 33, 0.7' : 'rgba(0, 60, 123, 0.7)'
     datasets.push({
-      label: "Cuenta Oficial "+ item[0].official_account,
+      label: title[controlColor],
       data: item.map((item2) => parseInt(item2.ht_mentions_number)),
       tension: 0.3,
       borderColor: color,
@@ -82,8 +86,10 @@ function createDatasets(data){
     })
     controlColor++
   })
+  
   return datasets; 
 }
+// We have to check which array has the longest length
 function createLabels(data){
   let labels = []
   data.forEach(item => {
@@ -94,12 +100,32 @@ function createLabels(data){
   if(labels.length > 1){
     let labels1 = labels[0]
     let labels2 = labels[1]
-    labels = labels1.map((item, index) => {
+    let isOneLongest = labels1.length > labels2.length    
+    labels = isOneLongest ?     
+    labels1.map((item, index) => {
       let isLabelUndefined = labels2[index] === undefined
-      return isLabelUndefined ? item : item + ' - ' + labels2[index]
-      
+      return isLabelUndefined ? item : item + ' - ' + labels2[index]      
+    }) :
+    labels2.map((item, index) => {
+      let isLabelUndefined = labels1[index] === undefined
+      return isLabelUndefined ? item : item + ' - ' + labels1[index]
     })
     return labels
   } 
   return labels[0];
+}
+function sortLongestArray(data){
+  let newArray = []
+  if(data.length > 1){
+    if(data[0].length > data[1].length){
+      newArray.push(data[0])
+      newArray.push(data[1])
+    } else {
+      newArray.push(data[1])
+      newArray.push(data[0])
+    }
+  } else {
+    return data
+  }
+  return newArray;
 }

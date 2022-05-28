@@ -38,7 +38,7 @@ export const CountryItem = ({ accountsCountry, countryListManagment, countryData
     const countryData = countriesData.find(country => country.country_id === countryId);
     return countryData.official_relations_spa === 'Taiwan';
   }
-  console.log('accounts', accountsCountry);
+
   const handleClose = () => {
     setOpen(false);
   };

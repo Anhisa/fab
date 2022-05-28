@@ -10,7 +10,11 @@ import { BarContainer, IsVerified, UserAccount } from './partsDataTable';
 import { ExpandedComponent } from './ExpandedComponent';
 export const MostRetweetedItemChange = ({ newData, period, comparisonView, arrayBar, title }) => {
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
-  
+  //  For some reason a whole array of arrays is returned
+  if (newData[newData.length - 1]?.length > 5) {
+    newData.pop();
+  }
+
   
   const totaltweets = tweetNumber.reduce(
     (totaltweetsNumber, item) => totaltweetsNumber + item,
@@ -40,8 +44,6 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
       maxWidth: '350px',
       minWidth: '200px',
       compact: true,
-      
-
       omit: comparisonView
   
     },

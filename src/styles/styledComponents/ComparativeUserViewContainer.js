@@ -5,37 +5,57 @@ export const ComparativeUserViewContainerStyle = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 10px;
+  width: 100%;
+  #most-ht{      
+      flex-direction: column; 
+    }
+    #left{
+      width: 100%;
+
+    } 
+    #right{
+      width: 100%;
+    }
+
   @media (min-width: 1440px) {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    #left{
+      width: 100%;
+
+    } 
+    #right{
+      width: 100%;
+    }
+                                
     justify-content: center;
     align-items: stretch;
+    ;
+    #most-ht{      
+      flex-direction: column; 
+    }
    .table{
-    width: 50%;    
-    display:flex;
+    width:90%;
+    align-items: center;
+    display:flex;    
     height: fit-content;
     flex-direction: column;
     justify-content: center;
+  
     button{
       width: 90%;
       display:flex;
       justify-content: center;
     }
-     section .closed{
-        display: none;   
-     }
-     section .open{
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-     }
+  
      .column {
        width: 100%;
      }
    }
-   .hashtags{
-     height: fit-content;
-
-   }
+ 
   }
-`
+ 
+  `
+

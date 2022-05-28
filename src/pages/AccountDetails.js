@@ -94,7 +94,7 @@ export const AccountDetails = () => {
             </AccountPeriodContainer>
               <hr />
 
-            <ComparativeUserViewContainer  period={period}/>
+            <ComparativeUserViewContainer period={period}/>
           </AccountDetailsStyled>
         </TableContext.Provider>
       ) : (

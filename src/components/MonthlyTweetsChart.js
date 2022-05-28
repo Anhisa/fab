@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { TableContext } from '../context/TableContext';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,6 +12,8 @@ import {
   Filler,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import usePeriodComparison from '../hooks/periodComparison';
+import { MonthyUserViewStyled } from '../styles/styledComponents/MonthyUserViewStyled';
 
 ChartJS.register(
   CategoryScale,
@@ -24,9 +27,12 @@ ChartJS.register(
 );
 
 export const MonthlyTweetsChart = ({ newData }) => {
-  //
-  //   const labels = newData.map(item =>  new Date(item.month).toLocaleString('es-ES', { month: 'long' , timeZone: 'UTC' }))
- 
+  console.log(newData);
+  //  For some reason a whole array of arrays is returned
+  if (newData[0][newData[0].length - 1].length > 5) {
+    newData[0].pop();
+  }
+
   let labels = newData[0]?.map((item) => item.month);
 
   labels = labels.map(
@@ -67,14 +73,13 @@ export const MonthlyTweetsChart = ({ newData }) => {
       title: {
         display: true,
         text: 'Tweets mensuales',
-        position: 'top',       
+        position: 'top',
         fullSize: true,
-        font:{
+        font: {
           size: 20,
           weight: 'bold',
-        }     
-
-      }
+        },
+      },
     },
   };
 
@@ -84,17 +89,25 @@ export const MonthlyTweetsChart = ({ newData }) => {
   };
   useEffect(() => {}, [newData]);
 
-  return <Line data={data} options={options} />;
+  return (
+    <MonthyUserViewStyled>
+      <Line data={data} options={options} />
+    </MonthyUserViewStyled>
+  );
 };
 
 function createDatasets(data) {
+  const { isPeriodComparisonActive, periods } = usePeriodComparison();
+
   const datasets = [];
-  let controlColor = 1;
+  let controlColor = 0;
   data.forEach((item) => {
     let color =
-      controlColor === 1 ? 'rgba(255, 206, 33, 0.7' : 'rgba(0, 60, 123, 0.7)';
+      controlColor === 0 ? 'rgba(255, 206, 33, 0.7' : 'rgba(0, 60, 123, 0.7)';
     datasets.push({
-      label: item[0].official_account,
+      label: isPeriodComparisonActive
+        ? periods[controlColor].name
+        : item[0].official_account,
       data: item.map((item2) => parseInt(item2.tweets_number)),
       tension: 0.3,
       borderColor: 'black',

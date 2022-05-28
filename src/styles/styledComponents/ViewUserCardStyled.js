@@ -5,8 +5,8 @@ export const ViewUserCardStyled = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding:10px;
-  height: 300px;
+  padding:10px;  
+  width: 100%;
   font-size: 1rem;
   border-radius: 20px;
   border: 1px solid #e0e0e0;  
@@ -16,7 +16,7 @@ export const ViewUserCardStyled = styled.div`
     flex-direction: column;
     width: 50%;
     align-items: flex-start;
-    margin-right: 20px;
+    margin-right: 10px;
   }
   .innerRight{
     display: flex;

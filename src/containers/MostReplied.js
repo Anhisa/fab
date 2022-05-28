@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, memo } from 'react';
 import { Spinner } from 'react-bootstrap';
-import { MostRepliedChart } from '../components/MostRepliedChart';
-import { MostRepliedItem } from '../components/MostRepliedItem';
+import useActiveNames from '../hooks/useActiveNames';
+import usePeriodComparison from '../hooks/periodComparison';
 import { MostRepliedItemCHANGE } from '../components/MostRepliedItemCHANGE';
 import { TableContext } from '../context/TableContext';
 import { CreateChart } from '../helpers/createChart';
@@ -11,21 +11,16 @@ import { StyledDataTable } from '../styles/styledComponents/StyledDataTable';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-replied';
 export const MostRepliedItems = memo((period) => {
   const data = useFilterData(api, 'most-replied');
-  const { accounts } = useContext(TableContext);
+  const accountsNames = useActiveNames()
+  const {isPeriodComparisonActive} = usePeriodComparison();
 
-  const accountsName = [
-    accounts.accountIdA.name,
-    accounts.accountIdB?.name || '',
-  ];
   const [innerData, setInnerData] = useState(data);
-  const [comparisonView, setComparisonView] = useState(false);
+ 
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
     if (data !== false) {
-      if (data.length > 1) {
-        setComparisonView(true);
-      }
+      
       setInnerData(data);
       setChartData(CreateChart(data));
     }
@@ -39,7 +34,7 @@ export const MostRepliedItems = memo((period) => {
   if (data.length === 0) {
     return <div>No hay data en el periodo seleccionado</div>;
   }
-  console.log(Object.values(innerData).length, 'Object.values(innerData).length')
+  
   return (
     <>
     <section className="closed" id="most-replied">
@@ -50,8 +45,8 @@ export const MostRepliedItems = memo((period) => {
               <MostRepliedItemCHANGE
                 newData={accountId}
                 arrayBar={chartData[index]}
-                comparisonView={comparisonView}
-                title={accountsName[index]}
+                comparisonView={isPeriodComparisonActive}
+                title={accountsNames[index]}
               />
             </div>
             {/* <div>
@@ -60,7 +55,7 @@ export const MostRepliedItems = memo((period) => {
           </section>
         );
       })}
-      {comparisonView &&
+      {isPeriodComparisonActive &&
      Object.values(innerData).length === 1&& (
       <StyledDataTable className="dataTable">
         <div className="column">

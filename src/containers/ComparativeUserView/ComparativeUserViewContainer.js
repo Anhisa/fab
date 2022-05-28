@@ -7,50 +7,50 @@ import { HtMostUsedItems } from '../HtMostUsed';
 import { MostMentionedItems } from '../MostMentioned';
 import { MostRepliedItems } from '../MostReplied';
 import { MostRetweetedItems } from '../MostRetweeted';
+import ButtonToogle from '../../components/ButtonToogle';
 
 const ComparativeUserViewContainer = ({ period }) => {
   return (
     <ComparativeUserViewContainerStyle usuario="usuario">
-          <CollapsableTableStyled className='table hashtags'>
-        <StyledFilterButton type="button" name="most-ht" onClick={handleClick}>
+        <div id='left'>
+      <CollapsableTableStyled className='table'>
+        <ButtonToogle 
+         
+          name="most-retweet"
+          
+        >
+          Usuarios más retuiteados
+        </ButtonToogle>
+        <MostRetweetedItems period={period} />
+      </CollapsableTableStyled>
+      <CollapsableTableStyled className='table'>
+        <ButtonToogle         
+          name="most-replied"          
+        >
+          Usuarios que más han recibido respuesta
+        </ButtonToogle>
+
+        <MostRepliedItems period={period} />
+      </CollapsableTableStyled>
+      </div>
+      <div id='right'>
+      <CollapsableTableStyled className='table'>
+        <ButtonToogle name="most-ht" >
           Hashtags más usados
-        </StyledFilterButton>
+        </ButtonToogle>
 
         <HtMostUsedItems period={period} />
       </CollapsableTableStyled>
       <CollapsableTableStyled className='table'>
-        <StyledFilterButton
-          type="button"
-          name="most-retweet"
-          onClick={handleClick}
-        >
-          Usuarios más retuiteados
-        </StyledFilterButton>
-        <MostRetweetedItems period={period} />
-      </CollapsableTableStyled>
-      <CollapsableTableStyled className='table'>
-        <StyledFilterButton
-          type="button"
-          name="most-replied"
-          onClick={handleClick}
-        >
-          Usuarios que más han recibido respuesta
-        </StyledFilterButton>
-
-        <MostRepliedItems period={period} />
-      </CollapsableTableStyled>
-
-      <CollapsableTableStyled className='table'>
-        <StyledFilterButton
-          type="button"
-          name="most-mentioned"
-          onClick={handleClick}
+        <ButtonToogle         
+          name="most-mentioned"         
         >
           Usuarios más mencionados
-        </StyledFilterButton>
+        </ButtonToogle>
 
         <MostMentionedItems period={period} />
       </CollapsableTableStyled>
+      </div>  
   
     </ComparativeUserViewContainerStyle>
   );

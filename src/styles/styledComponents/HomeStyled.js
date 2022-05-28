@@ -6,6 +6,12 @@ export const HomeStyled = styled.div`
   align-items: center;
   justify-content: center;
   
-
+  /* @media (min-width: 1440px) {
+  .open{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+} */
 
 `

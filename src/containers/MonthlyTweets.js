@@ -26,10 +26,11 @@ export const MonthlyTweetsItems = memo((period) => {
   if (innerData.length === 0) {
     return <div>No hay data en el periodo seleccionado</div>;
   }
+ ;
 
   return (
     <section className="closed" id="monthy-tweets">
       <MonthlyTweetsChart newData={innerData} periodId={period} />
-    </section>
+    </section >
   );
 });

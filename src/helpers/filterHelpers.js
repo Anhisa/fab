@@ -224,19 +224,17 @@ export function addDuplicates(arrayDuplicades, from) {
       return newArray;
 
     case 'monthly-tweets': // tweets_number
-      newArray = arrayDuplicades.map((item) => {
+    
+      let newArray2 = arrayDuplicades.map((item, index) => {       
         let monthly_tweets_id = '';
         let user_account = '';
         let month = '';
         let official_account = '';
         let tweets_number = item.reduce((acc, item) => {
-          user_account = item.user_account;
+          user_account = item.official_account;
           monthly_tweets_id = item.monthly_tweets_id;
-
           month = item.month;
-
           official_account = item.official_account;
-
           return acc + parseInt(item.tweets_number);
         }, 0);
         return {
@@ -247,6 +245,9 @@ export function addDuplicates(arrayDuplicades, from) {
           official_account,
         };
       });
+      newArray = newArray2
+   
+
       return newArray;
 
     case 'ht-most-used': // hashtags_number

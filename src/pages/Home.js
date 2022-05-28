@@ -18,6 +18,7 @@ import SelectorComparative from '../containers/SelectorComparative';
 import { SectionToolsStyled } from '../styles/styledComponents/SectionToolsStyled';
 import { SectionMapsStyled } from '../styles/styledComponents/SectionMapStyled';
 import { ComparisonContainerStyled } from '../styles/styledComponents/ComparisonContainerStyled';
+import useCreateInitialState from '../hooks/createInitialState';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
@@ -28,20 +29,12 @@ export const Home = () => {
   const [countrySelectedId, setCountrySelectedId] = useState(null);
   const countryDataState = [countriesAllData, setCountriesAllData];
   const [open, setOpen] = useState(false);
-  const {accounts, periodComparison, initialStateCategories, period} = useContext(TableContext);
+
   const countryListManagment = { open, setOpen };
   const items = response.data;
 
   const [accountsCountry, setAccountsCountry] = useState([]);
-  const [dataComparing, setDataComparing] = useState({
-    accounts: accounts,
-    periodComparison:periodComparison ,
-    isPeriodComparisonActive: false,
-    isCountryFilterActive: false,
-    country_id: '',
-    categories:  initialStateCategories,
-    period: period,
-  });
+  const [dataComparing, setDataComparing] = useCreateInitialState();
   const [mousePosition, setMousePosition] = useState({
     x: 0,
     y: 0,
@@ -53,50 +46,50 @@ export const Home = () => {
       <div className="banner-container">
         <h2 className="banner-title">CHINA LATAM TWITTER DATABASE</h2>
       </div>
-
-      <SectionMapsStyled>
-        <MapStyled className="map-container col-6">
-          <Map
-            items={items}
-            setAccounts={setAccountsCountry}
-            setMouse={setMousePosition}
-            countryListManagment={countryListManagment}
-            setCountrySelectedId={setCountrySelectedId}
-          />
-        </MapStyled>
-        <MapStyled className="map-container col-6">
-          <MapIslands
-            items={items}
-            setAccounts={setAccountsCountry}
-            setMouse={setMousePosition}
-            countryListManagment={countryListManagment}
-            setCountrySelectedId={setCountrySelectedId}
-          />
-        </MapStyled>
-        <DetachableTable top={mousePosition.y} left={mousePosition.x}>
-          <CountryList
-            accountsCountry={accountsCountry}
-            countryListManagment={countryListManagment}
-            countryDataState={countryDataState}
-            countrySelectedId={countrySelectedId}
-          />
-        </DetachableTable>
-      </SectionMapsStyled>
-      <SectionToolsStyled>
-        <ComparativeStyled >
-          <ComparativeTool setDataComparing={setDataComparing} />
-        </ComparativeStyled>
-        <ComparativeStyled className="col-6">
-          <SelectorComparative
-            countryDataState={countryDataState}
-            setDataComparing={setDataComparing}
-          />
-        </ComparativeStyled>
-
-      </SectionToolsStyled>
-      <ComparisonContainerStyled>
-        <ComponentContainer context={dataComparing} />
+      <TableContext.Provider value={dataComparing}>
+        <SectionMapsStyled>
+          <MapStyled className="map-container col-6">
+            <Map
+              items={items}
+              setAccounts={setAccountsCountry}
+              setMouse={setMousePosition}
+              countryListManagment={countryListManagment}
+              setCountrySelectedId={setCountrySelectedId}
+            />
+          </MapStyled>
+          <MapStyled className="map-container col-6">
+            <MapIslands
+              items={items}
+              setAccounts={setAccountsCountry}
+              setMouse={setMousePosition}
+              countryListManagment={countryListManagment}
+              setCountrySelectedId={setCountrySelectedId}
+            />
+          </MapStyled>
+          <DetachableTable top={mousePosition.y} left={mousePosition.x}>
+            <CountryList
+              accountsCountry={accountsCountry}
+              countryListManagment={countryListManagment}
+              countryDataState={countryDataState}
+              countrySelectedId={countrySelectedId}
+            />
+          </DetachableTable>
+        </SectionMapsStyled>
+        <SectionToolsStyled>
+          <ComparativeStyled>
+            <ComparativeTool setDataComparing={setDataComparing} />
+          </ComparativeStyled>
+          <ComparativeStyled>
+            <SelectorComparative
+              countryDataState={countryDataState}
+              setDataComparing={setDataComparing}
+            />
+          </ComparativeStyled>
+        </SectionToolsStyled>
+        <ComparisonContainerStyled>
+          <ComponentContainer context={dataComparing} />
         </ComparisonContainerStyled>
+      </TableContext.Provider>
     </HomeStyled>
   );
 };

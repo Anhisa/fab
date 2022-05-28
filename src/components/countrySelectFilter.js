@@ -37,10 +37,15 @@ const CountrySelectFilter = ({ countrysWithData, setCountryFilterActive, setCoun
   function handleChange({target: {value}}) {
     
     if(value !== 'null') {
-    setCountryA(value);
+
+    let countryName = countriesData.find((country) => country.countryInId === value);
     
+    setCountryA(value);    
     setCountryFilterActive(true)
-    setCountryId(value)
+    setCountryId({
+      id: value,
+      name: countryName.countryName,
+    })
     } else {
       setCountryFilterActive(false)
       setCountryId('')
@@ -56,7 +61,7 @@ const CountrySelectFilter = ({ countrysWithData, setCountryFilterActive, setCoun
         <FormControl className="container-fluid form"
           variant="filled"
           sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel>País seleccionado</InputLabel>
+          <InputLabel>Todos los paises</InputLabel>
           <Select
             labelId="demo-simple-select-filled-label"
             id="demo-simple-select-filled"
@@ -64,10 +69,10 @@ const CountrySelectFilter = ({ countrysWithData, setCountryFilterActive, setCoun
             onChange={handleChange}
           >
             <MenuItem value="null">
-              <em>Ninguna</em>
+              <em>Todos</em>
             </MenuItem>
             {countriesData.map((item) => (
-              <MenuItem key={`oa-${item.countryInId}`} value={item.countryInId}>
+              <MenuItem key={`oa-${item.countryInId}`} value={item.countryInId} >
                 <div>
                   <h6>{item.countryName}</h6>
                 </div>

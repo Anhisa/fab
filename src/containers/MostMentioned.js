@@ -6,26 +6,21 @@ import { useFilterData } from '../hooks/useFilterData';
 import { MostMentionedItemCHANGE } from '../components/MostMentionedItemCHANGE';
 import { CreateChart } from '../helpers/createChart';
 import { Spinner } from 'react-bootstrap';
+import useActiveNames from '../hooks/useActiveNames';
+import usePeriodComparison from '../hooks/periodComparison';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-mentioned';
 export const MostMentionedItems = memo(({ period }) => {
   const [innerData, setInnerData] = useState([]);
-  const [comparisonView, setComparisonView] = useState(false);
   const [chartData, setChartData] = useState([]);
-  const {accounts} =useContext(TableContext);
-  
-  const accountsName = [
-    accounts.accountIdA.name,
-    accounts.accountIdB?.name || '',
-  ];
+  const accountsNames = useActiveNames()
+  const {isPeriodComparisonActive} = usePeriodComparison();
   let arraysBar = [];
   const data = useFilterData(api, 'most-mentioned');
 
   useEffect(() => {
     if (data !== false) {
-      if (data.length > 1) {
-        setComparisonView(true);
-      }
+    
       setInnerData(data);
 
       setChartData(CreateChart(data));
@@ -50,8 +45,8 @@ export const MostMentionedItems = memo(({ period }) => {
                 newData={accountId}
                 arrayBar={chartData[index]}
                 
-                comparisonView={comparisonView}
-                title={accountsName[index]}
+                comparisonView={isPeriodComparisonActive}
+                title={accountsNames[index]}
               />
             </div>
             {/* <div>

@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import ButtonToogle from '../components/ButtonToogle';
 import { HtMostUsedItems } from '../containers/HtMostUsed';
 import { MonthlyTweetsItems } from '../containers/MonthlyTweets';
 import { MostMentionedItems } from '../containers/MostMentioned';
@@ -30,49 +31,49 @@ export const ComponentContainer = ({context}) => {
      <TableContext.Provider value={context}>
       {categories.monthlyTweets && (
         <CollapsableTableStyled>
-          <StyledFilterButton name="monthy-tweets" onClick={handleClick}>
+          <ButtonToogle name="monthy-tweets">
            
             {isPeriodComparisonActive ? ` Número de tweets por mes  del periodo ${periodA.name} al ${periodB.name}` : ` Número de tweets por mes de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
             
-          </StyledFilterButton>
+          </ButtonToogle>
 
           <MonthlyTweetsItems period={context.period}/>
         </CollapsableTableStyled>
       )}
       {categories.mostRetweeted && (
-        <CollapsableTableStyled>
-          <StyledFilterButton name="most-retweet" onClick={handleClick}>
+        <CollapsableTableStyled  usuario={true}>
+          <ButtonToogle name="most-retweet" >
             
             {isPeriodComparisonActive ? `Usuarios más retuiteados del periodo ${periodA.name} al ${periodB.name}` : `Usuarios más retuiteados de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
-          </StyledFilterButton>
+          </ButtonToogle>
           <MostRetweetedItems period={context.period} context={context} />
         </CollapsableTableStyled>
       )}
       {categories.mostReplied && (
-        <CollapsableTableStyled>
-          <StyledFilterButton name="most-replied" onClick={handleClick}>
+        <CollapsableTableStyled usuario>
+          <ButtonToogle name="most-replied">
             
             {isPeriodComparisonActive ? `Usuarios que más han recibido respuesta del periodo ${periodA.name} al ${periodB.name}` : `Usuarios que más han recibido respuesta de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
-          </StyledFilterButton>
+          </ButtonToogle>
 
-          <MostRepliedItems period={context.period} />
+          <MostRepliedItems period={context.period}  />
         </CollapsableTableStyled>
       )}
       {categories.mostHashtags && (
         <CollapsableTableStyled>
-          <StyledFilterButton name="most-ht" onClick={handleClick}>
+          <ButtonToogle name="most-ht">
             
             {isPeriodComparisonActive ? `Hashtags más usados del periodo ${periodA.name} al ${periodB.name}` : `Hashtags más usados de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
-          </StyledFilterButton>
+          </ButtonToogle>
 
           <HtMostUsedItems  period={context.period} />
         </CollapsableTableStyled>
       )}
       {categories.mostMentioned && (
-        <CollapsableTableStyled>
-          <StyledFilterButton name="most-mentioned" onClick={handleClick}>
+        <CollapsableTableStyled usuario={true}>
+          <ButtonToogle name="most-mentioned">
           {isPeriodComparisonActive ? `Usuarios más mencionados del periodo ${periodA.name} al ${periodB.name}` : `Usuarios más mencionados de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
-          </StyledFilterButton>
+          </ButtonToogle>
 
           <MostMentionedItems  period={context.period} />
         </CollapsableTableStyled>

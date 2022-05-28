@@ -62,10 +62,10 @@ export const CompAccountSelector = ({ setAccounts }) => {
               <MenuItem
                 key={`oa-${item.official_account_id}`}
                 value={item.official_account_id}
-                
+                style={{borderBottom : '1px dotted black'}}
               >
-                <div>
-                  <span>{item.country_name_spa}</span>
+                <div >
+                  <span><b>{item.country_name_spa}</b></span>
                   <h6>{item.official_account}</h6>
                   <span>{item.official_account_name_spa}</span>
                 </div>
@@ -92,10 +92,11 @@ export const CompAccountSelector = ({ setAccounts }) => {
               <MenuItem
                 key={`oa-${item.official_account_id}`}
                 value={item.official_account_id}
+                style={{borderBottom : '1px dotted black'}}
                
               >
                 <div>
-                  <span>{item.country_name_spa}</span>
+                  <span><b>{item.country_name_spa}</b></span>
                   <h6>{item.official_account}</h6>
                   <span>{item.official_account_name_spa}</span>
                 </div>

@@ -33,7 +33,7 @@ export const ComparativeTool = ({setDataComparing}) => {
   })
   
   const handleComparison = () => {
-   
+   console.log('accounts' , accounts)
     setDataComparing(prev => {
       return {
         ...prev,

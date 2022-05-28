@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getFlag } from '../helpers/getFlag';
-import { useGetData } from '../hooks/useGetData';
+import useGetCountries from '../hooks/useGetCountries';
 import { HeaderUserView } from '../styles/styledComponents/userCardStyled';
-const apiCountries =
-  'https://fundacionandresbello.org/wp-json/fab/v1/countries';
 
 const HeaderUserCard = ({ countryId, userName }) => {
 
@@ -13,7 +11,7 @@ const HeaderUserCard = ({ countryId, userName }) => {
     loading: true,
   });
 
-  const dataCountries = useGetData(apiCountries);
+  const dataCountries = useGetCountries();
   let countryName = '';
   let flagUrl = '';
 

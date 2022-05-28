@@ -41,7 +41,7 @@ export const UserAccountCard = ({user}) => {
         <div className="dot" />
         <div className="innerGroup">
           <div className="title">
-            <p>Cuenta</p>
+            <b>Cuenta</b>
           </div>
           <div className="account">
             <p>{user}</p>
@@ -62,10 +62,10 @@ return(
     <div className="dot" />
     <div className="innerGroup">
       <div className="title">
-        <p>{name}</p>
+        <h5>{name}</h5>
       </div>
       <div className="data">
-        <p>{data}</p>        
+        <span>{data}</span>        
       </div>
     </div>
   </div>

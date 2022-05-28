@@ -2,7 +2,7 @@ import styled from 'styled-components';
 export const UserCardStyled = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 25px;
+  
   .left{
     display: flex;
     flex-direction: column;
