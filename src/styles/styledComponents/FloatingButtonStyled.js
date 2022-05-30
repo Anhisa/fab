@@ -70,8 +70,6 @@ export const FloatingButtonContainer = styled.div`
     &:hover {
       //animate
 
-     
-
      height: fit-content;
       width: 300px;
       #content {

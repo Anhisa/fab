@@ -7,8 +7,9 @@ import {
   FloatingButtonStyled,
 } from '../styles/styledComponents/FloatingButtonStyled';
 
-const FloatingButton = ({ currentMap, setCurrentMap, menu }) => {
-  const scroll = useScroll();  
+const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, menu }) => {
+  const scroll = useScroll(); 
+  const { open, setOpen } = countryListManagmentOpen; 
 
  
 
@@ -39,6 +40,7 @@ const FloatingButton = ({ currentMap, setCurrentMap, menu }) => {
 
   function handleClick() {
     setShowMap(true);
+    setOpen(false);
   
     setShowAccountComparing(false);
     setShowPeriodComparing(false);
@@ -51,11 +53,12 @@ const FloatingButton = ({ currentMap, setCurrentMap, menu }) => {
     })
     setShowAccountComparing((prev) => !prev);
     setShowPeriodComparing((prev) => !prev);
-    
+    setOpen(false);
     setShowMap(false);
   }
   function handleClickChange() {
     setCurrentMap((prev) => !prev);
+    setOpen(false);
     setShowAccountComparing(false);
     setShowPeriodComparing(false);
    

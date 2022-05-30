@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { scaleLinear } from 'd3-scale';
 import {
@@ -21,12 +21,14 @@ export const Map = ({
   setMouse,
   countryListManagmentOpen,
   setCountrySelectedId,
+  
 }) => {
   const [position, setPosition] = useState({
     coordinates: [-75, -10],
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
+ 
 
   function handleZoomIn() {
     if (position.zoom >= 4) return;

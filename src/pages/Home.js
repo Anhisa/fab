@@ -54,7 +54,7 @@ export const Home = () => {
 
   return (
     <HomeStyled className="container-xl">
-      <FloatingButton setCurrentMap={setCurrentMap} menu={menu} currentMap={currentMap} />
+      <FloatingButton setCurrentMap={setCurrentMap} menu={menu} currentMap={currentMap} countryListManagmentOpen={countryListManagmentOpen} />
       <div className="banner-container">
         <h2 className="banner-title">CHINA LATAM TWITTER DATABASE</h2>
       </div>
@@ -70,6 +70,7 @@ export const Home = () => {
               setMouse={setMousePosition}
               countryListManagmentOpen={countryListManagmentOpen}
               setCountrySelectedId={setCountrySelectedId}
+              
             />
           </MapStyled>
           :
