@@ -7,8 +7,7 @@ export const FloatingButtonStyled = styled.div`
   align-items: center;
   ul{
     list-style: none;
-  }
-    
+  }  
   
 
   #menuName {
@@ -25,6 +24,14 @@ export const FloatingButtonInner = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+
+  &:hover {   
+    border: 1px solid #e6e6e6;
+    background-color: honeydew;
+  }
 `
 export const FloatingButtonContainer = styled.div`
   z-index: 20;
@@ -32,6 +39,7 @@ export const FloatingButtonContainer = styled.div`
   caret-color: transparent;
   animation: fadeIn 0.5s ease-in-out;
   animation-fill-mode: forwards;
+  
   .rest {
     border-top-right-radius: 25px;
     position: absolute;
@@ -42,6 +50,7 @@ export const FloatingButtonContainer = styled.div`
   }
   .sticky {
     position: fixed;
+
     top: 240px;
     left: 0px;
     width: 50px;
@@ -63,7 +72,7 @@ export const FloatingButtonContainer = styled.div`
 
       transition: all 0.5s ease-in-out;
 
-      height: 250px;
+     height: fit-content;
       width: 300px;
       #content {
         display: flex;

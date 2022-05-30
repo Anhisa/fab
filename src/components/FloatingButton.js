@@ -38,6 +38,10 @@ const FloatingButton = ({ currentMap, setCurrentMap, menu }) => {
     window.scrollTo(0, 0);
   }
   function handleClickAccounts() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
     setShowAccountComparing((prev) => !prev);
     setShowPeriodComparing((prev) => !prev);
     
@@ -62,7 +66,7 @@ const FloatingButton = ({ currentMap, setCurrentMap, menu }) => {
               </li>}
               <li>
                 <FloatingButtonInner type="button" onClick={handleClick}>
-                {currentMap === true ? 'Ver islas' : 'Ver continente'}
+                {currentMap === true ? 'Ver islas del Caribe' : 'Ver continente'}
                 </FloatingButtonInner>
               </li>
             </ul>
