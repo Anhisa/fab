@@ -3,6 +3,7 @@ import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { getFlag } from '../helpers/getFlag';
+import { CountryCardSelectStyled } from '../styles/styledComponents/CountryCardSelect';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
 const columns = [
@@ -36,7 +37,9 @@ export const CountryItem = ({ accountsCountry, countryListManagment, countryData
   const [countriesData] = countryDataState;
   function hasRelationWithTaiwan(countryId) {
     const countryData = countriesData.find(country => country.country_id === countryId);
-    return countryData.official_relations_spa === 'Taiwan';
+    
+    console.log('funtion taiwan',countryData);
+    return countryData?.official_relations_spa === 'Taiwan';
   }
 
   const handleClose = () => {
@@ -77,17 +80,14 @@ export const CountryItem = ({ accountsCountry, countryListManagment, countryData
     {open && <DataTable
 
       title={
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <CountryCardSelectStyled>
           <p>{accountsCountry[0]?.country_name_spa ?? ''}</p>
           <img
             src={getFlag(accountsCountry[0].country_name_eng)}
-            alt={`Bandera de ${accountsCountry[0].country_name_spa}`}
-            style={{ width: '80px' }}
-          />
-          {/* <button type='button' className='btn btn-primary' onClick={handleClose}>
-            close
-          </button> */}
-        </div>
+            alt={`Bandera de ${accountsCountry[0].country_name_spa}`}            
+          /> 
+          <hr/>       
+        </CountryCardSelectStyled>
       }
       columns={columns}
       data={accountsCountry}

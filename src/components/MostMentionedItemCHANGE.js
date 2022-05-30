@@ -10,6 +10,7 @@ import { StyledDataTable } from '../styles/styledComponents/StyledDataTable';
 import { tab } from '@testing-library/user-event/dist/tab';
 import { TableContext } from '../context/TableContext';
 import { ExpandedComponent } from './ExpandedComponent';
+import { columns } from '../helpers/columns';
 
 export const MostMentionedItemCHANGE = ({
   newData,
@@ -65,55 +66,7 @@ export const MostMentionedItemCHANGE = ({
       tweets_number: arrayBar[index]??0,
     };
   });
-  const columns = [
-    {
-      name: 'Usuario/ Nombre cuenta',
-      selector: (row) => (
-        <UserAccount
-          userAccount={row.userAccount}
-          userAccountDesc={row.userAccountDesc}
-        />
-      ),
-      sortable: true,
-      wrap: true,
-      maxWidth: '400px',
-      minWidth: '200px',
-      compact: true,
-    },
-    {
-      name: 'Categoría',
-      selector: (row) => row.categoría,
-      sortable: true,
-      id: 'categoria',
-      grow: 2,
-      wrap: true,
-      maxWidth: '350px',
-      minWidth: '200px',
-      compact: true,
-      omit: comparisonView,
-    },
-    {
-      name: 'Verificado',
-      selector: (row) => <IsVerified isVerified={row.isVerified} />,
-
-      id: 'isVerified',
-      grow: 2,
-      wrap: false,
-      center: true,
-      width: '150px',
-      
-    },
-    {
-      name: 'Número de Tweets',
-      selector: (row) => <BarContainer dataBar={row.tweets_number} />,
-      sortable: true,
-      id: 'tweetsNumber',
-      grow: 2,
-      wrap: false,
-      maxWidth: '500px',
-      width: '220px',
-    },
-  ];
+  
   
 
 

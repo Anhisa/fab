@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import { StyledDataTable } from '../styles/styledComponents/StyledDataTable';
 import { CreateChart } from '../helpers/createChart';
 
-import { BarContainer, IsVerified, UserAccount } from './partsDataTable';
 import { ExpandedComponent } from './ExpandedComponent';
+import { columns } from '../helpers/columns';
 export const MostRetweetedItemChange = ({ newData, period, comparisonView, arrayBar, title }) => {
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
   //  For some reason a whole array of arrays is returned
@@ -20,56 +20,7 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
     (totaltweetsNumber, item) => totaltweetsNumber + item,
     0
   );
-  
-  const columns = [
-    {
-      name: 'Usuario/Nombre de la cuenta',
-      selector: (row) =>  <UserAccount userAccount={row.userAccount} userAccountDesc={row.userAccountDesc } />   ,
-    
-      id: 'nombreCuenta',
-      grow: 2,
-      wrap: true,
-      maxWidth: '400px',
-      minWidth: '200px',
-      compact: true,
-    },
-  
-    {
-      name: 'Categoría',
-      selector: (row) => row.categoría,
-      sortable: true,
-      id: 'categoria',
-      grow: 2,
-      wrap: true,
-      maxWidth: '350px',
-      minWidth: '200px',
-      compact: true,
-      omit: comparisonView
-  
-    },
-    {
-      name: 'Verificado',
-      selector: (row) =>  <IsVerified isVerified={row.isVerified} />,
-      sortable: true,
-      id: 'isVerified',
-      grow: 2,
-      wrap: false,
-      center:true,
-      width: '150px',
-     
-    }
-    ,
-    {
-      name: 'Número de Tweets',
-      selector: (row) => <BarContainer dataBar={row.tweets_number} />,
-      sortable: true,
-      id: 'tweetsNumber',
-      grow: 2,
-      wrap: false,
-      maxWidth: '500px',
-      width: '220px'
-    },
-  ];
+
 
   let rows = newData.map((item) =>
     createData(

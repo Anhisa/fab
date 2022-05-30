@@ -27,7 +27,7 @@ ChartJS.register(
 );
 
 export const MonthlyTweetsChart = ({ newData }) => {
-  console.log(newData);
+
   //  For some reason a whole array of arrays is returned
   if (newData[0][newData[0].length - 1].length > 5) {
     newData[0].pop();

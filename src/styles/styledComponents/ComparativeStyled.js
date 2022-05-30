@@ -8,7 +8,8 @@ export const ComparativeStyled = styled.section`
   margin: 20px;
   border-radius: 15px;
   height: fit-content;
-  
+  border: 2px solid rgb(29, 36, 68);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.75);
   .countSelector{
     display: flex;
     flex-direction: column;

@@ -19,7 +19,9 @@ import { SectionToolsStyled } from '../styles/styledComponents/SectionToolsStyle
 import { SectionMapsStyled } from '../styles/styledComponents/SectionMapStyled';
 import { ComparisonContainerStyled } from '../styles/styledComponents/ComparisonContainerStyled';
 import useCreateInitialState from '../hooks/createInitialState';
-
+import FloatingButton from '../components/FloatingButton';
+import useMenu from '../hooks/useMenu';
+import ColorBar from '../components/colorBar';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
 
@@ -28,6 +30,7 @@ export const Home = () => {
   const [countriesAllData, setCountriesAllData] = useState([]);
   const [countrySelectedId, setCountrySelectedId] = useState(null);
   const countryDataState = [countriesAllData, setCountriesAllData];
+  const [currentMap, setCurrentMap] = useState('lat');
   const [open, setOpen] = useState(false);
 
   const countryListManagment = { open, setOpen };
@@ -39,16 +42,28 @@ export const Home = () => {
     x: 0,
     y: 0,
   });
-  useEffect(() => {}, [dataComparing]);
+  const menu = useMenu()
+  const {
+    showMap,
+    showAccountComparing,
+    showPeriodComparing,
+  } = menu;
+  
+
+  
 
   return (
     <HomeStyled className="container-xl">
+      <FloatingButton setCurrentMap={setCurrentMap} menu={menu} />
       <div className="banner-container">
         <h2 className="banner-title">CHINA LATAM TWITTER DATABASE</h2>
       </div>
+      
+        {/* <ColorBar/> */}
       <TableContext.Provider value={dataComparing}>
         <SectionMapsStyled>
-          <MapStyled className="map-container col-6">
+         { showMap ?
+            currentMap  ? <MapStyled className="map-container col-6">
             <Map
               items={items}
               setAccounts={setAccountsCountry}
@@ -57,6 +72,7 @@ export const Home = () => {
               setCountrySelectedId={setCountrySelectedId}
             />
           </MapStyled>
+          :
           <MapStyled className="map-container col-6">
             <MapIslands
               items={items}
@@ -66,6 +82,8 @@ export const Home = () => {
               setCountrySelectedId={setCountrySelectedId}
             />
           </MapStyled>
+          : null
+          }
           <DetachableTable top={mousePosition.y} left={mousePosition.x}>
             <CountryList
               accountsCountry={accountsCountry}
@@ -76,19 +94,22 @@ export const Home = () => {
           </DetachableTable>
         </SectionMapsStyled>
         <SectionToolsStyled>
-          <ComparativeStyled>
+          {showAccountComparing ? <ComparativeStyled>
             <ComparativeTool setDataComparing={setDataComparing} />
           </ComparativeStyled>
-          <ComparativeStyled>
+          : null}
+        {showPeriodComparing ?  <ComparativeStyled>
             <SelectorComparative
               countryDataState={countryDataState}
               setDataComparing={setDataComparing}
             />
           </ComparativeStyled>
+          : null}
         </SectionToolsStyled>
+        {showMap ? null : 
         <ComparisonContainerStyled>
           <ComponentContainer context={dataComparing} />
-        </ComparisonContainerStyled>
+        </ComparisonContainerStyled>}
       </TableContext.Provider>
     </HomeStyled>
   );

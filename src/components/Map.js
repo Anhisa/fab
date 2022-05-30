@@ -55,9 +55,9 @@ export const Map = ({
       });
       setAccounts(filteredAccounts);
       setCountrySelectedId(itemValue.value);
-      if (!open) {
+      if (!open || open) {
         return setOpen(true);
-      }
+      } 
     }
 
     return setOpen(false);
@@ -68,6 +68,8 @@ export const Map = ({
   const colorScale = scaleLinear()
     .domain([0, 11161])
     .range(['#edf7ff', '#1d9bf0']);
+
+    
 
   return (
     <>

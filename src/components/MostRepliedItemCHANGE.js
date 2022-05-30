@@ -7,6 +7,7 @@ import { BarContainer, IsVerified, UserAccount } from './partsDataTable';
 import { CreateChart } from '../helpers/createChart';
 import { StyledDataTable } from '../styles/styledComponents/StyledDataTable';
 import { ExpandedStyled } from '../styles/styledComponents/ExpandedStyled';
+import { columns } from '../helpers/columns';
 
 export const MostRepliedItemCHANGE = ({ newData, title, comparisonView, arrayBar }) => {
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
@@ -76,52 +77,7 @@ export const MostRepliedItemCHANGE = ({ newData, title, comparisonView, arrayBar
     )
 
   }
-  const columns = [
-    {
-      name: 'Usuario/ Nombre cuenta',
-      selector: (row) => <UserAccount userAccount={row.userAccount} userAccountDesc={ row.userAccountDesc } /> ,
-      sortable: true,
-      wrap: true,
-      maxWidth: '400px',
-      minWidth: '200px',
-      compact: true,
-    },
-    {
-      name: 'Categoría',
-      selector: (row) => row.categoría,
-      sortable: true,
-      id: 'categoria',
-      wrap: true,
-     
-      
-      maxWidth: '350px',
-    
-      compact: true,
-      omit: comparisonView
-    },
-    {
-      name: 'Verificado',
-      selector: (row) => <IsVerified isVerified={row.isVerified} />,
-    
-      id: 'isVerified',
-      grow: 2,
-      wrap: false,
-      center: true,
-      width: '150px',
-      // omit: comparisonView
-    },
-    {
-      name: 'Número de Tweets',
-      selector: (row) => <BarContainer dataBar={row.tweets_number} />,
-      sortable: true,
-      id: 'tweetsNumber',
-      grow: 2,
-      wrap: false,
-      maxWidth: '500px',
-      width: '220px',
-    },
-  ];
-
+  
   return (
     <StyledDataTable className="dataTable">
     <DataTable

@@ -8,7 +8,7 @@ export const CollapsableTableStyled = styled.div`
   .open {
     display: flex;
     flex-direction: ${props => props.usuario ? 'row' : 'column'};
-    width: 100%;
+      width: 100%;
     .column{
       width: 100%;
     }
