@@ -62,7 +62,7 @@ export const FloatingButtonContainer = styled.div`
     width: 50px;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 20px;
-
+    transition: all 0.5s ease-in-out;
     #content {
       display: none;
     }
@@ -70,13 +70,14 @@ export const FloatingButtonContainer = styled.div`
     &:hover {
       //animate
 
-      transition: all 0.5s ease-in-out;
+     
 
      height: fit-content;
       width: 300px;
       #content {
         display: flex;
       }
+      transition: all 0.5s ease-in-out;
     }
   }
 `;

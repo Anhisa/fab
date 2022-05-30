@@ -14,10 +14,8 @@ const FloatingButton = ({ currentMap, setCurrentMap, menu }) => {
 
   useEffect(() => {
     let header = document.getElementById('floating-button');    
-    let sticky = 140;
-    if(scroll > 100){
-      header.classList.add('sticky');
-    }
+    let sticky = 140;  
+
     if (scroll > sticky) {
       header.classList.add('sticky');
       header.classList.add('hide');
@@ -26,7 +24,16 @@ const FloatingButton = ({ currentMap, setCurrentMap, menu }) => {
       header.classList.remove('sticky');
       header.classList.add('rest');
     }
-  }, [scroll]);
+  
+ }, [scroll]);
+  useEffect(() => {
+    let header = document.getElementById('floating-button');
+    setTimeout(() => {
+      header.classList.add('hide');
+    },1000)
+  
+  }, [])
+  
   if(!menu) return null;
   const { setShowMap, setShowAccountComparing, setShowPeriodComparing, showMap } = menu;  
 
