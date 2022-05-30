@@ -38,7 +38,7 @@ export const MonthlyTweetsChart = ({ newData }) => {
   labels = labels.map(
     (item) =>
       new Date(item).toLocaleString('es-ES', {
-        month: 'long',
+        month: 'short',
         timeZone: 'UTC',
       }) +
       ' ' +
