@@ -9,7 +9,7 @@ import {
 
 const FloatingButton = ({ currentMap, setCurrentMap, menu }) => {
   const scroll = useScroll();  
-  console.log(menu)
+
  
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const FloatingButton = ({ currentMap, setCurrentMap, menu }) => {
 
   function handleClick() {
     setShowMap(true);
-    setCurrentMap((prev) => !prev);
+  
     setShowAccountComparing(false);
     setShowPeriodComparing(false);
     window.scrollTo(0, 0);
@@ -54,9 +54,11 @@ const FloatingButton = ({ currentMap, setCurrentMap, menu }) => {
     
     setShowMap(false);
   }
-  function handleClickPeriods() {
+  function handleClickChange() {
+    setCurrentMap((prev) => !prev);
     setShowAccountComparing(false);
-    setShowMap(false);
+    setShowPeriodComparing(false);
+   
   }
   return (
     <FloatingButtonContainer>
@@ -72,7 +74,7 @@ const FloatingButton = ({ currentMap, setCurrentMap, menu }) => {
                 </FloatingButtonInner>
               </li>}
               <li>
-                <FloatingButtonInner type="button" onClick={handleClick}>
+                <FloatingButtonInner type="button" onClick={handleClickChange}>
                 {currentMap === true ? 'Ver islas del Caribe' : 'Ver continente'}
                 </FloatingButtonInner>
               </li>
