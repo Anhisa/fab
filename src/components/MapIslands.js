@@ -15,12 +15,12 @@ const geoUrl =
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
-export const MapIslands = ({ setAccounts, items, setMouse, countryListManagment, setCountrySelectedId }) => {
+export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentOpen, setCountrySelectedId }) => {
   const [position, setPosition] = useState({
     coordinates: [-73, 16],
     zoom: 1,
   });
-  const { open, setOpen } = countryListManagment;
+  const { open, setOpen } = countryListManagmentOpen;
 
   function handleZoomIn() {
     if (position.zoom >= 4) return;

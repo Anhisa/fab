@@ -30,10 +30,10 @@ export const Home = () => {
   const [countriesAllData, setCountriesAllData] = useState([]);
   const [countrySelectedId, setCountrySelectedId] = useState(null);
   const countryDataState = [countriesAllData, setCountriesAllData];
-  const [currentMap, setCurrentMap] = useState('lat');
+  const [currentMap, setCurrentMap] = useState(true);
   const [open, setOpen] = useState(false);
 
-  const countryListManagment = { open, setOpen };
+  const countryListManagmentOpen = { open, setOpen };
   const items = response.data;
 
   const [accountsCountry, setAccountsCountry] = useState([]);
@@ -54,7 +54,7 @@ export const Home = () => {
 
   return (
     <HomeStyled className="container-xl">
-      <FloatingButton setCurrentMap={setCurrentMap} menu={menu} />
+      <FloatingButton setCurrentMap={setCurrentMap} menu={menu} currentMap={currentMap} />
       <div className="banner-container">
         <h2 className="banner-title">CHINA LATAM TWITTER DATABASE</h2>
       </div>
@@ -68,7 +68,7 @@ export const Home = () => {
               items={items}
               setAccounts={setAccountsCountry}
               setMouse={setMousePosition}
-              countryListManagment={countryListManagment}
+              countryListManagmentOpen={countryListManagmentOpen}
               setCountrySelectedId={setCountrySelectedId}
             />
           </MapStyled>
@@ -78,7 +78,7 @@ export const Home = () => {
               items={items}
               setAccounts={setAccountsCountry}
               setMouse={setMousePosition}
-              countryListManagment={countryListManagment}
+              countryListManagmentOpen={countryListManagmentOpen}
               setCountrySelectedId={setCountrySelectedId}
             />
           </MapStyled>
@@ -87,7 +87,7 @@ export const Home = () => {
           <DetachableTable top={mousePosition.y} left={mousePosition.x}>
             <CountryList
               accountsCountry={accountsCountry}
-              countryListManagment={countryListManagment}
+              countryListManagmentOpen={countryListManagmentOpen}
               countryDataState={countryDataState}
               countrySelectedId={countrySelectedId}
             />

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { getFlag } from '../helpers/getFlag';
 import { CountryCardSelectStyled } from '../styles/styledComponents/CountryCardSelect';
+import useGetCountries from '../hooks/useGetCountries';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
 const columns = [
@@ -32,23 +33,38 @@ const columns = [
       ),
   },
 ];
-export const CountryItem = ({ accountsCountry, countryListManagment, countryDataState, countrySelectedId }) => {
-  const {open, setOpen} = countryListManagment;
-  const [countriesData] = countryDataState;
+export const CountryItem = ({ accountsCountry, countryListManagmentOpen, countryDataState, countrySelectedId }) => {
+  const {open, setOpen} = countryListManagmentOpen;
+  const [countriesAllData, setCountriesAllData] = countryDataState;  
+  const {data, loading} = useGetCountries()
+  useEffect(()=> {
+    if(!loading) setCountriesAllData(data)
+  },[loading])
+
   function hasRelationWithTaiwan(countryId) {
-    const countryData = countriesData.find(country => country.country_id === countryId);
-    
-    console.log('funtion taiwan',countryData);
-    return countryData?.official_relations_spa === 'Taiwan';
+   if(loading) return false
+   const countryData = countriesAllData.find(country => country.country_id === countryId);
+   console.log(countryData)
+   return countryData.official_relations_spa === 'Taiwan' ?? false;
   }
 
   const handleClose = () => {
     setOpen(false);
   };
-  if (accountsCountry.length === 0) {
-    if(open &&hasRelationWithTaiwan(countrySelectedId)) {
+
+  if (accountsCountry.length === 0 && open) {
+    const countryData = countriesAllData.find(country => country.country_id === countrySelectedId);
+    if(open && hasRelationWithTaiwan(countrySelectedId)) {
       return (
         <div className={open ? 'open' : 'closed'}>
+          <CountryCardSelectStyled>
+          <p>{countryData.country_name_spa ?? ''}</p>
+          <img
+            src={getFlag(countryData.country_name_eng)}
+            alt={`Bandera de ${countryData.country_name_spa}`}            
+          /> 
+          <hr/>       
+        </CountryCardSelectStyled>
           <p>
           Tiene relaciones diplomáticas <br></br>
           con La República de China - Taiwán
@@ -61,6 +77,14 @@ export const CountryItem = ({ accountsCountry, countryListManagment, countryData
     }
     return (
       <div className={open ? 'open' : 'closed'}>
+         <CountryCardSelectStyled>
+          <p>{countryData?.country_name_spa ?? ''}</p>
+          <img
+            src={getFlag(countryData.country_name_eng)}
+            alt={`Bandera de ${countryData.country_name_spa}`}            
+          /> 
+          <hr/>       
+        </CountryCardSelectStyled>
         <p>
           No hay cuentas o data registradas en este país
         </p>

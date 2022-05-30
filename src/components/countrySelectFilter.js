@@ -1,8 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useGetData } from '../hooks/useGetData';
+import useGetCountries from '../hooks/useGetCountries';
 
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/countries';
 
 const CountrySelectFilter = ({ countrysWithData, setCountryFilterActive, setCountryId, countryDataState }) => {
   const [innerData, setInnerData] = useState([]);
@@ -10,7 +9,7 @@ const CountrySelectFilter = ({ countrysWithData, setCountryFilterActive, setCoun
   const [countriesAllData, setCountriesAllData] = countryDataState;
   const [countryA, setCountryA] = useState('');
   let countryIds = countrysWithData.map((country) => country.countryId);
-  let { data, loading } = useGetData(api);
+  let { data, loading } = useGetCountries();
   let countryNames = [] 
   useEffect(() => {
     if (!loading) {

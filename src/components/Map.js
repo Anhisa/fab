@@ -19,14 +19,14 @@ export const Map = ({
   setAccounts,
   items,
   setMouse,
-  countryListManagment,
+  countryListManagmentOpen,
   setCountrySelectedId,
 }) => {
   const [position, setPosition] = useState({
     coordinates: [-75, -10],
     zoom: 1,
   });
-  const { open, setOpen } = countryListManagment;
+  const { open, setOpen } = countryListManagmentOpen;
 
   function handleZoomIn() {
     if (position.zoom >= 4) return;
@@ -53,6 +53,7 @@ export const Map = ({
         x: pageX,
         y: pageY,
       });
+      
       setAccounts(filteredAccounts);
       setCountrySelectedId(itemValue.value);
       if (!open || open) {

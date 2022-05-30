@@ -2,14 +2,15 @@ import React, { useEffect } from 'react';
 import useMenu from '../hooks/useMenu';
 import useScroll from '../hooks/useScroll';
 import {
+  FloatingButtonInner,
   FloatingButtonContainer,
   FloatingButtonStyled,
 } from '../styles/styledComponents/FloatingButtonStyled';
 
-const FloatingButton = ({ setCurrentMap, menu }) => {
+const FloatingButton = ({ currentMap, setCurrentMap, menu }) => {
   const scroll = useScroll();  
-  const { setShowMap, setShowAccountComparing, setShowPeriodComparing } = menu;  
-
+  console.log(menu)
+ 
 
   useEffect(() => {
     let header = document.getElementById('floating-button');    
@@ -26,6 +27,9 @@ const FloatingButton = ({ setCurrentMap, menu }) => {
       header.classList.add('rest');
     }
   }, [scroll]);
+  if(!menu) return null;
+  const { setShowMap, setShowAccountComparing, setShowPeriodComparing, showMap } = menu;  
+
   function handleClick() {
     setShowMap(true);
     setCurrentMap((prev) => !prev);
@@ -35,11 +39,11 @@ const FloatingButton = ({ setCurrentMap, menu }) => {
   }
   function handleClickAccounts() {
     setShowAccountComparing((prev) => !prev);
-    setShowPeriodComparing(false);
+    setShowPeriodComparing((prev) => !prev);
+    
     setShowMap(false);
   }
   function handleClickPeriods() {
-    setShowPeriodComparing((prev) => !prev);
     setShowAccountComparing(false);
     setShowMap(false);
   }
@@ -49,23 +53,27 @@ const FloatingButton = ({ setCurrentMap, menu }) => {
         <p id='menuName'>Menú</p>
         <ul id="content">
           <li>
+          <h3>{showMap ? 'Cambiar mapa' : 'Ver mapa'}</h3>
+            <ul>            
+           { !showMap &&  <li>
+                <FloatingButtonInner type="button" onClick={handleClick}>
+                  Ver mapa
+                </FloatingButtonInner>
+              </li>}
+              <li>
+                <FloatingButtonInner type="button" onClick={handleClick}>
+                {currentMap === true ? 'Ver islas' : 'Ver continente'}
+                </FloatingButtonInner>
+              </li>
+            </ul>
+            
             <h3>Herramientas comparativas</h3>
-            <ul>
+            <ul>            
               <li>
-                <button type="button" onClick={handleClick}>
-                  Cambiar mapa
-                </button>
-              </li>
-              <li>
-                <button type="button" onClick={handleClickAccounts}>
-                  Comparar por usuarios
-                </button>
-              </li>
-              <li>
-                <button type="button" onClick={handleClickPeriods}>
-                  Comparar por periodos
-                </button>
-              </li>
+                <FloatingButtonInner type="button" onClick={handleClickAccounts}>
+                  Comparar por usuarios y periodos
+                </FloatingButtonInner>
+              </li>         
             </ul>
           </li>
         </ul>
