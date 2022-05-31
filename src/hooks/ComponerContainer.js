@@ -29,7 +29,7 @@ export const ComponentContainer = ({context}) => {
   return (
     <>
      <TableContext.Provider value={context}>
-      {categories.monthlyTweets && (
+      {/* {categories.monthlyTweets && (
         <CollapsableTableStyled>
           <ButtonToogle name="monthy-tweets">
            
@@ -39,7 +39,7 @@ export const ComponentContainer = ({context}) => {
 
           <MonthlyTweetsItems period={context.period}/>
         </CollapsableTableStyled>
-      )}
+      )} */}
       {categories.mostRetweeted && (
         <CollapsableTableStyled  usuario={true}>
           <ButtonToogle name="most-retweet" >

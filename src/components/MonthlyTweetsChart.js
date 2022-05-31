@@ -103,7 +103,7 @@ function createDatasets(data) {
 
     if(periods[0].id < periods[1].id){
       
-      test = useMonthyHelper(data2)
+      test = useMonthyHelper(data)
       if(test[0].length > 1){
         test = test[0]  
       } 
@@ -120,11 +120,11 @@ function createDatasets(data) {
       }
   
 
-      newLabels = test.map((item) => item.month)
+      newLabels = data2[1].map((item) => item.month)
     
   
   //uniques with Set 
-  // newLabels = [...new Set(newLabels)]
+  newLabels = [...new Set(newLabels)]
   newLabels = newLabels.map(
     (item) =>
       new Date(item).toLocaleString('es-ES', {
@@ -155,7 +155,7 @@ function createDatasets(data) {
 
   return [datasets,newLabels];
 } else {
-  
+  // para las cuentas
   const datasets = [];
   let controlColor = 0;
   data.forEach((item) => {
