@@ -51,8 +51,8 @@ const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, m
       top: 0,
       behavior: 'smooth',
     })
-    setShowAccountComparing((prev) => !prev);
-    setShowPeriodComparing((prev) => !prev);
+    setShowAccountComparing(true);
+    setShowPeriodComparing(true);
     setOpen(false);
     setShowMap(false);
   }
