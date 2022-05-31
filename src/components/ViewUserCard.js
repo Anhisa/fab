@@ -12,6 +12,13 @@ const ViewUserCard = ({data, period}) => {
   }
   /* Pendiente agregar el periodo */ 
 console.log('Pendiente agregar el periodo')
+console.log('period', period)
+console.log('data', data)
+const total_tweets_period = data.slice(0,period).reduce((acc, curr) => {
+  return acc + parseInt(curr.total_tweets_period)
+},0)
+
+
   return (
     <ViewUserCardStyled>
       <div className="innerLeft">
@@ -26,7 +33,7 @@ console.log('Pendiente agregar el periodo')
         <hr/>
         <UserCard name={'Nº cuentas seguidas'} data={data[period]?.following_number ?? 'No hay data en el periodo seleccionado'} />
         <hr/>
-        <UserCard  name={"Total tuits período"} data={data[period]?.total_tweets_period ?? 'No hay data en el periodo seleccionado'} />
+        <UserCard  name={"Total tuits período"} data={total_tweets_period ?? 'No hay data en el periodo seleccionado'} />
       </div>
     </ViewUserCardStyled>
   );

@@ -25,7 +25,7 @@ export const MostRetweetedItems = memo((period) => {
     setChartData(arraysBar);  
   }
   }, [period, data]);
-  if (!data || chartData.length === 0) {
+  if (!data ) {
     return   <Spinner animation="border" role="status">
     <span className="visually-hidden">Loading...</span>
   </Spinner>
