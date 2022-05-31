@@ -7,6 +7,7 @@ import {
   Geography,
   Marker,
   ZoomableGroup,
+  Graticule,
 } from 'react-simple-maps';
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
 
@@ -15,9 +16,15 @@ const geoUrl =
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
-export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentOpen, setCountrySelectedId }) => {
+export const MapIslands = ({
+  setAccounts,
+  items,
+  setMouse,
+  countryListManagmentOpen,
+  setCountrySelectedId,
+}) => {
   const [position, setPosition] = useState({
-    coordinates: [-73, 16],
+    coordinates: [-73, 17.2],
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
@@ -40,13 +47,12 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentO
     if (target.attributes.value) {
       const itemValue = target.attributes.value;
 
-
       const filteredAccounts = items.filter(
         (item) => item.country_id === itemValue.value
       );
       setMouse({
         x: pageX,
-        y: pageY ,
+        y: pageY,
       });
       setAccounts(filteredAccounts);
       setCountrySelectedId(itemValue.value);
@@ -65,21 +71,27 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentO
     .range(['#edf7ff', '#1d9bf0']);
 
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      width: '80%',
-    }}>
-    <h1
-    style={{
-      marginLeft: '150px',
-    }}
-    >El Caribe</h1>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '80%',
+      }}
+    >
+      <h1
+        style={{
+          marginLeft: '150px',
+        }}
+      >
+        El Caribe
+      </h1>
       <ComposableMap
+        height={960}
+        width={1920}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
           rotate: [49, -67.5, 0],
-          scale: 1500,
+          scale: 2800,
         }}
         onClick={handleOnClick}
       >
@@ -88,12 +100,11 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentO
           center={position.coordinates}
           onMoveEnd={handleMoveEnd}
         >
+          <Graticule stroke="#ccc" />
           <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
             {({ geographies }) =>
               geographies
-                .filter(
-                  (d) => d.properties.SUBREGION === 'Caribbean'
-                )
+                .filter((d) => d.properties.SUBREGION === 'Caribbean')
                 .map((geo) => {
                   const d = tweetsByCountry.find(
                     (s) => s.countryId === geo.properties.COUNTRY_ID

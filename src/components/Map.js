@@ -24,7 +24,7 @@ export const Map = ({
 
 }) => {
   const [position, setPosition] = useState({
-    coordinates: [-75, -11],
+    coordinates: [-75, -12],
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
@@ -86,12 +86,12 @@ export const Map = ({
     }}
     >América Latina Continetal</h1>
       <ComposableMap
-        height={1080}
+        height={960}
         width={1920}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
           rotate: [77, 15, 0],
-          scale: 700,
+          scale: 640,
         }}
         onClick={handleOnClick}
       >
@@ -102,7 +102,7 @@ export const Map = ({
           onMoveEnd={handleMoveEnd}
 
         >
-            <Graticule stroke="#F53" />
+            <Graticule stroke="#ccc" />
           <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
             {({ geographies }) =>
               geographies
