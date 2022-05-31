@@ -102,7 +102,7 @@ export const Map = ({
           onMoveEnd={handleMoveEnd}
 
         >
-            <Graticule stroke="#121f45" step={[9,9]}  />
+            <Graticule stroke="#ccc" step={[9,9]}  />
           <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
             {({ geographies }) =>
               geographies
