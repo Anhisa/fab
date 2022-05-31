@@ -70,11 +70,11 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentO
       flexDirection: 'column',
       width: '100%',
     }}>
-    <h1
+    <h4
     style={{
       marginLeft: '150px',
     }}
-    >El Caribe</h1>
+    >El Caribe</h4>
       <ComposableMap
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
