@@ -9,10 +9,10 @@ const ColorBar = () => {
 
 return (
 <ColorBarContainer>
-  <em>Menos interacción</em>
+  <em>Menor actividad</em>
     <ColorBarStyled
     />
-    <em>Más interacción</em>
+    <em>Mayor actividad</em>
   </ColorBarContainer>
  
 )

@@ -71,20 +71,16 @@ export const MapIslands = ({
     .range(['#edf7ff', '#1d9bf0']);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: '80%',
-      }}
-    >
-      <h1
-        style={{
-          marginLeft: '150px',
-        }}
-      >
-        El Caribe
-      </h1>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      width: '80%',
+    }}>
+    <h4
+    style={{
+      marginLeft: '150px',
+    }}
+    >El Caribe</h4>
       <ComposableMap
         height={960}
         width={1920}

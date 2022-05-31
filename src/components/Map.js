@@ -80,11 +80,11 @@ export const Map = ({
       flexDirection: 'column',
       width: '80%',
     }}>
-    <h1
+    <h4
     style={{
       marginLeft: '150px',
     }}
-    >América Latina Continetal</h1>
+    >América Latina Continetal</h4>
       <ComposableMap
         height={960}
         width={1920}
