@@ -47,7 +47,7 @@ export const CompCategoryCb = ({ setCategories }) => {
           />
           <FormControlLabel
             control={<Checkbox defaultChecked />}
-            label="Tweets mensuales"
+            label="Número de Tweets mensuales"
             name="monthlyTweets"
             onChange={handleSelect}
           />

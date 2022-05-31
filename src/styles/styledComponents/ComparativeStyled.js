@@ -2,12 +2,13 @@ import styled from "@emotion/styled"
 export const ComparativeStyled = styled.section`
   display: flex;
   width: 50%;
+  height: 650px;
   flex-direction: column;
   background-color: #a4c2d5;
   padding: 20px;
   margin: 20px;
   border-radius: 15px;
-  height: fit-content;
+  
   border: 2px solid rgb(29, 36, 68);
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.75);
   .countSelector{
@@ -75,7 +76,7 @@ export const ComparativePeriodStyled = styled.section`
   width: 100%;
   margin-top: 20px;
   border-radius: 15px;
-  height: fit-content;
+  
   
   .countSelector{
     display: flex;

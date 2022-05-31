@@ -7,6 +7,7 @@ import { CompPeriodSlider } from '../components/CompPeriodSlider';
 
 import Button from '@mui/material/Button';
 import 'bootstrap/dist/css/bootstrap.css';
+import { AccountPeriodContainer } from '../styles/styledComponents/AccountPeriodContainer';
 
 export const ComparativeTool = ({setDataComparing}) => {
   const [accounts, setAccounts] = useState({
@@ -51,7 +52,9 @@ export const ComparativeTool = ({setDataComparing}) => {
       
         <CompAccountSelector setAccounts={setAccounts} />
         <CompCategoryCb setCategories={setCategories} />
+        <AccountPeriodContainer>
         <CompPeriodSlider setPeriod={setPeriod} />
+        </AccountPeriodContainer>
         <div className='btnContainer'>
         <Button variant="contained" onClick={handleComparison} className='btn'>COMPARAR</Button>
         </div>

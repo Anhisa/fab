@@ -3,7 +3,7 @@ export const StyledFilterButton = styled.button`
   width: 100%;
   height: 40px;
   border-radius: 15px;
-  box-shadow: 0px 5px 0px black;
+  box-shadow: 0px 3px 5px black;
   display: flex;  
   justify-content: flex-start;
   align-items: center;
@@ -24,6 +24,10 @@ export const StyledFilterButton = styled.button`
     transform: translateY(5px);
     box-shadow: 0px 0px 0px black;
   }
-  
+  .icon{
+    // no click events
+    pointer-events:none ;
+
+  }
 
 `

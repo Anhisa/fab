@@ -19,7 +19,7 @@ console.log('Pendiente agregar el periodo')
         <hr/>
         <UserCard name={"Institución / Nombre"} data={data[0].official_account_name_spa}/>
         <hr/>
-        <UserCard name={"Período"} data={'Julio 1, 2020 - Diciembre 31, 2020'}/>
+        {/* <UserCard name={"Período"} data={'Julio 1, 2020 - Diciembre 31, 2020'}/> */}
       </div>
       <div className="innerRight">
         <UserCard  name={'Nº Seguidores'} data={data[period]?.followers_number ?? 'No hay data en el periodo seleccionado'}/>

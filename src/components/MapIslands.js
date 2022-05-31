@@ -50,9 +50,9 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentO
       });
       setAccounts(filteredAccounts);
       setCountrySelectedId(itemValue.value);
-      if (!open) {
+      if (!open || open) {
         return setOpen(true);
-      }
+      } 
     }
 
     return setOpen(false);
@@ -65,7 +65,16 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentO
     .range(['#edf7ff', '#1d9bf0']);
 
   return (
-    <>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
+    }}>
+    <h1
+    style={{
+      marginLeft: '150px',
+    }}
+    >El Caribe</h1>
       <ComposableMap
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
@@ -134,6 +143,6 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentO
           </svg>
         </button>
       </div>
-    </>
+    </div>
   );
 };

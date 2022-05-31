@@ -11,8 +11,8 @@ const ButtonToogle = ({children, name}) => {
   
   return (
     <StyledFilterButton onClick={handleClickButton} name={name} type='button'>
-     {!isOpen ? <ArrowForwardIosIcon /> : 
-      <ArrowForwardIosIcon style={{
+     {!isOpen ? <ArrowForwardIosIcon className="icon" /> : 
+      <ArrowForwardIosIcon className='icon' style={{
         transform: 'rotate(90deg)',
       }} />
      } {children} 

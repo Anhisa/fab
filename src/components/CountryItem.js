@@ -48,9 +48,7 @@ export const CountryItem = ({ accountsCountry, countryListManagmentOpen, country
    return countryData.official_relations_spa === 'Taiwan' ?? false;
   }
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+
 
   if (accountsCountry.length === 0 && open) {
     const countryData = countriesAllData.find(country => country.country_id === countrySelectedId);
@@ -68,10 +66,7 @@ export const CountryItem = ({ accountsCountry, countryListManagmentOpen, country
           <p>
           Tiene relaciones diplomáticas <br></br>
           con La República de China - Taiwán
-          </p>
-          <button onClick={handleClose}>
-            Cerrar
-          </button>
+          </p>          
         </div>
       )
     }
@@ -88,9 +83,7 @@ export const CountryItem = ({ accountsCountry, countryListManagmentOpen, country
         <p>
           No hay cuentas o data registradas en este país
         </p>
-        <button onClick={handleClose}>
-          Cerrar
-        </button>
+      
       </div>
     )
 

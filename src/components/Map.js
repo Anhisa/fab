@@ -5,7 +5,7 @@ import {
   ComposableMap,
   Geographies,
   Geography,
-  Marker,
+  Graticule,
   ZoomableGroup,
 } from 'react-simple-maps';
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
@@ -75,10 +75,19 @@ export const Map = ({
     
 
   return (
-    <>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
+    }}>
+    <h1
+    style={{
+      marginLeft: '150px',
+    }}
+    >América Latina Continetal</h1>
       <ComposableMap
-        height={1000}
-        width={1000}
+        height={1080}
+        width={1920}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
           rotate: [77, 12, 0],
@@ -86,11 +95,14 @@ export const Map = ({
         }}
         onClick={handleOnClick}
       >
+
         <ZoomableGroup
           zoom={position.zoom}
           center={position.coordinates}
           onMoveEnd={handleMoveEnd}
+          
         >
+            <Graticule stroke="#F53" />
           <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
             {({ geographies }) =>
               geographies
@@ -148,6 +160,6 @@ export const Map = ({
           </svg>
         </button>
       </div>
-    </>
+    </div>
   );
 };

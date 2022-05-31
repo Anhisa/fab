@@ -12,6 +12,7 @@ import { PieContainerStyled } from '../styles/styledComponents/PieContainerStyle
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/ht-most-used';
 export const HtMostUsedItems = memo(({ period }) => {
   const [innerData, setInnerData] = useState([]);
+  const [categories, setCategories] = useState([]);
   const accountsNames = useActiveNames()
   const {isPeriodComparisonActive} = usePeriodComparison();
   const data = useFilterData(api, 'ht-most-used');
@@ -35,10 +36,10 @@ export const HtMostUsedItems = memo(({ period }) => {
 
   return (
     <section className="closed" id="most-ht">
-      <HtMostUsedChart newData={innerData} periodId={period} title={accountsNames} />
+      <HtMostUsedChart categories={categories} newData={innerData} periodId={period} title={accountsNames} />
       <PieContainerStyled>
         {innerData.map((item, index) => (
-          <HtMostUsedPie newData={item} key={index} title={accountsNames[index]}  />
+          <HtMostUsedPie newData={item} key={index} title={accountsNames[index]}  setCategories={setCategories} />
         ))}
       </PieContainerStyled>
     </section>

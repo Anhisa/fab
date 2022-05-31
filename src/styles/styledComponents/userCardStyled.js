@@ -63,6 +63,7 @@ justify-content: flex-start;
     padding: 5px 50px 5px 5px;
     background-color: #121f45;
     border-radius: 0% 0% 22% 0% / 0% 0% 100% 0% ;
+    min-width: 450px;
     .countryName {
       font-size: 1.2em;
       font-weight: bold;

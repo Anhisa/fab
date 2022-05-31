@@ -8,15 +8,17 @@ import { PieChartContainer } from '../styles/styledComponents/PieContainerStyled
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const HtMostUsedPie = ({newData, title}) => {
+const HtMostUsedPie = ({newData, title, setCategories}) => {
   const htCategories = extractHtCategories(newData);
   const duplicates = filterDuplicates(htCategories);
+  
+  
  
   let dataSolved = addDuplicates(duplicates);
   let labels = dataSolved.map(item => item.category) 
   let data = dataSolved.map(item => item.count)
  
-   
+
        
   let dataChart = {
     labels: labels,
@@ -79,8 +81,8 @@ export default HtMostUsedPie
 
 
 
-function extractHtCategories(data){
-
+export function extractHtCategories(data){
+  console.log('extractHtCategories', data);
   const htCategories = [];  
   data.forEach(item => {
     htCategories.push({
@@ -92,7 +94,7 @@ function extractHtCategories(data){
   return htCategories;
 }
 
-function filterDuplicates(data) {
+export function filterDuplicates(data) {
   let usersAccountCheck = [];
   let arrayDuplicates = [];
   // Devuelve un array con los elementos duplicados
@@ -109,7 +111,7 @@ function filterDuplicates(data) {
   return arrayDuplicates;
 }
 
-function addDuplicates (data){
+export function addDuplicates (data){
 let newArray = data.map(item => {
   let itemCount = item.reduce((acc, item) => {
     return acc + item.count;
@@ -121,3 +123,12 @@ let newArray = data.map(item => {
 })
 return newArray;
 }
+export function addDuplicates2 (data){
+  let newArray = data.map(item => {  
+    return {
+      category: item[0].category,
+      count: item.count  
+    }
+  })
+  return newArray;
+  }

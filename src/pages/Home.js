@@ -22,6 +22,7 @@ import useCreateInitialState from '../hooks/createInitialState';
 import FloatingButton from '../components/FloatingButton';
 import useMenu from '../hooks/useMenu';
 import ColorBar from '../components/colorBar';
+import NavBarHome from '../components/NavBarHome';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
 
@@ -55,9 +56,8 @@ export const Home = () => {
   return (
     <HomeStyled className="container-xl">
       <FloatingButton setCurrentMap={setCurrentMap} menu={menu} currentMap={currentMap} countryListManagmentOpen={countryListManagmentOpen} />
-      <div className="banner-container">
-        <h2 className="banner-title">CHINA LATAM TWITTER DATABASE</h2>
-      </div>
+      <NavBarHome/>
+   
       
         {/* <ColorBar/> */}
       <TableContext.Provider value={dataComparing}>

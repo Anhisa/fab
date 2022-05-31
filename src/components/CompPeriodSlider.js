@@ -7,19 +7,19 @@ import Slider from '@mui/material/Slider';
 const marks = [
   {
     value: 1,
-    label: '2020 - 1',
+    label: '2020 semestre I',
   },
   {
     value: 2,
-    label: '2020 - 2',
+    label: '2020 semestre II',
   },
   {
     value: 3,
-    label: '2021 - 1',
+    label: '2021 semestre I',
   },
   {
     value: 4,
-    label: '2021 - 2',
+    label: '2021 semestre II',
   },
 ];
 
@@ -41,9 +41,15 @@ export const CompPeriodSlider = ({ setPeriod }) => {
   };
 
   return (
-    <div>
-      <h4>¿En qué periodo?</h4>
-      <Box sx={{ width: 300, marginLeft: 10 }}>
+    <div style={{
+      width: '100%',
+      display:' flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <h4>Periodo de búsqueda</h4>
+      <Box>
         <Slider
           getAriaLabel={() => 'Period range'}
           value={value}
