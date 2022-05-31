@@ -8,7 +8,7 @@ import { PieChartContainer } from '../styles/styledComponents/PieContainerStyled
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const HtMostUsedPie = ({newData, title, setCategories}) => {
+const HtMostUsedPie = ({newData, title, setCategories, usuario}) => {
   const htCategories = extractHtCategories(newData);
   const duplicates = filterDuplicates(htCategories);
   
@@ -57,8 +57,8 @@ const HtMostUsedPie = ({newData, title, setCategories}) => {
         
   }
   return (
-    <PieChartContainer>
-    <h1>{title}</h1>
+    <PieChartContainer usuario={usuario}>
+    <h4>Categorias más usadas de: {title}</h4>
     <Pie 
       data = {dataChart}
       options={{

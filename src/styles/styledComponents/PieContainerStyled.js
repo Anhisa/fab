@@ -5,7 +5,7 @@ export const PieContainerStyled = styled.div`
   flex-direction: row;
   align-items: center;
   width: 100%;
-  
+  justify-content: center;  
   
 
 `
@@ -13,7 +13,9 @@ export const PieContainerStyled = styled.div`
 export const PieChartContainer = styled.div`
   border: 1px solid black;
   display: flex;
-  width: 50%;
+  width: ${props => props.usuario === true ? '100%' : '50%'};
+  max-width: 500px;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `
