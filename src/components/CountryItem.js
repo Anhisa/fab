@@ -44,7 +44,7 @@ export const CountryItem = ({ accountsCountry, countryListManagmentOpen, country
   function hasRelationWithTaiwan(countryId) {
    if(loading) return false
    const countryData = countriesAllData.find(country => country.country_id === countryId);
-   console.log(countryData)
+   
    return countryData.official_relations_spa === 'Taiwan' ?? false;
   }
 

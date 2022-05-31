@@ -39,10 +39,10 @@ export default function useMonthyHelper(data){
   
   useEffect(()=> {
     let data3 = {...data}
- console.log(periods)
+ 
     if(periods[0].id < periods[1].id ){
       setInnerData(data3[0].concat(data3[1]))
-      console.log('innerData', innerData)
+      
     }
   },[periods[0].id, periods[1].id])
   

@@ -11,9 +11,7 @@ const ViewUserCard = ({data, period}) => {
     4: 'Julio 1,2021 a Diciembre 31,2021',
   }
   /* Pendiente agregar el periodo */ 
-console.log('Pendiente agregar el periodo')
-console.log('period', period)
-console.log('data', data)
+
 const total_tweets_period = data.slice(0,period).reduce((acc, curr) => {
   return acc + parseInt(curr.total_tweets_period)
 },0)

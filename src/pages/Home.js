@@ -59,7 +59,7 @@ export const Home = () => {
       <NavBarHome/>
    
       
-        {/* <ColorBar/> */}
+      {showMap &&  <ColorBar/>}
       <TableContext.Provider value={dataComparing}>
         <SectionMapsStyled>
          { showMap ?

@@ -71,16 +71,21 @@ const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, m
           <li>
           <h3>{showMap ? 'Cambiar mapa' : 'Ver mapa'}</h3>
             <ul>            
-           { !showMap &&  <li>
+           { !showMap && 
+           <>
+           
+           <li>
                 <FloatingButtonInner type="button" onClick={handleClick}>
                   Ver mapa
                 </FloatingButtonInner>
-              </li>}
+              </li>
               <li>
                 <FloatingButtonInner type="button" onClick={handleClickChange}>
                 {currentMap === true ? 'Ver islas del Caribe' : 'Ver continente'}
                 </FloatingButtonInner>
               </li>
+              </>
+              }
             </ul>
             
             <h3>Herramientas comparativas</h3>

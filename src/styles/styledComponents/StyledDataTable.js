@@ -20,7 +20,7 @@ border-radius: 10px;
 margin-top: 5px;
 padding: 2px 5px 5px 5px;
 .dataTable{
-  
+  width: 50%;
 }
 .rdt_TableHeader{
 
@@ -39,6 +39,13 @@ padding: 2px 5px 5px 5px;
 }
 .rdt_Table{
   width: 100%;
+}
+.noData{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
 }
   
 `

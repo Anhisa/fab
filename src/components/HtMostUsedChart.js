@@ -83,7 +83,7 @@ function createDatasets(data, title){
     const htCategories = extractHtCategories(item);
     let colors = colorsFromCategory(htCategories);
     let color = controlColor === 0 ? 'rgba(255, 206, 33, 0.7' : 'rgba(0, 60, 123, 0.7)'
-    console.log('colors', colors);
+    
     datasets.push({
       label: title[controlColor],
       data: item.map((item2) => parseInt(item2.ht_mentions_number)),

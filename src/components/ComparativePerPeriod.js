@@ -36,6 +36,9 @@ const ComparativePerPeriod = ({setDataComparing}) => {
 // 
 
   const handleChangeA = ({target:{value}}) => {
+    if(value === ''){
+      return
+    }
     setPeriodA(value);
     setDataComparing(prevState => ({
       ...prevState,
@@ -46,6 +49,9 @@ const ComparativePerPeriod = ({setDataComparing}) => {
       }))
   };
   const handleChangeB = ({target:{value}}) => {
+    if(value === ''){
+      return
+    }
     setPeriodB(value);
     setDataComparing(prevState => ({
       ...prevState,

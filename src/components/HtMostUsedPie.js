@@ -82,7 +82,7 @@ export default HtMostUsedPie
 
 
 export function extractHtCategories(data){
-  console.log('extractHtCategories', data);
+
   const htCategories = [];
   data.forEach(item => {
     htCategories.push({
