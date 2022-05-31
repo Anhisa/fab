@@ -92,7 +92,7 @@ const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, m
               </li>   
               <li>
             <h3>Otras opciones</h3>
-            <FloatingButtonInner type="button" onClick={handleClickAccounts}>
+            <FloatingButtonInner type="button" >
              
                 Ver documentos de la investigación
                 </FloatingButtonInner>
