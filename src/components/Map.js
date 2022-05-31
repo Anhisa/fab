@@ -21,14 +21,14 @@ export const Map = ({
   setMouse,
   countryListManagmentOpen,
   setCountrySelectedId,
-  
+
 }) => {
   const [position, setPosition] = useState({
-    coordinates: [-75, -10],
+    coordinates: [-75, -11],
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
- 
+
 
   function handleZoomIn() {
     if (position.zoom >= 4) return;
@@ -55,12 +55,12 @@ export const Map = ({
         x: pageX,
         y: pageY,
       });
-      
+
       setAccounts(filteredAccounts);
       setCountrySelectedId(itemValue.value);
       if (!open || open) {
         return setOpen(true);
-      } 
+      }
     }
 
     return setOpen(false);
@@ -72,13 +72,13 @@ export const Map = ({
     .domain([0, 11161])
     .range(['#edf7ff', '#1d9bf0']);
 
-    
+
 
   return (
     <div style={{
       display: 'flex',
       flexDirection: 'column',
-      width: '100%',
+      width: '80%',
     }}>
     <h1
     style={{
@@ -90,8 +90,8 @@ export const Map = ({
         width={1920}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
-          rotate: [77, 12, 0],
-          scale: 740,
+          rotate: [77, 15, 0],
+          scale: 700,
         }}
         onClick={handleOnClick}
       >
@@ -100,7 +100,7 @@ export const Map = ({
           zoom={position.zoom}
           center={position.coordinates}
           onMoveEnd={handleMoveEnd}
-          
+
         >
             <Graticule stroke="#F53" />
           <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>

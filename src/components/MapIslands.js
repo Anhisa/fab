@@ -52,7 +52,7 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentO
       setCountrySelectedId(itemValue.value);
       if (!open || open) {
         return setOpen(true);
-      } 
+      }
     }
 
     return setOpen(false);
@@ -68,7 +68,7 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentO
     <div style={{
       display: 'flex',
       flexDirection: 'column',
-      width: '100%',
+      width: '80%',
     }}>
     <h1
     style={{
@@ -79,7 +79,7 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentO
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
           rotate: [49, -67.5, 0],
-          scale: 1700,
+          scale: 1500,
         }}
         onClick={handleOnClick}
       >
