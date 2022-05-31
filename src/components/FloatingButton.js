@@ -68,9 +68,9 @@ const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, m
       <FloatingButtonStyled id="floating-button" className="rest">
         <p id='menuName'>Menú</p>
         <ul id="content">
-          <li>
+          <>
           <h3>{showMap ? 'Cambiar mapa' : 'Ver mapa'}</h3>
-            <ul>            
+                      
            { !showMap &&  <li>
                 <FloatingButtonInner type="button" onClick={handleClick}>
                   Ver mapa
@@ -81,17 +81,28 @@ const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, m
                 {currentMap === true ? 'Ver islas del Caribe' : 'Ver continente'}
                 </FloatingButtonInner>
               </li>}
-            </ul>
+            
             
             <h3>Herramientas comparativas</h3>
-            <ul>            
+                       
               <li>
                 <FloatingButtonInner type="button" onClick={handleClickAccounts}>
                   Comparar por usuarios y periodos
                 </FloatingButtonInner>
-              </li>         
-            </ul>
-          </li>
+              </li>   
+              <li>
+            <h3>Otras opciones</h3>
+            <FloatingButtonInner type="button" onClick={handleClickAccounts}>
+             
+                Ver documentos de la investigación
+                </FloatingButtonInner>
+                </li>
+
+               
+          
+            
+          </>
+          
         </ul>
 
       </FloatingButtonStyled>
