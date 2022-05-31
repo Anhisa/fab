@@ -7,6 +7,10 @@ export const FloatingButtonStyled = styled.div`
   align-items: center;
   ul{
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }  
   
 

@@ -39,7 +39,7 @@ const ComparativeUserViewContainer = ({ period }) => {
           Hashtags más usados
         </ButtonToogle>
 
-        <HtMostUsedItems period={period} />
+        <HtMostUsedItems period={period} usuario={true} />
       </CollapsableTableStyled>
       <CollapsableTableStyled className='table'>
         <ButtonToogle         

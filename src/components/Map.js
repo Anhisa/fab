@@ -84,7 +84,7 @@ export const Map = ({
     style={{
       marginLeft: '150px',
     }}
-    >América Latina Continetal</h4>
+    >América Latina Continental</h4>
       <ComposableMap
         height={960}
         width={1920}
