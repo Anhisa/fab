@@ -97,7 +97,7 @@ function createDatasets(data) {
   let data2 = {...data}
   let newLabels = []
   let test
-  console.log(isPeriodComparisonActive)
+  
   
   if(isPeriodComparisonActive){     
 
@@ -108,7 +108,7 @@ function createDatasets(data) {
         test = test[0]  
       } 
       data2[1] = test
-      console.log('test', test)
+      
       } else {
         periods[0], periods[1] = periods[1], periods[0]
         data2[0], data2[1] = data2[1], data2[0]
@@ -135,7 +135,7 @@ function createDatasets(data) {
   
   const datasets = [];
   let controlColor = 0;
-  console.log('data2',data2)
+  
   Object.values(data2).forEach((item) => {
     let color =
       controlColor === 0 ? 'rgba(255, 206, 33, 0.7' : 'rgba(0, 60, 123, 0.7)';

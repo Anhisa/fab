@@ -19,7 +19,7 @@ const CountrySelectFilter = ({
 
   useEffect(() => {
     setCountriesData(countryNames);
-    console.log('countryNames',countryNames)  
+    
   }, [countryNames]);
 
   if (countryNames.length === 0) {

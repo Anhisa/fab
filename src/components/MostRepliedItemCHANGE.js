@@ -15,7 +15,7 @@ export const MostRepliedItemCHANGE = ({ newData, title, comparisonView, arrayBar
     (totaltweetsNumber, item) => totaltweetsNumber + item,
     0
   );
-  console.log(newData)
+  
   if (newData[newData.length - 1]?.length > 2) {
     newData.pop();
   }
