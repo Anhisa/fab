@@ -78,7 +78,7 @@ export const Map = ({
     <div style={{
       display: 'flex',
       flexDirection: 'column',
-      width: '80%',
+      width: '90%',
     }}>
     <h4
     style={{
@@ -102,7 +102,7 @@ export const Map = ({
           onMoveEnd={handleMoveEnd}
 
         >
-            <Graticule stroke="#ccc" step={[9,9]}  />
+            <Graticule stroke="#ccc" step={[27,9]}  />
           <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
             {({ geographies }) =>
               geographies

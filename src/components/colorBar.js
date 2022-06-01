@@ -9,15 +9,17 @@ const ColorBar = () => {
 
 return (
 <ColorBarContainer>
-  <em>Menor actividad</em>
+  <em>Menor <br/>
+    actividad</em>
     <ColorBarStyled
     />
-    <em>Mayor actividad</em>
+    <em>Mayor <br/>
+      actividad</em>
   </ColorBarContainer>
- 
+
 )
 }
-  
+
 
 
 export default ColorBar

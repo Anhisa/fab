@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import { CompAccountSelector } from '../components/CompAccountSelector';
 import { CompCategoryCb } from '../components/CompCategoryCb';
 import { CompPeriodSlider } from '../components/CompPeriodSlider';
-
+import { ComparativePeriodStyled } from '../styles/styledComponents/ComparativeStyled';
 
 import Button from '@mui/material/Button';
 import 'bootstrap/dist/css/bootstrap.css';
 import { AccountPeriodContainer } from '../styles/styledComponents/AccountPeriodContainer';
 
-export const ComparativeTool = ({setDataComparing}) => {
+export const ComparativeTool = ({ setDataComparing }) => {
   const [accounts, setAccounts] = useState({
     accountIdA: {
       id: '',
@@ -19,47 +19,44 @@ export const ComparativeTool = ({setDataComparing}) => {
       id: '',
       name: '',
     },
-  })
+  });
   const [categories, setCategories] = useState({
     mostRetweeted: true,
     mostHashtags: true,
     mostMentioned: true,
     mostReplied: true,
     monthlyTweets: true,
-  })
+  });
 
   const [period, setPeriod] = useState({
     startDate: 1,
-    endDate: 4,  
-  })
-  
+    endDate: 4,
+  });
+
   const handleComparison = () => {
-   
-    setDataComparing(prev => {
+    setDataComparing((prev) => {
       return {
         ...prev,
         accounts,
         categories,
         period,
         isPeriodComparisonActive: false,
-      }})   
+      };
+    });
+  };
 
-    
-  }
- 
   return (
-    <>
-      
-        <CompAccountSelector setAccounts={setAccounts} />
-        <CompCategoryCb setCategories={setCategories} />
-        <AccountPeriodContainer>
+    <ComparativePeriodStyled>
+      <CompAccountSelector setAccounts={setAccounts} />
+      <CompCategoryCb setCategories={setCategories} />
+      <AccountPeriodContainer>
         <CompPeriodSlider setPeriod={setPeriod} />
-        </AccountPeriodContainer>
-        <div className='btnContainer'>
-        <Button variant="contained" onClick={handleComparison} className='btn'>COMPARAR</Button>
-        </div>
-      
-      
-    </>
+      </AccountPeriodContainer>
+      <div className="btnContainer">
+        <Button variant="contained" onClick={handleComparison} className="btn">
+          COMPARAR
+        </Button>
+      </div>
+    </ComparativePeriodStyled>
   );
 };

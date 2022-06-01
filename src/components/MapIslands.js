@@ -24,7 +24,7 @@ export const MapIslands = ({
   setCountrySelectedId,
 }) => {
   const [position, setPosition] = useState({
-    coordinates: [-73, 17.2],
+    coordinates: [-73, 18],
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
@@ -74,7 +74,7 @@ export const MapIslands = ({
     <div style={{
       display: 'flex',
       flexDirection: 'column',
-      width: '80%',
+      width: '90%',
     }}>
     <h4
     style={{
@@ -86,7 +86,7 @@ export const MapIslands = ({
         width={1920}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
-          rotate: [49, -67.5, 0],
+          rotate: [49, -67.5, 12],
           scale: 2800,
         }}
         onClick={handleOnClick}
@@ -96,7 +96,7 @@ export const MapIslands = ({
           center={position.coordinates}
           onMoveEnd={handleMoveEnd}
         >
-          <Graticule stroke="#ccc" />
+          <Graticule stroke="#ccc" step={[16,9]}/>
           <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
             {({ geographies }) =>
               geographies
@@ -114,7 +114,7 @@ export const MapIslands = ({
                         d ? colorScale(d['total_tweets_period']) : '#F5F4F6'
                       }
                       value={geo.properties.COUNTRY_ID}
-                      stroke="#D6D6DA"
+                      stroke="#333"
                       strokeWidth="0.4"
                     />
                   );
