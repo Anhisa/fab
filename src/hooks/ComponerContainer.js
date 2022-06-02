@@ -23,7 +23,7 @@ export const ComponentContainer = ({context}) => {
 
     
   } , [accountIdA, accountIdB, periodA]);
-  if ((accountIdA.id === '' || accountIdB.id === '' || accountIdA.id === accountIdB.id) || (periodA.id === '' || periodB.id === '' || periodA.id === periodB.id)) {
+  if ((accountIdA.id === '' || accountIdB.id === '' || accountIdA.id === accountIdB.id) {
   
      console.log('Please select two different accounts and periods')
    return []
