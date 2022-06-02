@@ -5,6 +5,9 @@ export const CountryCardSelectStyled = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+
+width: 100%;
+
   img {
     width: 80px;
     border: 1px solid black;

@@ -45,7 +45,7 @@ const CountrySelectFilter = ({
   }
 
   return (
-    <div className="countSelector">
+    <div className="countSelector2">
       <h4>Filtrar por país:</h4>
       <div className="selectors">
         <FormControl

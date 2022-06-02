@@ -23,6 +23,11 @@ import FloatingButton from '../components/FloatingButton';
 import useMenu from '../hooks/useMenu';
 import ColorBar from '../components/colorBar';
 import NavBarHome from '../components/NavBarHome';
+import { darkTheme, lightTheme } from '../styles/styledComponents/Themes';
+import { useTheme } from '../hooks/useTheme';
+import { ThemeProvider } from 'styled-components';
+import { GoblalStyles } from '../styles/styledComponents/GlobalStyles';
+import { getActivityCreactionDate } from '../helpers/getActivityCreactionDate';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
 
@@ -50,12 +55,15 @@ export const Home = () => {
     showPeriodComparing,
   } = menu;
   
-
-  
+  const [theme, themeToggler] = useTheme();
+  let answer = getActivityCreactionDate()
+  console.log('answer', answer)
 
   return (
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+    <GoblalStyles />
     <HomeStyled className="container-xl">
-      <FloatingButton setCurrentMap={setCurrentMap} menu={menu} currentMap={currentMap} countryListManagmentOpen={countryListManagmentOpen} />
+      <FloatingButton setCurrentMap={setCurrentMap} menu={menu} currentMap={currentMap}  themeToggler={themeToggler} countryListManagmentOpen={countryListManagmentOpen} />
       <NavBarHome/>
    
       
@@ -70,7 +78,7 @@ export const Home = () => {
               setMouse={setMousePosition}
               countryListManagmentOpen={countryListManagmentOpen}
               setCountrySelectedId={setCountrySelectedId}
-              
+              theme={theme}
             />
           </MapStyled>
           :
@@ -113,5 +121,6 @@ export const Home = () => {
         </ComparisonContainerStyled>}
       </TableContext.Provider>
     </HomeStyled>
+    </ThemeProvider>
   );
 };

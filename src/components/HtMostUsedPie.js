@@ -5,6 +5,7 @@ import React from 'react'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import { PieChartContainer } from '../styles/styledComponents/PieContainerStyled';
+import { colorsFromCategory } from '../helpers/colorsFromCategory';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -12,9 +13,14 @@ const HtMostUsedPie = ({newData, title, setCategories, usuario}) => {
   const htCategories = extractHtCategories(newData);
   const duplicates = filterDuplicates(htCategories);
   
+
   
- 
+  
   let dataSolved = addDuplicates(duplicates);
+  
+  let colors = colorsFromCategory(dataSolved);
+  console.log('colorsSolved', colors)
+  console.log('dataSolved', dataSolved)
   let labels = dataSolved.map(item => item.category) 
   let data = dataSolved.map(item => item.count)
  
@@ -25,18 +31,7 @@ const HtMostUsedPie = ({newData, title, setCategories, usuario}) => {
     datasets: [
       {
         data: data,
-        backgroundColor: [
-          '#FF6384',
-          '#36A2EB',
-          '#FFCE56',
-          '#2F6B84',
-          '#F6A6EB',
-          '#CCCE56',
-          '#666384',
-
-
-        ],
-        
+        backgroundColor: colors,       
 
 
       }

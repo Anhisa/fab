@@ -64,8 +64,12 @@ const ComparativePerPeriod = ({setDataComparing}) => {
   return (
    
       <div className="countSelector">
+        <div className='title'>
         <h4>Periodos que desea comparar:</h4>
-        <div className="selectors">
+        </div>
+        <div className="selectors" style={{    
+          width: '100%',
+        }}>
           <FormControl
           className="container-fluid form"
           variant="filled"

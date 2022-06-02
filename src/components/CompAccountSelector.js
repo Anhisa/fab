@@ -41,7 +41,9 @@ export const CompAccountSelector = ({ setAccounts }) => {
 
   return (
     <div className="countSelector">
+      <div className='title'>
       <h4>Cuentas que deseas comparar</h4>
+      </div>
       <div className="selector-wrap container-fluid">
         <FormControl
           className="container-fluid form"

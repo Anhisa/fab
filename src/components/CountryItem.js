@@ -5,6 +5,7 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import { getFlag } from '../helpers/getFlag';
 import { CountryCardSelectStyled } from '../styles/styledComponents/CountryCardSelect';
 import useGetCountries from '../hooks/useGetCountries';
+import { DataTableStyled } from '../styles/styledComponents/ComparativeStyled';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
 const columns = [
@@ -94,7 +95,7 @@ export const CountryItem = ({ accountsCountry, countryListManagmentOpen, country
     <>
     <div className={open ? 'open' : 'closed'}>
     <div className='dotted-line'/>
-    {open && <DataTable
+    {open && <DataTableStyled
 
       title={
         <CountryCardSelectStyled>

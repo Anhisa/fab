@@ -14,6 +14,8 @@ BarElement,
 import {  Line } from "react-chartjs-2";
 import { Bar } from 'react-chartjs-2';
 import { addDuplicates, addDuplicates2, extractHtCategories, filterDuplicates } from "./HtMostUsedPie";
+import { colorsDictionary } from "../helpers/colorsDiccionary";
+import { colorsFromCategory } from "../helpers/colorsFromCategory";
 
 ChartJS.register(
   CategoryScale,
@@ -72,16 +74,14 @@ const options = {
 }
 
 function createDatasets(data, title){
-  
-  const htCategories = extractHtCategories(data[0]);
-   
-
 
   const datasets = [];
   let controlColor = 0
   data.forEach((item) => {
     const htCategories = extractHtCategories(item);
     let colors = colorsFromCategory(htCategories);
+    console.log('colors', colors);
+    console.log('htCategories', htCategories);
     let color = controlColor === 0 ? 'rgba(255, 206, 33, 0.7' : 'rgba(0, 60, 123, 0.7)'
     
     datasets.push({
@@ -91,7 +91,7 @@ function createDatasets(data, title){
       borderColor: color,
       pointRadius: 6,
       pointBackgroundColor: 'rgb(75, 192, 192)',
-      backgroundColor: colors.map(item => item.color),
+      backgroundColor: colors
     })
     controlColor++
   })
@@ -138,50 +138,5 @@ function sortLongestArray(data){
   }
   return newArray;
 }
-let listColors= [
-  '#FF6384',
-  '#36A2EB',
-  '#FFCE56',
-  '#2F6B84',
-  '#F6A6EB',
-  '#CCCE56',
-  '#666384',
-  '#2FA3A4',
-  '#CCFF56',
 
 
-]
-let colorsDictionary = [
-  {
-    category: 'COVID-19',
-    color: '#FF6384'
-
-  }
-]
-function colorsFromCategory(categories){
-  let categoriesU = []
-  let categoriesColor = []
-  let colorControl = 0
-  categories.forEach(item => {
-    if(!categoriesU.includes(item.category)){
-      categoriesU.push(item.category)
-      categoriesColor.push({
-        category: item.category,
-        color: listColors[colorControl]
-      })
-      colorControl++
-    } else {
-      categoriesColor.forEach(item2 => {
-        if(item2.category === item.category){
-          return categoriesColor.push({
-            category: item.category,
-            color: item2.color
-          })
-          
-        }
-      })
-    }
-  } )
-  
-  return categoriesColor
-}

@@ -14,7 +14,8 @@ import {
 import { Line } from 'react-chartjs-2';
 import usePeriodComparison from '../hooks/periodComparison';
 import { MonthyUserViewStyled } from '../styles/styledComponents/MonthyUserViewStyled';
-import useMonthyHelper from './MonthyHelper';
+
+import monthyHelper from '../helpers/monthyHelper';
 
 ChartJS.register(
   CategoryScale,
@@ -33,14 +34,13 @@ export const MonthlyTweetsChart = ({ newData }) => {
   if (newData[0][newData[0].length - 1].length > 5) {
     newData[0].pop();
   }
-
+  if(!newData){
+    return null
+  }
   // let labels = newData[0]?.map((item) => item.month)
   // console.log('labels', labels);
   
-  let [dataSets, labels] = useCallback(createDatasets(newData),[newData]);
-    
-  
-  
+  let [dataSets, labels] = useCallback(createDatasets(newData),[newData]);       
   
   const accountInfo = [];
   const account = newData[0];
@@ -82,7 +82,7 @@ export const MonthlyTweetsChart = ({ newData }) => {
     datasets: dataSets,
     labels,
   };
-  let x = useMonthyHelper(newData)
+
   
 
   return (
@@ -97,42 +97,58 @@ function createDatasets(data) {
   let data2 = {...data}
   let newLabels = []
   let test
-  
+
   
   if(isPeriodComparisonActive){     
 
     if(periods[0].id < periods[1].id){
       
-      test = useMonthyHelper(data)
-      if(test[0].length > 1){
-        test = test[0]  
-      } 
-      data2[1] = test
+      test = monthyHelper(data, periods)
+    
+     data2[0] = test[0]
+     data2[1] = test[1]
       
       } else {
-        periods[0], periods[1] = periods[1], periods[0]
-        data2[0], data2[1] = data2[1], data2[0]
-        test = useMonthyHelper(data2)
-        if(test[0].length > 1){
-          test = test[0]  
-        }
-        data2[1] = test
+        
+        let temp = periods[0]
+        periods[0] = periods[1]
+        periods[1] = temp
+        
+        let tempData = data2[0]
+        data2[0] = data2[1]
+        data2[1] = tempData 
+        
+     
+        
+        data2[0] = test[0]
       }
-  
+      if((periods[0].id === 1 || periods[0].id === 4) && (periods[1].id === 2 || periods[1].id === 5)){
+        data2[1] = data2[0].concat(data2[1])
+      }
+      if((periods[0].id === 2 || periods[0].id === 5) &&( periods[1].id === 3 || periods[1].id === 6)){
+        console.log('data2[1]', data2[0])
+        console.log('periods' , periods)
+        data2[0] = data2[1].slice(0,6).concat(data2[0])  
+     
+        console.log('data2[1] after', data2[0])        
+      }
+      // if((periods[0].id === 1 ) && (periods[1].id === 6 )){
+      //   data2[0] = data2[0].concat(data2[1].slice(6,12))  
+      // }
 
       newLabels = data2[1].map((item) => item.month)
     
   
   //uniques with Set 
-  newLabels = [...new Set(newLabels)]
   newLabels = newLabels.map(
     (item) =>
-      new Date(item).toLocaleString('es-ES', {
-        month: 'short',
-        timeZone: 'UTC',
-      })
-  );
-  
+    new Date(item).toLocaleString('es-ES', {
+      month: 'short',
+      timeZone: 'UTC',
+    })
+    );
+    console.log('data2', data2)
+    newLabels = [...new Set(newLabels)]
   const datasets = [];
   let controlColor = 0;
   

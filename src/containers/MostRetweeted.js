@@ -41,11 +41,11 @@ export const MostRetweetedItems = memo((period) => {
       {innerData.map((dataAccount, index) => {
         return (
           <section className="column" key={index}>
-            <div>
+            
               <MostRetweetedItemChange newData={dataAccount} arrayBar={chartData[index]} period={period} comparisonView={isPeriodComparisonActive} title={
                 accountsNames[index]
               }/>
-            </div>
+            
             {/* <div>
               <MostRetweetedChart newData={accountId} period={period} />
             </div> */}

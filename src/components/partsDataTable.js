@@ -5,9 +5,7 @@ export const UserAccount = ({userAccount, userAccountDesc}) => {
 
     return (
       <>
-        <h6 style={{
-            color: '#121f45',
-          }}>
+        <h6>
             {userAccount}
         </h6>
         <p>
@@ -19,9 +17,7 @@ export const UserAccount = ({userAccount, userAccountDesc}) => {
   } else {
     return (
       <>
-        <h6 style={{
-            color: '#121f45',
-          }}>
+        <h6>
             {userAccount}
         </h6>
       </>

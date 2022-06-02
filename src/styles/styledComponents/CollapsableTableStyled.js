@@ -8,9 +8,11 @@ export const CollapsableTableStyled = styled.div`
   .open {
     display: flex;
     flex-direction: ${props => props.usuario ? 'row' : 'column'};
+    
       width: 100%;
     .column{
       width: 100%;
+      
     }
   }
   .closed {
@@ -21,6 +23,7 @@ export const CollapsableTableStyled = styled.div`
     display: flex;
     flex-direction:${props => props.usuario ? 'row' : 'column'};
     width: 100%;
+    
   }
 }
 `;

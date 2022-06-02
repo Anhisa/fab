@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import useMenu from '../hooks/useMenu';
 import useScroll from '../hooks/useScroll';
+import { useTheme } from '../hooks/useTheme';
 import {
   FloatingButtonInner,
   FloatingButtonContainer,
   FloatingButtonStyled,
 } from '../styles/styledComponents/FloatingButtonStyled';
 
-const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, menu }) => {
+const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, menu, themeToggler }) => {
   const scroll = useScroll(); 
   const { open, setOpen } = countryListManagmentOpen; 
 
@@ -63,13 +64,17 @@ const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, m
     setShowPeriodComparing(false);
    
   }
+  function changeTheme(){
+
+    themeToggler()    
+  }
   return (
     <FloatingButtonContainer>
       <FloatingButtonStyled id="floating-button" className="rest">
         <p id='menuName'>Menú</p>
         <ul id="content">
           <>
-          <h3>{showMap ? 'Cambiar mapa' : 'Ver mapa'}</h3>
+          <h5>{showMap ? 'Cambiar mapa' : 'Ver mapa'}</h5>
                       
            { !showMap &&  <li>
                 <FloatingButtonInner type="button" onClick={handleClick}>
@@ -83,7 +88,7 @@ const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, m
               </li>}
             
             
-            <h3>Herramientas comparativas</h3>
+            <h5>Herramientas comparativas</h5>
                        
               <li>
                 <FloatingButtonInner type="button" onClick={handleClickAccounts}>
@@ -91,11 +96,16 @@ const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, m
                 </FloatingButtonInner>
               </li>   
               <li>
-            <h3>Otras opciones</h3>
+            <h5>Otras opciones</h5>
             <FloatingButtonInner type="button" >
              
                 Ver documentos de la investigación
                 </FloatingButtonInner>
+                </li>
+                <li>
+            <FloatingButtonInner type="button" onClick={changeTheme}>
+              Cambiar el tema
+            </FloatingButtonInner>
                 </li>
 
                

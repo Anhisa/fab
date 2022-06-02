@@ -21,6 +21,7 @@ export const Map = ({
   setMouse,
   countryListManagmentOpen,
   setCountrySelectedId,
+  theme
   
 }) => {
   const [position, setPosition] = useState({
@@ -43,7 +44,11 @@ export const Map = ({
   function handleMoveEnd(position) {
     setPosition(position);
   }
+  function cancelZoomIn() {
+    //cancel zoom on scroll
+    return
 
+  }
   const handleOnClick = ({ target, pageX, pageY }) => {
     if (target.attributes.value) {
       const itemValue = target.attributes.value;
@@ -94,15 +99,18 @@ export const Map = ({
           scale: 740,
         }}
         onClick={handleOnClick}
+        onScrollCapture={cancelZoomIn}
+        onScroll={cancelZoomIn}
       >
 
         <ZoomableGroup
           zoom={position.zoom}
           center={position.coordinates}
-          onMoveEnd={handleMoveEnd}
+          onScrollCapture={cancelZoomIn}   
+          onScroll={cancelZoomIn}           
           
         >
-            <Graticule stroke="#121f45" step={[9,9]}  />
+            <Graticule stroke={theme === 'light'?'#121f45': 'white'} step={[9,9]}  />
           <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
             {({ geographies }) =>
               geographies

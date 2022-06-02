@@ -30,7 +30,7 @@ const SelectorComparative = ({ setDataComparing, countryDataState }) => {
   
   const handleComparison = () => {
     
-    
+    window.scrollTo(0,document.body.scrollHeight);
     setDataComparing((prev) => {
       return {
         ...prev,
@@ -53,7 +53,7 @@ const SelectorComparative = ({ setDataComparing, countryDataState }) => {
     });
   };
   return (
-    <ComparativePeriodStyled>
+    <>
       <ComparativePerPeriod setDataComparing={setPeriodComparison} />
       <CompCategoryCb setCategories={setCategories} period={true} />
       <CountrySelectFilter countrysWithData={tweetsByCountry} setCountryFilterActive={setCountryFilterActive} setCountryId={setCountryId} countryDataState={countryDataState}/>
@@ -62,7 +62,7 @@ const SelectorComparative = ({ setDataComparing, countryDataState }) => {
           COMPARAR
         </Button>
       </div>
-    </ComparativePeriodStyled>
+    </>
   );
 };
 

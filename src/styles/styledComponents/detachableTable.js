@@ -35,12 +35,25 @@ export const DetachableTable = styled.section`
     display: flex;
     flex-direction: column;
     border: 2px solid black;
-    border-radius: 30px;
+    border-radius: 15px;
     padding: 10px;
+    background-color: ${({ theme }) => theme.background};
   }
   .rdt_TableRow{
     &:hover{
       background-color: #ffce21;
     }
   }
+  .rdt_TableHeader{
+    background-color: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.text};
+    border : 1px none none;
+    margin-top: 0px;
+  }
+  .rdt_Table{
+    background-color: ${({ theme }) => theme.background};
+  
+  .rdt_TableHead{
+    background-color: ${({ theme }) => theme.background};
+  }}
 `;

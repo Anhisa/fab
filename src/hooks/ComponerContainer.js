@@ -19,17 +19,20 @@ export const ComponentContainer = ({context}) => {
   
  
 
-  useEffect(() => {} , [accountIdA, accountIdB, periodA]);
-  if (accountIdA.id === '' || accountIdB.id === '' || accountIdA.id === accountIdB.id) {
-    return (
-      []
-    );
+  useEffect(() => {
+
+    
+  } , [accountIdA, accountIdB, periodA]);
+  if ((accountIdA.id === '' || accountIdB.id === '' || accountIdA.id === accountIdB.id) || (periodA.id === '' || periodB.id === '' || periodA.id === periodB.id)) {
+  
+     console.log('Please select two different accounts and periods')
+   return []
   }
 
   return (
     <>
      <TableContext.Provider value={context}>
-      {categories.monthlyTweets && !isPeriodComparisonActive  ? (
+      {categories.monthlyTweets  ? (
         <CollapsableTableStyled>
           <ButtonToogle name="monthy-tweets">
            
