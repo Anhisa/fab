@@ -2,15 +2,10 @@
 .map-container {
   margin-top:0px;
   display: flex;
-
   justify-content: center;
-  /* z-index: 0; */
-  /* max-width: 700px; */
-  /* margin: 0 auto; */
-  /* border: 1px solid #333; */
   border-radius: 20px;
   scroll-behavior: none;
-  
+
 }
 
 .map-container-islands {

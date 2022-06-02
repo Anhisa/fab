@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const FloatingButtonStyled = styled.div`
   padding: 10px 16px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   ul{
     list-style: none;
@@ -17,6 +17,7 @@ export const FloatingButtonStyled = styled.div`
   #menuName {
     font-weight: 900;
     margin-bottom: 0px;
+    padding: 50px 10px;
   }
 `;
 export const FloatingButtonInner = styled.button`
@@ -30,11 +31,11 @@ export const FloatingButtonInner = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 5px;
+  margin: 7px 0;
+  padding: 6px 10px;
+  border-radius: 20px;
 
-  &:hover {   
+  &:hover {
     border: 1px solid #e6e6e6;
     background-color: honeydew;
   }
@@ -45,9 +46,9 @@ export const FloatingButtonContainer = styled.div`
   caret-color: transparent;
   animation: fadeIn 0.5s ease-in-out;
   animation-fill-mode: forwards;
-  
+
   .rest {
-    border-top-right-radius: 25px;
+    border-top-right-radius: 20px;
     position: absolute;
     bottom: 150px;
     left: 0px;
@@ -57,22 +58,21 @@ export const FloatingButtonContainer = styled.div`
   .sticky {
     position: fixed;
 
-    top: 240px;
+    top: 140px;
     left: 0px;
     width: 50px;
     background-color: ${({ theme }) => theme.primary};
     z-index: 10;
   }
   .hide {
-    padding: 10px;
-    width: 50px;
-    border-top-right-radius: 25px;
+    width: 90px;
+    border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     transition: all 0.5s ease-in-out;
     #content {
       display: none;
     }
-    left: 0;
+    left: 20px;
     &:hover {
       //animate
 
@@ -84,7 +84,7 @@ export const FloatingButtonContainer = styled.div`
         display: flex;
         transition: all 0.5s ease-in-out;
       }
-      transition: all 0.5s ease-in-out;
+      transition: all 0.3s ease-in-out;
     }
   }
 `;

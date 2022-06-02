@@ -7,6 +7,7 @@ import {
   Geography,
   Marker,
   ZoomableGroup,
+  Graticule,
 } from 'react-simple-maps';
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
 
@@ -15,9 +16,15 @@ const geoUrl =
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
-export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentOpen, setCountrySelectedId }) => {
+export const MapIslands = ({
+  setAccounts,
+  items,
+  setMouse,
+  countryListManagmentOpen,
+  setCountrySelectedId,
+}) => {
   const [position, setPosition] = useState({
-    coordinates: [-73, 16],
+    coordinates: [-73, 18],
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
@@ -40,19 +47,18 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentO
     if (target.attributes.value) {
       const itemValue = target.attributes.value;
 
-
       const filteredAccounts = items.filter(
         (item) => item.country_id === itemValue.value
       );
       setMouse({
         x: pageX,
-        y: pageY ,
+        y: pageY,
       });
       setAccounts(filteredAccounts);
       setCountrySelectedId(itemValue.value);
       if (!open || open) {
         return setOpen(true);
-      } 
+      }
     }
 
     return setOpen(false);
@@ -68,7 +74,7 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentO
     <div style={{
       display: 'flex',
       flexDirection: 'column',
-      width: '100%',
+      width: '90%',
     }}>
     <h4
     style={{
@@ -76,10 +82,12 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentO
     }}
     >El Caribe</h4>
       <ComposableMap
+        height={960}
+        width={1920}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
-          rotate: [49, -67.5, 0],
-          scale: 1700,
+          rotate: [49, -67.5, 12],
+          scale: 2800,
         }}
         onClick={handleOnClick}
       >
@@ -88,12 +96,11 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentO
           center={position.coordinates}
           onMoveEnd={handleMoveEnd}
         >
+          <Graticule stroke="#ccc" step={[16,9]}/>
           <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
             {({ geographies }) =>
               geographies
-                .filter(
-                  (d) => d.properties.SUBREGION === 'Caribbean'
-                )
+                .filter((d) => d.properties.SUBREGION === 'Caribbean')
                 .map((geo) => {
                   const d = tweetsByCountry.find(
                     (s) => s.countryId === geo.properties.COUNTRY_ID
@@ -107,7 +114,7 @@ export const MapIslands = ({ setAccounts, items, setMouse, countryListManagmentO
                         d ? colorScale(d['total_tweets_period']) : '#F5F4F6'
                       }
                       value={geo.properties.COUNTRY_ID}
-                      stroke="#D6D6DA"
+                      stroke="#333"
                       strokeWidth="0.4"
                     />
                   );

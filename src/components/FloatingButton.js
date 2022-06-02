@@ -12,11 +12,10 @@ const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, m
   const scroll = useScroll(); 
   const { open, setOpen } = countryListManagmentOpen; 
 
- 
 
   useEffect(() => {
-    let header = document.getElementById('floating-button');    
-    let sticky = 140;  
+    let header = document.getElementById('floating-button');
+    let sticky = 140;
 
     if (scroll > sticky) {
       header.classList.add('sticky');
@@ -26,23 +25,23 @@ const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, m
       header.classList.remove('sticky');
       header.classList.add('rest');
     }
-  
+
  }, [scroll]);
   useEffect(() => {
     let header = document.getElementById('floating-button');
     setTimeout(() => {
       header.classList.add('hide');
     },1000)
-  
+
   }, [])
-  
+
   if(!menu) return null;
-  const { setShowMap, setShowAccountComparing, setShowPeriodComparing, showMap } = menu;  
+  const { setShowMap, setShowAccountComparing, setShowPeriodComparing, showMap } = menu;
 
   function handleClick() {
     setShowMap(true);
     setOpen(false);
-  
+
     setShowAccountComparing(false);
     setShowPeriodComparing(false);
     window.scrollTo(0, 0);
@@ -62,7 +61,7 @@ const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, m
     setOpen(false);
     setShowAccountComparing(false);
     setShowPeriodComparing(false);
-   
+
   }
   function changeTheme(){
 
@@ -74,8 +73,8 @@ const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, m
         <p id='menuName'>Menú</p>
         <ul id="content">
           <>
-          <h5>{showMap ? 'Cambiar mapa' : 'Ver mapa'}</h5>
-                      
+          <h6>{showMap ? 'Cambiar mapa' : 'Ver mapa'}</h6>
+
            { !showMap &&  <li>
                 <FloatingButtonInner type="button" onClick={handleClick}>
                   Ver mapa
@@ -86,19 +85,19 @@ const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, m
                 {currentMap === true ? 'Ver islas del Caribe' : 'Ver continente'}
                 </FloatingButtonInner>
               </li>}
-            
-            
-            <h5>Herramientas comparativas</h5>
-                       
+
+
+            <h6>Herramientas comparativas</h6>
+
               <li>
                 <FloatingButtonInner type="button" onClick={handleClickAccounts}>
-                  Comparar por usuarios y periodos
+                  Comparar por cuentas o periodos
                 </FloatingButtonInner>
-              </li>   
+              </li>
               <li>
-            <h5>Otras opciones</h5>
+            <h6>Otras opciones</h6>
             <FloatingButtonInner type="button" >
-             
+
                 Ver documentos de la investigación
                 </FloatingButtonInner>
                 </li>
@@ -108,11 +107,11 @@ const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, m
             </FloatingButtonInner>
                 </li>
 
-               
-          
-            
+
+
+
           </>
-          
+
         </ul>
 
       </FloatingButtonStyled>

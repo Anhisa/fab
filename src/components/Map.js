@@ -25,11 +25,11 @@ export const Map = ({
   
 }) => {
   const [position, setPosition] = useState({
-    coordinates: [-75, -10],
+    coordinates: [-75, -12],
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
- 
+
 
   function handleZoomIn() {
     if (position.zoom >= 4) return;
@@ -60,12 +60,12 @@ export const Map = ({
         x: pageX,
         y: pageY,
       });
-      
+
       setAccounts(filteredAccounts);
       setCountrySelectedId(itemValue.value);
       if (!open || open) {
         return setOpen(true);
-      } 
+      }
     }
 
     return setOpen(false);
@@ -77,13 +77,13 @@ export const Map = ({
     .domain([0, 11161])
     .range(['#edf7ff', '#1d9bf0']);
 
-    
+
 
   return (
     <div style={{
       display: 'flex',
       flexDirection: 'column',
-      width: '100%',
+      width: '90%',
     }}>
     <h4
     style={{
@@ -91,12 +91,12 @@ export const Map = ({
     }}
     >América Latina Continental</h4>
       <ComposableMap
-        height={1080}
+        height={960}
         width={1920}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
-          rotate: [77, 12, 0],
-          scale: 740,
+          rotate: [77, 15, 0],
+          scale: 640,
         }}
         onClick={handleOnClick}
         onScrollCapture={cancelZoomIn}
@@ -106,11 +106,10 @@ export const Map = ({
         <ZoomableGroup
           zoom={position.zoom}
           center={position.coordinates}
-          onScrollCapture={cancelZoomIn}   
-          onScroll={cancelZoomIn}           
-          
+          onMoveEnd={handleMoveEnd}
+
         >
-            <Graticule stroke={theme === 'light'?'#121f45': 'white'} step={[9,9]}  />
+            <Graticule stroke="#ccc" step={[27,9]}  />
           <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
             {({ geographies }) =>
               geographies

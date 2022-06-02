@@ -19,13 +19,15 @@ const HtMostUsedPie = ({newData, title, setCategories, usuario}) => {
   let dataSolved = addDuplicates(duplicates);
   
   let colors = colorsFromCategory(dataSolved);
-  console.log('colorsSolved', colors)
-  console.log('dataSolved', dataSolved)
+
   let labels = dataSolved.map(item => item.category) 
   let data = dataSolved.map(item => item.count)
  
 
-       
+
+
+
+
   let dataChart = {
     labels: labels,
     datasets: [
@@ -49,17 +51,17 @@ const HtMostUsedPie = ({newData, title, setCategories, usuario}) => {
     ,
 
 
-        
+
   }
   return (
     <PieChartContainer usuario={usuario}>
     <h4>Categorias más usadas de: {title}</h4>
-    <Pie 
+    <Pie
       data = {dataChart}
       options={{
         title: {
           display: true,
-          text: 'Mentions por hashtags',
+          text: 'Menciones por hashtags',
           fontSize: 20
         },
         legend: {
@@ -77,8 +79,8 @@ export default HtMostUsedPie
 
 
 export function extractHtCategories(data){
-  
-  const htCategories = [];  
+
+  const htCategories = [];
   data.forEach(item => {
     htCategories.push({
       category: item.ht_category_spa,
@@ -113,16 +115,16 @@ let newArray = data.map(item => {
   },0)
   return {
     category: item[0].category,
-    count: itemCount  
+    count: itemCount
   }
 })
 return newArray;
 }
 export function addDuplicates2 (data){
-  let newArray = data.map(item => {  
+  let newArray = data.map(item => {
     return {
       category: item[0].category,
-      count: item.count  
+      count: item.count
     }
   })
   return newArray;
