@@ -44,9 +44,11 @@ export const Map = ({
   function handleMoveEnd(position) {
     setPosition(position);
   }
-  function cancelZoomIn() {
+  function closeOnZoomIn() {
+    setOpen(false);
     //cancel zoom on scroll
-    return
+
+
 
   }
   const handleOnClick = ({ target, pageX, pageY }) => {
@@ -85,11 +87,7 @@ export const Map = ({
       flexDirection: 'column',
       width: '90%',
     }}>
-    <h4
-    style={{
-      marginLeft: '150px',
-    }}
-    >América Latina Continental</h4>
+    
       <ComposableMap
         height={960}
         width={1920}
@@ -99,15 +97,15 @@ export const Map = ({
           scale: 640,
         }}
         onClick={handleOnClick}
-        onScrollCapture={cancelZoomIn}
-        onScroll={cancelZoomIn}
+        onWheelCapture={closeOnZoomIn}
+      
       >
 
         <ZoomableGroup
           zoom={position.zoom}
           center={position.coordinates}
           onMoveEnd={handleMoveEnd}
-
+          
         >
             <Graticule stroke="#ccc" step={[27,9]}  />
           <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>

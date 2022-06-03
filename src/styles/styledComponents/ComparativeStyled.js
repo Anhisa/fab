@@ -4,13 +4,13 @@ import DataTable from 'react-data-table-component';
 export const ComparativeStyled = styled.section`
   display: flex;
   width: 50%;  
-  height: 700px;
+  max-height: fit-content;
   flex-direction: column;
   background-color:${({ theme }) => theme.background};
   margin: 20px;
   border-radius: 15px;
   border: 2px solid ${({ theme }) => theme.toggleBorder};
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 3px 10px #333;
   
   .countSelector {
     padding: 20px;
@@ -32,20 +32,26 @@ export const ComparativeStyled = styled.section`
     }
   }
   .countSelector2{
-    padding: 20px;
+    
     display: flex;
     flex-direction: column;
     z-index: 1;    
     
     position: relative;
-    .title{
+   
       h4{
       font-size: 20px;
-      font-weight: bold;
+      text-align: center;
       }
-    }
+    
     .form{
-      z-index: 2;
+      width: 70%;
+      
+    }
+    .selectors{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
     }
   }
   .btnGroup {
@@ -71,14 +77,14 @@ export const ComparativeStyled = styled.section`
 
     .btn {
      
-      width: 90%;
-      background-color: ${({ theme }) => theme.primary};
-      color: ${({ theme }) => theme.textContrast};
+      width: 30%;
+      background-color: ${({ theme }) => theme.secondary};
+      color: ${({ theme }) => theme.text};
     
       margin: 5px;
       display: flex;
       justify-content: center;
-      border-radius:10px;
+      border-radius:25px;
       padding: 5px 10px;
       border: 1px solid ${({ theme }) => theme.toggleBorder};
       font-weight: 600;
@@ -101,6 +107,17 @@ export const ComparativeStyled = styled.section`
       margin-bottom: 0px;
       width: 100%;
       z-index: 1;
+    }
+  }
+  opacity: 0;
+  animation: fadeIn 1s ease-in;
+  animation-fill-mode: forwards;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 `;
@@ -185,4 +202,5 @@ export const DataTableStyled = styled(DataTable)`
   .MuiTableCell-root {
     padding: 10px;
   }
+ 
 `;

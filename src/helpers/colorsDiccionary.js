@@ -22,12 +22,47 @@ export const colorsDictionary = [
     color: '#660066'
   },{
     category: 'GOBIERNO RPCh',
-    color: 'red'
+    color: '#ff9900'
   },{
     category: 'EE.UU.',
     color: '#996633'
   }, {
     category: 'VERACIDAD INFORMACIÓN',
     color: '#ff9900'
+  }, {
+    category: 'Ciudadano',
+    color: 'yellow'
+  },{
+    category: 'Gobiernos y Entidades Gubernamentales ALC',
+    color: '#ff0000'
+  }, {
+    category: 'Cuenta Suspendida o Eliminada',
+    color: '#cccccc'
+  }, {
+    category: 'Empresas y Organizaciones Privadas ALC',
+    color: '#006699'
+  },
+  {
+    category: 'Medios de Comunicación y Sites de Promoción RPCh',
+    color: '#0099ff'
+  }, {
+    category: 'Organizaciones Binacionales RPCh - ALC',
+    color: '#663300'
+  }, {
+    category: 'Centros de Investigación y Educación Superior ALC',
+    color: '#669900'
+  }, {
+    category: 'Influencers',
+    color: '#990099'
+  }, {
+    category: 'Organismos Foros y Espacios Multilaterales',
+    color: 'lightblue'
+  }, {
+    category: 'Medios de Comunicación ALC',
+    color: '#006600'
+  } , {
+    category: 'Gobierno RPCh',
+    color: '#ff9900'
   }
+
 ]

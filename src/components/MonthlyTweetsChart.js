@@ -16,6 +16,7 @@ import usePeriodComparison from '../hooks/periodComparison';
 import { MonthyUserViewStyled } from '../styles/styledComponents/MonthyUserViewStyled';
 
 import monthyHelper from '../helpers/monthyHelper';
+import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';
 
 ChartJS.register(
   CategoryScale,
@@ -37,6 +38,8 @@ export const MonthlyTweetsChart = ({ newData }) => {
   if(!newData){
     return null
   }
+
+
   // let labels = newData[0]?.map((item) => item.month)
   // console.log('labels', labels);
   
@@ -126,17 +129,21 @@ function createDatasets(data) {
         data2[1] = data2[0].concat(data2[1])
       }
       if((periods[0].id === 2 || periods[0].id === 5) &&( periods[1].id === 3 || periods[1].id === 6)){
-        console.log('data2[1]', data2[0])
-        console.log('periods' , periods)
+      
         data2[0] = data2[1].slice(0,6).concat(data2[0])  
      
-        console.log('data2[1] after', data2[0])        
+             
       }
       // if((periods[0].id === 1 ) && (periods[1].id === 6 )){
       //   data2[0] = data2[0].concat(data2[1].slice(6,12))  
       // }
 
-      newLabels = data2[1].map((item) => item.month)
+      if(!data2[1]){
+        newLabels = data2[0].map((item) => item.month)
+      } else {
+
+        newLabels = data2[1].map((item) => item.month)
+      }
     
   
   //uniques with Set 
@@ -147,12 +154,15 @@ function createDatasets(data) {
       timeZone: 'UTC',
     })
     );
-    console.log('data2', data2)
+
     newLabels = [...new Set(newLabels)]
   const datasets = [];
   let controlColor = 0;
   
   Object.values(data2).forEach((item) => {
+    if(item === undefined){
+      return
+    }
     let color =
       controlColor === 0 ? 'rgba(255, 206, 33, 0.7' : 'rgba(0, 60, 123, 0.7)';
     datasets.push({

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 export const UserCardStyled = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction:row;
   
   .left{
     display: flex;

@@ -41,8 +41,7 @@ function addDuplicates(data){
   let newArray = data.map(item => {
     let accId = item[0].official_account_id;
     let creationDate = item[0]["official_account creation_date"]
-    console.log('creationDate', creationDate)
-    console.log('accId', item)
+
     let total_tweets_period = item.reduce((acc, item) => {
       return acc + parseInt(item.total_tweets_period)
     }, 0)

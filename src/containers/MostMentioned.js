@@ -8,6 +8,8 @@ import { CreateChart } from '../helpers/createChart';
 import { Spinner } from 'react-bootstrap';
 import useActiveNames from '../hooks/useActiveNames';
 import usePeriodComparison from '../hooks/periodComparison';
+import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';
+import MostMentionedPie from '../components/MostMentionedPie';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-mentioned';
 export const MostMentionedItems = memo(({ period }) => {
@@ -17,7 +19,7 @@ export const MostMentionedItems = memo(({ period }) => {
   const {isPeriodComparisonActive} = usePeriodComparison();
   let arraysBar = [];
   const data = useFilterData(api, 'most-mentioned');
-
+  
   useEffect(() => {
     if (data !== false) {
     
@@ -32,7 +34,7 @@ export const MostMentionedItems = memo(({ period }) => {
   </Spinner>
   }
   if (innerData.length === 0) {
-    return <div>No hay data correspondiente al periodo seleccionado</div>;
+    return <EmptyDataStyled>No hay data correspondiente al periodo seleccionado</EmptyDataStyled>;
   }
 
   return (
@@ -40,7 +42,7 @@ export const MostMentionedItems = memo(({ period }) => {
       {data.map((accountId, index) => {
         return (
           <section className="column" key={index}>
-            <div>
+            
               <MostMentionedItemCHANGE
                 newData={accountId}
                 arrayBar={chartData[index]}
@@ -48,10 +50,11 @@ export const MostMentionedItems = memo(({ period }) => {
                 comparisonView={isPeriodComparisonActive}
                 title={accountsNames[index]}
               />
-            </div>
-            {/* <div>
-              <MostMentionedChart newData={accountId} periodId={period}/>
-            </div> */}
+            
+            <MostMentionedPie newData={accountId}
+              periodId={period}
+              title={accountsNames[index]}
+            />
           </section>
         );
       })}

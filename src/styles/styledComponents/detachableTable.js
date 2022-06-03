@@ -1,20 +1,21 @@
 import styled from 'styled-components';
 
 export const DetachableTable = styled.section`
-  position: absolute;
+  position:absolute;
+
   padding: 0px;
   margin: 0px;
   width: 100%;
   
  height: fit-content;
-  top: ${(props) => props.top + 120  + 'px'};
+  top: ${(props) => props.top + 60  + 'px'};
   border-radius: 30px;
 
   left: ${(props) => props.left + 'px'};
   .dotted-line {
     position: absolute;    
-    top: -120px;  
-    height: 120px;
+    top: -60px;  
+    height: 60px;
     
     border-left: 5px dotted black;
     

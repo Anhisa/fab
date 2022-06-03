@@ -11,11 +11,13 @@ export const PieContainerStyled = styled.div`
 `
 
 export const PieChartContainer = styled.div`
-  border: 1px solid black;
   display: flex;
-  width: ${props => props.usuario === true ? '100%' : '50%'};
-  max-width: 500px;
+  width:${props => props.usuario ? '100%' : '50%'}; 
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media (max-width: 1000px) {
+    width: 100%;
+    
+  }
 `

@@ -20,6 +20,7 @@ import { SectionMapsStyled } from '../styles/styledComponents/SectionMapStyled';
 import { ComparisonContainerStyled } from '../styles/styledComponents/ComparisonContainerStyled';
 import useCreateInitialState from '../hooks/createInitialState';
 import FloatingButton from '../components/FloatingButton';
+import FloatingTextRight from '../components/FloatingTextRight';
 import useMenu from '../hooks/useMenu';
 import ColorBar from '../components/colorBar';
 import NavBarHome from '../components/NavBarHome';
@@ -28,6 +29,7 @@ import { useTheme } from '../hooks/useTheme';
 import { ThemeProvider } from 'styled-components';
 import { GoblalStyles } from '../styles/styledComponents/GlobalStyles';
 import { getActivityCreactionDate } from '../helpers/getActivityCreactionDate';
+import FloatingText from '../components/FloatingText';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
 
@@ -37,11 +39,12 @@ export const Home = () => {
   const [countrySelectedId, setCountrySelectedId] = useState(null);
   const countryDataState = [countriesAllData, setCountriesAllData];
   const [currentMap, setCurrentMap] = useState(true);
+  const [theme] = useTheme();
   const [open, setOpen] = useState(false);
 
   const countryListManagmentOpen = { open, setOpen };
   const items = response.data;
-
+  
   const [accountsCountry, setAccountsCountry] = useState([]);
   const [dataComparing, setDataComparing] = useCreateInitialState();
   const [mousePosition, setMousePosition] = useState({
@@ -55,16 +58,17 @@ export const Home = () => {
     showPeriodComparing,
   } = menu;
   
-  const [theme, themeToggler] = useTheme();
-  let answer = getActivityCreactionDate()
-  console.log('answer', answer)
+ 
+  // let answer = getActivityCreactionDate()
+  // console.log('answer', answer)
 
   return (
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+<>
     <GoblalStyles />
     <HomeStyled className="container-xl">
-      <FloatingButton setCurrentMap={setCurrentMap} menu={menu} currentMap={currentMap}  themeToggler={themeToggler} countryListManagmentOpen={countryListManagmentOpen} />
-      <NavBarHome/>
+      {/* <FloatingButton setCurrentMap={setCurrentMap} menu={menu} currentMap={currentMap}  themeToggler={themeToggler} countryListManagmentOpen={countryListManagmentOpen} /> */}
+      <NavBarHome  menu={menu}
+       countryListManagmentOpen={countryListManagmentOpen}/>
    
       
       {showMap &&  <ColorBar/>}
@@ -80,6 +84,8 @@ export const Home = () => {
               setCountrySelectedId={setCountrySelectedId}
               theme={theme}
             />
+             <FloatingText setCurrentMap={setCurrentMap}/>
+             <FloatingTextRight currentMap={currentMap}/>
           </MapStyled>
           :
           <MapStyled className="map-container col-6">
@@ -90,6 +96,8 @@ export const Home = () => {
               countryListManagmentOpen={countryListManagmentOpen}
               setCountrySelectedId={setCountrySelectedId}
             />
+          <FloatingText setCurrentMap={setCurrentMap}/>
+          <FloatingTextRight currentMap={currentMap}/>
           </MapStyled>
           : null
           }
@@ -121,6 +129,6 @@ export const Home = () => {
         </ComparisonContainerStyled>}
       </TableContext.Provider>
     </HomeStyled>
-    </ThemeProvider>
+    </>
   );
 };

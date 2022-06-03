@@ -12,10 +12,29 @@ const ViewUserCard = ({data, period}) => {
   }
   /* Pendiente agregar el periodo */ 
 
-const total_tweets_period = data.slice(0,period).reduce((acc, curr) => {
+const totalCalculator =  () => {
+if(period.startDate === 4 && period.endDate === 4){
+  return data[dataLength].total_tweets_period
+} else if (period.startDate === 1 && period.endDate === 1){
+  return data[0].total_tweets_period
+} else if (period.startDate === 2 && period.endDate === 2){
+  return data[1].total_tweets_period
+} else if (period.startDate === 3 && period.endDate === 3){
+  return data[2].total_tweets_period
+} else if (period.startDate === 3 && period.endDate === 4){
+  return parseInt(data[2].total_tweets_period) + parseInt(data[3].total_tweets_period)
+}
+else {
+ 
+let count =  data.slice(period.startDate - 1,period.endDate ).reduce((acc, curr) => {
   return acc + parseInt(curr.total_tweets_period)
 },0)
 
+
+return count
+}
+}
+const total_tweets_period = totalCalculator()
 
   return (
     <ViewUserCardStyled>
@@ -27,11 +46,11 @@ const total_tweets_period = data.slice(0,period).reduce((acc, curr) => {
         {/* <UserCard name={"Período"} data={'Julio 1, 2020 - Diciembre 31, 2020'}/> */}
       </div>
       <div className="innerRight">
-        <UserCard  name={'Nº Seguidores'} data={data[period]?.followers_number ?? 'No hay data en el periodo seleccionado'}/>
+        <UserCard  name={'Nº Seguidores'} data={data[period.endDate-1].followers_number ?? 'No hay data correspondiente al periodo seleccionado'}/>
         <hr/>
-        <UserCard name={'Nº cuentas seguidas'} data={data[period]?.following_number ?? 'No hay data en el periodo seleccionado'} />
+        <UserCard name={'Nº cuentas seguidas'} data={data[period.endDate-1].following_number ?? 'No hay data correspondiente al periodo seleccionado'} />
         <hr/>
-        <UserCard  name={"Total tuits período"} data={total_tweets_period ?? 'No hay data en el periodo seleccionado'} />
+        <UserCard  name={"Total tuits período"} data={total_tweets_period ?? 'No hay data correspondiente al periodo seleccionado'} />
       </div>
     </ViewUserCardStyled>
   );
