@@ -7,6 +7,7 @@ import { TableContext } from '../context/TableContext';
 import usePeriodComparison from '../hooks/periodComparison';
 import useActiveNames from '../hooks/useActiveNames';
 import { useFilterData } from '../hooks/useFilterData';
+import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';
 import { PieContainerStyled } from '../styles/styledComponents/PieContainerStyled';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/ht-most-used';
@@ -31,7 +32,7 @@ export const HtMostUsedItems = memo(({ period, usuario }) => {
     );
   }
   if (innerData.length === 0) {
-    return <div>No hay data en el periodo seleccionado</div>;
+    return <EmptyDataStyled>No hay data correspondiente al periodo seleccionado</EmptyDataStyled>;
   }
 
   return (

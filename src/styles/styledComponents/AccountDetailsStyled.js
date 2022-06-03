@@ -5,8 +5,10 @@ export const AccountDetailsStyled = styled.div`
   flex-direction: column;  
   justify-content: center;
   padding: 20px;
+  background-color: ${({ theme }) => theme.body};
+  color : ${({ theme }) => theme.text};
   .tableContainer{
-    background-color: red;
+ 
     @media (min-width: 1440px) {
       flex-direction: row;
     flex-wrap: wrap;

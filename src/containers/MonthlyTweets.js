@@ -4,6 +4,7 @@ import { MonthlyTweetsChart } from '../components/MonthlyTweetsChart';
 import { TableContext } from '../context/TableContext';
 import { useFilterData } from '../hooks/useFilterData';
 import { Spinner } from 'react-bootstrap';
+import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/monthly-tweets';
 export const MonthlyTweetsItems = memo((period) => {
@@ -23,8 +24,9 @@ export const MonthlyTweetsItems = memo((period) => {
       </Spinner>
     );
   }
-  if (innerData.length === 0) {
-    return <div>No hay data en el periodo seleccionado</div>;
+
+  if (innerData.length === 0 || innerData.length === undefined) {
+    return <EmptyDataStyled>No hay data correspondiente al periodo seleccionado</EmptyDataStyled>;
   }
  ;
 

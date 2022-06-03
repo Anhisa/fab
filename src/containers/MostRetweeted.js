@@ -7,6 +7,8 @@ import { Spinner } from 'react-bootstrap';
 
 import useActiveNames from '../hooks/useActiveNames';
 import usePeriodComparison from '../hooks/periodComparison';
+import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';
+import MostRetwittedPie from '../components/MostRetwittedPie';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
 
 export const MostRetweetedItems = memo((period) => {
@@ -18,6 +20,7 @@ export const MostRetweetedItems = memo((period) => {
   const [chartData, setChartData] = useState([]);
   const data = useFilterData(api, 'most-retweeted');
   let arraysBar = [];
+ 
   useEffect(() => {
     if (data !== false) {  
     setInnerData(data);      
@@ -31,7 +34,7 @@ export const MostRetweetedItems = memo((period) => {
   </Spinner>
   }
   if (innerData.length === 0|| chartData.length === 0) {
-    return <div>No hay data correspondiente al periodo seleccionado</div>;
+    return <EmptyDataStyled>No hay data correspondiente al periodo seleccionado</EmptyDataStyled>;
   } 
 0
 
@@ -45,7 +48,7 @@ export const MostRetweetedItems = memo((period) => {
               <MostRetweetedItemChange newData={dataAccount} arrayBar={chartData[index]} period={period} comparisonView={isPeriodComparisonActive} title={
                 accountsNames[index]
               }/>
-            
+              <MostRetwittedPie newData={dataAccount} period={period} title={accountsNames[index]}/>
             {/* <div>
               <MostRetweetedChart newData={accountId} period={period} />
             </div> */}

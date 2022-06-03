@@ -1,6 +1,6 @@
-const yellow = '#ffce21'
-const lightBlue = '#a4c2d5'
-const darkBlue = '#121f42'
+export const yellow = '#ffce21'
+export const lightBlue = '#a4c2d5'
+export const darkBlue = '#121f42'
 export const lightTheme = {
   body: '#fff',
   background: lightBlue,
@@ -8,7 +8,7 @@ export const lightTheme = {
   primary: darkBlue,
   secondary: yellow,
   tertiary: '#333',
-  toggleBorder: '#333',
+  toggleBorder: yellow,
   textContrast: '#fff',
 }
 

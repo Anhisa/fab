@@ -6,11 +6,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 const periods = [
   {
     id: 1,
-    name: '2020-1',
+    name: '2020 Semestre I',
   },
   {
     id: 2,
-    name: '2020-2',
+    name: '2020 Semestre II',
   },
   {
     id: 3,
@@ -18,11 +18,11 @@ const periods = [
   },
   {
     id: 4,
-    name: '2021-1',
+    name: '2021 Semestre I',
   },
   {
     id: 5,
-    name: '2021-2',
+    name: '2021 Semestre II',
   },
   {
     id: 6,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import  Button  from '@mui/material/Button';
 import ComparativePerPeriod from '../components/ComparativePerPeriod';
 import { CompCategoryCb } from '../components/CompCategoryCb';
 import { CompPeriodSlider } from '../components/CompPeriodSlider';

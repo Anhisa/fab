@@ -76,11 +76,7 @@ export const MapIslands = ({
       flexDirection: 'column',
       width: '90%',
     }}>
-    <h4
-    style={{
-      marginLeft: '150px',
-    }}
-    >El Caribe</h4>
+
       <ComposableMap
         height={960}
         width={1920}

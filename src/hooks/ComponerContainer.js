@@ -23,7 +23,7 @@ export const ComponentContainer = ({context}) => {
 
 
   } , [accountIdA, accountIdB, periodA]);
-  if (accountIdA.id === '' || accountIdB.id === '' || accountIdA.id === accountIdB.id) {
+  if (accountIdA.id === '' || accountIdB.id === '' || accountIdA.id === accountIdB.id){
 
      console.log('Please select two different accounts and periods')
    return []
@@ -44,7 +44,7 @@ export const ComponentContainer = ({context}) => {
         </CollapsableTableStyled>
       ): ''}
       {categories.mostRetweeted && (
-        <CollapsableTableStyled  usuario={true}>
+        <CollapsableTableStyled  >
           <ButtonToogle name="most-retweet" >
 
             {isPeriodComparisonActive ? `Usuarios más retuiteados del periodo ${periodA.name} al ${periodB.name}` : `Usuarios más retuiteados de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
@@ -53,7 +53,7 @@ export const ComponentContainer = ({context}) => {
         </CollapsableTableStyled>
       )}
       {categories.mostReplied && (
-        <CollapsableTableStyled usuario>
+        <CollapsableTableStyled >
           <ButtonToogle name="most-replied">
 
             {isPeriodComparisonActive ? `Usuarios que más han recibido respuesta del periodo ${periodA.name} al ${periodB.name}` : `Usuarios que más han recibido respuesta de las cuentas ${accountIdA.name} y ${accountIdB.name}`}

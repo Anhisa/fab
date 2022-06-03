@@ -7,9 +7,11 @@ import { TableContext } from '../context/TableContext';
 import { CreateChart } from '../helpers/createChart';
 import { useFilterData } from '../hooks/useFilterData';
 import { StyledDataTable } from '../styles/styledComponents/StyledDataTable';
+import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';
+import MostRepliedPie from '../components/MostRepliedPie';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-replied';
-export const MostRepliedItems = memo((period) => {
+export const MostRepliedItems = memo((period, usuario) => {
   const data = useFilterData(api, 'most-replied');
   const accountsNames = useActiveNames()
   const {isPeriodComparisonActive} = usePeriodComparison();
@@ -32,7 +34,7 @@ export const MostRepliedItems = memo((period) => {
   </Spinner>;
   }
   if (data.length === 0) {
-    return <div>No hay data en el periodo seleccionado</div>;
+    return <EmptyDataStyled>No hay data correspondiente al periodo seleccionado</EmptyDataStyled>;
   }
   
   return (
@@ -41,17 +43,17 @@ export const MostRepliedItems = memo((period) => {
       {Object.values(innerData).map((accountId, index) => {
         return (
           <section className="column" key={index}>
-            <div>
+          
               <MostRepliedItemCHANGE
                 newData={accountId}
                 arrayBar={chartData[index]}
                 comparisonView={isPeriodComparisonActive}
                 title={accountsNames[index]}
               />
-            </div>
-            {/* <div>
-              <MostRepliedChart newData={accountId} periodId={period} />
-            </div> */}
+           
+           
+              <MostRepliedPie newData={accountId} periodId={period}  title={accountsNames[index]} />
+           
           </section>
         );
       })}

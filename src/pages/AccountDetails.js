@@ -81,7 +81,7 @@ export const AccountDetails = () => {
               <div className="left">
                 <ViewUserCard
                   data={dataSearch.dataUser}
-                  period={dataSearch.period.endDate - 1}
+                  period={dataSearch.period}
                 />
               </div>
               <div className="right">

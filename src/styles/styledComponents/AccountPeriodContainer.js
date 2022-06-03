@@ -16,4 +16,10 @@ export const AccountPeriodContainer = styled.div`
       color: ${({ theme }) => theme.text};
     }
   }
+  .MuiSlider-thumb{
+    background-color: ${({ theme }) => theme.secondary};
+  }
+  .MuiSlider-marked{
+    color: ${({ theme }) => theme.text};
+  }
 `
