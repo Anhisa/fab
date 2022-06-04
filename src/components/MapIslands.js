@@ -5,8 +5,7 @@ import {
   ComposableMap,
   Geographies,
   Geography,
-  Marker,
-  ZoomableGroup,
+useZoomPan,
   Graticule,
 } from 'react-simple-maps';
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
@@ -23,36 +22,50 @@ export const MapIslands = ({
   countryListManagmentOpen,
   setCountrySelectedId,
 }) => {
-  const [position, setPosition] = useState({
+  const [localPosition, setLocalPosition] = useState({
     coordinates: [-73, 18],
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
 
   function handleZoomIn() {
-    if (position.zoom >= 4) return;
-    setPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.1 }));
+    if (localPosition.zoom >= 4) return;
+    setLocalPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.1 }));
   }
 
   function handleZoomOut() {
-    if (position.zoom <= 1) return;
-    setPosition((pos) => ({ ...pos, zoom: pos.zoom / 1.1 }));
+    if (localPosition.zoom <= 1) return;
+    setLocalPosition((pos) => ({ ...pos, zoom: pos.zoom / 1.1 < 1 ? 1.1 : pos.zoom / 1.1 }));
+  }
+  function closeOnZoomIn() {
+    setOpen(false);
+    //cancel zoom on scroll
   }
 
   function handleMoveEnd(position) {
-    setPosition(position);
+    closeOnZoomIn()
+    
+    const {coordinates, zoom} = position; 
+    setLocalPosition({coordinates, zoom:localPosition.zoom});
   }
 
   const handleOnClick = ({ target, pageX, pageY }) => {
     if (target.attributes.value) {
       const itemValue = target.attributes.value;
-
+      let x = pageX;
+      let y = pageY;
       const filteredAccounts = items.filter(
         (item) => item.country_id === itemValue.value
       );
+      if(pageX + 300 > window.innerWidth){
+        x = pageX - 350;       
+      }
+      if(pageY + 300 > window.innerHeight){
+        y = pageY - 350;
+      }
       setMouse({
-        x: pageX,
-        y: pageY,
+        x:x,
+        y: y,
       });
       setAccounts(filteredAccounts);
       setCountrySelectedId(itemValue.value);
@@ -78,8 +91,8 @@ export const MapIslands = ({
     }}>
 
       <ComposableMap
-        height={960}
-        width={1920}
+      height={window.innerHeight * 0.9}
+      width={window.innerWidth}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
           rotate: [49, -67.5, 12],
@@ -87,9 +100,10 @@ export const MapIslands = ({
         }}
         onClick={handleOnClick}
       >
-        <ZoomableGroup
-          zoom={position.zoom}
-          center={position.coordinates}
+        <CustomZoomableGroup
+                zoom={localPosition.zoom}
+                center={localPosition.coordinates}
+                positionLocal={localPosition}
           onMoveEnd={handleMoveEnd}
         >
           <Graticule stroke="#ccc" step={[16,9]}/>
@@ -117,7 +131,7 @@ export const MapIslands = ({
                 })
             }
           </Geographies>
-        </ZoomableGroup>
+        </CustomZoomableGroup>
       </ComposableMap>
       <div className="controls">
         <button onClick={handleZoomIn}>
@@ -147,5 +161,34 @@ export const MapIslands = ({
         </button>
       </div>
     </div>
+  );
+};
+const CustomZoomableGroup = ({ children, positionLocal, setPosition, ...restProps }) => {
+  const { mapRef, transformString, position } = useZoomPan(restProps);  
+  let check = false;
+  console.log('position', positionLocal);
+  if (position.dragging?.type === 'wheel') {
+    return (
+      <g ref={mapRef}>
+        <g transform={`translate(${positionLocal.coordinates[0]} ${
+          check ? positionLocal.coordinates[1] : ''
+        }  ) scale(${positionLocal.zoom})`}>{children}</g>
+      </g>
+    );
+  }
+  
+
+  return (
+    <g ref={mapRef}>
+      
+      <g
+        // transform={`translate(${position.x} ${
+        //   check ? position.y : ''
+        // }  ) scale(${positionLocal.zoom})`}
+        transform={transformString}
+      >
+        {children}
+      </g>
+    </g>
   );
 };

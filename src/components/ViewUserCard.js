@@ -4,14 +4,9 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import { UserCardStyled, ViewUserCardStyled } from '../styles/styledComponents/ViewUserCardStyled';
 const ViewUserCard = ({data, period}) => {
   const dataLength = data.length - 1;
-  const dataDiccionary = {
-    1: 'Enero 1,2020 a Junio 31,2020',
-    2: 'Julio 1,2020 a Diciembre 31,2020',
-    3: 'Enero 1,2021 a Junio 31,2021',
-    4: 'Julio 1,2021 a Diciembre 31,2021',
-  }
-  /* Pendiente agregar el periodo */ 
 
+  /* Pendiente agregar el periodo */ 
+console.log('data', data);
 const totalCalculator =  () => {
 if(period.startDate === 4 && period.endDate === 4){
   return data[dataLength].total_tweets_period
@@ -43,12 +38,12 @@ const total_tweets_period = totalCalculator()
         <hr/>
         <UserCard name={"Institución / Nombre"} data={data[0].official_account_name_spa}/>
         <hr/>
-        {/* <UserCard name={"Período"} data={'Julio 1, 2020 - Diciembre 31, 2020'}/> */}
+        <UserCard name={"Fecha de creación de la cuenta"} data={data[0]['official_account creation_date']}/>
       </div>
       <div className="innerRight">
-        <UserCard  name={'Nº Seguidores'} data={data[period.endDate-1].followers_number ?? 'No hay data correspondiente al periodo seleccionado'}/>
+        <UserCard  name={'Nº Seguidores'} data={data[0].followers_number ?? 'No hay data correspondiente al periodo seleccionado'}/>
         <hr/>
-        <UserCard name={'Nº cuentas seguidas'} data={data[period.endDate-1].following_number ?? 'No hay data correspondiente al periodo seleccionado'} />
+        <UserCard name={'Nº cuentas seguidas'} data={data[0].following_number ?? 'No hay data correspondiente al periodo seleccionado'} />
         <hr/>
         <UserCard  name={"Total tuits período"} data={total_tweets_period ?? 'No hay data correspondiente al periodo seleccionado'} />
       </div>

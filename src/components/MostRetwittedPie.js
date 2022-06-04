@@ -3,7 +3,7 @@
 import React from 'react'
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
+import { Pie, Doughnut } from 'react-chartjs-2';
 import { PieChartContainer } from '../styles/styledComponents/PieContainerStyled';
 import { colorsFromCategory } from '../helpers/colorsFromCategory';
 
@@ -54,7 +54,7 @@ const MostRetwittedPie = ({newData, title, setCategories, usuario}) => {
   return (
     <PieChartContainer usuario={usuario}>
     <h4>Categorias más usadas de: {title}</h4>
-    <Pie
+    <Doughnut
       data = {dataChart}
       options={{
         title: {

@@ -16,6 +16,17 @@ export const CompAccountSelector = ({ setAccounts }) => {
   const items = response.data;
 
   const handleChangeA = ({target:{value}}) => {
+    if(value === 'none') {
+      setAccounts((prevState) => ({
+        ...prevState,
+        accountIdA: {
+          id: '',
+          name: '',
+        },
+      }));
+     return setAccountA('');
+
+    }
     setAccountA(value);
     const name = items.find(item => item.official_account_id === value);
  
@@ -28,6 +39,16 @@ export const CompAccountSelector = ({ setAccounts }) => {
     }));
   };
   const handleChangeB = ({target:{value}}) => {
+    if(value === 'none') {
+      setAccounts((prevState) => ({
+        ...prevState,
+        accountIdB: {
+          id: '',
+          name: '',
+        },
+      }));
+      return setAccountB('');
+    }
     const name = items.find(item => item.official_account_id === value);
     setAccounts((prevState) => ({
       ...prevState,
@@ -57,7 +78,7 @@ export const CompAccountSelector = ({ setAccounts }) => {
             value={accountA}
             onChange={handleChangeA}
           >
-            <MenuItem value="">
+            <MenuItem value="none">
               <em>Ninguna</em>
             </MenuItem>
             {items.map((item) => (
@@ -87,7 +108,7 @@ export const CompAccountSelector = ({ setAccounts }) => {
             value={accountB}
             onChange={handleChangeB}
           >
-            <MenuItem value="">
+            <MenuItem value="none">
               <em>Ninguna</em>
             </MenuItem>
             {items.map((item) => (

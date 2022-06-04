@@ -90,7 +90,7 @@ export const AccountDetails = () => {
             </UserCardStyled>
               <hr />
             <AccountPeriodContainer>
-              <CompPeriodSlider setPeriod={setPeriod} />
+              <CompPeriodSlider setPeriod={setPeriod}  data={dataSearch.dataUser} />
             </AccountPeriodContainer>
               <hr />
 

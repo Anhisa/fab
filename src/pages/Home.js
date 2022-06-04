@@ -30,11 +30,13 @@ import { ThemeProvider } from 'styled-components';
 import { GoblalStyles } from '../styles/styledComponents/GlobalStyles';
 import { getActivityCreactionDate } from '../helpers/getActivityCreactionDate';
 import FloatingText from '../components/FloatingText';
+import { Spinner } from 'react-bootstrap';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
 
 export const Home = () => {
   const response = useGetData(api);
+  const [loading, setLoading] = useState(true);
   const [countriesAllData, setCountriesAllData] = useState([]);
   const [countrySelectedId, setCountrySelectedId] = useState(null);
   const countryDataState = [countriesAllData, setCountriesAllData];
@@ -57,8 +59,32 @@ export const Home = () => {
     showAccountComparing,
     showPeriodComparing,
   } = menu;
-  
- 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 5500);
+  },[])
+
+
+ if(loading){
+   return (
+     <div  className="spinner" 
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+      }}
+
+     >
+    <Spinner animation="border" role="status"
+    
+    >
+    <span className="visually-hidden">Loading...</span>
+  </Spinner>
+  </div>
+   )
+ }
   // let answer = getActivityCreactionDate()
   // console.log('answer', answer)
 
@@ -96,7 +122,7 @@ export const Home = () => {
               countryListManagmentOpen={countryListManagmentOpen}
               setCountrySelectedId={setCountrySelectedId}
             />
-          <FloatingText setCurrentMap={setCurrentMap}/>
+          <FloatingText setCurrentMap={setCurrentMap} islands={true}/>
           <FloatingTextRight currentMap={currentMap}/>
           </MapStyled>
           : null

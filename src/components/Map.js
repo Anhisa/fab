@@ -7,6 +7,7 @@ import {
   Geography,
   Graticule,
   ZoomableGroup,
+  useZoomPan,
 } from 'react-simple-maps';
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
 
@@ -21,47 +22,56 @@ export const Map = ({
   setMouse,
   countryListManagmentOpen,
   setCountrySelectedId,
-  theme
-  
+  theme,
 }) => {
-  const [position, setPosition] = useState({
-    coordinates: [-75, -12],
+  const [localPosition, setLocalPosition] = useState({
+    coordinates: [-85, -15],
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
 
-
   function handleZoomIn() {
-    if (position.zoom >= 4) return;
-    setPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.1 }));
+  
+    if (localPosition.zoom >= 4) return;
+    setLocalPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.1 }));
   }
 
   function handleZoomOut() {
-    if (position.zoom <= 1) return;
-    setPosition((pos) => ({ ...pos, zoom: pos.zoom / 1.1 }));
+ 
+    if (localPosition.zoom <= 1) return;
+    setLocalPosition((pos) => ({ ...pos, zoom: pos.zoom / 1.1 < 1 ? 1.1 : pos.zoom / 1.1 }));
   }
 
   function handleMoveEnd(position) {
-    setPosition(position);
+    closeOnZoomIn()
+  
+    const {coordinates, zoom} = position;
+
+    setLocalPosition({coordinates, zoom:localPosition.zoom});
   }
   function closeOnZoomIn() {
     setOpen(false);
     //cancel zoom on scroll
-
-
-
   }
   const handleOnClick = ({ target, pageX, pageY }) => {
     if (target.attributes.value) {
       const itemValue = target.attributes.value;
-
+      let x = pageX;
+      let y = pageY;
       const filteredAccounts = items.filter(
         (item) => item.country_id === itemValue.value
       );
+      if(pageX + 300 > window.innerWidth){
+        x = pageX - 350;       
+      }
+      if(pageY + 300 > window.innerHeight){
+        y = pageY - 350;
+      }
       setMouse({
-        x: pageX,
-        y: pageY,
+        x: x,
+        y: y,
       });
+     
 
       setAccounts(filteredAccounts);
       setCountrySelectedId(itemValue.value);
@@ -79,35 +89,35 @@ export const Map = ({
     .domain([0, 11161])
     .range(['#edf7ff', '#1d9bf0']);
 
-
-
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      width: '90%',
-    }}>
-    
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '90%',
+      }}
+    >
       <ComposableMap
-        height={960}
-        width={1920}
+        height={window.innerHeight * 0.9}
+        width={window.innerWidth}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
           rotate: [77, 15, 0],
-          scale: 640,
+          scale: 540,
         }}
         onClick={handleOnClick}
         onWheelCapture={closeOnZoomIn}
-      
+        
       >
-
-        <ZoomableGroup
-          zoom={position.zoom}
-          center={position.coordinates}
+        < CustomZoomableGroup
+          zoom={localPosition.zoom}
+          center={localPosition.coordinates}
+          positionLocal={localPosition}
+         
           onMoveEnd={handleMoveEnd}
-          
         >
-            <Graticule stroke="#ccc" step={[27,9]}  />
+          <Graticule stroke="#ccc" step={[27, 9]} />
+
           <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
             {({ geographies }) =>
               geographies
@@ -136,7 +146,7 @@ export const Map = ({
                 })
             }
           </Geographies>
-        </ZoomableGroup>
+        </ CustomZoomableGroup>
       </ComposableMap>
       <div className="controls">
         <button onClick={handleZoomIn}>
@@ -166,5 +176,49 @@ export const Map = ({
         </button>
       </div>
     </div>
+  );
+};
+
+const CustomZoomableGroup = ({ children, positionLocal, setPosition, ...restProps }) => {
+  const { mapRef, transformString, position } = useZoomPan(restProps);
+
+  
+  let check = false;
+
+  if (position.dragging?.type === 'wheel') {
+   
+    return (
+      <g ref={mapRef}>
+        <g transform={`translate(${positionLocal.coordinates[0]} ${
+          check ? positionLocal.coordinates[1] : ''
+        }  ) scale(${positionLocal.zoom})`}>{children}</g>
+      </g>
+    );
+  }
+  
+  if (positionLocal.zoom === 1) {
+    if (position.x > 0) {
+      if (position.x > 465) {
+        position.x = 465;
+      }
+    } else {
+      if (position.x < -365) {
+        position.x = -365;
+      }
+    }
+  } else {
+    check = true;
+  }
+  return (
+    <g ref={mapRef}>
+      
+      <g
+        transform={`translate(${position.x} ${
+          check ? position.y : ''
+        }  ) scale(${positionLocal.zoom})`}
+      >
+        {children}
+      </g>
+    </g>
   );
 };

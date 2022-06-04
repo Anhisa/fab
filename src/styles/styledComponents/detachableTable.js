@@ -6,7 +6,7 @@ export const DetachableTable = styled.section`
   padding: 0px;
   margin: 0px;
   width: 100%;
-  
+  z-index: 210;
  height: fit-content;
   top: ${(props) => props.top + 60  + 'px'};
   border-radius: 30px;
@@ -14,8 +14,7 @@ export const DetachableTable = styled.section`
   left: ${(props) => props.left + 'px'};
   .dotted-line {
     position: absolute;    
-    top: -60px;  
-    height: 60px;
+
     
     border-left: 5px dotted black;
     
@@ -39,6 +38,8 @@ export const DetachableTable = styled.section`
     border-radius: 15px;
     padding: 10px;
     background-color: ${({ theme }) => theme.background};
+    
+    
   }
   .rdt_TableRow{
     &:hover{

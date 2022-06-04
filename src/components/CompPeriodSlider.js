@@ -28,9 +28,9 @@ const valuetext = (value) => {
   return value;
 };
 
-export const CompPeriodSlider = ({ setPeriod }) => {
+export const CompPeriodSlider = ({ setPeriod, data }) => {
   const [value, setValue] = useState([1, 4]);
-
+  console.log(data);
   const handleChange = (event, newValue) => {
     setValue(newValue);
 
@@ -58,7 +58,7 @@ export const CompPeriodSlider = ({ setPeriod }) => {
           getAriaValueText={valuetext}
           marks={marks}
           min={1}
-          max={4}
+          max={!data ? 4 : data.length}
         />
       </Box>
     </div>

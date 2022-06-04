@@ -19,7 +19,7 @@ export const ColorBarContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
+z-index: 10;
 
  position: absolute;
   bottom: 50px;

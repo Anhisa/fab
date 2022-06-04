@@ -10,9 +10,9 @@ import { colorsFromCategory } from '../helpers/colorsFromCategory';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const MostMentionedPie = ({newData, title, setCategories, usuario}) => {
-  console.log('newDa',newData)
+
   const repliedCategories = extractMentionedCategories(newData);
-  console.log(repliedCategories);
+
   
   const duplicates = filterDuplicates(repliedCategories);
 
@@ -20,12 +20,12 @@ const MostMentionedPie = ({newData, title, setCategories, usuario}) => {
   
   
   let dataSolved = addDuplicates(duplicates);
-  console.log(dataSolved); 
+
   let colors = colorsFromCategory(dataSolved);
-  console.log('pie Colors', colors)
+
   let labels = dataSolved.map(item => item.category) 
   let data = dataSolved.map(item => item.count)
-  console.log('pie Data', data)
+
  
 
 

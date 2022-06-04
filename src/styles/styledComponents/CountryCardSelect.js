@@ -4,7 +4,7 @@ export const CountryCardSelectStyled = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
 
 width: 100%;
 
@@ -14,6 +14,7 @@ width: 100%;
   }
   p {
     margin-left: 10px;
+    font-size: 2rem;
   }
 
   padding: 10px;
