@@ -1,9 +1,11 @@
-import React from 'react';
-import { NavBarHomeStyled } from '../styles/styledComponents/NavBarHomeStyled';
+import React, { useState } from 'react';
+import { MenuButtonStyled, NavBarHomeStyled } from '../styles/styledComponents/NavBarHomeStyled';
+import { Spin as Hamburger } from 'hamburger-react'
 
-const NavBarHome = ({setCurrentMap, menu, countryListManagmentOpen}) => {
+const NavBarHome = ({setCurrentMap, menu, countryListManagmentOpen, themeToggler}) => {
   const { setShowMap, setShowAccountComparing, setShowPeriodComparing, showMap } = menu;
   const { open, setOpen } = countryListManagmentOpen; 
+  const [showMenu, setShowMenu] = useState(false)
 
   function handleClickChange() {
     setCurrentMap((prev) => !prev);
@@ -16,6 +18,7 @@ const NavBarHome = ({setCurrentMap, menu, countryListManagmentOpen}) => {
       top: 0,
       behavior: 'smooth',
     })
+    setShowMenu(false);
     if(!showMap){
       setShowMap(true);
       setShowAccountComparing(false);
@@ -28,6 +31,10 @@ const NavBarHome = ({setCurrentMap, menu, countryListManagmentOpen}) => {
     }
     
   }
+  function changeTheme(){
+
+    themeToggler()    
+  }
   return (
     <NavBarHomeStyled>
       <div className="title">
@@ -38,19 +45,37 @@ const NavBarHome = ({setCurrentMap, menu, countryListManagmentOpen}) => {
           </em>
         </h3>
       </div>
-      <div className="menu">
-        <div className="menu-item"
+      <div className="hamburger">
+        <Hamburger
+          toggled={showMenu}
+          toggle={setShowMenu}
+          size={30}
+          direction= 'left'
+          strokeWidth={3}
+          color="white"
+          duration={0.5}
+          className="hamburger-icon"
+        />
+      </div>
+
+      <div className={
+        showMenu ? 'menu open' : 'menu closed'
+      }>
+        <MenuButtonStyled className="menu-item"
           onClick={handleClickAccounts}
         >
           <p>{showMap ? 'COMPARADOR' : 'MAPA'}</p>
-        </div>
-        <div className="menu-item">
+        </MenuButtonStyled>
+        <MenuButtonStyled className="menu-item">
           <p>DOCUMENTOS</p>
-        </div>
-        <div className="menu-item">
+        </MenuButtonStyled>
+        <MenuButtonStyled className="menu-item"
+          onClick={changeTheme}
+        >
           <p>CAMBIAR TEMA</p>
-        </div>
+        </MenuButtonStyled>
       </div>
+
     </NavBarHomeStyled>
   );
 };

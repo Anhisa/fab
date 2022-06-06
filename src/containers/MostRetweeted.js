@@ -48,7 +48,7 @@ export const MostRetweetedItems = memo((period) => {
               <MostRetweetedItemChange newData={dataAccount} arrayBar={chartData[index]} period={period} comparisonView={isPeriodComparisonActive} title={
                 accountsNames[index]
               }/>
-              <MostRetwittedPie newData={dataAccount} period={period} title={accountsNames[index]}/>
+              <MostRetwittedPie newData={dataAccount} period={period} title={'Categorías más retuiteadas'}/>
             {/* <div>
               <MostRetweetedChart newData={accountId} period={period} />
             </div> */}

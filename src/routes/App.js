@@ -16,7 +16,7 @@ export const App = () => {
         <Routes>
           <Route
             path="/diplomacia-digital"
-            element={<Home />}
+            element={<Home  themeToggler={ themeToggler} />}
           />
           <Route
             path={`/diplomacia-digital/:account`}

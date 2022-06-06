@@ -6,11 +6,7 @@ export const ComparativeUserViewContainerStyle = styled.div`
   align-items: center;
   padding: 10px;
   width: 100%;
-  #most-ht {
-    display: flex;
-    flex-direction: row;
-    width: 50%;
-  }
+
   #left {
     width: 100%;
   }
@@ -40,17 +36,11 @@ export const ComparativeUserViewContainerStyle = styled.div`
     #right {
       width: 100%;
     }
-    #most-ht {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-    }
+  
 
     justify-content: center;
     align-items: stretch;
-    #most-ht {
-      flex-direction: column;
-    }
+ 
     .table {
       width: 100%;
       align-items: center;

@@ -15,9 +15,13 @@ rdt_TableHeadRow
 rdt_TableBody
 rdt_ExpanderRow
   */
-border: 2px solid ${({ theme }) => theme.toggleBorder};
+/* border: 2px solid ${({ theme }) => theme.toggleBorder};
+border-top-right-radius: 35px;
+  border-top-left-radius: 35px; */
+height: fit-content;
+padding: 0px !important;
 
-margin-top: 5px;
+margin-top: 25px;
 
 .dataTable{
   width: 50%;
@@ -36,6 +40,8 @@ margin-top: 5px;
 
   }  
   border-bottom: 1px solid black;
+  border-top-right-radius: 35px;
+  border-top-left-radius: 35px;
 
   
 }
@@ -43,16 +49,28 @@ margin-top: 5px;
   width: 100%;
   background: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.text};
+  border: 2px solid ${({ theme }) => theme.toggleBorder};
+  border-bottom-right-radius: 35px;
+  border-bottom-left-radius: 35px;
+  ;  
   .rdt_TableHeadRow{
     background: ${({ theme }) => theme.background};
-    color: ${({ theme }) => theme.text};    
+    color: ${({ theme }) => theme.text};  
+  
   }
   .rdt_TableRow{
     background: ${({ theme }) => theme.background};
+
     color: ${({ theme }) => theme.text};  
     h6{
       font-weight: 700;
     }  
+    //last row
+    &:last-child{
+      border-bottom: 0px;
+      border-bottom-right-radius: 35px;
+  border-bottom-left-radius: 35px;
+    }
   }
 }
 .noData{

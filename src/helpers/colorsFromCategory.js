@@ -2,7 +2,7 @@ import { colorsDictionary } from "./colorsDiccionary"
 
 
 export function colorsFromCategory(categories){
-  console.log('categories', categories);
+
   let categoriesU = []
   let categoriesColor = []
   const categories1 = categories.map(item => item.category)
@@ -21,8 +21,7 @@ export function colorsFromCategory(categories){
     }
     
     })
-  console.log('categoriesU', categoriesU)
-  console.log('categoriesColor', categoriesColor)
+
   
   return categoriesColor
 }

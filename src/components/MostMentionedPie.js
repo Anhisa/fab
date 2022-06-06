@@ -3,16 +3,16 @@
 import React from 'react'
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
+import { Pie, Doughnut } from 'react-chartjs-2';
 import { PieChartContainer } from '../styles/styledComponents/PieContainerStyled';
 import { colorsFromCategory } from '../helpers/colorsFromCategory';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const MostMentionedPie = ({newData, title, setCategories, usuario}) => {
-  console.log('newDa',newData)
+
   const repliedCategories = extractMentionedCategories(newData);
-  console.log(repliedCategories);
+
   
   const duplicates = filterDuplicates(repliedCategories);
 
@@ -20,12 +20,12 @@ const MostMentionedPie = ({newData, title, setCategories, usuario}) => {
   
   
   let dataSolved = addDuplicates(duplicates);
-  console.log(dataSolved); 
+
   let colors = colorsFromCategory(dataSolved);
-  console.log('pie Colors', colors)
+
   let labels = dataSolved.map(item => item.category) 
   let data = dataSolved.map(item => item.count)
-  console.log('pie Data', data)
+
  
 
 
@@ -56,19 +56,28 @@ const MostMentionedPie = ({newData, title, setCategories, usuario}) => {
   }
   return (
     <PieChartContainer usuario={usuario}>
-    <h4>Categorias más usadas de: {title}</h4>
-    <Pie
+    <h4>{title}</h4>
+    <Doughnut
       data = {dataChart}
       options={{
-        title: {
-          display: true,
-          text: 'Menciones por hashtags',
-          fontSize: 20
-        },
-        legend: {
-          display: true,
-          position: 'top'
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: {
+              boxWidth: 10,
+              font: {
+                size: 20,
+                weight: 'bold'
+
+              },
+              padding: 15,
+              pointStyle: 'rectRounded',
+              usePointStyle: true,
+
+              
+          }
         }
+      }
       }}
     />
     </PieChartContainer>

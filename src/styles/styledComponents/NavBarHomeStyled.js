@@ -9,6 +9,17 @@ export const NavBarHomeStyled = styled.nav`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  .hamburger {
+    display: none;
+    @media (max-width: 1000px) {
+      display: flex;
+      flex-direction: column;
+      width: 30%;
+      
+      align-items: center;
+      justify-content: center;
+    }
+  }
   .menu{
     display: flex;
     flex-direction: row;
@@ -55,10 +66,47 @@ export const NavBarHomeStyled = styled.nav`
   }
   @media (max-width: 968px) {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     .menu{
       display: none;
     }
+    .open{
+      position: absolute;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      height: 90%;
+      background-color: rgba(0,0,0,0.5);
+      color: white;
+      z-index: 100;
+     
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+   
+    
+      .menu-item{
+        margin-left: 20px;
+        height: 100%;
+       
+        margin-right: 50px;
+        cursor: pointer;
+        &:hover{
+          color: ${({ theme }) => theme.secondary};
+          
+        }
+        p{
+          display: flex;
+          align-items: center;
+          height: 100%;
+          font-size: 1.3rem;
+          margin-bottom: 0;
+          font-weight: 500;
+        }
+      }
+    }
+
     
     .title {
       width: 100%;
@@ -66,3 +114,13 @@ export const NavBarHomeStyled = styled.nav`
     }
   }
 `;
+
+export const MenuButtonStyled = styled.button`
+  // no styles 
+  border: 0;
+  background: none;
+  cursor: pointer;
+  outline: none;
+color: ${({ theme }) => theme.textContrast};
+
+`

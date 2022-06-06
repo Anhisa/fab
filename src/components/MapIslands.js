@@ -5,8 +5,7 @@ import {
   ComposableMap,
   Geographies,
   Geography,
-  Marker,
-  ZoomableGroup,
+  useZoomPan,
   Graticule,
 } from 'react-simple-maps';
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
@@ -23,36 +22,62 @@ export const MapIslands = ({
   countryListManagmentOpen,
   setCountrySelectedId,
 }) => {
-  const [position, setPosition] = useState({
-    coordinates: [-77, 18],
+  const [localPosition, setLocalPosition] = useState({
+    coordinates: [-73, 18],
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
 
   function handleZoomIn() {
-    if (position.zoom >= 4) return;
-    setPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.1 }));
+    if (localPosition.zoom >= 4) return;
+    setLocalPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.5 }));
   }
 
   function handleZoomOut() {
-    if (position.zoom <= 1) return;
-    setPosition((pos) => ({ ...pos, zoom: pos.zoom / 1.1 }));
+    if (localPosition.zoom <= 1) return;
+    setLocalPosition((pos) => ({
+      ...pos,
+      zoom:1,
+    }));
+  }
+  function closeOnZoomIn() {
+    setOpen(false);
+    //cancel zoom on scroll
   }
 
   function handleMoveEnd(position) {
-    setPosition(position);
+
+
+    const { coordinates, zoom } = position;
+   setLocalPosition({coordinates, zoom:localPosition.zoom});
   }
 
   const handleOnClick = ({ target, pageX, pageY }) => {
     if (target.attributes.value) {
       const itemValue = target.attributes.value;
-
+      let x = pageX;
+      let y = pageY;
       const filteredAccounts = items.filter(
         (item) => item.country_id === itemValue.value
       );
+      if(pageX + 300 > window.innerWidth){
+        if(pageX - 450 < 0){
+          x = 0;
+        } else {
+          x = pageX - 450;
+        }
+
+      }
+      if(pageY + 300 > window.innerHeight){
+        if(pageY - 350 < 0){
+          y = 0;
+        }
+        y = pageY - 350;
+      }
+      console.log('x , y', x, y);
       setMouse({
-        x: pageX,
-        y: pageY,
+        x: x,
+        y: y,
       });
       setAccounts(filteredAccounts);
       setCountrySelectedId(itemValue.value);
@@ -71,15 +96,10 @@ export const MapIslands = ({
     .range(['#edf7ff', '#1d9bf0']);
 
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      width: '90%',
-    }}>
-
+    <div className="map">
       <ComposableMap
-        height={960}
-        width={1920}
+        height={window.innerHeight * 0.9}
+        width={window.innerWidth}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
           rotate: [49, -67.5, 12],
@@ -87,12 +107,13 @@ export const MapIslands = ({
         }}
         onClick={handleOnClick}
       >
-        <ZoomableGroup
-          zoom={position.zoom}
-          center={position.coordinates}
+        <CustomZoomableGroup
+          zoom={localPosition.zoom}
+          center={localPosition.coordinates}
+          positionLocal={localPosition}
           onMoveEnd={handleMoveEnd}
         >
-          <Graticule stroke="#ccc" step={[16,9]}/>
+          <Graticule stroke="#ccc" step={[16, 9]} />
           <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
             {({ geographies }) =>
               geographies
@@ -117,7 +138,7 @@ export const MapIslands = ({
                 })
             }
           </Geographies>
-        </ZoomableGroup>
+        </CustomZoomableGroup>
       </ComposableMap>
       <div className="controls">
         <button onClick={handleZoomIn}>
@@ -147,5 +168,41 @@ export const MapIslands = ({
         </button>
       </div>
     </div>
+  );
+};
+const CustomZoomableGroup = ({
+  children,
+  positionLocal,
+  setPosition,
+  ...restProps
+}) => {
+  const { mapRef, transformString, position } = useZoomPan(restProps);
+  let check = false;
+
+  if (position.dragging?.type === 'wheel' || position.dragging?.type === 'dblclick') {
+    return (
+      <g ref={mapRef}>
+        <g
+          transform={`translate(${positionLocal.coordinates[0]} ${
+            check ? positionLocal.coordinates[1] : ''
+          }  ) scale(${positionLocal.zoom})`}
+        >
+          {children}
+        </g>
+      </g>
+    );
+  }
+
+  return (
+    <g ref={mapRef}>
+      <g
+        // transform={`translate(${position.x} ${
+        //   check ? position.y : ''
+        // }  ) scale(${positionLocal.zoom})`}
+        transform={transformString}
+      >
+        {children}
+      </g>
+    </g>
   );
 };
