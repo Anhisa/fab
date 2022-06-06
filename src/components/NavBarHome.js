@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavBarHomeStyled } from '../styles/styledComponents/NavBarHomeStyled';
+import { MenuButtonStyled, NavBarHomeStyled } from '../styles/styledComponents/NavBarHomeStyled';
 import { Spin as Hamburger } from 'hamburger-react'
 
 const NavBarHome = ({setCurrentMap, menu, countryListManagmentOpen, themeToggler}) => {
@@ -61,19 +61,19 @@ const NavBarHome = ({setCurrentMap, menu, countryListManagmentOpen, themeToggler
       <div className={
         showMenu ? 'menu open' : 'menu closed'
       }>
-        <div className="menu-item"
+        <MenuButtonStyled className="menu-item"
           onClick={handleClickAccounts}
         >
           <p>{showMap ? 'COMPARADOR' : 'MAPA'}</p>
-        </div>
-        <div className="menu-item">
+        </MenuButtonStyled>
+        <MenuButtonStyled className="menu-item">
           <p>DOCUMENTOS</p>
-        </div>
-        <div className="menu-item"
+        </MenuButtonStyled>
+        <MenuButtonStyled className="menu-item"
           onClick={changeTheme}
         >
           <p>CAMBIAR TEMA</p>
-        </div>
+        </MenuButtonStyled>
       </div>
 
     </NavBarHomeStyled>

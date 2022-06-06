@@ -114,3 +114,13 @@ export const NavBarHomeStyled = styled.nav`
     }
   }
 `;
+
+export const MenuButtonStyled = styled.button`
+  // no styles 
+  border: 0;
+  background: none;
+  cursor: pointer;
+  outline: none;
+color: ${({ theme }) => theme.textContrast};
+
+`
