@@ -7,7 +7,7 @@ export const FloatingTextStyled = styled.div`
   height: 100px;
   width: 400px;
   background-color: transparent;
-  color: ${({ theme }) => theme.textContrast};
+  color: ${({ theme }) => theme.text};
   p {
     font-size: 1.1rem;
     margin-bottom: 0;
@@ -54,7 +54,7 @@ export const FloatingTextRightStyled = styled.div`
   width: ${(props) => (props.caribe ? '200px' : '400px')};
 
   background-color: transparent;
-  color: ${({ theme }) => theme.textContrast};
+  color: ${({ theme }) => theme.text};
   p {
     font-size: 1.7rem;
     margin-bottom: 0;
@@ -103,7 +103,7 @@ export const FloatingTextIslandsStyled = styled.div`
 
   width: 550px;
   background-color: transparent;
-  color: ${({ theme }) => theme.textContrast};
+  color: ${({ theme }) => theme.text};
   p {
     font-size: 1.3rem;
     margin-bottom: 0;
