@@ -3,7 +3,7 @@ import { useGetData } from "../hooks/useGetData";
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-fol'
 
-export function getActivityCreactionDate(){
+export function getDataAccounts(){
   const {data, loading} = useGetData(api);
   const [innerData, setInnerData] = useState(data);
   const [filteredData, setFilteredData] = useState([]);

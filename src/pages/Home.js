@@ -33,6 +33,7 @@ import FloatingText from '../components/FloatingText';
 
 import lootieLoading from '../loader/107220-loading-circles.json'
 import Lottie from 'lottie-react'
+import { getActivityCreactionDate } from '../helpers/getActivityCreactionDate';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
 
