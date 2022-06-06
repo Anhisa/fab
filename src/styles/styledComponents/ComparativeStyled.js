@@ -198,9 +198,15 @@ export const ComparativePeriodStyled = styled.section`
 
 export const DataTableStyled = styled(DataTable)`
   background-color: ${({ theme }) => theme.background};
-  width: 100%;
+  .rdt_Table{
+    width: 150px;
+  }
   .MuiTableCell-root {
     padding: 10px;
   }
+  @media (max-width: 768px) {
+    width: 100px;
+  }
+  
  
 `;

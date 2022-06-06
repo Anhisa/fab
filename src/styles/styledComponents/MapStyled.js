@@ -12,7 +12,7 @@ export const MapStyled = styled.div`
   }
   // add animation ease in 
  opacity: 0;
-  animation: fadeIn 1s ease-in;
+  animation: fadeIn 1s ease-in ;
   animation-fill-mode: forwards;
   @keyframes fadeIn {
     from {
@@ -24,5 +24,60 @@ export const MapStyled = styled.div`
   }
   
 
+  .map{
+    opacity: 0;
+  animation: fadeIn 1s ease-in;
+  animation-fill-mode: forwards;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  }
+  .controls{
+    position: absolute;
+    top: 300px;
+    right: 10px;
 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 150px;
+    padding: 0.5rem;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    button{
+      width: 50%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+
+      svg{
+        width: 100%;
+        height: 100%;
+      }
+    }
+    @media (max-width: 968px){
+      top: 120px;
+      right: 50px;
+      width: 150px;
+    }
+    @media (max-width: 768px){
+      top: 150px;
+      right: 10px;
+      width: 100px;
+          }
+    @media (max-width: 480px){
+      top: 350px;
+      right: 10px;
+      width: 100px;
+    }
+
+  }
 `

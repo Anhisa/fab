@@ -7,13 +7,18 @@ export const PieContainerStyled = styled.div`
   width: 100%;
   justify-content: center;  
   
-
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    
+  }
 `
 
 export const PieChartContainer = styled.div`
   display: flex;
   width:${props => props.usuario ? '100%' : '50%'};
   min-width: 550px;
+  color: ${({ theme }) => theme.textContrast};
+  background-color: ${({ theme }) => theme.background};
   h4{
     font-weight: 700;
     margin-bottom: 10px;

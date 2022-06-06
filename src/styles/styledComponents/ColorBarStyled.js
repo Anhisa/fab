@@ -5,7 +5,10 @@ export const ColorBarStyled = styled.div`
   background: linear-gradient(90deg, #edf7ff 0%, #1d9bf0 100%);
   /* opacity: 1; */
   /* border: 1px solid black; */
-  width: 200px;
+  max-width: 250px;
+  min-width: 100px;
+  width: 100%;
+  
   height: 30px;
 
   pointer-events: none;
@@ -19,7 +22,7 @@ export const ColorBarContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-z-index: 10;
+  z-index: 10;
 
  position: absolute;
   bottom: 50px;
@@ -29,4 +32,8 @@ z-index: 10;
     font-weight: 600;
     margin: 15px;
   }
+  @media (max-width: 768px) {
+    width: 100px;
+    right: 300px;
+  }  
 `

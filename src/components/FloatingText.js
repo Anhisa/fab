@@ -14,7 +14,7 @@ const FloatingText = ({ setCurrentMap, islands }) => {
   if (islands) {
     return (
       <FloatingTextIslandsStyled>
-        <p>
+        <p className='info'>
           Base de datos interactiva de las cuentas de Twitter pertenecientes a
           los diplomáticos y representaciones diplomáticas de la República
           Popular China en América Latina y el Caribe.
@@ -27,7 +27,7 @@ const FloatingText = ({ setCurrentMap, islands }) => {
   }
   return (
     <FloatingTextStyled>
-      <p>
+      <p className='info'>
         Base de datos interactiva de las cuentas de Twitter pertenecientes a los
         diplomáticos y representaciones diplomáticas de la República Popular
         China en América Latina y el Caribe.

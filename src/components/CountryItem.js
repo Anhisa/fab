@@ -3,7 +3,7 @@ import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { getFlag } from '../helpers/getFlag';
-import { CountryCardSelectStyled } from '../styles/styledComponents/CountryCardSelect';
+import { CountryCardSelectStyled, EmptyCardStyled } from '../styles/styledComponents/CountryCardSelect';
 import useGetCountries from '../hooks/useGetCountries';
 import { DataTableStyled } from '../styles/styledComponents/ComparativeStyled';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
@@ -64,10 +64,13 @@ export const CountryItem = ({ accountsCountry, countryListManagmentOpen, country
           /> 
           <hr/>       
         </CountryCardSelectStyled>
+        <EmptyCardStyled>
           <p>
           Tiene relaciones diplomáticas <br></br>
           con La República de China - Taiwán
           </p>          
+          </EmptyCardStyled>
+          
         </div>
       )
     }
@@ -81,9 +84,11 @@ export const CountryItem = ({ accountsCountry, countryListManagmentOpen, country
           /> 
           <hr/>       
         </CountryCardSelectStyled>
+        <EmptyCardStyled>
         <p>
           No hay cuentas o data registradas en este país
         </p>
+        </EmptyCardStyled>
       
       </div>
     )

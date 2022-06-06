@@ -33,7 +33,7 @@ export const colorsDictionary = [
   },
   {
     category: 'VERACIDAD INFORMACIÓN',
-    color: '#ff9900',
+    color: '#CCAAFF',
   },
   {
     category: 'Ciudadano',
@@ -108,4 +108,18 @@ export const colorsDictionary = [
 
     color: '#ABC',
   },
+    {
+    category: 'Empresas Extranjeras',
+    color: '#aa11ff',
+    }, {
+      category: 'Ciudadano RPCh o Taiwán',
+      color: '#aaafff',
+    }, 
+    {
+      category: 'EMPRESAS ALC',
+      color: '#AFFaaf',
+    }, {
+      category: 'Empresas RPCh',
+      color: '#1ffa11',
+    }
 ];

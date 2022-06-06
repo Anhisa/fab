@@ -52,7 +52,7 @@ export const MostRepliedItems = memo((period, usuario) => {
               />
            
            
-              <MostRepliedPie newData={accountId} periodId={period}  title={accountsNames[index]} />
+              <MostRepliedPie newData={accountId} periodId={period}  title={'Categorias de más respuesta'} />
            
           </section>
         );

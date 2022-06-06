@@ -18,6 +18,8 @@
     "chart.js": "^3.7.1",
     "d3": "^7.4.4",
     "date-fns": "^2.28.0",
+    "hamburger-react": "^2.5.0",
+    "lottie-react": "^2.2.1",
     "react": "^17.0.0",
     "react-bootstrap": "^2.4.0",
     "react-chartjs-2": "^4.1.0",

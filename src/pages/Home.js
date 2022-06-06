@@ -1,6 +1,6 @@
 import '../styles/App.css';
 import { Map } from '../components/Map';
-import { Layout } from '../containers/Layout';
+
 import { CountryList } from '../containers/CountryDetails';
 import { ComparativeTool } from '../containers/ComparativeTool';
 import { useContext, useEffect, useState } from 'react';
@@ -13,35 +13,37 @@ import { ComponentContainer } from '../hooks/ComponerContainer';
 import { DetachableTable } from '../styles/styledComponents/detachableTable';
 import { HomeStyled } from '../styles/styledComponents/HomeStyled';
 import { ComparativeStyled } from '../styles/styledComponents/ComparativeStyled';
-import ComparativePerPeriod from '../components/ComparativePerPeriod';
+
 import SelectorComparative from '../containers/SelectorComparative';
 import { SectionToolsStyled } from '../styles/styledComponents/SectionToolsStyled';
 import { SectionMapsStyled } from '../styles/styledComponents/SectionMapStyled';
 import { ComparisonContainerStyled } from '../styles/styledComponents/ComparisonContainerStyled';
 import useCreateInitialState from '../hooks/createInitialState';
-import FloatingButton from '../components/FloatingButton';
+
 import FloatingTextRight from '../components/FloatingTextRight';
 import useMenu from '../hooks/useMenu';
 import ColorBar from '../components/colorBar';
 import NavBarHome from '../components/NavBarHome';
-import { darkTheme, lightTheme } from '../styles/styledComponents/Themes';
-import { useTheme } from '../hooks/useTheme';
-import { ThemeProvider } from 'styled-components';
+
+
+
 import { GoblalStyles } from '../styles/styledComponents/GlobalStyles';
-import { getActivityCreactionDate } from '../helpers/getActivityCreactionDate';
+
 import FloatingText from '../components/FloatingText';
-import { Spinner } from 'react-bootstrap';
+
+import lootieLoading from '../loader/107220-loading-circles.json'
+import Lottie from 'lottie-react'
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
 
-export const Home = () => {
+export const Home = ({ themeToggler}) => {
   const response = useGetData(api);
   const [loading, setLoading] = useState(true);
   const [countriesAllData, setCountriesAllData] = useState([]);
   const [countrySelectedId, setCountrySelectedId] = useState(null);
   const countryDataState = [countriesAllData, setCountriesAllData];
   const [currentMap, setCurrentMap] = useState(true);
-  const [theme] = useTheme();
+ 
   const [open, setOpen] = useState(false);
 
   const countryListManagmentOpen = { open, setOpen };
@@ -62,7 +64,7 @@ export const Home = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 5500);
+    }, 1500);
   },[])
 
 
@@ -77,11 +79,12 @@ export const Home = () => {
       }}
 
      >
-    <Spinner animation="border" role="status"
+    <Lottie animationData={lootieLoading} loop={true} 
+      label="loading"
     
-    >
+    />
     <span className="visually-hidden">Loading...</span>
-  </Spinner>
+  
   </div>
    )
  }
@@ -94,7 +97,9 @@ export const Home = () => {
     <HomeStyled className="container-xl">
       {/* <FloatingButton setCurrentMap={setCurrentMap} menu={menu} currentMap={currentMap}  themeToggler={themeToggler} countryListManagmentOpen={countryListManagmentOpen} /> */}
       <NavBarHome  menu={menu}
-       countryListManagmentOpen={countryListManagmentOpen}/>
+       countryListManagmentOpen={countryListManagmentOpen}
+       themeToggler={themeToggler}
+       />
    
       
       {showMap &&  <ColorBar/>}
@@ -108,7 +113,7 @@ export const Home = () => {
               setMouse={setMousePosition}
               countryListManagmentOpen={countryListManagmentOpen}
               setCountrySelectedId={setCountrySelectedId}
-              theme={theme}
+            
             />
              <FloatingText setCurrentMap={setCurrentMap}/>
              <FloatingTextRight currentMap={currentMap}/>

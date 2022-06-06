@@ -53,19 +53,28 @@ const MostRetwittedPie = ({newData, title, setCategories, usuario}) => {
   }
   return (
     <PieChartContainer usuario={usuario}>
-    <h4>Categorias más usadas de: {title}</h4>
+    <h4>{title}</h4>
     <Doughnut
       data = {dataChart}
       options={{
-        title: {
-          display: true,
-          text: 'Menciones por hashtags',
-          fontSize: 20
-        },
-        legend: {
-          display: true,
-          position: 'top'
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: {
+              boxWidth: 10,
+              font: {
+                size: 20,
+                weight: 'bold'
+
+              },
+              padding: 15,
+              pointStyle: 'rectRounded',
+              usePointStyle: true,
+
+              
+          }
         }
+      }
       }}
     />
     </PieChartContainer>

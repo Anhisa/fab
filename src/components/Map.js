@@ -22,7 +22,7 @@ export const Map = ({
   setMouse,
   countryListManagmentOpen,
   setCountrySelectedId,
-  theme,
+  
 }) => {
   const [localPosition, setLocalPosition] = useState({
     coordinates: [-85, -15],
@@ -39,11 +39,10 @@ export const Map = ({
   function handleZoomOut() {
  
     if (localPosition.zoom <= 1) return;
-    setLocalPosition((pos) => ({ ...pos, zoom: pos.zoom / 1.1 < 1 ? 1.1 : pos.zoom / 1.1 }));
+    setLocalPosition((pos) => ({ ...pos, zoom: 1 }));
   }
 
-  function handleMoveEnd(position) {
-    closeOnZoomIn()
+  function handleMoveEnd(position) {   
   
     const {coordinates, zoom} = position;
 
@@ -53,7 +52,10 @@ export const Map = ({
     setOpen(false);
     //cancel zoom on scroll
   }
-  const handleOnClick = ({ target, pageX, pageY }) => {
+  const handleOnClick = (e) => {
+    const { target, pageX, pageY } = e;
+     
+  
     if (target.attributes.value) {
       const itemValue = target.attributes.value;
       let x = pageX;
@@ -62,11 +64,20 @@ export const Map = ({
         (item) => item.country_id === itemValue.value
       );
       if(pageX + 300 > window.innerWidth){
-        x = pageX - 350;       
+        if(pageX - 450 < 0){
+          x = 350;
+        } else {
+          x = pageX - 450;
+        }
+             
       }
       if(pageY + 300 > window.innerHeight){
+        if(pageY - 350 < 0){
+          y = 0;
+        }
         y = pageY - 350;
       }
+      console.log('x , y', x, y);
       setMouse({
         x: x,
         y: y,
@@ -91,11 +102,7 @@ export const Map = ({
 
   return (
     <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: '90%',
-      }}
+      className='map'
     >
       <ComposableMap
         height={window.innerHeight * 0.9}
@@ -108,13 +115,16 @@ export const Map = ({
         onClick={handleOnClick}
         onWheelCapture={closeOnZoomIn}
         
+         
+        
+        
       >
         < CustomZoomableGroup
           zoom={localPosition.zoom}
           center={localPosition.coordinates}
-          positionLocal={localPosition}
-         
-          onMoveEnd={handleMoveEnd}
+          positionLocal={localPosition} 
+          onMoveEnd={handleMoveEnd}       
+                
         >
           <Graticule stroke="#ccc" step={[27, 9]} />
 
@@ -180,20 +190,30 @@ export const Map = ({
 };
 
 const CustomZoomableGroup = ({ children, positionLocal, setPosition, ...restProps }) => {
-  const { mapRef, transformString, position } = useZoomPan(restProps);
-
-  
-  let check = false;
-
-  if (position.dragging?.type === 'wheel') {
+  let { mapRef, transformString, position } = useZoomPan(restProps);
+ 
    
+    
+    let check = false;
+    if(positionLocal.zoom !== 1) {
+      check = true;
+    }
+    
+    if (position.dragging?.type === 'wheel' || position.dragging?.type === 'dblclick') {
+      
+    position= positionLocal;
     return (
-      <g ref={mapRef}>
-        <g transform={`translate(${positionLocal.coordinates[0]} ${
-          check ? positionLocal.coordinates[1] : ''
-        }  ) scale(${positionLocal.zoom})`}>{children}</g>
+      <g 
+      ref={mapRef}
+      transform={`translate(${positionLocal.coordinates[0]}, ${positionLocal.coordinates[1]}) scale(${positionLocal.zoom})`}
+      >
+        <g>{children}</g>
       </g>
     );
+  }
+  if(position.dragging?.type === 'mousemove'){
+
+
   }
   
   if (positionLocal.zoom === 1) {
@@ -212,7 +232,7 @@ const CustomZoomableGroup = ({ children, positionLocal, setPosition, ...restProp
   return (
     <g ref={mapRef}>
       
-      <g
+      <g       
         transform={`translate(${position.x} ${
           check ? position.y : ''
         }  ) scale(${positionLocal.zoom})`}

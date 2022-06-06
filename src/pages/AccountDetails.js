@@ -23,13 +23,14 @@ import NavBar from '../components/NavBar';
 import ErrorComponent from '../components/errorComponent';
 import { AccountPeriodContainer } from '../styles/styledComponents/AccountPeriodContainer';
 import ComparativeUserViewContainer from '../containers/ComparativeUserView/ComparativeUserViewContainer';
-
+import Lottie from 'lottie-react';
 const apiUsuarios =
   'https://fundacionandresbello.org/wp-json/fab/v1/official-fol';
+import lootieLoading from '../loader/107220-loading-circles.json';
 
 export const AccountDetails = () => {
   const { account } = useParams();
-
+  const [innerLoading, setInnerLoading] = useState(true);
   const { loading, data } = useGetData(apiUsuarios);
 
   const [period, setPeriod] = useState({
@@ -60,8 +61,26 @@ export const AccountDetails = () => {
       });
     }
   }, [loading, data, account, period]);
-  if (loading) {
-    return <div>Loading</div>;
+  useEffect(() => {
+    setTimeout(() => {
+      setInnerLoading(false);
+    }, 1500);
+  },[])
+  if (innerLoading) {
+    return (
+      <div
+        className="spinner"
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
+        <Lottie animationData={lootieLoading} loop={true} label="loading" />
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    );
   }
   if (data.length === 0) {
     return <div>Error no hay data en ese Usuario</div>;
@@ -88,13 +107,16 @@ export const AccountDetails = () => {
                 <MonthlyTweetsItems period={period} />
               </div>
             </UserCardStyled>
-              <hr />
+            <hr />
             <AccountPeriodContainer>
-              <CompPeriodSlider setPeriod={setPeriod}  data={dataSearch.dataUser} />
+              <CompPeriodSlider
+                setPeriod={setPeriod}
+                data={dataSearch.dataUser}
+              />
             </AccountPeriodContainer>
-              <hr />
+            <hr />
 
-            <ComparativeUserViewContainer period={period}/>
+            <ComparativeUserViewContainer period={period} />
           </AccountDetailsStyled>
         </TableContext.Provider>
       ) : (

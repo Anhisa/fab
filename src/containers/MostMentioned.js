@@ -53,7 +53,7 @@ export const MostMentionedItems = memo(({ period }) => {
             
             <MostMentionedPie newData={accountId}
               periodId={period}
-              title={accountsNames[index]}
+              title={'Categorias de los más mencionados'}
             />
           </section>
         );
