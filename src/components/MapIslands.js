@@ -24,7 +24,7 @@ export const MapIslands = ({
   setCountrySelectedId,
 }) => {
   const [position, setPosition] = useState({
-    coordinates: [-73, 18],
+    coordinates: [-77, 18],
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
