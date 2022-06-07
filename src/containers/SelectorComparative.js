@@ -55,7 +55,7 @@ const SelectorComparative = ({ setDataComparing, countryDataState }) => {
   return (
     <>
       <ComparativePerPeriod setDataComparing={setPeriodComparison} />
-      <CompCategoryCb setCategories={setCategories} period={true} />
+      <CompCategoryCb setCategories={setCategories} period={true} isPeriodComparisonActive={true} />
       <CountrySelectFilter countrysWithData={tweetsByCountry} setCountryFilterActive={setCountryFilterActive} setCountryId={setCountryId} countryDataState={countryDataState}/>
       <div className="btnContainer">
         <Button variant="contained" onClick={handleComparison} className="btn">

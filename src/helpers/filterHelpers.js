@@ -122,6 +122,7 @@ export function addDuplicates(arrayDuplicades, from) {
   let newArray = [];
   switch (from) {
     case 'most-retweeted': // Suma los tweetsNumber
+    newArray = [];
       newArray = arrayDuplicades.map((item) => {
         let most_retweeted_description_spa = '';
         let user_account = '';
@@ -155,28 +156,23 @@ export function addDuplicates(arrayDuplicades, from) {
       return newArray;
 
     case 'most-mentioned': // Mentions number
-      newArray = arrayDuplicades.map((item) => {
-        let most_mentioned_description_spa = '';
-        let user_account = '';
-        let most_mentioned_category_spa = '';
-        let most_mentioned_category_desc_spa = '';
-        let user_accounts_verified = '';
-        let official_account = '';
-        let users_most_metioned_id = '';
-        let users_account_verified = '';
+    newArray = [];
+    console.log('arrayDUplicades ' , arrayDuplicades);
 
-        let mentions_number = item.reduce((acc, item) => {
-          user_account = item.user_account;
-          most_mentioned_description_spa = item.most_mentioned_description_spa;
-          most_mentioned_category_desc_spa =
-            item.most_mentioned_category_desc_spa;
-          most_mentioned_category_spa = item.most_mentioned_category_spa;
-          user_accounts_verified = item.user_accounts_verified;
-          official_account = item.official_account;
-          users_most_metioned_id = item.users_most_metioned_id;
-          users_account_verified = item.users_account_verified;
+      newArray = arrayDuplicades.map((item, index) => {
+        console.log('index ', index);
+        let most_mentioned_description_spa = item[0].most_mentioned_description_spa;
+        let user_account = item[0].user_account;
+        let most_mentioned_category_spa = item[0].most_mentioned_category_spa;
+        let most_mentioned_category_desc_spa = item[0].most_mentioned_category_desc_spa;
+        let user_accounts_verified = item[0].user_accounts_verified;
+        let official_account = item[0].official_account;
+        let users_most_metioned_id = item[0].users_most_metioned_id;
+        let users_account_verified = item[0].users_account_verified;
+        let mentions_number = item.reduce((acc, item) => {          
           return acc + parseInt(item.mentions_number);
         }, 0);
+
         return {
           most_mentioned_description_spa,
           user_account,
@@ -189,9 +185,17 @@ export function addDuplicates(arrayDuplicades, from) {
           users_account_verified,
         };
       });
+
+
+      console.log('newArray', newArray);
+      newArray.forEach((item) => {
+        console.log('item', item);
+      })
+
       return newArray;
 
     case 'most-replied': // tweets_number
+   newArray = [];
       newArray = arrayDuplicades.map((item) => {
         let most_replied_description_spa = '';
         let user_account = '';
@@ -224,6 +228,7 @@ export function addDuplicates(arrayDuplicades, from) {
       return newArray;
 
     case 'monthly-tweets': // tweets_number
+    newArray = [];
     
       let newArray2 = arrayDuplicades.map((item, index) => {       
         let monthly_tweets_id = '';
@@ -251,6 +256,7 @@ export function addDuplicates(arrayDuplicades, from) {
       return newArray;
 
     case 'ht-most-used': // hashtags_number
+   newArray = [];
       newArray = arrayDuplicades.map((item, index) => {
         let ht_category_desc_spa = '';
         let ht_category_spa = '';

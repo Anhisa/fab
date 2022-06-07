@@ -13,6 +13,8 @@ const columns = [
     name: 'Nombre',
     selector: (row) => row.official_account_category_spa,
     sortable: true,
+    minWidth: '100px',
+    maxWidth: '130px',
   },
   {
     name: 'Cuenta',
@@ -23,6 +25,9 @@ const columns = [
       </Link>
     ),
     sortable: true,
+    minWidth: '120px',
+    maxWidth: '170px',
+
   },
   {
     name: 'Verificado',
@@ -32,7 +37,13 @@ const columns = [
       ) : (
         <VerifiedIcon color="disabled" />
       ),
+    
+    minWidth: '50px',
+    maxWidth: '100px',
+    omit : Window.innerWidth < 768 ? true : false,
+    
   },
+
 ];
 export const CountryItem = ({ accountsCountry, countryListManagmentOpen, countryDataState, countrySelectedId }) => {
   const {open, setOpen} = countryListManagmentOpen;

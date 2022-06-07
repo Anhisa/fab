@@ -20,6 +20,7 @@ function sortArray(array, from) {
 
 export const useFilterData = (api, from) => {
   const context = useContext(TableContext);
+  console.log('useFilterData');
 
   const {
     accounts,
@@ -93,10 +94,11 @@ export const useFilterData = (api, from) => {
           
         } else {
           let repeatedAccountArray = filterDuplicates(data);
-
+          console.log('repeated' , repeatedAccountArray);
           newArray = addDuplicates(repeatedAccountArray, from);
-
+          console.log('newArray' , newArray);
           let sortedArray = sortArray(newArray, from);
+          console.log('sortedArray' , sortedArray);
           if (sortedArray.length > 10) {
             sortedArray = sortedArray.slice(0, 10);
           }
@@ -137,15 +139,16 @@ export const useFilterData = (api, from) => {
             accountsData.push(newArray);
           }
         } else if (from === 'monthly-tweets') {
-          let innerArray = data;
-          
+          let innerArray = data;     
 
           accountsData.push(innerArray);
         } else {
           let repeatedAccountArray = filterDuplicates(data);
-
+      
           newArray = addDuplicates(repeatedAccountArray, from);
+          console.log('newArray' , newArray);
           let sortedArray = sortArray(newArray, from);
+          console.log('sortedArray' , sortedArray);
           if (sortedArray.length > 10) {
             sortedArray = sortedArray.slice(0, 10);
           }

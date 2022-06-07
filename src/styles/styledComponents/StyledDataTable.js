@@ -20,13 +20,10 @@ border-top-right-radius: 35px;
   border-top-left-radius: 35px; */
 height: fit-content;
 padding: 0px !important;
-
+width: 100%;
 margin-top: 25px;
 
-.dataTable{
-  width: 50%;
-  
-}
+
 .rdt_TableHeader{
   background: ${({ theme }) => theme.secondary};
   color: ${({ theme }) => theme.text};

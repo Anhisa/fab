@@ -11,7 +11,7 @@ export const columns = [
     ),
     sortable: true,
     wrap: true,
-    maxWidth: '300px',
+    maxWidth: '350px',
     minWidth: '150px',
     compact: true,
   },
@@ -35,7 +35,8 @@ export const columns = [
     grow: 2,
     wrap: false,
     center: true,
-    width: '100px',
+    minWidth: '50px',
+    width: '90px',
     
   },
   {
@@ -45,7 +46,7 @@ export const columns = [
     id: 'tweetsNumber',
     grow: 2,
     wrap: false,
-    maxWidth: '500px',
+    maxWidth: '350px',
     width: '220px',
   },
 ];

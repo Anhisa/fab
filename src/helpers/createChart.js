@@ -36,6 +36,7 @@ export function CreateChart(dataAccounts) {
   const maxValueClosest = Math.ceil(maxValue / 10) * 10;
   
   const arrayBarPerAccount = [];
+
   if(Object.keys(dataAccounts).length < 3){
     
     
@@ -48,7 +49,9 @@ export function CreateChart(dataAccounts) {
       
       return parseInt(innerItem.mentions_number)}
     );
+
     const progressBarList = tweetNumber.map((item2, index) => {
+
       return (
         <>
         <ProgressBar

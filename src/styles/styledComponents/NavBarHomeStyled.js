@@ -41,7 +41,8 @@ export const NavBarHomeStyled = styled.nav`
         display: flex;
         align-items: center;
         height: 100%;
-        font-size: 1.3rem;
+        font-size: 1rem;
+        margin-top: 15px;
         margin-bottom: 0;
         font-weight: 500;
         

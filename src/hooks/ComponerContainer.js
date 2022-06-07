@@ -20,7 +20,7 @@ export const ComponentContainer = ({context}) => {
 
 
   useEffect(() => {
-
+    console.log('ComponentContainer useEffect');
 
   } , [accountIdA, accountIdB, periodA]);
   if (accountIdA.id === '' || accountIdB.id === '' || accountIdA.id === accountIdB.id){
@@ -32,7 +32,8 @@ export const ComponentContainer = ({context}) => {
   return (
     <>
      <TableContext.Provider value={context}>
-      {categories.monthlyTweets  ? (
+      {categories.monthlyTweets &&
+      !isPeriodComparisonActive ? (
         <CollapsableTableStyled>
           <ButtonToogle name="monthy-tweets">
 
