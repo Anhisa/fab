@@ -27,6 +27,8 @@ import Lottie from 'lottie-react';
 const apiUsuarios =
   'https://fundacionandresbello.org/wp-json/fab/v1/official-fol';
 import lootieLoading from '../loader/107220-loading-circles.json';
+import VerifiedPie from '../components/extraTables/VerifiedPie';
+import AccountCreationDate from '../components/extraTables/accountCreationDate';
 
 export const AccountDetails = () => {
   const { account } = useParams();
@@ -115,7 +117,8 @@ export const AccountDetails = () => {
               />
             </AccountPeriodContainer>
             <hr />
-
+            <VerifiedPie/>
+            <AccountCreationDate/>
             <ComparativeUserViewContainer period={period} />
           </AccountDetailsStyled>
         </TableContext.Provider>

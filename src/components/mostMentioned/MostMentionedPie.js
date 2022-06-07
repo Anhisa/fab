@@ -4,13 +4,16 @@ import React from 'react'
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie, Doughnut } from 'react-chartjs-2';
-import { PieChartContainer } from '../styles/styledComponents/PieContainerStyled';
-import { colorsFromCategory } from '../helpers/colorsFromCategory';
+import { PieChartContainer } from '../../styles/styledComponents/PieContainerStyled';
+import { colorsFromCategory } from '../../helpers/colorsFromCategory';
 
-ChartJS.register( Tooltip, Legend);
 
-const MostRepliedPie = ({newData, title, setCategories, usuario}) => {
-  const repliedCategories = extractRepliedCategories(newData);
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+const MostMentionedPie = ({newData, title, usuario}) => {
+
+  const repliedCategories = extractMentionedCategories(newData);
+
   
   const duplicates = filterDuplicates(repliedCategories);
 
@@ -18,11 +21,12 @@ const MostRepliedPie = ({newData, title, setCategories, usuario}) => {
   
   
   let dataSolved = addDuplicates(duplicates);
-  
+
   let colors = colorsFromCategory(dataSolved);
-  
+
   let labels = dataSolved.map(item => item.category) 
   let data = dataSolved.map(item => item.count)
+
  
 
 
@@ -36,9 +40,15 @@ const MostRepliedPie = ({newData, title, setCategories, usuario}) => {
 
       }
     ],
-    legend: {
-      display: false
-
+    options: {
+      title: {
+        display: true,
+        text: 'Mentions por hashtags'
+      },
+      legend: {
+        display: true,
+        position: 'top',
+      }
     }
     ,
 
@@ -50,7 +60,6 @@ const MostRepliedPie = ({newData, title, setCategories, usuario}) => {
     <h4>{title}</h4>
     <Doughnut
       data = {dataChart}
-      
       options={{
         plugins: {
           legend: {
@@ -59,8 +68,8 @@ const MostRepliedPie = ({newData, title, setCategories, usuario}) => {
               boxWidth: 10,
               font: {
                 size: 20,
-                weight: 'bold',                                
-                
+                weight: 'bold'
+
               },
               padding: 15,
               pointStyle: 'rectRounded',
@@ -69,23 +78,24 @@ const MostRepliedPie = ({newData, title, setCategories, usuario}) => {
               
           }
         }
-      }}}
-      />
+      }
+      }}
+    />
     </PieChartContainer>
   )
 }
 
-export default MostRepliedPie
+export default MostMentionedPie
 
 
 
-export function extractRepliedCategories(data){
+export function extractMentionedCategories(data){
 
   const htCategories = [];
   data.forEach(item => {
     htCategories.push({
-      category: item.most_replied_category_spa,
-      count: item.tweets_number,
+      category: item.most_mentioned_category_spa,
+      count: item.mentions_number,
     });
   });
 

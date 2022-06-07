@@ -12,7 +12,7 @@ export function getActivityCreactionDate(){
     if (innerData !== false) {
       setInnerData(data);
     }
-    
+    console.log(data)
       let array = filterDuplicates(innerData);
       arrayDuplicate = addDuplicates(array);
       setFilteredData(arrayDuplicate);
@@ -42,7 +42,8 @@ function addDuplicates(data){
     let accId = item[0].official_account_id;
     let creationDate = item[0]["official_account creation_date"]
     let isVerified = item[0]["official_account_verified"]
-
+    let official_account = item[0]["official_account"]
+    let country_id = item[0]["country_id"]
     let total_tweets_period = item.reduce((acc, item) => {
       return acc + parseInt(item.total_tweets_period)
     }, 0)
@@ -54,7 +55,9 @@ function addDuplicates(data){
       total_tweets_period,
       creationDate,
       isVerified,
-      followers_number
+      followers_number,
+      official_account,
+      country_id
     }
   })
   return newArray  

@@ -1,14 +1,15 @@
-import React, { useContext, useEffect, useState, memo } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { Spinner } from 'react-bootstrap';
 import useActiveNames from '../hooks/useActiveNames';
 import usePeriodComparison from '../hooks/periodComparison';
-import { MostRepliedItemCHANGE } from '../components/MostRepliedItemCHANGE';
-import { TableContext } from '../context/TableContext';
+
 import { CreateChart } from '../helpers/createChart';
 import { useFilterData } from '../hooks/useFilterData';
 import { StyledDataTable } from '../styles/styledComponents/StyledDataTable';
 import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';
-import MostRepliedPie from '../components/MostRepliedPie';
+import { MostRepliedItemCHANGE } from '../components/mostReplied/MostRepliedItemCHANGE';
+import MostRepliedPie from '../components/mostReplied/MostRepliedPie';
+
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-replied';
 export const MostRepliedItems = memo((period, usuario) => {

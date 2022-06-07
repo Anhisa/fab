@@ -5,7 +5,7 @@ export const DetachableTable = styled.section`
 
   padding: 0px;
   margin: 0px;
- 
+
   z-index: 210;
   height: fit-content;
   top: ${(props) => props.top + 0 + 'px'};
@@ -21,7 +21,7 @@ export const DetachableTable = styled.section`
 
     left: 0;
   }
-  max-width: 300px;
+  max-width: 350px;
   z-index: 10;
   background: white;
 
@@ -38,7 +38,7 @@ export const DetachableTable = styled.section`
     padding: 10px;
     background-color: ${({ theme }) => theme.background};
     @media (max-width: 768px) {
-      width: 80%;
+      width: 100%;
     }
   }
   .rdt_TableRow {
@@ -58,5 +58,8 @@ export const DetachableTable = styled.section`
     .rdt_TableHead {
       background-color: ${({ theme }) => theme.background};
     }
+  }
+  @media (max-width: 768px) {
+    width: 250px;
   }
 `;

@@ -1,5 +1,5 @@
-import React, { useEffect, useContext, useCallback } from 'react';
-import { TableContext } from '../context/TableContext';
+import React, { useCallback } from 'react';
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,11 +12,10 @@ import {
   Filler,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import usePeriodComparison from '../hooks/periodComparison';
-import { MonthyUserViewStyled } from '../styles/styledComponents/MonthyUserViewStyled';
+import usePeriodComparison from '../../hooks/periodComparison';
+import monthyHelper from '../../helpers/monthyHelper';
 
-import monthyHelper from '../helpers/monthyHelper';
-import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';
+
 
 ChartJS.register(
   CategoryScale,
@@ -196,7 +195,6 @@ function createDatasets(data) {
         month: 'short',
         timeZone: 'UTC',
         year: 'numeric',
-        
       })
     );
     return [datasets, labels];

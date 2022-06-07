@@ -19,8 +19,8 @@ import {
   extractHtCategories,
   filterDuplicates,
 } from './HtMostUsedPie';
-import { colorsDictionary } from '../helpers/colorsDiccionary';
-import { colorsFromCategory } from '../helpers/colorsFromCategory';
+import { colorsFromCategory } from '../../helpers/colorsFromCategory';
+
 
 ChartJS.register(
   CategoryScale,

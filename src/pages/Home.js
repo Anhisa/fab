@@ -46,7 +46,7 @@ export const Home = ({ themeToggler}) => {
   const [currentMap, setCurrentMap] = useState(true);
  
   const [open, setOpen] = useState(false);
-
+ 
   const countryListManagmentOpen = { open, setOpen };
   const items = response.data;
   
@@ -89,8 +89,7 @@ export const Home = ({ themeToggler}) => {
   </div>
    )
  }
-  // let answer = getActivityCreactionDate()
-  // console.log('answer', answer)
+ 
 
   return (
 <>
