@@ -120,7 +120,7 @@ export const AccountDetails = () => {
             <hr />
             {/* <VerifiedPie/>
             <AccountCreationDate/> */}
-            <AllDataByAccount />
+            {/* <AllDataByAccount /> */}
             <ComparativeUserViewContainer period={period} />
           </AccountDetailsStyled>
         </TableContext.Provider>

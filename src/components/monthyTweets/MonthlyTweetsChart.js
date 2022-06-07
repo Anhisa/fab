@@ -54,6 +54,10 @@ export const MonthlyTweetsChart = ({ newData }) => {
   const options = {
     fill: true,
     responsive: true,
+    interaction: {
+      mode: 'index',
+      axis: 'x',
+    },
     scales: {
       y: {
         min: 0,
@@ -76,6 +80,7 @@ export const MonthlyTweetsChart = ({ newData }) => {
           weight: 'bold',
         },
       },
+      
     },
   };
 

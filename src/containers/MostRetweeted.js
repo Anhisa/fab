@@ -35,9 +35,10 @@ export const MostRetweetedItems = memo((period) => {
     <span className="visually-hidden">Loading...</span>
   </Spinner>
   }
-  if (innerData.length === 0|| chartData.length === 0) {
+  if (data.length === 0) {
     return <EmptyDataStyled>No hay data correspondiente al periodo seleccionado</EmptyDataStyled>;
-  } 
+  }
+  
 0
 
 

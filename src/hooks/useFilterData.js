@@ -94,11 +94,11 @@ export const useFilterData = (api, from) => {
           
         } else {
           let repeatedAccountArray = filterDuplicates(data);
-          console.log('repeated' , repeatedAccountArray);
+         
           newArray = addDuplicates(repeatedAccountArray, from);
-          console.log('newArray' , newArray);
+       
           let sortedArray = sortArray(newArray, from);
-          console.log('sortedArray' , sortedArray);
+          
           if (sortedArray.length > 10) {
             sortedArray = sortedArray.slice(0, 10);
           }

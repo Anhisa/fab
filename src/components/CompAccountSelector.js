@@ -115,7 +115,11 @@ export const CompAccountSelector = ({ setAccounts }) => {
               <MenuItem
                 key={`oa-${item.official_account_id}`}
                 value={item.official_account_id}
-                style={{borderBottom : '1px dotted black'}}
+                style={{
+                  borderBottom : '1px dotted black',
+                  zIndex: '100',
+              
+              }}
                
               >
                 <div>

@@ -20,10 +20,22 @@ export const MostMentionedItems = memo(() => {
 
 
   const data = useFilterData(api, 'most-mentioned');
-  console.log("data most mentioned", data);
+
+
+
+
+  
 
   useEffect(() => {
     if (data !== false) {
+      
+      console.log('data', data);
+      data.forEach((accountId, index) => {
+        if(accountId.length > 1){
+          data[index].pop()          
+        }
+      })
+      console.log('data', data);
       setInnerData(data);
       setChartData(CreateChart(data));
     }
@@ -47,7 +59,7 @@ export const MostMentionedItems = memo(() => {
 
   return (
     <section className="closed" id="most-mentioned">
-      {data.map((accountId, index) => {
+      { data.map((accountId, index) => {
         return (
           <section className="column" key={index}>
             <MostMentionedItemCHANGE

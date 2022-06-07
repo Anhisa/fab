@@ -43,7 +43,7 @@ const MostRepliedPie = ({ newData, title, setCategories, usuario }) => {
               labels: {
                 boxWidth: 10,
                 font: {
-                  size: 20,
+                  size: 12,
                   weight: 'bold',
                 },
                 padding: 15,
