@@ -1,11 +1,23 @@
-import React from 'react'
-import { FloatingTextRightStyled } from '../styles/styledComponents/FloatingText.styled'
+import React from 'react';
+import {
+  FloatingTextRightIslandStyled,
+  FloatingTextRightStyled,
+} from '../styles/styledComponents/FloatingText.styled';
 
-const FloatingTextRight = ({currentMap}) => {
-
+const FloatingTextRight = ({ currentMap }) => {
+  if (!currentMap) {
+    return (
+      <FloatingTextRightIslandStyled>
+        <p>El Caribe</p>
+      </FloatingTextRightIslandStyled>
+    );
+  } else {
   return (
-    <FloatingTextRightStyled caribe = {currentMap ? false : true}><p>{currentMap  ? 'America Latina Continental' : 'El Caribe'}</p></FloatingTextRightStyled>
-  )
+    <FloatingTextRightStyled>
+      <p>America Latina Continental</p>
+    </FloatingTextRightStyled>
+  );
+};
 }
 
-export default FloatingTextRight
+export default FloatingTextRight;

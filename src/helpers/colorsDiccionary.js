@@ -37,7 +37,7 @@ export const colorsDictionary = [
   },
   {
     category: 'Ciudadano',
-    color: 'yellow',
+    color: 'darkblue',
   },
   {
     category: 'Gobiernos y Entidades Gubernamentales ALC',
@@ -108,18 +108,20 @@ export const colorsDictionary = [
 
     color: '#ABC',
   },
-    {
+  {
     category: 'Empresas Extranjeras',
     color: '#aa11ff',
-    }, {
-      category: 'Ciudadano RPCh o Taiwán',
-      color: '#aaafff',
-    }, 
-    {
-      category: 'EMPRESAS ALC',
-      color: '#AFFaaf',
-    }, {
-      category: 'Empresas RPCh',
-      color: '#1ffa11',
-    }
+  },
+  {
+    category: 'Ciudadano RPCh o Taiwán',
+    color: '#aaafff',
+  },
+  {
+    category: 'EMPRESAS ALC',
+    color: '#AFFaaf',
+  },
+  {
+    category: 'Empresas RPCh',
+    color: '#1ffa11',
+  },
 ];

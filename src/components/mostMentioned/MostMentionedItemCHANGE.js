@@ -3,21 +3,23 @@ import React, { useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import DataTable from 'react-data-table-component';
 
-import { Link } from 'react-router-dom';
-import { BarContainer, IsVerified, UserAccount } from '../partsDataTable';
-import { CreateChart } from '../../helpers/createChart';
+
 import { StyledDataTable } from '../../styles/styledComponents/StyledDataTable';
-import { tab } from '@testing-library/user-event/dist/tab';
-import { TableContext } from '../../context/TableContext';
+
 import { ExpandedComponent } from '../ExpandedComponent';
 import { columns } from '../../helpers/columns';
 
 export const MostMentionedItemCHANGE = ({
   newData,
- title,
+  title,
   comparisonView,
   arrayBar,
 }) => {
+  if(arrayBar === undefined){
+    return null
+  }
+
+  
   const tweetNumber = newData.map((item) => parseInt(item.mentions_number));
   const totaltweets = tweetNumber.reduce(
     (totaltweetsNumber, item) => totaltweetsNumber + item,
@@ -59,11 +61,12 @@ export const MostMentionedItemCHANGE = ({
       item.most_mentioned_category_desc_spa
     )
   );
+      console.log('arra', arrayBar)
+      rows = rows.map((item, index) => {
 
-  rows = rows?.map((item, index) => {
     return {
       ...item,
-      tweets_number: arrayBar[index]??0,
+      tweets_number: arrayBar[index],
     };
   });
   

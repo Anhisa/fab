@@ -5,7 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import 'bootstrap/dist/css/bootstrap.css';
 
-export const CompCategoryCb = ({ setCategories, period }) => {
+export const CompCategoryCb = ({ setCategories, isPeriodComparisonActive }) => {
   const handleSelect = (event) => {
     setCategories((prevState) => ({
       ...prevState,
@@ -45,12 +45,12 @@ export const CompCategoryCb = ({ setCategories, period }) => {
             name="mostHashtags"
             onChange={handleSelect}
           />
-          <FormControlLabel
+      {!isPeriodComparisonActive &&    <FormControlLabel
             control={<Checkbox defaultChecked />}
             label="Número de Tweets mensuales"
             name="monthlyTweets"
             onChange={handleSelect}
-          />
+          />}
 
         </div>
       </FormGroup>

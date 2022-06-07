@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 export const FloatingTextStyled = styled.div`
   position: absolute;
-  margin-top: 100px;
-  left: 15px;
+ top: 300px;
+  left: 95px;
   height: 100px;
-  width: 400px;
+  width: 500px;
   background-color: transparent;
   color: ${({ theme }) => theme.text};
   p {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     margin-bottom: 0;
     font-weight: 500;
     text-align: auto;
@@ -44,21 +44,68 @@ export const FloatingTextStyled = styled.div`
     }
   }
 `;
+export const FloatingTextRightIslandStyled = styled.div`
+  position: absolute;
+  margin-top: 100px;
+  right: 50px;
+  height: 70px;
+  margin-right: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  border: 10px solid ${({ theme }) => theme.text};
+  background-color: transparent;
+  color: ${({ theme }) => theme.text};
+  p {
+    font-size: 2rem;
+    margin-bottom: 0;
+    font-weight: 600;
+    text-align: center;
+  }
+  @media (max-width: 968px) {
+    p {
+      font-size: 1.7rem;
+    }
+  }
+  @media (max-width: 768px) {
+    p {
+      font-size: 1.4rem;
+    }
+  }
+  @media (max-width: 480px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p {
+      font-size: 1.2rem;
+    }
+  }
+`;
+
 export const FloatingTextRightStyled = styled.div`
   position: absolute;
   margin-top: 0px;
-  right: 0px;
+  bottom: 50px;
+  left: 95px;
+  border: 10px solid ${({ theme }) => theme.text};
+  background-color: transparent;
+  color: ${({ theme }) => theme.text};
+ display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100px;
-  margin-right: ${(props) => (props.caribe ? '0px' : '0px')};
+  margin-right: '0px';
 
-  width: ${(props) => (props.caribe ? '200px' : '400px')};
+  width: 550px;
 
   background-color: transparent;
   color: ${({ theme }) => theme.text};
   p {
-    font-size: 1.7rem;
+    font-size: 2rem;
     margin-bottom: 0;
-    font-weight: 500;
+    font-weight: 600;
     text-align: auto;
   }
   @media (max-width: 968px) {
@@ -80,6 +127,8 @@ export const FloatingTextRightStyled = styled.div`
     }
   }
 `;
+
+
 
 export const ButtonFloatingStyled = styled.button`
   width: 70%;

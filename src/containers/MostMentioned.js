@@ -1,4 +1,4 @@
-import React, {useEffect, useState, memo } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 
 import { useFilterData } from '../hooks/useFilterData';
 import { MostMentionedItemCHANGE } from '../components/mostMentioned/MostMentionedItemCHANGE';
@@ -9,31 +9,40 @@ import usePeriodComparison from '../hooks/periodComparison';
 import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';
 import MostMentionedPie from '../components/mostMentioned/MostMentionedPie';
 
-
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-mentioned';
-export const MostMentionedItems = memo(({ period }) => {
+
+export const MostMentionedItems = memo(() => {
+  
   const [innerData, setInnerData] = useState([]);
   const [chartData, setChartData] = useState([]);
-  const accountsNames = useActiveNames()
-  const {isPeriodComparisonActive} = usePeriodComparison();
+  const accountsNames = useActiveNames();
+  const { isPeriodComparisonActive } = usePeriodComparison();
+
 
   const data = useFilterData(api, 'most-mentioned');
-  
+  console.log("data most mentioned", data);
+
   useEffect(() => {
     if (data !== false) {
-    
       setInnerData(data);
-
       setChartData(CreateChart(data));
     }
-  }, [data, period]);
+  }, [data]);
+
   if (!data) {
-    return   <Spinner animation="border" role="status">
-    <span className="visually-hidden">Loading...</span>
-  </Spinner>
+    return (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
   }
+
   if (innerData.length === 0) {
-    return <EmptyDataStyled>No hay data correspondiente al periodo seleccionado</EmptyDataStyled>;
+    return (
+      <EmptyDataStyled>
+        No hay data correspondiente al periodo seleccionado
+      </EmptyDataStyled>
+    );
   }
 
   return (
@@ -41,17 +50,15 @@ export const MostMentionedItems = memo(({ period }) => {
       {data.map((accountId, index) => {
         return (
           <section className="column" key={index}>
-            
-              <MostMentionedItemCHANGE
-                newData={accountId}
-                arrayBar={chartData[index]}
-                
-                comparisonView={isPeriodComparisonActive}
-                title={accountsNames[index]}
-              />
-            
-            <MostMentionedPie newData={accountId}
-              periodId={period}
+            <MostMentionedItemCHANGE
+              newData={accountId}
+              arrayBar={chartData[index]}
+              comparisonView={isPeriodComparisonActive}
+              title={accountsNames[index]}
+            />
+
+            <MostMentionedPie
+              newData={accountId}             
               title={'Categorias de los más mencionados'}
             />
           </section>
