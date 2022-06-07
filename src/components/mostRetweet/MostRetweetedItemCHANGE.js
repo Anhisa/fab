@@ -1,13 +1,13 @@
 import React from 'react';
-import { useGetData } from '../hooks/useGetData';
+import { useGetData } from '../../hooks/useGetData';
 import 'bootstrap/dist/css/bootstrap.css';
 import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom';
-import { StyledDataTable } from '../styles/styledComponents/StyledDataTable';
-import { CreateChart } from '../helpers/createChart';
+import { StyledDataTable } from '../../styles/styledComponents/StyledDataTable';
+import { CreateChart } from '../../helpers/createChart';
 
-import { ExpandedComponent } from './ExpandedComponent';
-import { columns } from '../helpers/columns';
+import { ExpandedComponent } from '../ExpandedComponent';
+import { columns } from '../../helpers/columns';
 export const MostRetweetedItemChange = ({ newData, period, comparisonView, arrayBar, title }) => {
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
   //  For some reason a whole array of arrays is returned

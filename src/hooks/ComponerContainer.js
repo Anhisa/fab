@@ -24,7 +24,7 @@ export const ComponentContainer = ({context}) => {
     
   } , [accountIdA, accountIdB, periodA]);
   if (accountIdA.id === '' || accountIdB.id === '' || accountIdA.id === accountIdB.id){
-  
+  // alert('Seleccione dos cuentas diferentes');
      console.log('Please select two different accounts and periods')
    return []
   }
@@ -73,7 +73,7 @@ export const ComponentContainer = ({context}) => {
         </CollapsableTableStyled>
       )}
       {categories.mostMentioned && (
-        <CollapsableTableStyled usuario={true}>
+        <CollapsableTableStyled>
           <ButtonToogle name="most-mentioned">
           {isPeriodComparisonActive ? `Usuarios más mencionados del periodo ${periodA.name} al ${periodB.name}` : `Usuarios más mencionados de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </ButtonToogle>

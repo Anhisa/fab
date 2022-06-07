@@ -4,6 +4,7 @@ export const PieContainerStyled = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  max-width: 700px;
   width: 100%;
   justify-content: center;  
   
@@ -17,8 +18,9 @@ export const PieChartContainer = styled.div`
   display: flex;
   width:${props => props.usuario ? '100%' : '50%'};
   min-width: 550px;
-  color: ${({ theme }) => theme.textContrast};
-  background-color: ${({ theme }) => theme.background};
+  max-width: 550px;
+  
+  
   h4{
     font-weight: 700;
     margin-bottom: 10px;

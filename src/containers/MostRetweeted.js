@@ -1,14 +1,16 @@
 import React, { useEffect, useState, memo } from 'react';
 
 import { useFilterData } from '../hooks/useFilterData';
-import { MostRetweetedItemChange } from '../components/MostRetweetedItemCHANGE';
+
 import { CreateChart } from '../helpers/createChart';
 import { Spinner } from 'react-bootstrap';
 
 import useActiveNames from '../hooks/useActiveNames';
 import usePeriodComparison from '../hooks/periodComparison';
 import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';
-import MostRetwittedPie from '../components/MostRetwittedPie';
+import { MostRetweetedItemChange } from '../components/mostRetweet/MostRetweetedItemCHANGE';
+import MostRetwittedPie from '../components/mostRetweet/MostRetwittedPie';
+
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
 
 export const MostRetweetedItems = memo((period) => {
@@ -49,9 +51,7 @@ export const MostRetweetedItems = memo((period) => {
                 accountsNames[index]
               }/>
               <MostRetwittedPie newData={dataAccount} period={period} title={'Categorías más retuiteadas'}/>
-            {/* <div>
-              <MostRetweetedChart newData={accountId} period={period} />
-            </div> */}
+       
           </section>
         );
       })}

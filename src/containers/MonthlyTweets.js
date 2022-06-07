@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState, memo } from 'react';
-import { MonthlyTweetsItem } from '../components/MonthlyTweetsItem';
-import { MonthlyTweetsChart } from '../components/MonthlyTweetsChart';
-import { TableContext } from '../context/TableContext';
+import React, { useEffect, useState, memo } from 'react';
 import { useFilterData } from '../hooks/useFilterData';
 import { Spinner } from 'react-bootstrap';
 import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';
+import { MonthlyTweetsChart } from '../components/monthyTweets/MonthlyTweetsChart';
+
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/monthly-tweets';
 export const MonthlyTweetsItems = memo((period) => {

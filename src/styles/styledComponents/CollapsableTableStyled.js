@@ -19,6 +19,7 @@ export const CollapsableTableStyled = styled.div`
   .ht.open{
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
   .ht.closed{
     display: none;

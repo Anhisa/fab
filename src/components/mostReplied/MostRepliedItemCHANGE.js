@@ -3,11 +3,11 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom';
-import { BarContainer, IsVerified, UserAccount } from './partsDataTable';
-import { CreateChart } from '../helpers/createChart';
-import { StyledDataTable } from '../styles/styledComponents/StyledDataTable';
-import { ExpandedStyled } from '../styles/styledComponents/ExpandedStyled';
-import { columns } from '../helpers/columns';
+import { BarContainer, IsVerified, UserAccount } from '../partsDataTable';
+import { CreateChart } from '../../helpers/createChart';
+import { StyledDataTable } from '../../styles/styledComponents/StyledDataTable';
+import { ExpandedStyled } from '../../styles/styledComponents/ExpandedStyled';
+import { columns } from '../../helpers/columns';
 
 export const MostRepliedItemCHANGE = ({ newData, title, comparisonView, arrayBar }) => {
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));

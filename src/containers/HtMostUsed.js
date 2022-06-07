@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState, memo } from 'react';
 import { Spinner } from 'react-bootstrap';
-import { HtMostUsedChart } from '../components/HtMostUsedChart';
-import { HtMostUsedItem } from '../components/HtMostUsedItem';
-import HtMostUsedPie from '../components/HtMostUsedPie';
+import { HtMostUsedChart } from '../components/hashtags/HtMostUsedChart';
+import HtMostUsedPie from '../components/hashtags/HtMostUsedPie';
+
+
 import { TableContext } from '../context/TableContext';
 import usePeriodComparison from '../hooks/periodComparison';
 import useActiveNames from '../hooks/useActiveNames';
