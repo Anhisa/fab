@@ -156,11 +156,11 @@ export function addDuplicates(arrayDuplicades, from) {
       return newArray;
 
     case 'most-mentioned': // Mentions number
-    newArray = [];
+    let newArrayTwo = [];
     console.log('arrayDUplicades ' , arrayDuplicades);
 
-      newArray = arrayDuplicades.map((item, index) => {
-        console.log('index ', index);
+      for(let item of arrayDuplicades){
+        
         let most_mentioned_description_spa = item[0].most_mentioned_description_spa;
         let user_account = item[0].user_account;
         let most_mentioned_category_spa = item[0].most_mentioned_category_spa;
@@ -172,8 +172,9 @@ export function addDuplicates(arrayDuplicades, from) {
         let mentions_number = item.reduce((acc, item) => {          
           return acc + parseInt(item.mentions_number);
         }, 0);
+        // let mentions_number = item[0].mentions_number;
 
-        return {
+        newArrayTwo.push({
           most_mentioned_description_spa,
           user_account,
           mentions_number,
@@ -183,16 +184,16 @@ export function addDuplicates(arrayDuplicades, from) {
           official_account,
           users_most_metioned_id,
           users_account_verified,
-        };
-      });
+        })
+      }
+    ;
+    console.log('newArrayTwoLeng1', newArrayTwo.length);
+      console.log('newArrayTwo1 ' , newArrayTwo);
+      console.log('newArrayTwoLeng2', newArrayTwo.length);
+      console.log('newArrayTwo2 ' , newArrayTwo);
+     
 
-
-      console.log('newArray', newArray);
-      newArray.forEach((item) => {
-        console.log('item', item);
-      })
-
-      return newArray;
+      return newArrayTwo;
 
     case 'most-replied': // tweets_number
    newArray = [];

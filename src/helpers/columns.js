@@ -11,7 +11,7 @@ export const columns = [
     ),
     sortable: true,
     wrap: true,
-    maxWidth: '350px',
+    maxWidth: '330px',
     minWidth: '150px',
     compact: true,
   },
@@ -36,7 +36,7 @@ export const columns = [
     wrap: false,
     center: true,
     minWidth: '50px',
-    width: '90px',
+    width: '100px',
     
   },
   {
