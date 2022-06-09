@@ -49,7 +49,18 @@ export function dataReducer(data, periods) {
 
       [...data[1]],
     ];
-  } else {
+  } else if(periods[0].id === 1 && periods[1].id === 4){
+    newData = [
+      [...data[0]],
+      [
+        { ...data[0][0], tweets_number: 0 },
+        { ...data[0][1], tweets_number: 0 },
+        ...data[1],
+      ],
+    ];
+  }
+  
+  else {
     newData = [[...data[0]], [...data[1]]];
   }
 
