@@ -55,6 +55,7 @@
   "devDependencies": {
     "@wordpress/scripts": "^22.5.0",
     "css-loader": "^6.7.1",
+    "eslint-plugin-react-hooks": "^4.5.0",
     "mini-css-extract-plugin": "^2.6.0",
     "prettier": "^2.6.2",
     "sass": "^1.51.0",
