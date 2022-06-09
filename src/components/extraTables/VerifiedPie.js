@@ -8,7 +8,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const VerifiedPie = () => {
   let answer = getActivityCreactionDate()
-  console.log('answer', answer)
+  
   let data 
   if(answer.length > 0){
     data = answer.map(item => item.isVerified)
@@ -17,7 +17,7 @@ const VerifiedPie = () => {
       verified, notVerified
     ]
   }
-  console.log('data', data)
+  
   let dataChart = {
     labels: ['Verificados', 'No verificados'],
     datasets: [

@@ -3,7 +3,7 @@ import  Button  from '@mui/material/Button';
 import ComparativePerPeriod from '../components/ComparativePerPeriod';
 import { CompCategoryCb } from '../components/CompCategoryCb';
 import { CompPeriodSlider } from '../components/CompPeriodSlider';
-import { ComparativePeriodStyled } from '../styles/styledComponents/ComparativeStyled';
+import { ComparativePeriodStyled, ComparativeStyled } from '../styles/styledComponents/ComparativeStyled';
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
 import CountrySelectFilter from '../components/countrySelectFilter';
 const SelectorComparative = ({ setDataComparing, countryDataState }) => {
@@ -30,7 +30,7 @@ const SelectorComparative = ({ setDataComparing, countryDataState }) => {
   
   const handleComparison = () => {
     
-    window.scrollTo(0,document.body.scrollHeight);
+    window.scrollTo(0,200);
     setDataComparing((prev) => {
       return {
         ...prev,
@@ -53,7 +53,7 @@ const SelectorComparative = ({ setDataComparing, countryDataState }) => {
     });
   };
   return (
-    <>
+    <ComparativeStyled>
       <ComparativePerPeriod setDataComparing={setPeriodComparison} />
       <CompCategoryCb setCategories={setCategories} period={true} isPeriodComparisonActive={true} />
       <CountrySelectFilter countrysWithData={tweetsByCountry} setCountryFilterActive={setCountryFilterActive} setCountryId={setCountryId} countryDataState={countryDataState}/>
@@ -62,7 +62,7 @@ const SelectorComparative = ({ setDataComparing, countryDataState }) => {
           COMPARAR
         </Button>
       </div>
-    </>
+    </ComparativeStyled>
   );
 };
 

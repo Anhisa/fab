@@ -5,8 +5,8 @@ import useGetCountryNames from '../../hooks/useGetCountryNames';
 const AccountCreationDate = () => {
   let answer = getActivityCreactionDate();
   let countryNames = useGetCountryNames();
-  console.log('answer', answer);
-  console.log('countryNames', countryNames);
+  // console.log('answer', answer);
+  // console.log('countryNames', countryNames);
   let data;
   if (answer.length > 0) {
     data = answer;
@@ -14,7 +14,7 @@ const AccountCreationDate = () => {
   if (countryNames.length === 0) {
     return <div>Loading...</div>;
   }
-  console.log('data', data);
+  // console.log('data', data);
 
   let columns = [
     {

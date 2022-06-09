@@ -4,9 +4,9 @@ import handleClick from '../helpers/HandleClick';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 const ButtonToogle = ({children, name}) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const handleClickButton = (e) => {
+  const handleClickButton = ({target:{name}}) => {
     setIsOpen(!isOpen);
-    handleClick(e);
+    handleClick(name);
   };
   
   return (

@@ -8,7 +8,7 @@ import { CompPeriodSlider } from '../components/CompPeriodSlider';
 import Button from '@mui/material/Button';
 import 'bootstrap/dist/css/bootstrap.css';
 import { AccountPeriodContainer } from '../styles/styledComponents/AccountPeriodContainer';
-import { ComparativePeriodStyled } from '../styles/styledComponents/ComparativeStyled';
+import { ComparativePeriodStyled, ComparativeStyled } from '../styles/styledComponents/ComparativeStyled';
 
 export const ComparativeTool = ({ setDataComparing }) => {
   const [accounts, setAccounts] = useState({
@@ -36,7 +36,7 @@ export const ComparativeTool = ({ setDataComparing }) => {
 
   const handleComparison = () => {
    //scroll to bottom
-    window.scrollTo(0,document.body.scrollHeight);
+    window.scrollTo(0,550);
     setDataComparing((prev) => {
       return {
         ...prev,
@@ -49,7 +49,7 @@ export const ComparativeTool = ({ setDataComparing }) => {
   };
 
   return (
-    <>
+    <ComparativeStyled>
       <CompAccountSelector setAccounts={setAccounts} />
       <CompCategoryCb setCategories={setCategories} />
       <AccountPeriodContainer>
@@ -60,6 +60,6 @@ export const ComparativeTool = ({ setDataComparing }) => {
           COMPARAR
         </Button>
       </div>
-    </>
+    </ComparativeStyled>
   );
 };

@@ -45,12 +45,12 @@ export const CompCategoryCb = ({ setCategories, isPeriodComparisonActive }) => {
             name="mostHashtags"
             onChange={handleSelect}
           />
-      {!isPeriodComparisonActive &&    <FormControlLabel
+       <FormControlLabel
             control={<Checkbox defaultChecked />}
             label="Número de Tweets mensuales"
             name="monthlyTweets"
             onChange={handleSelect}
-          />}
+          />
 
         </div>
       </FormGroup>

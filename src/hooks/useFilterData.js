@@ -20,7 +20,7 @@ function sortArray(array, from) {
 
 export const useFilterData = (api, from) => {
   const context = useContext(TableContext);
-  console.log('useFilterData');
+
 
   const {
     accounts,
@@ -38,12 +38,14 @@ export const useFilterData = (api, from) => {
   const accountsData = [];
 
   useEffect(() => {
-    let newArray = [];
+   
     if (isPeriodComparisonActive) {
       let arrayComparison = periodComparison;
 
       Object.values(arrayComparison).forEach((item) => {
         let { startDate, endDate } = getPeriodNumbers(item.id);
+      let newArray = [];
+
         let data;
         if (!isCountryFilterActive) {
           data = items.filter(
@@ -112,7 +114,7 @@ export const useFilterData = (api, from) => {
     }
     Object.values(accounts).forEach((account) => {
       if (!loading) {
-        
+        let newArray = [];
         const data = items.filter(
           (item) =>
             item.official_account_id === account.id &&
@@ -146,9 +148,9 @@ export const useFilterData = (api, from) => {
           let repeatedAccountArray = filterDuplicates(data);
       
           newArray = addDuplicates(repeatedAccountArray, from);
-          console.log('newArray' , newArray);
+        
           let sortedArray = sortArray(newArray, from);
-          console.log('sortedArray' , sortedArray);
+      
           if (sortedArray.length > 10) {
             sortedArray = sortedArray.slice(0, 10);
           }

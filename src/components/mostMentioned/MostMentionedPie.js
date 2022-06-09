@@ -57,7 +57,10 @@ const MostMentionedPie = ({newData, title, usuario}) => {
   }
   return (
     <PieChartContainer usuario={usuario}>
-    <h4>{title}</h4>
+    <h4>
+    Categorias de los más mencionados de: <br/>
+    {title}
+    </h4>
     <Doughnut
       data = {dataChart}
       options={{

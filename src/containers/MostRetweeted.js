@@ -13,7 +13,7 @@ import MostRetwittedPie from '../components/mostRetweet/MostRetwittedPie';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
 
-export const MostRetweetedItems = memo((period) => {
+export const MostRetweetedItems = memo((period, usuario) => {
   const [innerData, setInnerData] = useState(false);
   const accountsNames = useActiveNames()
   const {isPeriodComparisonActive} = usePeriodComparison();
@@ -24,7 +24,8 @@ export const MostRetweetedItems = memo((period) => {
   let arraysBar = [];
  
   useEffect(() => {
-    if (data !== false) {  
+    if (data !== false) {
+ 
     setInnerData(data);      
      arraysBar = CreateChart(data)
     setChartData(arraysBar);  
@@ -51,7 +52,7 @@ export const MostRetweetedItems = memo((period) => {
               <MostRetweetedItemChange newData={dataAccount} arrayBar={chartData[index]} period={period} comparisonView={isPeriodComparisonActive} title={
                 accountsNames[index]
               }/>
-              <MostRetwittedPie newData={dataAccount} period={period} title={'Categorías más retuiteadas'}/>
+              <MostRetwittedPie newData={dataAccount} period={period} title={accountsNames[index]} usuario={usuario}/>
        
           </section>
         );

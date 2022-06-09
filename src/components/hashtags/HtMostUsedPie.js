@@ -40,7 +40,7 @@ const HtMostUsedPie = ({ newData, title, setCategories, usuario }) => {
   };
   return (
     <PieChartContainer usuario={usuario}>
-      <h4>Categorias más usadas de: {title}</h4>
+      <h4>Categorias más usadas de: <br/> {title}</h4>
       <Pie
         data={dataChart}
         options={{
