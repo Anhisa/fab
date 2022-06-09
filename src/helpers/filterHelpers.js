@@ -157,7 +157,7 @@ export function addDuplicates(arrayDuplicades, from) {
 
     case 'most-mentioned': // Mentions number
     let newArrayTwo = [];
-    console.log('arrayDUplicades ' , arrayDuplicades);
+ 
 
       for(let item of arrayDuplicades){
         
@@ -187,11 +187,6 @@ export function addDuplicates(arrayDuplicades, from) {
         })
       }
     ;
-    console.log('newArrayTwoLeng1', newArrayTwo.length);
-      console.log('newArrayTwo1 ' , newArrayTwo);
-      console.log('newArrayTwoLeng2', newArrayTwo.length);
-      console.log('newArrayTwo2 ' , newArrayTwo);
-     
 
       return newArrayTwo;
 

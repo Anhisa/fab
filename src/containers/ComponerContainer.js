@@ -11,13 +11,13 @@ import { CollapsableTableStyled } from '../styles/styledComponents/CollapsableTa
 import { StyledFilterButton } from '../styles/styledComponents/StyledFilterButton';
 
 
-export const ComponentContainer = ({context}) => {
+export const ComponentContainer = ({context, usuario}) => {
 
   const { categories, accounts, periodComparison,isPeriodComparisonActive  } = context;
   const { accountIdA, accountIdB } = accounts;
   const {periodA, periodB} = periodComparison
   
- 
+  console.log('usuario' , usuario)
 
   useEffect(() => {
       
@@ -50,7 +50,7 @@ export const ComponentContainer = ({context}) => {
             
           </ButtonToogle>
 
-          <MonthlyTweetsItems period={context.period}/>
+          <MonthlyTweetsItems period={context.period} />
         </CollapsableTableStyled>
       )}
       {categories.mostRetweeted && (
@@ -59,7 +59,7 @@ export const ComponentContainer = ({context}) => {
             
             {isPeriodComparisonActive ? `Usuarios más retuiteados del periodo ${periodA.name} al ${periodB.name}` : `Usuarios más retuiteados de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </ButtonToogle>
-          <MostRetweetedItems period={context.period} context={context} />
+          <MostRetweetedItems period={context.period} context={context} usuario={usuario} />
         </CollapsableTableStyled>
       )}
       {categories.mostReplied && (
@@ -69,7 +69,7 @@ export const ComponentContainer = ({context}) => {
             {isPeriodComparisonActive ? `Usuarios que más han recibido respuesta del periodo ${periodA.name} al ${periodB.name}` : `Usuarios que más han recibido respuesta de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </ButtonToogle>
 
-          <MostRepliedItems period={context.period}  />
+          <MostRepliedItems period={context.period} usuario={usuario}  />
         </CollapsableTableStyled>
       )}
       {categories.mostHashtags && (
@@ -79,7 +79,7 @@ export const ComponentContainer = ({context}) => {
             {isPeriodComparisonActive ? `Hashtags más usados del periodo ${periodA.name} al ${periodB.name}` : `Hashtags más usados de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </ButtonToogle>
 
-          <HtMostUsedItems  period={context.period} />
+          <HtMostUsedItems  period={context.period} usuario={usuario} />
         </CollapsableTableStyled>
       )}
       {categories.mostMentioned && (
@@ -88,7 +88,7 @@ export const ComponentContainer = ({context}) => {
           {isPeriodComparisonActive ? `Usuarios más mencionados del periodo ${periodA.name} al ${periodB.name}` : `Usuarios más mencionados de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </ButtonToogle>
 
-          <MostMentionedItems  period={context.period} />
+          <MostMentionedItems  period={context.period} usuario={usuario} />
         </CollapsableTableStyled>
       )}
       </TableContext.Provider>

@@ -36,7 +36,7 @@ export const ComparativeTool = ({ setDataComparing }) => {
 
   const handleComparison = () => {
    //scroll to bottom
-    window.scrollTo(0,document.body.scrollHeight);
+    window.scrollTo(0,550);
     setDataComparing((prev) => {
       return {
         ...prev,

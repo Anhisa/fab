@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const PieContainerStyled = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
 
   width: 90%;
   gap: 10px;
@@ -16,7 +16,8 @@ export const PieContainerStyled = styled.div`
 
 export const PieChartContainer = styled.div`
   display: flex;
-  width: ${(props) => (props.usuario ? '50%' : '100%')};
+min-width: 400px;
+max-width: 700px;
 
   margin-top: 20px;
   padding: 0px !important;

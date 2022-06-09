@@ -61,7 +61,7 @@ export const MostMentionedItemCHANGE = ({
       item.most_mentioned_category_desc_spa
     )
   );
-      console.log('arra', arrayBar)
+      
       rows = rows.map((item, index) => {
 
     return {

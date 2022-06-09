@@ -117,11 +117,8 @@ export const AccountDetails = () => {
                 data={dataSearch.dataUser}
               />
             </AccountPeriodContainer>
-            <hr />
-            {/* <VerifiedPie/>
-            <AccountCreationDate/> */}
-            {/* <AllDataByAccount /> */}
-            <ComparativeUserViewContainer period={period} />
+            <hr />          
+            <ComparativeUserViewContainer period={period} usuario={true} />
           </AccountDetailsStyled>
         </TableContext.Provider>
       ) : (

@@ -12,7 +12,7 @@ export function getActivityCreactionDate(){
     if (innerData !== false) {
       setInnerData(data);
     }
-    console.log(data)
+   
       let array = filterDuplicates(innerData);
       arrayDuplicate = addDuplicates(array);
       setFilteredData(arrayDuplicate);

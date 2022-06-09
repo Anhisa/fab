@@ -13,6 +13,7 @@ import MostRepliedPie from '../components/mostReplied/MostRepliedPie';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-replied';
 export const MostRepliedItems = memo((period, usuario) => {
+  console.log('usuario', usuario)
   const data = useFilterData(api, 'most-replied');
   const accountsNames = useActiveNames()
   const {isPeriodComparisonActive} = usePeriodComparison();

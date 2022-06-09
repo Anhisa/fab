@@ -2,7 +2,7 @@ import React from 'react'
 import ArrowCircleUpTwoToneIcon from '@mui/icons-material/ArrowCircleUpTwoTone';
 const UpArrow = () => {
   function handleClick(){
-    console.log('click')
+    
     window.scrollTo(0, 0, {
       behavior: 'smooth'
     })

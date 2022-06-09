@@ -12,7 +12,7 @@ import { useGetData } from '../../hooks/useGetData'
 const AllDataByAccount = () => {
   const dataMostMentioned = useGetData(apiMostMentioned);
   const dataMostReplied = useGetData(apiMostReplied);
-  console.log(dataMostReplied.data[0])
+  
   const dataMostRetweeted = useGetData(apiMostRetweeted);
   const dataHtMostUsed = useGetData(apiHtMostUsed);
   const [data, setData] = useState([]);
@@ -24,7 +24,7 @@ const AllDataByAccount = () => {
   return filtered;
   
   })
-  console.log('all data',exp)
+  
 
   return (
     <div>allDataByAccount</div>

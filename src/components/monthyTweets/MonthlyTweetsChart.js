@@ -31,7 +31,7 @@ export const MonthlyTweetsChart = ({ newData }) => {
   if (!newData) {
     return null;
   }
-  console.log('newData', newData);
+  
 
   let [dataSets, labels] = useCallback(createDatasets(newData), [newData]);
 

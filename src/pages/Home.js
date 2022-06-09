@@ -142,14 +142,14 @@ export const Home = ({ themeToggler }) => {
                 countryDataState={countryDataState}
                 setDataComparing={setDataComparing}
               />
-              <OptionsSearch setDataComparing={setDataComparing}/>
+              <OptionsSearch setDataComparing={setDataComparing} context={dataComparing}/>
           
               </section>
             )}
           </SectionToolsStyled>
           {showMap ? null : (
             <ComparisonContainerStyled>
-              <ComponentContainer context={dataComparing} />
+              <ComponentContainer context={dataComparing} usuario={false}/>
               <UpArrow />
             </ComparisonContainerStyled>
           )}

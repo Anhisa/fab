@@ -77,7 +77,7 @@ export const Map = ({
         }
         y = pageY - 350;
       }
-      console.log('x , y', x, y);
+    
       setMouse({
         x: x,
         y: y,

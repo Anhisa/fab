@@ -11,7 +11,7 @@ const MostRetwittedPie = ({ newData, title, setCategories, usuario }) => {
   const repliedCategories = extractRetwittedCategories(newData);
 
   const duplicates = filterDuplicates(repliedCategories);
-  console.log('newData', newData);
+  
 
   let dataSolved = addDuplicates(duplicates);
 

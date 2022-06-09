@@ -6,8 +6,7 @@ import {
   ViewUserCardStyled,
 } from '../styles/styledComponents/ViewUserCardStyled';
 const ViewUserCard = ({ data, period }) => {
-  // console.log('period view user card', period);
-  console.log('data view user card', data);
+
   let periods
   const dataLength = data.length - 1;
   let i = 1;
