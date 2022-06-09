@@ -43,7 +43,7 @@ const periodComparison = {
 }
 
 
-export const TableContext = createContext(null);
+export const TableContext = createContext({});
 
 export const initialState = {
   categories: initialStateCategories,
