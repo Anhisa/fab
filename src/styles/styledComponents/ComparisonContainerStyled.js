@@ -5,5 +5,6 @@ export const ComparisonContainerStyled = styled.div`
   flex-direction: column;  
   gap:10px;
   margin-top: 10px;
-width: 100%;
+  padding: 10px;
+  width: 100%;
 `

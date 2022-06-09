@@ -9,16 +9,13 @@ import { StyledDataTable } from '../../styles/styledComponents/StyledDataTable';
 import { ExpandedStyled } from '../../styles/styledComponents/ExpandedStyled';
 import { columns } from '../../helpers/columns';
 
-export const MostRepliedItemCHANGE = ({ newData, title, comparisonView, arrayBar }) => {
+export const MostRepliedItemCHANGE = ({ newData, title, arrayBar }) => {
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
   const totaltweets = tweetNumber.reduce(
     (totaltweetsNumber, item) => totaltweetsNumber + item,
     0
   );
   
-  if (newData[newData.length - 1]?.length > 2) {
-    newData.pop();
-  }
   const accountInfo = [];
   const account = newData[0];
 

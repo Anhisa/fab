@@ -3,7 +3,7 @@ import DataTable from 'react-data-table-component';
 
 export const ComparativeStyled = styled.section`
   display: flex;
-  width: 50%;  
+  width: 100%;  
   max-height: fit-content;
   flex-direction: column;
   background-color:${({ theme }) => theme.background};
@@ -13,7 +13,7 @@ export const ComparativeStyled = styled.section`
   box-shadow: 3px 3px 10px #333;
   
   .countSelector {
-    padding: 20px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     z-index: 1;
@@ -27,8 +27,10 @@ export const ComparativeStyled = styled.section`
       }
     }
     .form{
-      z-index: 2;
-    
+      z-index: 10;
+      ul{
+        z-index: 15;
+      }
     }
   }
   .countSelector2{

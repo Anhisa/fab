@@ -1,6 +1,4 @@
-
-
-import React from 'react'
+import React from 'react';
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie, Doughnut } from 'react-chartjs-2';
@@ -9,86 +7,73 @@ import { PieChartContainer } from '../../styles/styledComponents/PieContainerSty
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const MostRetwittedPie = ({newData, title, setCategories, usuario}) => {
+const MostRetwittedPie = ({ newData, title, setCategories, usuario }) => {
   const repliedCategories = extractRetwittedCategories(newData);
-  
+
   const duplicates = filterDuplicates(repliedCategories);
+  console.log('newData', newData);
 
-
-  
-  
   let dataSolved = addDuplicates(duplicates);
-  
-  let colors = colorsFromCategory(dataSolved);
-  
-  let labels = dataSolved.map(item => item.category) 
-  let data = dataSolved.map(item => item.count)
- 
 
+  let colors = colorsFromCategory(dataSolved);
+
+  let labels = dataSolved.map((item) => item.category);
+  let data = dataSolved.map((item) => item.count);
 
   let dataChart = {
     labels: labels,
     datasets: [
       {
         data: data,
-        backgroundColor: colors,       
-
-
-      }
+        backgroundColor: colors,
+      },
     ],
     options: {
       title: {
         display: true,
-        text: 'Mentions por hashtags'
+        text: 'Mentions por hashtags',
       },
       legend: {
         display: true,
         position: 'top',
-      }
-    }
-    ,
-
-
-
-  }
+      },
+    },
+  };
   return (
     <PieChartContainer usuario={usuario}>
-    <h4>{title}</h4>
-    <Doughnut
-      data = {dataChart}
-      options={{
-        plugins: {
-          legend: {
-            position: 'top',
-            labels: {
-              boxWidth: 10,
-              font: {
-                size: 12,
-                weight: 'bold'
-
+      <h4>
+      Categorías más retuiteadas de: <br/>
+        {title}
+        </h4>
+      <Doughnut
+        data={dataChart}
+        options={{
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: {
+                boxWidth: 10,
+                font: {
+                  size: 12,
+                  weight: 'bold',
+                },
+                padding: 15,
+                pointStyle: 'rectRounded',
+                usePointStyle: true,
               },
-              padding: 15,
-              pointStyle: 'rectRounded',
-              usePointStyle: true,
-
-              
-          }
-        }
-      }
-      }}
-    />
+            },
+          },
+        }}
+      />
     </PieChartContainer>
-  )
-}
+  );
+};
 
-export default MostRetwittedPie
+export default MostRetwittedPie;
 
-
-
-export function extractRetwittedCategories(data){
-
+export function extractRetwittedCategories(data) {
   const htCategories = [];
-  data.forEach(item => {
+  data.forEach((item) => {
     htCategories.push({
       category: item.most_retweeted_category_spa,
       count: item.tweets_number,
@@ -115,24 +100,24 @@ export function filterDuplicates(data) {
   return arrayDuplicates;
 }
 
-export function addDuplicates (data){
-let newArray = data.map(item => {
-  let itemCount = item.reduce((acc, item) => {
-    return acc + item.count;
-  },0)
-  return {
-    category: item[0].category,
-    count: itemCount
-  }
-})
-return newArray;
-}
-export function addDuplicates2 (data){
-  let newArray = data.map(item => {
+export function addDuplicates(data) {
+  let newArray = data.map((item) => {
+    let itemCount = item.reduce((acc, item) => {
+      return acc + item.count;
+    }, 0);
     return {
       category: item[0].category,
-      count: item.count
-    }
-  })
+      count: itemCount,
+    };
+  });
   return newArray;
-  }
+}
+export function addDuplicates2(data) {
+  let newArray = data.map((item) => {
+    return {
+      category: item[0].category,
+      count: item.count,
+    };
+  });
+  return newArray;
+}

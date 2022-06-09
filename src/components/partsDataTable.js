@@ -34,8 +34,9 @@ export const IsVerified = ({isVerified}) => {
 }
 
 export const BarContainer = ({dataBar}) => {
+  console.log(dataBar)
   return (
-    <div  style={{ width: '200px' }} >
+    <div  style={{ width: '150px' }} >
       {dataBar}
     </div>
   )

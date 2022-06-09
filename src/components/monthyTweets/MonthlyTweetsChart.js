@@ -14,8 +14,7 @@ import {
 import { Line } from 'react-chartjs-2';
 import usePeriodComparison from '../../hooks/periodComparison';
 import monthyHelper from '../../helpers/monthyHelper';
-
-
+import { dataReducer } from '../../helpers/dataReducer';
 
 ChartJS.register(
   CategoryScale,
@@ -29,17 +28,10 @@ ChartJS.register(
 );
 
 export const MonthlyTweetsChart = ({ newData }) => {
-  //  For some reason a whole array of arrays is returned
-
-  if (newData[0][newData[0].length - 1].length > 5) {
-    newData[0].pop();
-  }
   if (!newData) {
     return null;
   }
-
-  // let labels = newData[0]?.map((item) => item.month)
-  // console.log('labels', labels);
+  console.log('newData', newData);
 
   let [dataSets, labels] = useCallback(createDatasets(newData), [newData]);
 
@@ -80,7 +72,6 @@ export const MonthlyTweetsChart = ({ newData }) => {
           weight: 'bold',
         },
       },
-      
     },
   };
 
@@ -96,52 +87,24 @@ export const MonthlyTweetsChart = ({ newData }) => {
   );
 };
 
+
 function createDatasets(data) {
   const { isPeriodComparisonActive, periods } = usePeriodComparison();
   let data2 = { ...data };
+
   let newLabels = [];
   let test;
 
   if (isPeriodComparisonActive) {
-    if (periods[0].id < periods[1].id) {
-      test = monthyHelper(data, periods);
 
-      data2[0] = test[0];
-      data2[1] = test[1];
-    } else {
-      let temp = periods[0];
-      periods[0] = periods[1];
-      periods[1] = temp;
+    let newData = dataReducer(data, periods);
+ 
+    newLabels =
+      newData[0].length > newData[1].length
+        ? newData[0].map((item) => item.month)
+        : newData[1].map((item) => item.month);
 
-      let tempData = data2[0];
-      data2[0] = data2[1];
-      data2[1] = tempData;
 
-      data2[0] = test[0];
-    }
-    if (
-      (periods[0].id === 1 || periods[0].id === 4) &&
-      (periods[1].id === 2 || periods[1].id === 5)
-    ) {
-      data2[1] = data2[0].concat(data2[1]);
-    }
-    if (
-      (periods[0].id === 2 || periods[0].id === 5) &&
-      (periods[1].id === 3 || periods[1].id === 6)
-    ) {
-      data2[0] = data2[1].slice(0, 6).concat(data2[0]);
-    }
-    // if((periods[0].id === 1 ) && (periods[1].id === 6 )){
-    //   data2[0] = data2[0].concat(data2[1].slice(6,12))
-    // }
-
-    if (!data2[1]) {
-      newLabels = data2[0].map((item) => item.month);
-    } else {
-      newLabels = data2[1].map((item) => item.month);
-    }
-
-    //uniques with Set
     newLabels = newLabels.map((item) =>
       new Date(item).toLocaleString('es-ES', {
         month: 'short',
@@ -149,11 +112,11 @@ function createDatasets(data) {
       })
     );
 
-    newLabels = [...new Set(newLabels)];
+    // newLabels = [...new Set(newLabels)];
     const datasets = [];
     let controlColor = 0;
 
-    Object.values(data2).forEach((item) => {
+    Object.values(newData).forEach((item) => {
       if (item === undefined) {
         return;
       }
@@ -194,7 +157,7 @@ function createDatasets(data) {
       });
       controlColor++;
     });
-    let labels = data[0]?.map((item) => item.month);
+    let labels = data2[0]?.map((item) => item.month);
     labels = labels.map((item) =>
       new Date(item).toLocaleString('es-ES', {
         month: 'short',

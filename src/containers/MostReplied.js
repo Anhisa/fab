@@ -23,7 +23,7 @@ export const MostRepliedItems = memo((period, usuario) => {
 
   useEffect(() => {
     if (data !== false) {
-      
+
       setInnerData(data);
       setChartData(CreateChart(data));
     }
@@ -53,7 +53,7 @@ export const MostRepliedItems = memo((period, usuario) => {
               />
            
            
-              <MostRepliedPie newData={accountId} periodId={period}  title={'Categorias de más respuesta'} />
+              <MostRepliedPie newData={accountId} periodId={period}  title={accountsNames[index]} usuario={usuario} />
            
           </section>
         );

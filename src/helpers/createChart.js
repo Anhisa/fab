@@ -59,21 +59,26 @@ export function CreateChart(dataAccounts) {
           key={index}
           max={maxValueClosest}
           now={item2}
+          animated={true}
           label={
             <p
               style={{
                 color: '#121f45',
-                fontSize: '12px',
+                fontSize: '14px',
                 fontWeight: '800',
                 margin: '0px',
                 padding: '0px',
+                width: '50px',
+                position: 'absolute',
+              
+                right: '10px',
               }}
             >
               {item2}
             </p>
           }
         />
-        <p>   {item2}</p>
+
         </>
       );
     });

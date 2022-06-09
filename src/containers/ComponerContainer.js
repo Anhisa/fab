@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react';
 import ButtonToogle from '../components/ButtonToogle';
-import { HtMostUsedItems } from '../containers/HtMostUsed';
-import { MonthlyTweetsItems } from '../containers/MonthlyTweets';
-import { MostMentionedItems } from '../containers/MostMentioned';
-import { MostRepliedItems } from '../containers/MostReplied';
-import { MostRetweetedItems } from '../containers/MostRetweeted';
+import { HtMostUsedItems } from './HtMostUsed';
+import { MonthlyTweetsItems } from './MonthlyTweets';
+import { MostMentionedItems } from './MostMentioned';
+import { MostRepliedItems } from './MostReplied';
+import { MostRetweetedItems } from './MostRetweeted';
 import { TableContext } from '../context/TableContext';
 import handleClick from '../helpers/HandleClick';
 import { CollapsableTableStyled } from '../styles/styledComponents/CollapsableTableStyled';
@@ -20,10 +20,19 @@ export const ComponentContainer = ({context}) => {
  
 
   useEffect(() => {
-    console.log('ComponentContainer useEffect');
-    
+      
   } , [accountIdA, accountIdB, periodA]);
-  if (accountIdA.id === '' || accountIdB.id === '' || accountIdA.id === accountIdB.id){
+  if(isPeriodComparisonActive){
+    if(periodA.id === periodB.id){
+      console.log('periodA.id === periodB.id');
+      return 'Select different periods';
+    } else if (periodA.id > periodB.id){
+      console.log('periodA.id', periodA.id);
+      console.log('periodB.id', periodB.id);
+      console.log('periodA.id < periodB.id');
+      return 'Select a posterior period';
+    }
+  } else if (accountIdA.id === '' || accountIdB.id === '' || accountIdA.id === accountIdB.id){
   // alert('Seleccione dos cuentas diferentes');
      console.log('Please select two different accounts and periods')
    return []
@@ -33,7 +42,7 @@ export const ComponentContainer = ({context}) => {
     <>
      <TableContext.Provider value={context}>
       {categories.monthlyTweets && 
-      !isPeriodComparisonActive ? (
+     (
         <CollapsableTableStyled>
           <ButtonToogle name="monthy-tweets">
            
@@ -43,7 +52,7 @@ export const ComponentContainer = ({context}) => {
 
           <MonthlyTweetsItems period={context.period}/>
         </CollapsableTableStyled>
-      ): ''}
+      )}
       {categories.mostRetweeted && (
         <CollapsableTableStyled  >
           <ButtonToogle name="most-retweet" >

@@ -38,12 +38,14 @@ export const useFilterData = (api, from) => {
   const accountsData = [];
 
   useEffect(() => {
-    let newArray = [];
+   
     if (isPeriodComparisonActive) {
       let arrayComparison = periodComparison;
 
       Object.values(arrayComparison).forEach((item) => {
         let { startDate, endDate } = getPeriodNumbers(item.id);
+      let newArray = [];
+
         let data;
         if (!isCountryFilterActive) {
           data = items.filter(
@@ -112,7 +114,7 @@ export const useFilterData = (api, from) => {
     }
     Object.values(accounts).forEach((account) => {
       if (!loading) {
-        
+        let newArray = [];
         const data = items.filter(
           (item) =>
             item.official_account_id === account.id &&

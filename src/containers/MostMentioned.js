@@ -11,7 +11,7 @@ import MostMentionedPie from '../components/mostMentioned/MostMentionedPie';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-mentioned';
 
-export const MostMentionedItems = memo(() => {
+export const MostMentionedItems = memo((usuario) => {
   
   const [innerData, setInnerData] = useState([]);
   const [chartData, setChartData] = useState([]);
@@ -28,14 +28,7 @@ export const MostMentionedItems = memo(() => {
 
   useEffect(() => {
     if (data !== false) {
-      
-      console.log('data', data);
-      data.forEach((accountId, index) => {
-        if(accountId.length > 1){
-          data[index].pop()          
-        }
-      })
-      console.log('data', data);
+
       setInnerData(data);
       setChartData(CreateChart(data));
     }
@@ -71,7 +64,8 @@ export const MostMentionedItems = memo(() => {
 
             <MostMentionedPie
               newData={accountId}             
-              title={'Categorias de los más mencionados'}
+              title={accountsNames[index]}
+              usuario={usuario}
             />
           </section>
         );

@@ -1,6 +1,6 @@
-function handleClick(e) {   
+function handleClick(name) {   
 
-  const element = document.getElementById(e.target.name);
+  const element = document.getElementById(name);
   
   if (element.classList.contains('closed')) {
     element.classList.remove('closed');
