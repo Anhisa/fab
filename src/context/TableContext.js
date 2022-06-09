@@ -11,7 +11,7 @@ const mapManagment =
     country_id: ''
   }
 
-const booleanValues = 
+const booleanValues =
   {
     isPeriodComparisonActive: false,
     isCountryFilterActive: false,
@@ -43,7 +43,7 @@ const periodComparison = {
 }
 
 
-export const TableContext = createContext({});
+export const TableContext = createContext();
 
 export const initialState = {
   categories: initialStateCategories,

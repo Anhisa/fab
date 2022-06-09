@@ -23,7 +23,7 @@ export const MapIslands = ({
   setCountrySelectedId,
 }) => {
   const [localPosition, setLocalPosition] = useState({
-    coordinates: [-73, 18],
+    coordinates: [-73, 17],
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
@@ -103,7 +103,7 @@ export const MapIslands = ({
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
           rotate: [49, -67.5, 12],
-          scale: 2800,
+          scale: 2200,
         }}
         onClick={handleOnClick}
       >

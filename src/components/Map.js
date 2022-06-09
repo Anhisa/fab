@@ -22,28 +22,28 @@ export const Map = ({
   setMouse,
   countryListManagmentOpen,
   setCountrySelectedId,
-  
+
 }) => {
   const [localPosition, setLocalPosition] = useState({
-    coordinates: [-85, -15],
+    coordinates: [-85, -10],
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
 
   function handleZoomIn() {
-  
+
     if (localPosition.zoom >= 4) return;
     setLocalPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.1 }));
   }
 
   function handleZoomOut() {
- 
+
     if (localPosition.zoom <= 1) return;
     setLocalPosition((pos) => ({ ...pos, zoom: 1 }));
   }
 
-  function handleMoveEnd(position) {   
-  
+  function handleMoveEnd(position) {
+
     const {coordinates, zoom} = position;
 
     setLocalPosition({coordinates, zoom:localPosition.zoom});
@@ -54,8 +54,8 @@ export const Map = ({
   }
   const handleOnClick = (e) => {
     const { target, pageX, pageY } = e;
-     
-  
+
+
     if (target.attributes.value) {
       const itemValue = target.attributes.value;
       let x = pageX;
@@ -69,7 +69,7 @@ export const Map = ({
         } else {
           x = pageX - 450;
         }
-             
+
       }
       if(pageY + 300 > window.innerHeight){
         if(pageY - 350 < 0){
@@ -82,7 +82,7 @@ export const Map = ({
         x: x,
         y: y,
       });
-     
+
 
       setAccounts(filteredAccounts);
       setCountrySelectedId(itemValue.value);
@@ -110,21 +110,21 @@ export const Map = ({
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
           rotate: [77, 15, 0],
-          scale: 540,
+          scale: 500,
         }}
         onClick={handleOnClick}
         onWheelCapture={closeOnZoomIn}
-        
-         
-        
-        
+
+
+
+
       >
         < CustomZoomableGroup
           zoom={localPosition.zoom}
           center={localPosition.coordinates}
-          positionLocal={localPosition} 
-          onMoveEnd={handleMoveEnd}       
-                
+          positionLocal={localPosition}
+          onMoveEnd={handleMoveEnd}
+
         >
           <Graticule stroke="#ccc" step={[27, 9]} />
 
@@ -191,19 +191,19 @@ export const Map = ({
 
 const CustomZoomableGroup = ({ children, positionLocal, setPosition, ...restProps }) => {
   let { mapRef, transformString, position } = useZoomPan(restProps);
- 
-   
-    
+
+
+
     let check = false;
     if(positionLocal.zoom !== 1) {
       check = true;
     }
-    
+
     if (position.dragging?.type === 'wheel' || position.dragging?.type === 'dblclick') {
-      
+
     position= positionLocal;
     return (
-      <g 
+      <g
       ref={mapRef}
       transform={`translate(${positionLocal.coordinates[0]}, ${positionLocal.coordinates[1]}) scale(${positionLocal.zoom})`}
       >
@@ -215,7 +215,7 @@ const CustomZoomableGroup = ({ children, positionLocal, setPosition, ...restProp
 
 
   }
-  
+
   if (positionLocal.zoom === 1) {
     if (position.x > 0) {
       if (position.x > 465) {
@@ -231,8 +231,8 @@ const CustomZoomableGroup = ({ children, positionLocal, setPosition, ...restProp
   }
   return (
     <g ref={mapRef}>
-      
-      <g       
+
+      <g
         transform={`translate(${position.x} ${
           check ? position.y : ''
         }  ) scale(${positionLocal.zoom})`}
