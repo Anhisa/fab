@@ -92,7 +92,7 @@ export const AccountDetails = () => {
   return (
     <>
       {dataSearch !== false ? (
-        <TableContext.Provider value={dataSearch}>
+    
           <AccountDetailsStyled>
             <NavBar />
             <HeaderUserCard
@@ -107,7 +107,7 @@ export const AccountDetails = () => {
                 />
               </div>
               <div className="right">
-                <MonthlyTweetsItems period={period} />
+                <MonthlyTweetsItems period={period} context={dataSearch}/>
               </div>
             </UserCardStyled>
             <hr />
@@ -118,9 +118,9 @@ export const AccountDetails = () => {
               />
             </AccountPeriodContainer>
             <hr />          
-            <ComparativeUserViewContainer period={period} usuario={true} />
+            <ComparativeUserViewContainer period={period} usuario={true} context={dataSearch}/>
           </AccountDetailsStyled>
-        </TableContext.Provider>
+      
       ) : (
         <ErrorComponent />
       )}

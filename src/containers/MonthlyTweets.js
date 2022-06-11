@@ -6,15 +6,16 @@ import { MonthlyTweetsChart } from '../components/monthyTweets/MonthlyTweetsChar
 
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/monthly-tweets';
-export const MonthlyTweetsItems = memo((period) => {
-  const data = useFilterData(api, 'monthly-tweets');
+export const MonthlyTweetsItems = ( {context}) => {
+
+  const [ data, loading] = useFilterData(api, context, 'monthly-tweets');
   const [innerData, setInnerData] = useState(false);
 
   useEffect(() => {
-    if (data !== false && data.length > 0) {
+    if (!loading && data.length > 0) {
       setInnerData(data);
     }
-  }, [data, period]);
+  }, [data]);
 
   if (!innerData) {
     return (
@@ -31,7 +32,7 @@ export const MonthlyTweetsItems = memo((period) => {
 
   return (
     <section className="closed" id="monthy-tweets">
-      <MonthlyTweetsChart newData={innerData} periodId={period} />
+      <MonthlyTweetsChart newData={innerData} context={context}/>
     </section >
   );
-});
+};

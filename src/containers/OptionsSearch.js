@@ -42,8 +42,9 @@ if(accountIdA.id === accountIdB.id ){
     const options = [
       'monthy-tweets', 'most-retweet', 'most-ht', 'most-mentioned', 'most-replied',
     ]
+    let close = open ? true : false;
     options.forEach(option => {
-      handleClick(option);
+      handleClick(option, close);
     })
     setOpen(prev => !prev);
   }

@@ -27,13 +27,13 @@ ChartJS.register(
   Filler
 );
 
-export const MonthlyTweetsChart = ({ newData }) => {
+export const MonthlyTweetsChart = ({ newData, context }) => {
   if (!newData) {
     return null;
   }
   
 
-  let [dataSets, labels] = useCallback(createDatasets(newData), [newData]);
+  let [dataSets, labels] = useCallback(createDatasets(newData, context), [newData]);
 
   const accountInfo = [];
   const account = newData[0];
@@ -88,21 +88,22 @@ export const MonthlyTweetsChart = ({ newData }) => {
 };
 
 
-function createDatasets(data) {
-  const { isPeriodComparisonActive, periods } = usePeriodComparison();
-  let data2 = { ...data };
+function createDatasets(data, context) {
+  const {periodComparison, isPeriodComparisonActive} = context;
+  if(context.userOfficialName){
 
+  }
+  let data2 = { ...data };
+  
   let newLabels = [];
   let test;
-
+  
   if (isPeriodComparisonActive) {
-
-    let newData = dataReducer(data, periods);
+    
+    const periods = [periodComparison.periodA, periodComparison.periodB];
+    let [newData, labels] = dataReducer(data, periods);
  
-    newLabels =
-      newData[0].length > newData[1].length
-        ? newData[0].map((item) => item.month)
-        : newData[1].map((item) => item.month);
+    newLabels = labels
 
 
     newLabels = newLabels.map((item) =>
@@ -130,8 +131,9 @@ function createDatasets(data) {
         tension: 0.3,
         borderColor: 'black',
         pointRadius: 6,
-        pointBackgroundColor: 'rgb(75, 192, 192)',
+        pointBackgroundColor: color,
         backgroundColor: color,
+        
       });
       controlColor++;
     });
@@ -152,7 +154,7 @@ function createDatasets(data) {
         tension: 0.3,
         borderColor: 'black',
         pointRadius: 6,
-        pointBackgroundColor: 'rgb(75, 192, 192)',
+        pointBackgroundColor: color,
         backgroundColor: color,
       });
       controlColor++;

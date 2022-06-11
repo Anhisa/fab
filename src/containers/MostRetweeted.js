@@ -13,50 +13,58 @@ import MostRetwittedPie from '../components/mostRetweet/MostRetwittedPie';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
 
-export const MostRetweetedItems = memo((period, usuario) => {
-  const [innerData, setInnerData] = useState(false);
-  const accountsNames = useActiveNames()
-  const {isPeriodComparisonActive} = usePeriodComparison();
+export const MostRetweetedItems = ({context, usuario}) => {
+  console.log('context', context);
+  const accountsNames = useActiveNames(context)
+  const {isPeriodComparisonActive} = context
 
   // const [comparisonView, setComparisonView] = useState(false);
   const [chartData, setChartData] = useState([]);
-  const data = useFilterData(api, 'most-retweeted');
+  const [data, loading] = useFilterData(api, context, 'most-retweeted');
+
   let arraysBar = [];
  
   useEffect(() => {
-    if (data !== false) {
- 
-    setInnerData(data);      
-     arraysBar = CreateChart(data)
+    if (!loading && data.length > 0) { 
+      console.log('data', data)
+      arraysBar = CreateChart(data)
+      console.log('arrayBars 😀' ,arraysBar);
     setChartData(arraysBar);  
   }
-  }, [period, data]);
-  if (!data ) {
-    return   <Spinner animation="border" role="status">
+  }, [data, loading]);
+
+  if (!data || data.length === 0) {
+    return   <Spinner animation="border" role="status" style={{
+      margin: '0, auto',
+    }}>
     <span className="visually-hidden">Loading...</span>
   </Spinner>
   }
-  if (data.length === 0) {
-    return <EmptyDataStyled>No hay data correspondiente al periodo seleccionado</EmptyDataStyled>;
-  }
+  
   
 0
 
 
   return (
-    <section className="closed" id="most-retweet">
-      {innerData.map((dataAccount, index) => {
+    <>
+    {chartData.length > 0 ? 
+
+      <section className="closed" id="most-retweet">
+      {data.map((dataAccount, index) => {
         return (
           <section className="column" key={index}>
             
-              <MostRetweetedItemChange newData={dataAccount} arrayBar={chartData[index]} period={period} comparisonView={isPeriodComparisonActive} title={
+              <MostRetweetedItemChange newData={dataAccount} arrayBar={chartData[index]} comparisonView={isPeriodComparisonActive} title={
                 accountsNames[index]
               }/>
-              <MostRetwittedPie newData={dataAccount} period={period} title={accountsNames[index]} usuario={usuario}/>
+              <MostRetwittedPie newData={dataAccount} title={accountsNames[index]} usuario={usuario}/>
        
           </section>
         );
       })}
     </section>
+  : ""
+  }
+  </>
   );
-});
+};

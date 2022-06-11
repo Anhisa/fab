@@ -12,18 +12,19 @@ import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';
 import { PieContainerStyled } from '../styles/styledComponents/PieContainerStyled';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/ht-most-used';
-export const HtMostUsedItems = memo(({ period, usuario }) => {
+export const HtMostUsedItems = memo(({ usuario, context }) => {
+
   const [innerData, setInnerData] = useState([]);
   const [categories, setCategories] = useState([]);
-  const accountsNames = useActiveNames()
-  const {isPeriodComparisonActive} = usePeriodComparison();
-  const data = useFilterData(api, 'ht-most-used');
+  const accountsNames = useActiveNames(context)
+  const {isPeriodComparisonActive} = context;
+  const [data, loading] = useFilterData(api,context, 'ht-most-used');
   useEffect(() => {
-    if (data !== false && data.length > 0) {
+    if (!loading && data.length > 0) {
       setInnerData(data);
     }
     
-  }, [data, period]);
+  }, [data, loading]);
 
   if (!innerData) {
     return (
@@ -39,7 +40,7 @@ export const HtMostUsedItems = memo(({ period, usuario }) => {
   return (
     <section className="closed ht" id="most-ht">
      
-      <HtMostUsedChart categories={categories} newData={innerData} periodId={period} title={accountsNames} />
+      <HtMostUsedChart categories={categories} newData={innerData} title={accountsNames} />
       <PieContainerStyled usuario={usuario}>
         {innerData.map((item, index) => (
           <HtMostUsedPie newData={item} key={index} title={accountsNames[index]}  setCategories={setCategories} usuario={usuario} />

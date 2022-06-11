@@ -18,9 +18,8 @@ function sortArray(array, from) {
   return sortedArray;
 }
 
-export const useFilterData = (api, from) => {
-  const context = useContext(TableContext);
-
+export const useFilterData = (api,context, from) => {
+  // const context = useContext(TableContext);
 
   const {
     accounts,
@@ -30,6 +29,7 @@ export const useFilterData = (api, from) => {
     isCountryFilterActive,
     country_id,
   } = context;
+
   const [filteredData, setFilteredData] = useState(false);
   const { loading, data } = useGetData(api);
 
@@ -173,6 +173,6 @@ export const useFilterData = (api, from) => {
     country_id,
   ]);
 
-  return filteredData;
+  return [filteredData, loading];
 };
 

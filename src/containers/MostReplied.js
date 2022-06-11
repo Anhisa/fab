@@ -12,23 +12,23 @@ import MostRepliedPie from '../components/mostReplied/MostRepliedPie';
 
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-replied';
-export const MostRepliedItems = memo((period, usuario) => {
-  console.log('usuario', usuario)
-  const data = useFilterData(api, 'most-replied');
-  const accountsNames = useActiveNames()
-  const {isPeriodComparisonActive} = usePeriodComparison();
+export const MostRepliedItems = ({ usuario, context}) => {
+  
+  const [data, loading] = useFilterData(api, context, 'most-replied');
+  const accountsNames = useActiveNames(context)
+  const {isPeriodComparisonActive} = context
 
   const [innerData, setInnerData] = useState(data);
  
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    if (data !== false) {
+    if (!loading && data.length > 0) {
 
       setInnerData(data);
       setChartData(CreateChart(data));
     }
-  }, [data, period]);
+  }, [data, loading]);
 
   if (!data) {
     return <Spinner animation="border" role="status">
@@ -54,7 +54,7 @@ export const MostRepliedItems = memo((period, usuario) => {
               />
            
            
-              <MostRepliedPie newData={accountId} periodId={period}  title={accountsNames[index]} usuario={usuario} />
+              <MostRepliedPie newData={accountId}  title={accountsNames[index]} usuario={usuario} />
            
           </section>
         );
@@ -72,4 +72,4 @@ export const MostRepliedItems = memo((period, usuario) => {
      
     </>
   );
-});
+};

@@ -8,19 +8,19 @@ import { CreateChart } from '../../helpers/createChart';
 
 import { ExpandedComponent } from '../ExpandedComponent';
 import { columns } from '../../helpers/columns';
-export const MostRetweetedItemChange = ({ newData, period, comparisonView, arrayBar, title }) => {
+export const MostRetweetedItemChange = ({ newData, comparisonView, arrayBar, title }) => {
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
-  //  For some reason a whole array of arrays is returned
-  if (newData[newData.length - 1]?.length > 5) {
-    newData.pop();
-  }
-
   
   const totaltweets = tweetNumber.reduce(
     (totaltweetsNumber, item) => totaltweetsNumber + item,
     0
   );
 
+if(arrayBar === undefined){
+  console.log('Se indefinio el arrayBar');
+  return <>Cargando</>
+
+}
 
   let rows = newData.map((item) =>
     createData(
@@ -32,7 +32,7 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
       item.most_retweeted_category_desc_spa
     )
   );
-  rows = rows?.map((item, index) => {
+  rows = rows.map((item, index) => {
     return {
       ...item,
       tweets_number: arrayBar[index],
@@ -57,6 +57,8 @@ export const MostRetweetedItemChange = ({ newData, period, comparisonView, array
         expandableRows
         expandableRowsComponent={ExpandedComponent}
         striped={true}
+        highlightOnHover={true}
+     
         
 
       />

@@ -4,13 +4,21 @@ import { CompAccountSelector } from '../components/CompAccountSelector';
 import { CompCategoryCb } from '../components/CompCategoryCb';
 import { CompPeriodSlider } from '../components/CompPeriodSlider';
 
-
 import Button from '@mui/material/Button';
 import 'bootstrap/dist/css/bootstrap.css';
 import { AccountPeriodContainer } from '../styles/styledComponents/AccountPeriodContainer';
-import { ComparativePeriodStyled, ComparativeStyled } from '../styles/styledComponents/ComparativeStyled';
+import {
+  ComparativePeriodStyled,
+  ComparativeStyled,
+} from '../styles/styledComponents/ComparativeStyled';
+
+import UseAccountErrors from '../hooks/UseAccountErrors';
 
 export const ComparativeTool = ({ setDataComparing }) => {
+  const [errors, setErrors] = useState({
+    sameAccounts: false,
+    emptyAccounts: false,
+  });
   const [accounts, setAccounts] = useState({
     accountIdA: {
       id: '',
@@ -33,10 +41,13 @@ export const ComparativeTool = ({ setDataComparing }) => {
     startDate: 1,
     endDate: 4,
   });
-
+  const [firstTime, setFirstTime] = useState(true);
+  const thereIsError = Object.values(errors).some((error) => error);
+  console.log('there is error', thereIsError);
   const handleComparison = () => {
-   //scroll to bottom
-    window.scrollTo(0,550);
+    //scroll to bottom
+    window.scrollTo(0, 550);
+    setFirstTime(false);
     setDataComparing((prev) => {
       return {
         ...prev,
@@ -46,6 +57,7 @@ export const ComparativeTool = ({ setDataComparing }) => {
         isPeriodComparisonActive: false,
       };
     });
+
   };
 
   return (
@@ -56,10 +68,11 @@ export const ComparativeTool = ({ setDataComparing }) => {
         <CompPeriodSlider setPeriod={setPeriod} />
       </AccountPeriodContainer>
       <div className="btnContainer">
-        <Button variant="contained" onClick={handleComparison} className="btn">
+        <Button variant="contained" onClick={handleComparison} className="btn" disabled={thereIsError}>
           COMPARAR
         </Button>
       </div>
+    {!firstTime && <UseAccountErrors accounts={accounts} errors={errors} setErrors={setErrors}/>}
     </ComparativeStyled>
   );
 };

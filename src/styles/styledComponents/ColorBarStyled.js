@@ -5,9 +5,9 @@ export const ColorBarStyled = styled.div`
   background: linear-gradient(90deg, #edf7ff 0%, #1d9bf0 100%);
   /* opacity: 1; */
   /* border: 1px solid black; */
-  max-width: 350px;
+  max-width: 450px;
   
-  min-width: 250px;
+  min-width: 150px;
  
   
   height: 30px;
@@ -38,4 +38,8 @@ export const ColorBarContainer = styled.div`
     width: 100px;
     right: 300px;
   }  
+  @media (max-width: 480px) {
+    width: 100px;
+    right: 300px;
+  }
 `

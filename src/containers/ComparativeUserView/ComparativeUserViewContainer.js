@@ -9,7 +9,7 @@ import { MostRepliedItems } from '../MostReplied';
 import { MostRetweetedItems } from '../MostRetweeted';
 import ButtonToogle from '../../components/ButtonToogle';
 
-const ComparativeUserViewContainer = ({ period, usuario }) => {
+const ComparativeUserViewContainer = ({ period, usuario,  context }) => {
   return (
     <ComparativeUserViewContainerStyle usuario={usuario}>
         <div id='left'>
@@ -21,7 +21,7 @@ const ComparativeUserViewContainer = ({ period, usuario }) => {
         >
           Usuarios más retuiteados
         </ButtonToogle>
-        <MostRetweetedItems period={period} usuario={usuario} />
+        <MostRetweetedItems period={period} usuario={usuario} context={context} />
       </CollapsableTableStyled>
       <CollapsableTableStyled className='table'>
         <ButtonToogle         
@@ -30,7 +30,7 @@ const ComparativeUserViewContainer = ({ period, usuario }) => {
           Usuarios que más han recibido respuesta
         </ButtonToogle>
 
-        <MostRepliedItems period={period} usuario={usuario}/>
+        <MostRepliedItems period={period} usuario={usuario} context={context}/>
       </CollapsableTableStyled>
       </div>
       <div id='right'>
@@ -39,7 +39,7 @@ const ComparativeUserViewContainer = ({ period, usuario }) => {
           Hashtags más usados
         </ButtonToogle>
 
-        <HtMostUsedItems period={period} usuario={usuario} />
+        <HtMostUsedItems period={period} usuario={usuario} context={context} />
       </CollapsableTableStyled>
       <CollapsableTableStyled className='table'>
         <ButtonToogle         
@@ -48,7 +48,7 @@ const ComparativeUserViewContainer = ({ period, usuario }) => {
           Usuarios más mencionados
         </ButtonToogle>
 
-        <MostMentionedItems period={period} usuario={usuario} />
+        <MostMentionedItems period={period} usuario={usuario} context={context} />
       </CollapsableTableStyled>
       </div>  
   
