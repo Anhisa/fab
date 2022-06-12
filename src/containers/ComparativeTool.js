@@ -43,7 +43,7 @@ export const ComparativeTool = ({ setDataComparing }) => {
   });
   const [firstTime, setFirstTime] = useState(true);
   const thereIsError = Object.values(errors).some((error) => error);
-  console.log('there is error', thereIsError);
+  
   const handleComparison = () => {
     //scroll to bottom
     window.scrollTo(0, 550);

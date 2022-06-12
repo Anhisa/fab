@@ -16,13 +16,13 @@ const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
 export const MostRetweetedItems = ({context, usuario}) => {
 
   const accountsNames = useActiveNames(context)
-  console.log('account names', accountsNames)
+  
   const {isPeriodComparisonActive} = context
 
   // const [comparisonView, setComparisonView] = useState(false);
   const [chartData, setChartData] = useState([]);
   const [data, loading] = useFilterData(api, context, 'most-retweeted');
-console.log('data', data)
+
   let arraysBar = [];
  
   useEffect(() => {

@@ -35,7 +35,7 @@ const SelectorComparative = ({ setDataComparing, countryDataState }) => {
   });
   const [firstTime, setFirstTime] = useState(true);
   const thereIsError = Object.values(errors).some((error) => error);
-  console.log('there is error', thereIsError);
+  
   let tweetsByCountry = useGetTweetsByCountry();
 
   const handleComparison = () => {

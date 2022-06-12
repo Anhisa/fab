@@ -6,10 +6,9 @@ import {
   ViewUserCardStyled,
 } from '../styles/styledComponents/ViewUserCardStyled';
 const ViewUserCard = ({ data, period }) => {
-  console.log('data', data)
-  let periods
+  
   const dataLength = data.length - 1;
-  console.log('period' , period)
+  
   let i = 1;
   
   if(dataLength !== 3){
@@ -39,8 +38,7 @@ i = 1
       return count;
     }
   };
-  const total_tweets_period = totalCalculator();
-  console.log('total_tweets_period', total_tweets_period);
+  const total_tweets_period = totalCalculator();  
 
   return (
     <ViewUserCardStyled>

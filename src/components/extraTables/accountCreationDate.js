@@ -5,8 +5,7 @@ import useGetCountryNames from '../../hooks/useGetCountryNames';
 const AccountCreationDate = () => {
   let answer = getActivityCreactionDate();
   let countryNames = useGetCountryNames();
-  console.log('answer', answer);
-  console.log('countryNames', countryNames);
+  
   let data;
   if (answer.length > 0) {
     data = answer;
@@ -29,7 +28,7 @@ const AccountCreationDate = () => {
         let country = countryNames.find(
           (country) => country.countryInId === row.country_id
         );
-        console.log('country', country);
+       
         return country?.countryName ?? 'Bahamas';
       },
       sortable: true,

@@ -10,7 +10,7 @@ import { ExpandedStyled } from '../../styles/styledComponents/ExpandedStyled';
 import { columns } from '../../helpers/columns';
 
 export const MostRepliedItemCHANGE = ({ newData, title, arrayBar }) => {
-  console.log('new Data', newData);
+  
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
   const totaltweets = tweetNumber.reduce(
     (totaltweetsNumber, item) => totaltweetsNumber + item,

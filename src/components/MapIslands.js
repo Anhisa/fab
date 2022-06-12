@@ -30,7 +30,7 @@ export const MapIslands = ({
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
-  console.log(windowSize)
+  
   function handleZoomIn() {
     setZoom(true)
     if (localPosition.zoom >= 4) return;

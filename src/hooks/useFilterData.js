@@ -100,14 +100,14 @@ export const useFilterData = (api,context, from) => {
           let repeatedAccountArray = filterDuplicates(data);
          
           newArray = addDuplicates(repeatedAccountArray, from);
-          console.log('newArray', newArray)
+          
        
           let sortedArray = sortArray(newArray, from);
           
           if (sortedArray.length > 10) {
             sortedArray = sortedArray.slice(0, 10);
           }
-          console.log('sorted array', sortedArray)
+          
           accountsData.push(sortedArray);
         }
       });
@@ -124,7 +124,7 @@ export const useFilterData = (api,context, from) => {
             parseInt(item.period_id) >= period.startDate &&
             parseInt(item.period_id) <= period.endDate
         );
-        console.log('data account', data)
+        
         if (data.length === 0) {
       
           return  accountsData.push([]);

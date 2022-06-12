@@ -16,7 +16,7 @@ export const ComponentContainer = ({ context, usuario }) => {
   const { accountIdA, accountIdB } = accounts;
   const { periodA, periodB } = periodComparison;
 
-  console.log('context', context);
+
 
   if (isPeriodComparisonActive) {
     if (periodA.id === periodB.id) {

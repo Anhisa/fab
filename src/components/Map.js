@@ -79,7 +79,7 @@ export const Map = ({
         x: x,
         y: y,
       });
-      console.log(x,y)
+      
 
       setAccounts(filteredAccounts);
       setCountrySelectedId(itemValue.value);

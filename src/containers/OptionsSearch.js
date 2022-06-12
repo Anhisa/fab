@@ -4,7 +4,7 @@ import handleClick from '../helpers/HandleClick';
 
 const OptionsSearch = ({setDataComparing, context}) => {
   const [open, setOpen] = React.useState(false);
-console.log(context);
+
 const {accounts, periodComparison} = context;
 const {accountIdA, accountIdB} = accounts;
 const {periodA, periodB} = periodComparison;
