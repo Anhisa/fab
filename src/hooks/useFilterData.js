@@ -38,10 +38,10 @@ export const useFilterData = (api,context, from) => {
   const accountsData = [];
 
   useEffect(() => {
-   
+
     if (isPeriodComparisonActive) {
       let arrayComparison = periodComparison;
-
+     
       Object.values(arrayComparison).forEach((item) => {
         let { startDate, endDate } = getPeriodNumbers(item.id);
       let newArray = [];
@@ -64,9 +64,11 @@ export const useFilterData = (api,context, from) => {
         
         
         if (data.length === 0) {
-          return;
+          
+          return  accountsData.push([]);
         }
 
+   
         newArray.push(data);
         if (from === 'ht-most-used') {
           let repeatedAccountArrayHt = filterDuplicatesHt(data);
@@ -98,13 +100,14 @@ export const useFilterData = (api,context, from) => {
           let repeatedAccountArray = filterDuplicates(data);
          
           newArray = addDuplicates(repeatedAccountArray, from);
+          console.log('newArray', newArray)
        
           let sortedArray = sortArray(newArray, from);
           
           if (sortedArray.length > 10) {
             sortedArray = sortedArray.slice(0, 10);
           }
-
+          console.log('sorted array', sortedArray)
           accountsData.push(sortedArray);
         }
       });
@@ -121,8 +124,10 @@ export const useFilterData = (api,context, from) => {
             parseInt(item.period_id) >= period.startDate &&
             parseInt(item.period_id) <= period.endDate
         );
+        console.log('data account', data)
         if (data.length === 0) {
-          return data;
+      
+          return  accountsData.push([]);
         }
         
         if (from === 'ht-most-used') {

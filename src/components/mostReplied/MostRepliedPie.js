@@ -32,7 +32,8 @@ const MostRepliedPie = ({ newData, title, setCategories, usuario }) => {
     },
   };
   return (
-    <PieChartContainer usuario={usuario}>
+    <>
+    {data.length > 0 && <PieChartContainer usuario={usuario}>
       <h4>Categorias de más respuesta de: <br/> {title}</h4>
       <Doughnut
         data={dataChart}
@@ -54,7 +55,8 @@ const MostRepliedPie = ({ newData, title, setCategories, usuario }) => {
           },
         }}
       />
-    </PieChartContainer>
+    </PieChartContainer>}
+    </>
   );
 };
 

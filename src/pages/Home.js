@@ -32,6 +32,7 @@ const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 export const Home = ({ themeToggler }) => {
   const response = useGetData(api);
   const [loading, setLoading] = useState(true);
+  const [zoom, setZoom] = useState(false);
   const [countriesAllData, setCountriesAllData] = useState([]);
   const [countrySelectedId, setCountrySelectedId] = useState(null);
   const countryDataState = [countriesAllData, setCountriesAllData];
@@ -84,9 +85,14 @@ export const Home = ({ themeToggler }) => {
                     setMouse={setMousePosition}
                     countryListManagmentOpen={countryListManagmentOpen}
                     setCountrySelectedId={setCountrySelectedId}
+                    setZoom={setZoom}
                   />
-                  <FloatingText setCurrentMap={setCurrentMap} />
+             { !zoom &&
+             <>
+                 <FloatingText setCurrentMap={setCurrentMap} />
                   <FloatingTextRight currentMap={currentMap} />
+              </>    
+              }
                 </MapStyled>
               ) : (
                 <MapStyled className="map-container col-6">
@@ -96,9 +102,13 @@ export const Home = ({ themeToggler }) => {
                     setMouse={setMousePosition}
                     countryListManagmentOpen={countryListManagmentOpen}
                     setCountrySelectedId={setCountrySelectedId}
+                    setZoom={setZoom}
                   />
+
+                  {!zoom && <>
                   <FloatingText setCurrentMap={setCurrentMap} islands={true} />
                   <FloatingTextRight currentMap={currentMap} />
+                  </>}
                 </MapStyled>
               )
             ) : null}

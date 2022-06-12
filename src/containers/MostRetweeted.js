@@ -14,21 +14,22 @@ import MostRetwittedPie from '../components/mostRetweet/MostRetwittedPie';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
 
 export const MostRetweetedItems = ({context, usuario}) => {
-  console.log('context', context);
+
   const accountsNames = useActiveNames(context)
+  console.log('account names', accountsNames)
   const {isPeriodComparisonActive} = context
 
   // const [comparisonView, setComparisonView] = useState(false);
   const [chartData, setChartData] = useState([]);
   const [data, loading] = useFilterData(api, context, 'most-retweeted');
-
+console.log('data', data)
   let arraysBar = [];
  
   useEffect(() => {
     if (!loading && data.length > 0) { 
-      console.log('data', data)
+ 
       arraysBar = CreateChart(data)
-      console.log('arrayBars 😀' ,arraysBar);
+
     setChartData(arraysBar);  
   }
   }, [data, loading]);
@@ -40,9 +41,9 @@ export const MostRetweetedItems = ({context, usuario}) => {
     <span className="visually-hidden">Loading...</span>
   </Spinner>
   }
+
   
-  
-0
+
 
 
   return (
@@ -62,6 +63,13 @@ export const MostRetweetedItems = ({context, usuario}) => {
           </section>
         );
       })}
+      {accountsNames.length > data.length && <> 
+      <EmptyDataStyled>
+        No hay datos para mostrar
+      </EmptyDataStyled>
+
+      
+      </>}
     </section>
   : ""
   }

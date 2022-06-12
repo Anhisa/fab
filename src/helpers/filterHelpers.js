@@ -130,6 +130,7 @@ export function addDuplicates(arrayDuplicades, from) {
         let most_retweeted_category_desc_spa = '';
         let user_accounts_verified = '';
         let official_account = '';
+        let period_id
 
         let tweets_number = item.reduce((acc, item) => {
           user_account = item.user_account;
@@ -139,6 +140,7 @@ export function addDuplicates(arrayDuplicades, from) {
           most_retweeted_category_spa = item.most_retweeted_category_spa;
           user_accounts_verified = item.user_accounts_verified;
           official_account = item.official_account;
+          period_id = item.period_id;
           //
 
           return acc + parseInt(item.tweets_number);
@@ -147,12 +149,14 @@ export function addDuplicates(arrayDuplicades, from) {
           most_retweeted_description_spa,
           user_account,
           tweets_number,
+          period_id,
           most_retweeted_category_spa,
           most_retweeted_category_desc_spa,
           user_accounts_verified,
           official_account,
         };
       });
+      console.log('newArray', newArray)
       return newArray;
 
     case 'most-mentioned': // Mentions number

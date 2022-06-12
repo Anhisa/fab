@@ -6,9 +6,10 @@ import {
   ViewUserCardStyled,
 } from '../styles/styledComponents/ViewUserCardStyled';
 const ViewUserCard = ({ data, period }) => {
-
+  console.log('data', data)
   let periods
   const dataLength = data.length - 1;
+  console.log('period' , period)
   let i = 1;
   
   if(dataLength !== 3){
@@ -20,28 +21,17 @@ const ViewUserCard = ({ data, period }) => {
     return i++
   });
 }
-  // const periods = Object.values(period).map((item) => {
-  //   return item
-  // });
-  // console.log('periods', periods);
 i = 1
-  const datas = Object.values(data).map((item) => {
-    return i++;
-  });
-  // console.log('datas', datas);
-
-
   const totalCalculator = () => {
     if (period.startDate === period.endDate) {
       let indexStart = periods.indexOf(period.startDate);
-      // console.log('indexStart', indexStart);
+  
       return data[indexStart].total_tweets_period;
     } else {
       let start = periods.indexOf(period.startDate)
-      // console.log('start', start);
+     
       let end = periods.indexOf(period.endDate)
-      // console.log('end', end);
-      // console.log('data slice', data.slice(start, end + 1));
+
       let count = data.slice(start, end + 1).reduce((acc, curr) => {
         return acc + parseInt(curr.total_tweets_period);
       }, 0);
@@ -71,9 +61,9 @@ i = 1
         <UserCard
           name={'Nº Seguidores'}
           data={
-            data[dataLength].followers_number === 0
-              ? data[dataLength - 1].followers_number
-              : data[dataLength].followers_number ??
+            data[period.endDate - 1].followers_number === '0'
+              ? data[period.endDate-2].followers_number
+              : data[period.endDate - 1].followers_number ??
                 'No hay data correspondiente al periodo seleccionado'
           }
         />
@@ -81,9 +71,9 @@ i = 1
         <UserCard
           name={'Nº cuentas seguidas'}
           data={
-            data[dataLength].following_number === 0
-              ? data[dataLength - 1].following_number
-              : data[dataLength].following_number ??
+            data[period.endDate - 1].following_number === '0'
+              ? data[period.endDate-2].following_number
+              : data[period.endDate - 1].following_number ??
                 'No hay data correspondiente al periodo seleccionado'
           }
         />

@@ -5,7 +5,7 @@ export const PieContainerStyled = styled.div`
   flex-direction: row;
   align-items: stretch;
 
-  width: 90%;
+  width: 100%;
   gap: 10px;
   justify-content: center;
 
@@ -18,13 +18,12 @@ export const PieChartContainer = styled.div`
   display: flex;
 min-width: 400px;
 max-width: 700px;
-
+width:100%;
   margin-top: 20px;
   padding: 0px !important;
   border-radius: 25px;
   background-color: ${({ theme }) => theme.background};
   border: 2px solid ${({ theme }) => theme.toggleBorder};
- margin-left: 15px;
   flex-direction: column;
   min-height: 450px;
   align-items: center;

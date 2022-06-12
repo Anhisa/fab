@@ -39,8 +39,11 @@ const HtMostUsedPie = ({ newData, title, setCategories, usuario }) => {
     },
   };
   return (
-    <PieChartContainer usuario={usuario}>
+    
+    
+     <PieChartContainer usuario={usuario}>
       <h4>Categorias más usadas de: <br/> {title}</h4>
+      { data.length > 0 ?
       <Pie
         data={dataChart}
         options={{
@@ -61,7 +64,9 @@ const HtMostUsedPie = ({ newData, title, setCategories, usuario }) => {
           },
         }}
       />
+      : <p>No hay datos para mostrar</p>}
     </PieChartContainer>
+    
   );
 };
 

@@ -9,6 +9,7 @@ import {
   Graticule,
 } from 'react-simple-maps';
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
+import useWindowSize from '../hooks/useWindowSize';
 
 const geoUrl =
   'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json';
@@ -21,19 +22,23 @@ export const MapIslands = ({
   setMouse,
   countryListManagmentOpen,
   setCountrySelectedId,
+  setZoom
 }) => {
+  const windowSize = useWindowSize()
   const [localPosition, setLocalPosition] = useState({
     coordinates: [-73, 17],
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
-
+  console.log(windowSize)
   function handleZoomIn() {
+    setZoom(true)
     if (localPosition.zoom >= 4) return;
     setLocalPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.5 }));
   }
 
   function handleZoomOut() {
+    setZoom(false)
     if (localPosition.zoom <= 1) return;
     setLocalPosition((pos) => ({
       ...pos,
@@ -60,20 +65,14 @@ export const MapIslands = ({
       const filteredAccounts = items.filter(
         (item) => item.country_id === itemValue.value
       );
-      if(pageX + 300 > window.innerWidth){
-        if(pageX - 450 < 0){
-          x = 0;
-        } else {
-          x = pageX - 450;
-        }
+      if(pageX + 250 > windowSize.width){        
+        x = pageX - 250;
+    }
 
-      }
-      if(pageY + 300 > window.innerHeight){
-        if(pageY - 350 < 0){
-          y = 0;
-        }
-        y = pageY - 350;
-      }
+    if(pageY + 250 > windowSize.height){    
+      y = pageY - 250;
+    }
+  
       // console.log('x , y', x, y);
       setMouse({
         x: x,
@@ -98,8 +97,8 @@ export const MapIslands = ({
   return (
     <div className="map">
       <ComposableMap
-        height={window.innerHeight * 0.9}
-        width={window.innerWidth}
+      height={windowSize.height ? windowSize.height * 0.9 : 1000}
+      width={windowSize.width ? windowSize.width  : 1000}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
           rotate: [49, -67.5, 12],

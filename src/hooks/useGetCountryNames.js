@@ -6,6 +6,7 @@ const useGetCountryNames = () => {
   const {data, loading} = useGetCountries();
   const [countryNames, setCountryNames] = useState([]);
   let tweetsByCountry = useGetTweetsByCountry();
+  console.log('tweetsByCountry', tweetsByCountry);
   
   useEffect(() => {   
     if (!loading && data.length > 0) {  
@@ -27,6 +28,7 @@ const useGetCountryNames = () => {
         setCountryNames(countryNames);
     }
   }, [loading, data, tweetsByCountry]);
+  console.log('countryNames', countryNames)
   return countryNames;
 
   

@@ -56,7 +56,10 @@ const MostMentionedPie = ({newData, title, usuario}) => {
 
   }
   return (
-    <PieChartContainer usuario={usuario}>
+    <>
+    {
+      data.length > 0 && 
+      <PieChartContainer usuario={usuario}>
     <h4>
     Categorias de los más mencionados de: <br/>
     {title}
@@ -84,7 +87,8 @@ const MostMentionedPie = ({newData, title, usuario}) => {
       }
       }}
     />
-    </PieChartContainer>
+    </PieChartContainer>}
+    </>
   )
 }
 

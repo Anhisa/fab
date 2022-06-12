@@ -34,13 +34,15 @@ export const MonthlyTweetsChart = ({ newData, context }) => {
   
 
   let [dataSets, labels] = useCallback(createDatasets(newData, context), [newData]);
+  console.log('dataSets', dataSets);
+  console.log('newData', newData);
 
   const accountInfo = [];
   const account = newData[0];
 
   if (account) {
-    accountInfo.push(account.official_account);
-    accountInfo.push(account.period_id);
+    accountInfo.push(account?.official_account);
+    accountInfo.push(account?.period_id);
   }
 
   const options = {

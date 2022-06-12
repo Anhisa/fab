@@ -19,6 +19,7 @@ export const ErrorTable = styled.div`
 
 `
 export const ErrorContainer = styled.div`
+width: 100%;
   display: flex;
   flex-direction: column;
   margin-top: 20px;

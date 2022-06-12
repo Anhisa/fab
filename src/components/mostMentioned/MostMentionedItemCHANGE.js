@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import DataTable from 'react-data-table-component';
 
 
-import { StyledDataTable } from '../../styles/styledComponents/StyledDataTable';
+import { EmptyDataTable, StyledDataTable } from '../../styles/styledComponents/StyledDataTable';
 
 import { ExpandedComponent } from '../ExpandedComponent';
 import { columns } from '../../helpers/columns';
@@ -85,7 +85,11 @@ export const MostMentionedItemCHANGE = ({
         </>}
         expandableRows
         expandableRowsComponent={ExpandedComponent}
-        striped={true}
+        noDataComponent={
+          <EmptyDataTable>
+            <h5>No se registran datos en el periodo seleccionado</h5>
+          </EmptyDataTable>
+        }
       />
     </StyledDataTable>
   );

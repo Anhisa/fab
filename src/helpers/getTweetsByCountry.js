@@ -49,5 +49,8 @@ function addDuplicates(data){
       total_tweets_period
     }
   })
+  newArray = newArray.filter(item => {
+    return item.total_tweets_period > 0
+  })
   return newArray  
 }

@@ -3,7 +3,7 @@ import { useGetData } from '../../hooks/useGetData';
 import 'bootstrap/dist/css/bootstrap.css';
 import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom';
-import { StyledDataTable } from '../../styles/styledComponents/StyledDataTable';
+import { EmptyDataTable, StyledDataTable } from '../../styles/styledComponents/StyledDataTable';
 import { CreateChart } from '../../helpers/createChart';
 
 import { ExpandedComponent } from '../ExpandedComponent';
@@ -17,7 +17,7 @@ export const MostRetweetedItemChange = ({ newData, comparisonView, arrayBar, tit
   );
 
 if(arrayBar === undefined){
-  console.log('Se indefinio el arrayBar');
+
   return <>Cargando</>
 
 }
@@ -58,6 +58,12 @@ if(arrayBar === undefined){
         expandableRowsComponent={ExpandedComponent}
         striped={true}
         highlightOnHover={true}
+        noDataComponent={
+          <EmptyDataTable
+              >
+              <h5>No se registran datos en el periodo seleccionado</h5>
+          </EmptyDataTable>
+      }
      
         
 

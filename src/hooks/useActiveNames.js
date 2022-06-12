@@ -4,7 +4,7 @@ import useCountryActive from './useContryActive';
 import useGetNameCountryActiveId from './useGetNameCountryActiveId';
 
 export default function useActiveNames(context) {
-  console.log('context', context);
+  
   if(context.userOfficialName){
     return [context.userOfficialName];
   }

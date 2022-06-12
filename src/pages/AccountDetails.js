@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { MostRetweetedItems } from '../containers/MostRetweeted';
-import { MostRepliedItems } from '../containers/MostReplied';
-import { MostMentionedItems } from '../containers/MostMentioned';
+
 import { MonthlyTweetsItems } from '../containers/MonthlyTweets';
-import { HtMostUsedItems } from '../containers/HtMostUsed';
+
 
 import { useParams } from 'react-router';
 import { useGetData } from '../hooks/useGetData';
-import { TableContext } from '../context/TableContext';
+
 import ViewUserCard from '../components/ViewUserCard';
-import { CollapsableTableStyled } from '../styles/styledComponents/CollapsableTableStyled';
 
 import {
   UserCardStyled,
@@ -18,7 +15,7 @@ import {
 import HeaderUserCard from '../components/HeaderUserCard';
 import { AccountDetailsStyled } from '../styles/styledComponents/AccountDetailsStyled';
 import { CompPeriodSlider } from '../components/CompPeriodSlider';
-import { StyledFilterButton } from '../styles/styledComponents/StyledFilterButton';
+
 import NavBar from '../components/NavBar';
 import ErrorComponent from '../components/errorComponent';
 import { AccountPeriodContainer } from '../styles/styledComponents/AccountPeriodContainer';

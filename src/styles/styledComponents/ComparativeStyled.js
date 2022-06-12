@@ -100,7 +100,7 @@ export const ComparativeStyled = styled.section`
     }
   }
   @media (max-width: 968px) {
-    padding: 10px;
+    
     margin: 10px;
     width: 70%;
     background: ${({ theme }) => theme.background};
@@ -109,6 +109,27 @@ export const ComparativeStyled = styled.section`
       margin-bottom: 0px;
       width: 100%;
       z-index: 1;
+    }
+    .countSelector2{
+      margin-bottom: 0px;
+      width: 100%;
+    }
+  }
+  @media (max-width: 768px) {
+  }
+  @media (max-width: 480px) {
+    margin: 10px;
+    width: 100%;
+    background: ${({ theme }) => theme.background};
+    align-items: center;
+    .countSelector{
+      margin-bottom: 0px;
+      width: 100%;
+      z-index: 1;
+    }
+    .countSelector2{
+      margin-bottom: 0px;
+      width: 100%;
     }
   }
   opacity: 0;
