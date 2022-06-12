@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
-
 import { MonthlyTweetsItems } from '../containers/MonthlyTweets';
-
-
 import { useParams } from 'react-router';
 import { useGetData } from '../hooks/useGetData';
-
 import ViewUserCard from '../components/ViewUserCard';
 
 import {
@@ -65,7 +61,7 @@ export const AccountDetails = () => {
     setTimeout(() => {
       setInnerLoading(false);
     }, 1500);
-  },[])
+  }, []);
   if (innerLoading) {
     return (
       <div
@@ -89,35 +85,38 @@ export const AccountDetails = () => {
   return (
     <>
       {dataSearch !== false ? (
-    
-          <AccountDetailsStyled>
-            <NavBar />
-            <HeaderUserCard
-              countryId={dataSearch.country}
-              userName={dataSearch.userOfficialName}
-            />
-            <UserCardStyled>
-              <div className="left">
-                <ViewUserCard
-                  data={dataSearch.dataUser}
-                  period={dataSearch.period}
-                />
-              </div>
-              <div className="right">
-                <MonthlyTweetsItems period={period} context={dataSearch}/>
-              </div>
-            </UserCardStyled>
-            <hr />
-            <AccountPeriodContainer>
-              <CompPeriodSlider
-                setPeriod={setPeriod}
+        <AccountDetailsStyled>
+          <NavBar />
+          <HeaderUserCard
+            countryId={dataSearch.country}
+            userName={dataSearch.userOfficialName}
+          />
+          <UserCardStyled>
+            <div className="left">
+              <ViewUserCard
                 data={dataSearch.dataUser}
+                period={dataSearch.period}
               />
-            </AccountPeriodContainer>
-            <hr />          
-            <ComparativeUserViewContainer period={period} usuario={true} context={dataSearch}/>
-          </AccountDetailsStyled>
-      
+            </div>
+            <div className="right">
+              <MonthlyTweetsItems period={period} context={dataSearch} />
+            </div>
+          </UserCardStyled>
+          <AccountCreationDate />
+          <hr />
+          <AccountPeriodContainer>
+            <CompPeriodSlider
+              setPeriod={setPeriod}
+              data={dataSearch.dataUser}
+            />
+          </AccountPeriodContainer>
+          <hr />
+          <ComparativeUserViewContainer
+            period={period}
+            usuario={true}
+            context={dataSearch}
+          />
+        </AccountDetailsStyled>
       ) : (
         <ErrorComponent />
       )}

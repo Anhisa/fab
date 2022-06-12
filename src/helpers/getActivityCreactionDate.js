@@ -47,9 +47,10 @@ function addDuplicates(data){
     let total_tweets_period = item.reduce((acc, item) => {
       return acc + parseInt(item.total_tweets_period)
     }, 0)
-    let followers_number = item.reduce((acc, item) => {
-      return acc + parseInt(item.followers_number)
-    }, 0)
+    // let followers_number = item.reduce((acc, item) => {
+    //   return acc + parseInt(item.followers_number)
+    // }, 0)
+    let followers_number = parseInt(item[item.length - 1].followers_number)
     return {
       accId,
       total_tweets_period,

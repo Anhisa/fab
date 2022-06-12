@@ -11,7 +11,7 @@ const MostRetwittedPie = ({ newData, title, setCategories, usuario }) => {
   const repliedCategories = extractRetwittedCategories(newData);
 
   const duplicates = filterDuplicates(repliedCategories);
-  
+  console.log('usuario', usuario)
 
   let dataSolved = addDuplicates(duplicates);
 
@@ -29,11 +29,7 @@ const MostRetwittedPie = ({ newData, title, setCategories, usuario }) => {
         backgroundColor: colors,
       },
     ],
-    options: {
-      title: {
-        display: true,
-        text: 'Mentions por hashtags',
-      },
+    options: { 
       legend: {
         display: true,
         position: 'top',

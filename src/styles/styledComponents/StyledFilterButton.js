@@ -8,8 +8,8 @@ export const StyledFilterButton = styled.button`
   justify-content: flex-start;
   align-items: center;
   border: none;
-  background-color: ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.textContrast};
+  background-color : ${props => props.usuario ? '' :  ({ theme }) => theme.primary } ;
+  color: ${props => props.usuario ? 'black' : ({ theme }) => theme.textContrast};
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;

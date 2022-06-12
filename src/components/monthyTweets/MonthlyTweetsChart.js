@@ -12,8 +12,7 @@ import {
   Filler,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import usePeriodComparison from '../../hooks/periodComparison';
-import monthyHelper from '../../helpers/monthyHelper';
+
 import { dataReducer } from '../../helpers/dataReducer';
 
 ChartJS.register(
@@ -31,11 +30,7 @@ export const MonthlyTweetsChart = ({ newData, context }) => {
   if (!newData) {
     return null;
   }
-  
-
   let [dataSets, labels] = useCallback(createDatasets(newData, context), [newData]);
-  console.log('dataSets', dataSets);
-  console.log('newData', newData);
 
   const accountInfo = [];
   const account = newData[0];
@@ -51,6 +46,7 @@ export const MonthlyTweetsChart = ({ newData, context }) => {
     interaction: {
       mode: 'index',
       axis: 'x',
+      position: 'nearest'
     },
     scales: {
       y: {
@@ -98,8 +94,7 @@ function createDatasets(data, context) {
   let data2 = { ...data };
   
   let newLabels = [];
-  let test;
-  
+
   if (isPeriodComparisonActive) {
     
     const periods = [periodComparison.periodA, periodComparison.periodB];
