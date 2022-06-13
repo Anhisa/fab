@@ -44,7 +44,7 @@ if(accountIdA.id === accountIdB.id ){
     ]
     let close = open ? true : false;
     options.forEach(option => {
-      handleClick(option, close);
+      handleClick(option, open);
     })
     setOpen(prev => !prev);
   }

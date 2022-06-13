@@ -8,7 +8,7 @@ import {
 const ViewUserCard = ({ data, period }) => {
   
   const dataLength = data.length - 1;
-  
+  let periods
   let i = 1;
   
   if(dataLength !== 3){

@@ -102,7 +102,7 @@ export const AccountDetails = () => {
               <MonthlyTweetsItems period={period} context={dataSearch} />
             </div>
           </UserCardStyled>
-          <AccountCreationDate />
+          {/* <AllDataByAccount /> */}
           <hr />
           <AccountPeriodContainer>
             <CompPeriodSlider

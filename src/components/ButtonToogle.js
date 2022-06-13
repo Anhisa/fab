@@ -6,7 +6,7 @@ const ButtonToogle = ({children, name, usuario}) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const handleClickButton = ({target:{name}}) => {
     setIsOpen(!isOpen);
-    handleClick(name);
+    handleClick(name, isOpen);
   };
   
   return (
