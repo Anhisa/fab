@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const MapStyled = styled.div`
   cursor: grab;
-  width: 100vw;
+  width: 100%;
   .geo{
   //hover
   &:hover{
@@ -26,6 +26,7 @@ export const MapStyled = styled.div`
 
   .map{
     opacity: 0;
+    width:99%;
   animation: fadeIn 1s ease-in;
   animation-fill-mode: forwards;
   @keyframes fadeIn {
@@ -38,12 +39,12 @@ export const MapStyled = styled.div`
   }
   display: flex;
   flex-direction: column;
-  width: 100%;
+ 
   }
   .controls{
     position: absolute;
     top: 300px;
-    right: 10px;
+    right: 70px;
 
     display: flex;
     justify-content: space-between;
@@ -70,7 +71,7 @@ export const MapStyled = styled.div`
     }
     @media (max-width: 768px){
       top: 150px;
-      right: 10px;
+      right: 50px;
       width: 100px;
           }
     @media (max-width: 480px){

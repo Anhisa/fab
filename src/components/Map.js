@@ -102,8 +102,8 @@ export const Map = ({
       className='map'
     >
       <ComposableMap
-        height={windowSize.height ? windowSize.height * 0.9 : 800}
-        width={windowSize.width ? windowSize.width * 0.9 : 800}
+        height={windowSize.height ? windowSize.height * 0.9 : window.innerHeight}
+        width={windowSize.width ? windowSize.width : window.innerWidth}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
           rotate: [77, 15, 0],
@@ -189,8 +189,6 @@ export const Map = ({
 const CustomZoomableGroup = ({ children, positionLocal, setPosition, ...restProps }) => {
   let { mapRef, transformString, position } = useZoomPan(restProps);
 
-
-
     let check = false;
     if(positionLocal.zoom !== 1) {
       check = true;
@@ -202,16 +200,16 @@ const CustomZoomableGroup = ({ children, positionLocal, setPosition, ...restProp
     return (
       <g
       ref={mapRef}
-      transform={`translate(${positionLocal.coordinates[0]}, ${positionLocal.coordinates[1]}) scale(${positionLocal.zoom})`}
+      // transform={`translate(${positionLocal.coordinates[0]}, ${positionLocal.coordinates[1]}) scale(${positionLocal.zoom})`}
       >
         <g>{children}</g>
       </g>
     );
   }
-  if(position.dragging?.type === 'mousemove'){
-
-
-  }
+//   if(position.dragging?.type === 'mousemove'){
+// 
+// 
+//   }
 
   if (positionLocal.zoom === 1) {
     if (position.x > 0) {

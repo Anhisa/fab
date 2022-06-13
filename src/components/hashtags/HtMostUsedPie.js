@@ -64,7 +64,7 @@ const HtMostUsedPie = ({ newData, title, setCategories, usuario }) => {
           },
         }}
       />
-      : <p>No hay datos para mostrar</p>}
+      : <h4>No hay data correspondiente al periodo seleccionado</h4>}
     </PieChartContainer>
     
   );

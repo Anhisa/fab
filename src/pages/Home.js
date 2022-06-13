@@ -66,7 +66,7 @@ export const Home = ({ themeToggler }) => {
   return (
     <>
       <GoblalStyles />
-      <HomeStyled className="container-xl">        
+      <HomeStyled>        
         <NavBarHome
           menu={menu}
           countryListManagmentOpen={countryListManagmentOpen}
@@ -87,9 +87,9 @@ export const Home = ({ themeToggler }) => {
                     setCountrySelectedId={setCountrySelectedId}
                     setZoom={setZoom}
                   />
+                 <FloatingText setCurrentMap={setCurrentMap} zoom={zoom} />
              { !zoom &&
              <>
-                 <FloatingText setCurrentMap={setCurrentMap} />
                   <FloatingTextRight currentMap={currentMap} />
               </>    
               }
@@ -105,13 +105,14 @@ export const Home = ({ themeToggler }) => {
                     setZoom={setZoom}
                   />
 
+                  <FloatingText setCurrentMap={setCurrentMap} islands={true} zoom={zoom} />
                   {!zoom && <>
-                  <FloatingText setCurrentMap={setCurrentMap} islands={true} />
                   <FloatingTextRight currentMap={currentMap} />
                   </>}
                 </MapStyled>
               )
             ) : null}
+            {showMap && (
             <DetachableTable top={mousePosition.y} left={mousePosition.x}>
               <CountryList
                 accountsCountry={accountsCountry}
@@ -120,6 +121,8 @@ export const Home = ({ themeToggler }) => {
                 countrySelectedId={countrySelectedId}
               />
             </DetachableTable>
+
+            )}
           </SectionMapsStyled>
           <SectionToolsStyled>
             {showAccountComparing && (
