@@ -1,31 +1,31 @@
 export const colorsDictionary = [
   {
     category: 'COVID-19',
-    color: '#ff3399',
+    color: '#00CC33',
   },
   {
     category: 'PROMOCIÓN RPCh',
-    color: '#ffcc00',
+    color: '#FF3366',
   },
   {
     category: 'SOLIDARIDAD INTERNACIONAL Y COOPERACIÓN SUR - SUR',
-    color: '#003300',
+    color: '#9966FF',
   },
   {
     category: 'AVANCES TECNOLÓGICOS RPCh',
-    color: '#00cc00',
+    color: '#CC66FF',
   },
   {
     category: 'ORGANISMOS FOROS Y ESPACIOS MULTILATERALES',
-    color: '#003366',
+    color: '#666600',
   },
   {
     category: 'RELACIONES BINACIONALES RPCh - ALC',
-    color: '#660066',
+    color: '#6699FF',
   },
   {
     category: 'GOBIERNO RPCh',
-    color: '#ff9900',
+    color: '#33CC99',
   },
   {
     category: 'EE.UU.',
@@ -41,7 +41,7 @@ export const colorsDictionary = [
   },
   {
     category: 'Gobiernos y Entidades Gubernamentales ALC',
-    color: '#ff0000',
+    color: '#669999',
   },
   {
     category: 'Cuenta Suspendida o Eliminada',
@@ -69,7 +69,7 @@ export const colorsDictionary = [
   },
   {
     category: 'Organismos Foros y Espacios Multilaterales',
-    color: 'lightblue',
+    color: '#666600',
   },
   {
     category: 'Medios de Comunicación ALC',
@@ -77,7 +77,7 @@ export const colorsDictionary = [
   },
   {
     category: 'Gobierno RPCh',
-    color: '#ff9900',
+    color: '#33CC99',
   },
   {
     category: 'N/A',

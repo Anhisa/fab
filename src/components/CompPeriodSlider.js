@@ -51,8 +51,7 @@ export const CompPeriodSlider = ({ setPeriod, data }) => {
         startDate: periods1[0],
         endDate: periods1[periods.length-1],
       });
-      console.log(' aloha value', value);
-      console.log(' asdasd  periods', periods1);
+      
       setValue([periods[0], periods[periods.length-1]]);
       return;
     }

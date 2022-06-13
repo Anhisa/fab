@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { MostRetweetedItems } from '../containers/MostRetweeted';
-import { MostRepliedItems } from '../containers/MostReplied';
-import { MostMentionedItems } from '../containers/MostMentioned';
 import { MonthlyTweetsItems } from '../containers/MonthlyTweets';
-import { HtMostUsedItems } from '../containers/HtMostUsed';
-
 import { useParams } from 'react-router';
 import { useGetData } from '../hooks/useGetData';
-import { TableContext } from '../context/TableContext';
 import ViewUserCard from '../components/ViewUserCard';
-import { CollapsableTableStyled } from '../styles/styledComponents/CollapsableTableStyled';
 
 import {
   UserCardStyled,
@@ -18,7 +11,7 @@ import {
 import HeaderUserCard from '../components/HeaderUserCard';
 import { AccountDetailsStyled } from '../styles/styledComponents/AccountDetailsStyled';
 import { CompPeriodSlider } from '../components/CompPeriodSlider';
-import { StyledFilterButton } from '../styles/styledComponents/StyledFilterButton';
+
 import NavBar from '../components/NavBar';
 import ErrorComponent from '../components/errorComponent';
 import { AccountPeriodContainer } from '../styles/styledComponents/AccountPeriodContainer';
@@ -70,7 +63,7 @@ export const AccountDetails = () => {
     setTimeout(() => {
       setInnerLoading(false);
     }, 1500);
-  },[])
+  }, []);
   if (innerLoading) {
     return (
       <div
@@ -94,36 +87,38 @@ export const AccountDetails = () => {
   return (
     <>
       {dataSearch !== false ? (
-        <TableContext.Provider value={dataSearch}>
-          <GoblalStyles />
-          <AccountDetailsStyled>
-            <NavBar />
-            <HeaderUserCard
-              countryId={dataSearch.country}
-              userName={dataSearch.userOfficialName}
-            />
-            <UserCardStyled>
-              <div className="left">
-                <ViewUserCard
-                  data={dataSearch.dataUser}
-                  period={dataSearch.period}
-                />
-              </div>
-              <div className="right">
-                <MonthlyTweetsItems period={period} />
-              </div>
-            </UserCardStyled>
-            <hr />
-            <AccountPeriodContainer>
-              <CompPeriodSlider
-                setPeriod={setPeriod}
+        <AccountDetailsStyled>
+          <NavBar />
+          <HeaderUserCard
+            countryId={dataSearch.country}
+            userName={dataSearch.userOfficialName}
+          />
+          <UserCardStyled>
+            <div className="left">
+              <ViewUserCard
                 data={dataSearch.dataUser}
+                period={dataSearch.period}
               />
-            </AccountPeriodContainer>
-            <hr />
-            <ComparativeUserViewContainer period={period} usuario={true} />
-          </AccountDetailsStyled>
-        </TableContext.Provider>
+            </div>
+            <div className="right">
+              <MonthlyTweetsItems period={period} context={dataSearch} />
+            </div>
+          </UserCardStyled>
+          {/* <AllDataByAccount /> */}
+          <hr />
+          <AccountPeriodContainer>
+            <CompPeriodSlider
+              setPeriod={setPeriod}
+              data={dataSearch.dataUser}
+            />
+          </AccountPeriodContainer>
+          <hr />
+          <ComparativeUserViewContainer
+            period={period}
+            usuario={true}
+            context={dataSearch}
+          />
+        </AccountDetailsStyled>
       ) : (
         <ErrorComponent />
       )}

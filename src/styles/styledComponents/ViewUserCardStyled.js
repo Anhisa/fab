@@ -10,7 +10,7 @@ export const ViewUserCardStyled = styled.div`
   font-size: 1rem;
   border-radius: 20px;
   border: 1px solid #e0e0e0;  
-  padding: 15px;
+
   .innerLeft{
     display: flex;
     flex-direction: column;

@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
-import  Button  from '@mui/material/Button';
+import Button from '@mui/material/Button';
 import ComparativePerPeriod from '../components/ComparativePerPeriod';
 import { CompCategoryCb } from '../components/CompCategoryCb';
-import { CompPeriodSlider } from '../components/CompPeriodSlider';
-import { ComparativePeriodStyled, ComparativeStyled } from '../styles/styledComponents/ComparativeStyled';
+
+import { ComparativeStyled } from '../styles/styledComponents/ComparativeStyled';
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
 import CountrySelectFilter from '../components/countrySelectFilter';
+
+import UsePeriodErrors from '../hooks/usePeriodErrors';
 const SelectorComparative = ({ setDataComparing, countryDataState }) => {
   const [periodComparison, setPeriodComparison] = useState({
     periodA: {
-      id:'',
+      id: '',
       name: '',
     },
     periodB: {
-      id:'',
+      id: '',
       name: '',
     },
   });
@@ -26,11 +28,19 @@ const SelectorComparative = ({ setDataComparing, countryDataState }) => {
     mostReplied: true,
     monthlyTweets: true,
   });
-  let tweetsByCountry = useGetTweetsByCountry();
+  const [errors, setErrors] = useState({
+    samePeriods: false,
+    emptyPeriods: false,
+    nonAscendingPeriods: false,
+  });
+  const [firstTime, setFirstTime] = useState(true);
+  const thereIsError = Object.values(errors).some((error) => error);
   
+  let tweetsByCountry = useGetTweetsByCountry();
+
   const handleComparison = () => {
-    
-    window.scrollTo(0,200);
+    window.scrollTo(0, 550);
+    setFirstTime(false);
     setDataComparing((prev) => {
       return {
         ...prev,
@@ -38,30 +48,40 @@ const SelectorComparative = ({ setDataComparing, countryDataState }) => {
         accounts: {
           accountIdA: {
             id: 'null',
-            name: ''
+            name: '',
           },
           accountIdB: {
-            id:'null1',
-            name: ''
+            id: 'null1',
+            name: '',
           },
         },
         categories,
         isPeriodComparisonActive: true,
         isCountryFilterActive,
-        country_id
+        country_id,
       };
     });
   };
   return (
     <ComparativeStyled>
       <ComparativePerPeriod setDataComparing={setPeriodComparison} />
-      <CompCategoryCb setCategories={setCategories} period={true} isPeriodComparisonActive={true} />
-      <CountrySelectFilter countrysWithData={tweetsByCountry} setCountryFilterActive={setCountryFilterActive} setCountryId={setCountryId} countryDataState={countryDataState}/>
+      <CompCategoryCb
+        setCategories={setCategories}
+        period={true}
+        isPeriodComparisonActive={true}
+      />
+      <CountrySelectFilter
+        countrysWithData={tweetsByCountry}
+        setCountryFilterActive={setCountryFilterActive}
+        setCountryId={setCountryId}
+        countryDataState={countryDataState}
+      />
       <div className="btnContainer">
-        <Button variant="contained" onClick={handleComparison} className="btn">
+        <Button variant="contained" onClick={handleComparison} className="btn" disabled={thereIsError}>
           COMPARAR
         </Button>
       </div>
+     {!firstTime &&  <UsePeriodErrors periodComparison={periodComparison} errors={errors} setErrors={setErrors}/>}
     </ComparativeStyled>
   );
 };

@@ -13,6 +13,7 @@ export const GoblalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: all 0.50s linear;
+    caret-color: transparent;
  }
  *{
   font-family: 'Montserrat', sans-serif !important;

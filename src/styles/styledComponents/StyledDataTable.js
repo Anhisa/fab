@@ -79,3 +79,21 @@ margin-top: 25px;
 }
   
 `
+
+export const EmptyDataTable = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 15px;
+  h4{
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  background-color: ${({ theme }) => theme.background};
+  border-bottom-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+`

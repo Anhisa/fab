@@ -3,14 +3,22 @@ import usePeriodComparison from './periodComparison';
 import useCountryActive from './useContryActive';
 import useGetNameCountryActiveId from './useGetNameCountryActiveId';
 
-export default function useActiveNames() {
-  const users = useUserSearch();
-  const isCountryFilterActive = useCountryActive()
-  const {isPeriodComparisonActive, periods} = usePeriodComparison();  
+export default function useActiveNames(context) {
+  
+  if(context.userOfficialName){
+    return [context.userOfficialName];
+  }
+  const {accounts:{accountIdA, accountIdB}} = context  
+  const users = {accountIdA, accountIdB};
+  const {isCountryFilterActive} = context
+  const {periodComparison, isPeriodComparisonActive} = context;
+  const periods = [periodComparison.periodA, periodComparison.periodB];
+  
   let accountsNames = []
   if(isPeriodComparisonActive){
     if(isCountryFilterActive){
-      const countryName = useGetNameCountryActiveId()     
+      const {country_id:{name}} = context;  
+      const countryName = name
       
       accountsNames = periods.map(item=>item.name + ' ' + countryName)
     } else {

@@ -9,46 +9,48 @@ import { MostRepliedItems } from '../MostReplied';
 import { MostRetweetedItems } from '../MostRetweeted';
 import ButtonToogle from '../../components/ButtonToogle';
 
-const ComparativeUserViewContainer = ({ period, usuario }) => {
+const ComparativeUserViewContainer = ({ period, usuario,  context }) => {
   return (
     <ComparativeUserViewContainerStyle usuario={usuario}>
         <div id='left'>
       <CollapsableTableStyled className='table'>
         <ButtonToogle 
-         
+          usuario={true}
           name="most-retweet"
           
         >
           Usuarios más retuiteados
         </ButtonToogle>
-        <MostRetweetedItems period={period} usuario={usuario} />
+        <MostRetweetedItems period={period} usuario={usuario} context={context} />
       </CollapsableTableStyled>
       <CollapsableTableStyled className='table'>
-        <ButtonToogle         
+        <ButtonToogle    
+         usuario={true}     
           name="most-replied"          
         >
           Usuarios que más han recibido respuesta
         </ButtonToogle>
 
-        <MostRepliedItems period={period} usuario={usuario}/>
+        <MostRepliedItems period={period} usuario={usuario} context={context}/>
       </CollapsableTableStyled>
       </div>
       <div id='right'>
       <CollapsableTableStyled className='table'>
-        <ButtonToogle name="most-ht" >
+        <ButtonToogle name="most-ht"  usuario={true} >
           Hashtags más usados
         </ButtonToogle>
 
-        <HtMostUsedItems period={period} usuario={usuario} />
+        <HtMostUsedItems period={period} usuario={usuario} context={context} />
       </CollapsableTableStyled>
       <CollapsableTableStyled className='table'>
-        <ButtonToogle         
+        <ButtonToogle    
+         usuario={true}     
           name="most-mentioned"         
         >
           Usuarios más mencionados
         </ButtonToogle>
 
-        <MostMentionedItems period={period} usuario={usuario} />
+        <MostMentionedItems period={period} usuario={usuario} context={context} />
       </CollapsableTableStyled>
       </div>  
   

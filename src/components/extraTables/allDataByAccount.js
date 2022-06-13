@@ -11,12 +11,17 @@ import { useGetData } from '../../hooks/useGetData'
 
 const AllDataByAccount = () => {
   const dataMostMentioned = useGetData(apiMostMentioned);
-  const dataMostReplied = useGetData(apiMostReplied);
-  
-  const dataMostRetweeted = useGetData(apiMostRetweeted);
-  const dataHtMostUsed = useGetData(apiHtMostUsed);
+  if(dataMostMentioned.loading){
+    return "loading..."
+  }
+  // const dataMostReplied = useGetData(apiMostReplied);
+  // console.log('dataMostReplied', dataMostReplied);  
+  // const dataMostRetweeted = useGetData(apiMostRetweeted);
+  // console.log('dataMostRetweeted', dataMostRetweeted);
+  // const dataHtMostUsed = useGetData(apiHtMostUsed);
+  // console.log('dataHtMostUsed', dataHtMostUsed);
   const [data, setData] = useState([]);
-  let categories = extractMentionedCategories(dataMostMentioned.data);
+  let categories = extractCategories(dataMostMentioned.data, 'mentioned');
   let duplicados = filterDuplicates(categories, 'account');
   let exp = duplicados.map(item => {
   let itemSol = filterDuplicates(item, 'category');
@@ -33,19 +38,25 @@ const AllDataByAccount = () => {
 
 export default AllDataByAccount
 
-function extractMentionedCategories(data){
+function extractCategories(data, category) {
+  switch(category) {
+    case 'mentioned':       
+      const htCategories = [];
+      return data.forEach(item => {
+        htCategories.push({
+          category: item.most_mentioned_category_spa,
+          count: item.mentions_number,
+          account: item.official_account,
+          accountId : item.official_account_id
+        });
+      });
+    case 'replied':
+      const repliedCategories = [];
+       
+  }
 
-  const htCategories = [];
-  data.forEach(item => {
-    htCategories.push({
-      category: item.most_mentioned_category_spa,
-      count: item.mentions_number,
-      account: item.official_account,
-      accountId : item.official_account_id
-    });
-  });
 
-  return htCategories;
+
 }
 
 

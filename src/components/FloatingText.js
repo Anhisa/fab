@@ -19,7 +19,7 @@ const FloatingText = ({ setCurrentMap, islands }) => {
           los diplomáticos y representaciones diplomáticas de la República
           Popular China en América Latina y el Caribe.
         </p>
-        <ButtonFloatingStyled onClick={handleMap}>
+        <ButtonFloatingStyled onClick={handleMap} type='button'>
           <p>¡Cambia el mapa!</p>
         </ButtonFloatingStyled>
       </FloatingTextIslandsStyled>

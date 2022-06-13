@@ -18,9 +18,8 @@ function sortArray(array, from) {
   return sortedArray;
 }
 
-export const useFilterData = (api, from) => {
-  const context = useContext(TableContext);
-
+export const useFilterData = (api,context, from) => {
+  // const context = useContext(TableContext);
 
   const {
     accounts,
@@ -30,6 +29,7 @@ export const useFilterData = (api, from) => {
     isCountryFilterActive,
     country_id,
   } = context;
+
   const [filteredData, setFilteredData] = useState(false);
   const { loading, data } = useGetData(api);
 
@@ -38,10 +38,10 @@ export const useFilterData = (api, from) => {
   const accountsData = [];
 
   useEffect(() => {
-   
+
     if (isPeriodComparisonActive) {
       let arrayComparison = periodComparison;
-
+     
       Object.values(arrayComparison).forEach((item) => {
         let { startDate, endDate } = getPeriodNumbers(item.id);
       let newArray = [];
@@ -64,9 +64,11 @@ export const useFilterData = (api, from) => {
         
         
         if (data.length === 0) {
-          return;
+          
+          return  accountsData.push([]);
         }
 
+   
         newArray.push(data);
         if (from === 'ht-most-used') {
           let repeatedAccountArrayHt = filterDuplicatesHt(data);
@@ -98,13 +100,14 @@ export const useFilterData = (api, from) => {
           let repeatedAccountArray = filterDuplicates(data);
          
           newArray = addDuplicates(repeatedAccountArray, from);
+          
        
           let sortedArray = sortArray(newArray, from);
           
           if (sortedArray.length > 10) {
             sortedArray = sortedArray.slice(0, 10);
           }
-
+          
           accountsData.push(sortedArray);
         }
       });
@@ -121,8 +124,10 @@ export const useFilterData = (api, from) => {
             parseInt(item.period_id) >= period.startDate &&
             parseInt(item.period_id) <= period.endDate
         );
+        
         if (data.length === 0) {
-          return data;
+      
+          return  accountsData.push([]);
         }
         
         if (from === 'ht-most-used') {
@@ -173,6 +178,6 @@ export const useFilterData = (api, from) => {
     country_id,
   ]);
 
-  return filteredData;
+  return [filteredData, loading];
 };
 

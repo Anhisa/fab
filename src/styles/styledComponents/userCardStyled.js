@@ -2,13 +2,14 @@ import styled from 'styled-components';
 export const UserCardStyled = styled.div`
   display: flex;
   flex-direction:row;
+  gap: 10px;
   
   .left{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    width: 40%;
 
   }
   .right{
@@ -16,7 +17,10 @@ export const UserCardStyled = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    width: 60%;
+    border-radius: 16px;
+    padding: 10px;
+    background-color : ${({ theme }) => theme.background};
     section{
       height: 100%;
       width: 100%;
@@ -50,11 +54,11 @@ export const ContainerButtons = styled.div`
 export const HeaderUserView = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 25px;
+  padding:10px 25px;
   width: 100%;
 justify-content: flex-start;
   gap: 10px;
-  margin: 10px auto;
+  
   img{
     height: 80px;
 

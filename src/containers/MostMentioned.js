@@ -11,15 +11,15 @@ import MostMentionedPie from '../components/mostMentioned/MostMentionedPie';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-mentioned';
 
-export const MostMentionedItems = memo((usuario) => {
-  
+export const MostMentionedItems = ({usuario, context}) => {
+
   const [innerData, setInnerData] = useState([]);
   const [chartData, setChartData] = useState([]);
-  const accountsNames = useActiveNames();
-  const { isPeriodComparisonActive } = usePeriodComparison();
+  const accountsNames = useActiveNames(context);
+  const { isPeriodComparisonActive } = context
 
 
-  const data = useFilterData(api, 'most-mentioned');
+  const [data, loading] = useFilterData(api, context, 'most-mentioned');
 
 
 
@@ -27,14 +27,14 @@ export const MostMentionedItems = memo((usuario) => {
   
 
   useEffect(() => {
-    if (data !== false) {
+    if (!loading && data.length > 0) {
 
       setInnerData(data);
       setChartData(CreateChart(data));
     }
-  }, [data]);
+  }, [data, loading]);
 
-  if (!data) {
+  if (loading) {
     return (
       <Spinner animation="border" role="status">
         <span className="visually-hidden">Loading...</span>
@@ -72,4 +72,4 @@ export const MostMentionedItems = memo((usuario) => {
       })}
     </section>
   );
-});
+};

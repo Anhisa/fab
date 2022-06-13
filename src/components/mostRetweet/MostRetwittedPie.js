@@ -19,6 +19,7 @@ const MostRetwittedPie = ({ newData, title, setCategories, usuario }) => {
 
   let labels = dataSolved.map((item) => item.category);
   let data = dataSolved.map((item) => item.count);
+  
 
   let dataChart = {
     labels: labels,
@@ -28,19 +29,15 @@ const MostRetwittedPie = ({ newData, title, setCategories, usuario }) => {
         backgroundColor: colors,
       },
     ],
-    options: {
-      title: {
-        display: true,
-        text: 'Mentions por hashtags',
-      },
+    options: { 
       legend: {
         display: true,
         position: 'top',
       },
     },
   };
-  return (
-    <PieChartContainer usuario={usuario}>
+  return (<>
+   {data.length > 0 && <PieChartContainer usuario={usuario}>
       <h4>
       Categorías más retuiteadas de: <br/>
         {title}
@@ -65,7 +62,8 @@ const MostRetwittedPie = ({ newData, title, setCategories, usuario }) => {
           },
         }}
       />
-    </PieChartContainer>
+    </PieChartContainer>}
+    </>
   );
 };
 

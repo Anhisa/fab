@@ -4,8 +4,8 @@ export const PieContainerStyled = styled.div`
   display: flex;
   flex-direction: row;
   align-items: stretch;
-
-  width: 90%;
+  
+  width: 100%;
   gap: 10px;
   justify-content: center;
 
@@ -16,15 +16,12 @@ export const PieContainerStyled = styled.div`
 
 export const PieChartContainer = styled.div`
   display: flex;
-min-width: 400px;
-max-width: 700px;
-
+width:${props => props.usuario ? '50%' : '100%' };
   margin-top: 20px;
   padding: 0px !important;
   border-radius: 25px;
-  background-color: ${({ theme }) => theme.background};
+  background-color: ${({ theme }) => theme.background} !important;
   border: 2px solid ${({ theme }) => theme.toggleBorder};
- margin-left: 15px;
   flex-direction: column;
   min-height: 450px;
   align-items: center;
@@ -43,9 +40,7 @@ max-width: 700px;
     border-bottom: 1px solid ${({ theme }) => theme.text};
     background-color: ${({ theme }) => theme.secondary};
   }
-  .table > :not(caption) > * > * {
-    padding: 0;
-  }
+
   @media (max-width: 1000px) {
     width: 100%;
   }

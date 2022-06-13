@@ -5,11 +5,12 @@ import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom';
 import { BarContainer, IsVerified, UserAccount } from '../partsDataTable';
 import { CreateChart } from '../../helpers/createChart';
-import { StyledDataTable } from '../../styles/styledComponents/StyledDataTable';
+import { EmptyDataTable, StyledDataTable } from '../../styles/styledComponents/StyledDataTable';
 import { ExpandedStyled } from '../../styles/styledComponents/ExpandedStyled';
 import { columns } from '../../helpers/columns';
 
 export const MostRepliedItemCHANGE = ({ newData, title, arrayBar }) => {
+  
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
   const totaltweets = tweetNumber.reduce(
     (totaltweetsNumber, item) => totaltweetsNumber + item,
@@ -64,16 +65,7 @@ export const MostRepliedItemCHANGE = ({ newData, title, arrayBar }) => {
     };
   });
   
-  if(newData.length === 0){
-    return (
-      <StyledDataTable className="dataTable">
-        <div className="noData">
-          <h1>No hay datos para mostrar</h1>
-        </div>
-      </StyledDataTable>
-    )
 
-  }
   
   return (
     <StyledDataTable className="dataTable">
@@ -89,7 +81,12 @@ export const MostRepliedItemCHANGE = ({ newData, title, arrayBar }) => {
       }
       expandableRows
       expandableRowsComponent={ExpandedComponent}
-      striped={true}
+      expandableRowsOnClick={true}      
+      noDataComponent={
+        <EmptyDataTable>
+          <h5>No se registran datos en el periodo seleccionado</h5>
+        </EmptyDataTable>
+      }
     />
     </StyledDataTable>
   );
