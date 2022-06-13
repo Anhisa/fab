@@ -4,6 +4,7 @@ export const SectionToolsStyled = styled.section`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  width: 90%;
   flex-wrap: nowrap;
   .comparisonPeriod{
     width: 100%;

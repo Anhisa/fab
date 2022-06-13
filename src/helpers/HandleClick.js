@@ -1,4 +1,4 @@
-function handleClick(name, state, main) {   
+function handleClick(name, state) {   
   let element = document.getElementById(name);
 if(state){
   if (element.classList.contains('open')) {
@@ -11,9 +11,7 @@ if(state){
   if (element.classList.contains('closed')) {
     element.classList.remove('closed');
     element.classList.add('open');
-    if(!main){
-      element = document.getElementById('monthy-tweets')
-    }
+
     
     return element.scrollIntoView({ behavior: 'smooth' });
 

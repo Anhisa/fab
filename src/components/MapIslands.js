@@ -182,9 +182,9 @@ const CustomZoomableGroup = ({
     return (
       <g ref={mapRef}>
         <g
-          transform={`translate(${positionLocal.coordinates[0]} ${
-            check ? positionLocal.coordinates[1] : ''
-          }  ) scale(${positionLocal.zoom})`}
+          // transform={`translate(${positionLocal.coordinates[0]} ${
+          //   check ? positionLocal.coordinates[1] : ''
+          // }  ) scale(${positionLocal.zoom})`}
         >
           {children}
         </g>

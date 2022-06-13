@@ -6,5 +6,5 @@ export const ComparisonContainerStyled = styled.div`
   gap:10px;
   margin-top: 10px;
   padding: 10px;
-  width: 100%;
+  width: 90%;
 `
