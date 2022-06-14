@@ -25,9 +25,9 @@ export const MapStyled = styled.div`
   
 
   .map{
-   
+
     opacity: 0;
-    width:98%;
+    width:100%;
   animation: fadeIn 1s ease-in;
   animation-fill-mode: forwards;
   @keyframes fadeIn {

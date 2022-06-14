@@ -3,11 +3,11 @@ import DataTable from 'react-data-table-component';
 
 export const ComparativeStyled = styled.section`
   display: flex;
-  width: 100%;  
+  width: 95%;  
   max-height: fit-content;
   flex-direction: column;
   background-color:${({ theme }) => theme.background};
-  margin: 20px;
+  
   border-radius: 15px;
   border: 2px solid ${({ theme }) => theme.toggleBorder};
   box-shadow: 3px 3px 10px #333;
