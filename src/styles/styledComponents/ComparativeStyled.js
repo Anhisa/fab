@@ -3,7 +3,8 @@ import DataTable from 'react-data-table-component';
 
 export const ComparativeStyled = styled.section`
   display: flex;
-  width: 95%;  
+  width: 50%; 
+  max-width:600px ;
   max-height: fit-content;
   flex-direction: column;
   background-color:${({ theme }) => theme.background};
@@ -18,6 +19,7 @@ export const ComparativeStyled = styled.section`
     flex-direction: column;
     z-index: 1;
     align-items: flex-start;
+    width: 100%;
     
     position: relative;
     .title{
@@ -115,9 +117,8 @@ export const ComparativeStyled = styled.section`
       width: 100%;
     }
   }
-  @media (max-width: 768px) {
-  }
-  @media (max-width: 480px) {
+  
+  @media (max-width:768px) {
     margin: 10px;
     width: 100%;
     background: ${({ theme }) => theme.background};
@@ -126,11 +127,21 @@ export const ComparativeStyled = styled.section`
       margin-bottom: 0px;
       width: 100%;
       z-index: 1;
+ 
     }
     .countSelector2{
       margin-bottom: 0px;
       width: 100%;
     }
+    .MuiSlider-markLabel{
+        font-size: 12px;
+      
+      }
+  }
+  @media (max-width:480px) {
+    .MuiSlider-markLabel{
+        font-size: 10px;        
+      }
   }
   opacity: 0;
   animation: fadeIn 1s ease-in;
@@ -143,6 +154,7 @@ export const ComparativeStyled = styled.section`
       opacity: 1;
     }
   }
+
 `;
 
 export const ComparativePeriodStyled = styled.section`

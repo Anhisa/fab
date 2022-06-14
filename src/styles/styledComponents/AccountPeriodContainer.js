@@ -9,7 +9,7 @@ export const AccountPeriodContainer = styled.div`
   width: 100%;
   border-top: 1px solid ${({ theme }) => theme.toggleBorder};
   border-bottom: 1px solid ${({ theme }) => theme.toggleBorder};;  
-  padding: 5px;
+  padding: 20px;
   .MuiBox-root {
     width: 80%;    
     span{

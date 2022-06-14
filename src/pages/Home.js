@@ -75,7 +75,7 @@ export const Home = ({ themeToggler }) => {
 
         {showMap && <ColorBar />}
    
-          <SectionMapsStyled>
+         { showMap&& <SectionMapsStyled>
             {showMap ? (
               currentMap ? (
                 <MapStyled className="map-container col-6">
@@ -123,19 +123,19 @@ export const Home = ({ themeToggler }) => {
             </DetachableTable>
 
             )}
-          </SectionMapsStyled>
+          </SectionMapsStyled>}
           {!showMap && <SectionToolsStyled>
             {showAccountComparing && (
               <ComparativeTool setDataComparing={setDataComparing} />
             )}
             {showPeriodComparing && (
-              <section className="comparisonPeriod">
+              <>
               <SelectorComparative
                 countryDataState={countryDataState}
                 setDataComparing={setDataComparing}
               />
           
-              </section>
+              </>
             )}
           </SectionToolsStyled>}
           {showMap ? null : (

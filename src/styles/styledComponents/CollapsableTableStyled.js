@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const CollapsableTableStyled = styled.div`
-
 .open {
     gap: 10px;
     margin-top: 10px;
@@ -10,7 +9,7 @@ export const CollapsableTableStyled = styled.div`
     flex-direction: row;
     width: 100%;
     .column {
-      width: 90%;
+      width: 50%;
       margin-left: 10px;
       display: flex;
       flex-direction: ${(props) => (props.usuario ? 'row' : 'column')};
