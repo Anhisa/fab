@@ -1,5 +1,5 @@
 function handleClick(name, state) {   
-  const element = document.getElementById(name);
+  let element = document.getElementById(name);
 if(state){
   if (element.classList.contains('open')) {
     element.classList.remove('open');
@@ -11,8 +11,10 @@ if(state){
   if (element.classList.contains('closed')) {
     element.classList.remove('closed');
     element.classList.add('open');
-    element.scrollIntoView({ behavior: 'smooth' });
+
     
+    return element.scrollIntoView({ behavior: 'smooth' });
+
   }
   return
 }

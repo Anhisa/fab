@@ -59,9 +59,9 @@ i = 1
         <UserCard
           name={'Nº Seguidores'}
           data={
-            data[period.endDate - 1].followers_number === '0'
-              ? data[period.endDate-2].followers_number
-              : data[period.endDate - 1].followers_number ??
+            data[period.endDate - 1]?.followers_number === '0'
+              ? data[period.endDate-2]?.followers_number
+              : data[period.endDate - 1]?.followers_number ??
                 'No hay data correspondiente al periodo seleccionado'
           }
         />
@@ -69,9 +69,9 @@ i = 1
         <UserCard
           name={'Nº cuentas seguidas'}
           data={
-            data[period.endDate - 1].following_number === '0'
-              ? data[period.endDate-2].following_number
-              : data[period.endDate - 1].following_number ??
+            data[period.endDate - 1]?.following_number === '0'
+              ? data[period.endDate-2]?.following_number
+              : data[period.endDate - 1]?.following_number ??
                 'No hay data correspondiente al periodo seleccionado'
           }
         />

@@ -41,12 +41,16 @@ if(accountIdA.id === accountIdB.id ){
   function openTables(){
     const options = [
       'monthy-tweets', 'most-retweet', 'most-ht', 'most-mentioned', 'most-replied',
-    ]
-    let close = open ? true : false;
+    ]    
+    
     options.forEach(option => {
       handleClick(option, open);
     })
     setOpen(prev => !prev);
+    if(open){
+      let element =  document.getElementById('monthy-tweets')
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
 

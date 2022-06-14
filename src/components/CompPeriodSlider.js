@@ -70,6 +70,7 @@ export const CompPeriodSlider = ({ setPeriod, data }) => {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        padding: '10px'
       }}
     >
       <h4>Periodo de búsqueda</h4>

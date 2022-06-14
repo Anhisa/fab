@@ -28,7 +28,7 @@ export const ColorBarContainer = styled.div`
   min-width: 100px;
  position: absolute;
   bottom: 50px;
-  right: 50px;
+  right: 100px;
   em{
     font-size: 1rem;
     font-weight: 600;
