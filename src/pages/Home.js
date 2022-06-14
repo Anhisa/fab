@@ -124,7 +124,7 @@ export const Home = ({ themeToggler }) => {
 
             )}
           </SectionMapsStyled>
-          <SectionToolsStyled>
+          {!showMap && <SectionToolsStyled>
             {showAccountComparing && (
               <ComparativeTool setDataComparing={setDataComparing} />
             )}
@@ -137,7 +137,7 @@ export const Home = ({ themeToggler }) => {
           
               </section>
             )}
-          </SectionToolsStyled>
+          </SectionToolsStyled>}
           {showMap ? null : (
             <ComparisonContainerStyled>
               <OptionsSearch setDataComparing={setDataComparing} context={dataComparing}/>
