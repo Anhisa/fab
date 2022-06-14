@@ -28,7 +28,7 @@ export const Map = ({
 }) => {
   const [localPosition, setLocalPosition] = useState({
     coordinates: [-81, -9],
-    zoom: 1,
+    zoom: 1.5,
   });
   const { open, setOpen } = countryListManagmentOpen;
   const windowSize = useWindowSize();
@@ -199,8 +199,8 @@ const CustomZoomableGroup = ({ children, positionLocal, setPosition, ...restProp
     position= positionLocal;
     return (
       <g
-      // ref={mapRef}
-      // transform={`translate(${positionLocal.coordinates[0]}, ${positionLocal.coordinates[1]}) scale(${positionLocal.zoom})`}
+      ref={mapRef}
+      transform={`translate(${positionLocal.coordinates[0]}, ${positionLocal.coordinates[1]}) scale(${positionLocal.zoom})`}
       >
         <g>{children}</g>
       </g>
@@ -237,9 +237,9 @@ const CustomZoomableGroup = ({ children, positionLocal, setPosition, ...restProp
     <g ref={mapRef}>
 
       <g
-        transform={`translate(${position.x} ${
-          check ? position.y : ''
-        }  ) scale(${positionLocal.zoom})`}
+        // transform={`translate(${position.x} ${
+        //   check ? position.y : ''
+        // }  ) scale(${positionLocal.zoom})`}
       >
         {children}
       </g>
