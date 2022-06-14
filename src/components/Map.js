@@ -27,7 +27,7 @@ export const Map = ({
 
 }) => {
   const [localPosition, setLocalPosition] = useState({
-    coordinates: [-85, -10],
+    coordinates: [-81, -9],
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
@@ -67,19 +67,19 @@ export const Map = ({
       const filteredAccounts = items.filter(
         (item) => item.country_id === itemValue.value
       );
-      if(pageX + 250 > windowSize.width){        
+      if(pageX + 250 > windowSize.width){
           x = pageX - 250;
       }
 
-      if(pageY + 250 > windowSize.height){    
+      if(pageY + 250 > windowSize.height){
         y = pageY - 250;
       }
-    
+
       setMouse({
         x: x,
         y: y,
       });
-      
+
 
       setAccounts(filteredAccounts);
       setCountrySelectedId(itemValue.value);
@@ -102,12 +102,12 @@ export const Map = ({
       className='map'
     >
       <ComposableMap
-        height={windowSize.height ? windowSize.height * 0.9 : 800}
+        height={windowSize.height ? windowSize.height * 0.73 : 800}
         width={windowSize.width ? windowSize.width * 0.9 : 800}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
-          rotate: [77, 15, 0],
-          scale: 500,
+          rotate: [73, 11.5, 0],
+          scale: 438,
         }}
         onClick={handleOnClick}
         onWheelCapture={closeOnZoomIn}

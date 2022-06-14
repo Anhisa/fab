@@ -2,11 +2,9 @@ import { createGlobalStyle } from "styled-components";
 
 export const GoblalStyles = createGlobalStyle`
   #root {
-    margin-top: 75px;
+    /* margin-top: 75px; */
     width: 100%;
     max-width: 100%;
-    /* margin: 0; */
-    /* padding: 0; */
     line-height: 1.5;
     color: ${({ theme }) => theme.text};
     background: ${({ theme }) => theme.body};

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const FloatingTextStyled = styled.div`
   position: absolute;
   top: 300px;
-  left: 95px;
+  left: 60px;
   height: 100px;
   width: 500px;
   background-color: transparent;
@@ -163,7 +163,7 @@ export const ButtonFloatingStyled = styled.button`
   }
   @media (max-width: 480px) {
     width: 70%;
-   
+
     height: 40px;
   }
 

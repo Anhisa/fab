@@ -25,7 +25,6 @@ import AccountCreationDate from '../components/extraTables/accountCreationDate';
 import AllDataByAccount from '../components/extraTables/allDataByAccount';
 import { GoblalStyles } from '../styles/styledComponents/GlobalStyles';
 
-
 export const AccountDetails = () => {
   const { account } = useParams();
   const [innerLoading, setInnerLoading] = useState(true);
@@ -87,38 +86,41 @@ export const AccountDetails = () => {
   return (
     <>
       {dataSearch !== false ? (
-        <AccountDetailsStyled>
-          <NavBar />
-          <HeaderUserCard
-            countryId={dataSearch.country}
-            userName={dataSearch.userOfficialName}
-          />
-          <UserCardStyled>
-            <div className="left">
-              <ViewUserCard
-                data={dataSearch.dataUser}
-                period={dataSearch.period}
-              />
-            </div>
-            <div className="right">
-              <MonthlyTweetsItems period={period} context={dataSearch} />
-            </div>
-          </UserCardStyled>
-          {/* <AllDataByAccount /> */}
-          <hr />
-          <AccountPeriodContainer>
-            <CompPeriodSlider
-              setPeriod={setPeriod}
-              data={dataSearch.dataUser}
+        <>
+          <GoblalStyles />
+          <AccountDetailsStyled>
+            <NavBar />
+            <HeaderUserCard
+              countryId={dataSearch.country}
+              userName={dataSearch.userOfficialName}
             />
-          </AccountPeriodContainer>
-          <hr />
-          <ComparativeUserViewContainer
-            period={period}
-            usuario={true}
-            context={dataSearch}
-          />
-        </AccountDetailsStyled>
+            <UserCardStyled>
+              <div className="left">
+                <ViewUserCard
+                  data={dataSearch.dataUser}
+                  period={dataSearch.period}
+                />
+              </div>
+              <div className="right">
+                <MonthlyTweetsItems period={period} context={dataSearch} />
+              </div>
+            </UserCardStyled>
+            {/* <AllDataByAccount /> */}
+            <hr />
+            <AccountPeriodContainer>
+              <CompPeriodSlider
+                setPeriod={setPeriod}
+                data={dataSearch.dataUser}
+              />
+            </AccountPeriodContainer>
+            <hr />
+            <ComparativeUserViewContainer
+              period={period}
+              usuario={true}
+              context={dataSearch}
+            />
+          </AccountDetailsStyled>
+        </>
       ) : (
         <ErrorComponent />
       )}
