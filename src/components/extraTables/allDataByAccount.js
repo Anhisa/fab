@@ -1,34 +1,33 @@
-let apiMostMentioned = 'https://fundacionandresbello.org/wp-json/fab/v1/most-mentioned'
+import axios from 'axios';
 
-let apiMostReplied = 'https://fundacionandresbello.org/wp-json/fab/v1/most-replied'
 
-let apiMostRetweeted = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted'
+import React, { useEffect, useState } from 'react'
+import useGetAllData from '../../hooks/useGetAllData';
 
-let apiHtMostUsed = 'https://fundacionandresbello.org/wp-json/fab/v1/ht-most-used'
-
-import React, { useState } from 'react'
-import { useGetData } from '../../hooks/useGetData'
 
 const AllDataByAccount = () => {
-  const dataMostMentioned = useGetData(apiMostMentioned);
-  if(dataMostMentioned.loading){
-    return "loading..."
-  }
+const results ='x'
+console.log('results', results);
+// 
+//   const dataMostMentioned = useGetData(apiMostMentioned);
+//   if(dataMostMentioned.loading){
+//     return "loading..."
+//   }
   // const dataMostReplied = useGetData(apiMostReplied);
   // console.log('dataMostReplied', dataMostReplied);  
   // const dataMostRetweeted = useGetData(apiMostRetweeted);
   // console.log('dataMostRetweeted', dataMostRetweeted);
   // const dataHtMostUsed = useGetData(apiHtMostUsed);
   // console.log('dataHtMostUsed', dataHtMostUsed);
-  const [data, setData] = useState([]);
-  let categories = extractCategories(dataMostMentioned.data, 'mentioned');
-  let duplicados = filterDuplicates(categories, 'account');
-  let exp = duplicados.map(item => {
-  let itemSol = filterDuplicates(item, 'category');
-  let filtered = addDuplicates(itemSol);
-  return filtered;
-  
-  })
+  // const [data, setData] = useState([]);
+  // let categories = extractCategories(dataMostMentioned.data, 'mentioned');
+  // let duplicados = filterDuplicates(categories, 'account');
+  // let exp = duplicados.map(item => {
+  // let itemSol = filterDuplicates(item, 'category');
+  // let filtered = addDuplicates(itemSol);
+  // return filtered;
+  // 
+  // })
   
 
   return (

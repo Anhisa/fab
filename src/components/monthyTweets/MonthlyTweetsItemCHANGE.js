@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import {Link} from 'react-router-dom';
 
 export const MonthlyTweetsItem = ({ newData }) => {
-  // const data = useGetData(api);
+
 
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
   const totaltweets = tweetNumber.reduce(

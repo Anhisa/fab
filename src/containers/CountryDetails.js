@@ -7,7 +7,7 @@ export const CountryList = ({accountsCountry, countryListManagmentOpen, countryD
   return (
 
  
-      <CountryItem accountsCountry={accountsCountry} countryListManagmentOpen={countryListManagmentOpen} countryDataState={countryDataState} countrySelectedId={countrySelectedId} />
+      <CountryItem accountsCountry={accountsCountry} countryListManagmentOpen={countryListManagmentOpen}  countrySelectedId={countrySelectedId} />
       
   
   );

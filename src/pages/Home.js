@@ -3,11 +3,10 @@ import { Map } from '../components/Map';
 
 import { CountryList } from '../containers/CountryDetails';
 import { ComparativeTool } from '../containers/ComparativeTool';
-import { useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { MapStyled } from '../styles/styledComponents/MapStyled';
-import { useGetData } from '../hooks/useGetData';
+
 import { MapIslands } from '../components/MapIslands';
-import { TableContext } from '../context/TableContext';
 
 import { DetachableTable } from '../styles/styledComponents/detachableTable';
 import { HomeStyled } from '../styles/styledComponents/HomeStyled';
@@ -25,13 +24,14 @@ import FloatingText from '../components/FloatingText';
 import { ComponentContainer } from '../containers/ComponerContainer';
 import UpArrow from '../components/UpArrow';
 import OptionsSearch from '../containers/OptionsSearch';
-import Loading from '../components/Loading';
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
+
+import { DataContext } from '../context/dataContext';
+
 // import userQueries from './queries.php';
 
 export const Home = ({ themeToggler }) => {
-  const response = useGetData(api);
-  const [loading, setLoading] = useState(true);
+  const {officialAccounts} = useContext(DataContext);
+  
   const [zoom, setZoom] = useState(false);
   const [countriesAllData, setCountriesAllData] = useState([]);
   const [countrySelectedId, setCountrySelectedId] = useState(null);
@@ -41,7 +41,6 @@ export const Home = ({ themeToggler }) => {
   const [open, setOpen] = useState(false);
 
   const countryListManagmentOpen = { open, setOpen };
-  const items = response.data;
 
   const [accountsCountry, setAccountsCountry] = useState([]);
   const [dataComparing, setDataComparing] = useCreateInitialState();
@@ -51,22 +50,11 @@ export const Home = ({ themeToggler }) => {
   });
   const menu = useMenu();
   const { showMap, showAccountComparing, showPeriodComparing } = menu;
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1500);
-  }, []);
-
-  if (loading) {
-    return (
-      <Loading/>
-    );
-  }
 
   return (
     <>
       <GoblalStyles />
-      <HomeStyled>        
+      <HomeStyled>
         <NavBarHome
           menu={menu}
           countryListManagmentOpen={countryListManagmentOpen}
@@ -74,30 +62,31 @@ export const Home = ({ themeToggler }) => {
         />
 
         {showMap && <ColorBar />}
-   
-         { showMap&& <SectionMapsStyled>
+
+        {showMap && (
+          <SectionMapsStyled>
             {showMap ? (
               currentMap ? (
                 <MapStyled className="map-container col-6">
                   <Map
-                    items={items}
+                    items={officialAccounts}
                     setAccounts={setAccountsCountry}
                     setMouse={setMousePosition}
                     countryListManagmentOpen={countryListManagmentOpen}
                     setCountrySelectedId={setCountrySelectedId}
                     setZoom={setZoom}
                   />
-                 <FloatingText setCurrentMap={setCurrentMap} zoom={zoom} />
-             { !zoom &&
-             <>
-                  <FloatingTextRight currentMap={currentMap} />
-              </>    
-              }
+                  <FloatingText setCurrentMap={setCurrentMap} zoom={zoom} />
+                  {!zoom && (
+                    <>
+                      <FloatingTextRight currentMap={currentMap} />
+                    </>
+                  )}
                 </MapStyled>
               ) : (
                 <MapStyled className="map-container col-6">
                   <MapIslands
-                    items={items}
+                    items={officialAccounts}
                     setAccounts={setAccountsCountry}
                     setMouse={setMousePosition}
                     countryListManagmentOpen={countryListManagmentOpen}
@@ -105,47 +94,56 @@ export const Home = ({ themeToggler }) => {
                     setZoom={setZoom}
                   />
 
-                  <FloatingText setCurrentMap={setCurrentMap} islands={true} zoom={zoom} />
-                  {!zoom && <>
-                  <FloatingTextRight currentMap={currentMap} />
-                  </>}
+                  <FloatingText
+                    setCurrentMap={setCurrentMap}
+                    islands={true}
+                    zoom={zoom}
+                  />
+                  {!zoom && (
+                    <>
+                      <FloatingTextRight currentMap={currentMap} />
+                    </>
+                  )}
                 </MapStyled>
               )
             ) : null}
             {showMap && (
-            <DetachableTable top={mousePosition.y} left={mousePosition.x}>
-              <CountryList
-                accountsCountry={accountsCountry}
-                countryListManagmentOpen={countryListManagmentOpen}
-                countryDataState={countryDataState}
-                countrySelectedId={countrySelectedId}
-              />
-            </DetachableTable>
-
+              <DetachableTable top={mousePosition.y} left={mousePosition.x}>
+                <CountryList
+                  accountsCountry={accountsCountry}
+                  countryListManagmentOpen={countryListManagmentOpen}
+                  countryDataState={countryDataState}
+                  countrySelectedId={countrySelectedId}
+                />
+              </DetachableTable>
             )}
-          </SectionMapsStyled>}
-          {!showMap && <SectionToolsStyled>
+          </SectionMapsStyled>
+        )}
+        {!showMap && (
+          <SectionToolsStyled>
             {showAccountComparing && (
               <ComparativeTool setDataComparing={setDataComparing} />
             )}
             {showPeriodComparing && (
               <>
-              <SelectorComparative
-                countryDataState={countryDataState}
-                setDataComparing={setDataComparing}
-              />
-          
+                <SelectorComparative
+                  countryDataState={countryDataState}
+                  setDataComparing={setDataComparing}
+                />
               </>
             )}
-          </SectionToolsStyled>}
-          {showMap ? null : (
-            <ComparisonContainerStyled>
-              <OptionsSearch setDataComparing={setDataComparing} context={dataComparing}/>
-              <ComponentContainer context={dataComparing} usuario={false}/>
-              <UpArrow />
-            </ComparisonContainerStyled>
-          )}
-  
+          </SectionToolsStyled>
+        )}
+        {showMap ? null : (
+          <ComparisonContainerStyled>
+            <OptionsSearch
+              setDataComparing={setDataComparing}
+              context={dataComparing}
+            />
+            <ComponentContainer context={dataComparing} usuario={false} />
+            <UpArrow />
+          </ComparisonContainerStyled>
+        )}
       </HomeStyled>
     </>
   );

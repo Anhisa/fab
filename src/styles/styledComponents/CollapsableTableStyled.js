@@ -41,8 +41,13 @@ export const CollapsableTableStyled = styled.div`
       flex-direction: column;
       width: 100%;
       margin-top: 20px;
+      .column{
+        width: 100%;
+      }
      
     }
  
+  }
+  @media (max-width: 768px) {
   }
 `;

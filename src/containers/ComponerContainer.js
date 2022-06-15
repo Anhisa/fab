@@ -5,7 +5,7 @@ import { MonthlyTweetsItems } from './MonthlyTweets';
 import { MostMentionedItems } from './MostMentioned';
 import { MostRepliedItems } from './MostReplied';
 import { MostRetweetedItems } from './MostRetweeted';
-import { TableContext } from '../context/TableContext';
+import { TableContext } from '../context/InitialState';
 import handleClick from '../helpers/HandleClick';
 import { CollapsableTableStyled } from '../styles/styledComponents/CollapsableTableStyled';
 import { StyledFilterButton } from '../styles/styledComponents/StyledFilterButton';

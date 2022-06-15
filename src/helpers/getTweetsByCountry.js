@@ -1,24 +1,23 @@
-import { useEffect, useState } from "react";
-import { useGetData } from "../hooks/useGetData";
+import { useContext, useEffect, useState } from "react";
+import { DataContext } from "../context/dataContext";
 
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-fol'
+
+
 
 export function useGetTweetsByCountry(){
-  const {data, loading} = useGetData(api);
-  const [innerData, setInnerData] = useState(data);
+  const {fol} = useContext(DataContext);
+  const [innerData, setInnerData] = useState(fol);
   const [filteredData, setFilteredData] = useState([]);
   let arrayDuplicate = [];
   useEffect(() => {
-    if (innerData !== false) {
-      setInnerData(data);
-    }
+  
     
       let array = filterDuplicates(innerData);
       arrayDuplicate = addDuplicates(array);
       setFilteredData(arrayDuplicate);
   
       
-  }, [data, loading]);
+  }, [fol]);
   return filteredData
 }
 function filterDuplicates(data) {

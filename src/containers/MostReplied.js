@@ -1,7 +1,7 @@
 import React, { useEffect, useState, memo } from 'react';
 import { Spinner } from 'react-bootstrap';
 import useActiveNames from '../hooks/useActiveNames';
-import usePeriodComparison from '../hooks/periodComparison';
+
 
 import { CreateChart } from '../helpers/createChart';
 import { useFilterData } from '../hooks/useFilterData';

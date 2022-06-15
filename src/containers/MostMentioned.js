@@ -5,7 +5,7 @@ import { MostMentionedItemCHANGE } from '../components/mostMentioned/MostMention
 import { CreateChart } from '../helpers/createChart';
 import { Spinner } from 'react-bootstrap';
 import useActiveNames from '../hooks/useActiveNames';
-import usePeriodComparison from '../hooks/periodComparison';
+
 import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';
 import MostMentionedPie from '../components/mostMentioned/MostMentionedPie';
 

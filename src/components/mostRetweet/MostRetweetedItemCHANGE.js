@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGetData } from '../../hooks/useGetData';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom';

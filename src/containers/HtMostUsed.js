@@ -4,8 +4,8 @@ import { HtMostUsedChart } from '../components/hashtags/HtMostUsedChart';
 import HtMostUsedPie from '../components/hashtags/HtMostUsedPie';
 
 
-import { TableContext } from '../context/TableContext';
-import usePeriodComparison from '../hooks/periodComparison';
+import { TableContext } from '../context/InitialState';
+
 import useActiveNames from '../hooks/useActiveNames';
 import { useFilterData } from '../hooks/useFilterData';
 import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';

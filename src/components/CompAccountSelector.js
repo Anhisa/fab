@@ -1,19 +1,17 @@
-import React from 'react';
-import { useGetData } from '../hooks/useGetData';
+import React, { useContext } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import 'bootstrap/dist/css/bootstrap.css';
+import { DataContext } from '../context/dataContext';
 
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
 export const CompAccountSelector = ({ setAccounts }) => {
   const [accountA, setAccountA] = React.useState('');
   const [accountB, setAccountB] = React.useState('');
+  const {officialAccounts} = useContext(DataContext)
 
-  const response = useGetData(api);
-  const items = response.data;
 
   const handleChangeA = ({target:{value}}) => {
     if(value === 'none') {
@@ -28,7 +26,7 @@ export const CompAccountSelector = ({ setAccounts }) => {
 
     }
     setAccountA(value);
-    const name = items.find(item => item.official_account_id === value);
+    const name = officialAccounts.find(item => item.official_account_id === value);
  
     setAccounts((prevState) => ({
       ...prevState,
@@ -49,7 +47,7 @@ export const CompAccountSelector = ({ setAccounts }) => {
       }));
       return setAccountB('');
     }
-    const name = items.find(item => item.official_account_id === value);
+    const name = officialAccounts.find(item => item.official_account_id === value);
     setAccounts((prevState) => ({
       ...prevState,
       accountIdB: {
@@ -81,7 +79,7 @@ export const CompAccountSelector = ({ setAccounts }) => {
             <MenuItem value="none">
               <em>Ninguna</em>
             </MenuItem>
-            {items.map((item) => (
+            {officialAccounts.map((item) => (
               <MenuItem
                 key={`oa-${item.official_account_id}`}
                 value={item.official_account_id}
@@ -111,7 +109,7 @@ export const CompAccountSelector = ({ setAccounts }) => {
             <MenuItem value="none">
               <em>Ninguna</em>
             </MenuItem>
-            {items.map((item) => (
+            {officialAccounts.map((item) => (
               <MenuItem
                 key={`oa-${item.official_account_id}`}
                 value={item.official_account_id}

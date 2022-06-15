@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { DataContext } from '../context/dataContext';
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
-import useGetCountries from './useGetCountries';
+
 
 const useGetCountryNames = () => {
-  const {data, loading} = useGetCountries();
+  const {countries} = useContext(DataContext);
   const [countryNames, setCountryNames] = useState([]);
   let tweetsByCountry = useGetTweetsByCountry();
   
   
   useEffect(() => {   
-    if (!loading && data.length > 0) {  
+    if (countries) {  
         let countryIds = tweetsByCountry.map((tweet) => tweet.countryId);
       
         let countryNames = countryIds.map((countryId) => {
    
-          const country = data.find(
+          const country = countries.find(
             (country) => country.country_id === countryId
           );
 
@@ -27,7 +28,7 @@ const useGetCountryNames = () => {
 
         setCountryNames(countryNames);
     }
-  }, [loading, data, tweetsByCountry]);
+  }, [ tweetsByCountry]);
   
   return countryNames;
 
