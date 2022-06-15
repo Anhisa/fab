@@ -39,33 +39,37 @@ const OptionsSearch = ({ setDataComparing, context }) => {
     });
   }
   function openTables() {
-    const options = [
-      'monthy-tweets',
-      'most-retweet',
-      'most-ht',
-      'most-mentioned',
-      'most-replied',
-    ];
+  
+    let elements ;
+    if(open){
+      elements = document.getElementsByClassName("open");
+    } else {
+      elements = document.getElementsByClassName("closed");
+    }
+    console.log('elements', elements);   
 
-    options.forEach((option) => {
-      let element = document.getElementById(option);
-      if (open) {
-        if (element.classList.contains('open')) {
-          element.classList.remove('open');
-          element.classList.add('closed');
-        }
-        return;
-      } else {
-        if (element.classList.contains('closed')) {
-          element.classList.remove('closed');
-          element.classList.add('open');
-        }
-        return;
-      }
-    });
-    let element = document.getElementById('monthy-tweets');
-    element.scrollIntoView({ behavior: 'smooth' });
+    // const options = [
+    //   'monthy-tweets',
+    //   'most-retweet',
+    //   'most-ht',
+    //   'most-mentioned',
+    //   'most-replied',
+    // ];
+    for(let i = 0; i < elements.length; i++){    
+     let element = elements[i];     
+     console.log('element', element)
+     if(!open){
+      element.classList.remove('closed');
+      element.classList.add('open');
+     } else {
+      element.classList.remove('open');
+      element.classList.add('closed');
+     }        
+    };
     setOpen((prev) => !prev);
+    
+    console.log('open', open);
+    
     // if (open) {
     //   let element = document.getElementById('monthy-tweets');
     //   element.scrollIntoView({ behavior: 'smooth' });

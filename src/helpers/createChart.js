@@ -39,19 +39,20 @@ export function CreateChart(dataAccounts) {
 
   if(Object.keys(dataAccounts).length < 3){
     
-    
+  console.log('dataAccounts' , dataAccounts)
   dataAccounts.forEach((item) => {
     const tweetNumber = item.map((innerItem) =>
-    {if(innerItem.tweets_number){
-      
-      return parseInt(innerItem.tweets_number)
-    }
-      
+    {
+    if(innerItem.tweets_number >= 0){     
+      console.log('innerItem.tweets_number', innerItem.tweets_number)
+      return innerItem.tweets_number
+    } else {
       return parseInt(innerItem.mentions_number)}
+    }      
     );
 
     const progressBarList = tweetNumber.map((item2, index) => {
-
+      
       return (
         <>
         <ProgressBar

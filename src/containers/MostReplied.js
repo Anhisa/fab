@@ -29,7 +29,7 @@ export const MostRepliedItems = ({ usuario, context}) => {
       setChartData(CreateChart(data));
     }
   }, [data, loading]);
-
+  
   if (!data) {
     return <Spinner animation="border" role="status">
     <span className="visually-hidden">Loading...</span>
