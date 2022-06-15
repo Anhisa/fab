@@ -59,17 +59,18 @@ const NavBarHome = ({setCurrentMap, menu, countryListManagmentOpen, themeToggler
       </div>
 
       <div className={
-        showMenu ? 'menu open' : 'menu closed'
+        showMenu ? 'menu opened' : 'menu close'
       }>
         <MenuButtonStyled className="menu-item"
           onClick={handleClickAccounts}
+          type='button'
         >
           <p>{showMap ? 'COMPARADOR' : 'MAPA'}</p>
         </MenuButtonStyled>
-        <MenuButtonStyled className="menu-item">
+        <MenuButtonStyled className="menu-item" type='button'>
           <p>DOCUMENTOS</p>
         </MenuButtonStyled>
-        <MenuButtonStyled className="menu-item"
+        <MenuButtonStyled className="menu-item"type='button'
           onClick={changeTheme}
         >
           <p>CAMBIAR TEMA</p>

@@ -71,7 +71,7 @@ export const NavBarHomeStyled = styled.nav`
     .menu{
       display: none;
     }
-    .open{
+    .opened{
       position: absolute;
       top: 80px;
       left: 0;

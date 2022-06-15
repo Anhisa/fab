@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CollapsableTableStyled = styled.div`
+export const CollapsableTableStyled = styled.section`
 .open {
     gap: 10px;
     margin-top: 10px;
