@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const NavBarHomeStyled = styled.nav`
- width: 100vw;
+ width: 100%;
  background-color: ${({ theme }) => theme.primary};
   height: 80px;
  color: white;

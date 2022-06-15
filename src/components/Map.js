@@ -206,13 +206,13 @@ const CustomZoomableGroup = ({ children, positionLocal, setPosition, ...restProp
       </g>
     );
   }
-//
-//   if(position.dragging?.type === undefined){
+  
+//   if(position.dragging === undefined){
 //     position= positionLocal;
 //     return (
 //       <g
 //       ref={mapRef}
-//       transform={`translate(${positionLocal.coordinates[0]}, ${positionLocal.coordinates[1]})`}
+//       transform={`translate(${positionLocal.coordinates[0]}, ${positionLocal.coordinates[1]}) scale(${positionLocal.zoom})`}
 //       >
 //         <g>{children}</g>
 //       </g>

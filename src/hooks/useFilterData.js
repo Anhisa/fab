@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import { useContext, useEffect, useState } from 'react';
-import { TableContext } from '../context/TableContext';
+import { DataContext } from '../context/dataContext';
+import { TableContext } from '../context/InitialState';
 import {
   addDuplicates,
   filterDuplicates,
@@ -20,7 +21,7 @@ function sortArray(array, from) {
 
 export const useFilterData = (api,context, from) => {
   // const context = useContext(TableContext);
-
+  let data
   const {
     accounts,
     period,
@@ -30,8 +31,38 @@ export const useFilterData = (api,context, from) => {
     country_id,
   } = context;
 
+  const {
+    mostMentioned,
+    mostReplied,
+    mostRetweeted,
+    htMostUsed,  
+    monthlyTweets  
+  } = useContext(DataContext);
+  switch (from) {
+    case 'most-mentioned':
+      data = mostMentioned;
+      break;
+    case 'most-replied':
+      data = mostReplied;
+      break;
+    case 'most-retweeted':
+      data = mostRetweeted;
+      break;
+    case 'ht-most-used':
+      data = htMostUsed;
+      break;
+    case 'monthly-tweets':
+      data = monthlyTweets;
+      break;
+    default:
+      console.log('No se encontró el from');
+      break;
+
+    }
+ 
+
   const [filteredData, setFilteredData] = useState(false);
-  const { loading, data } = useGetData(api);
+  let loading = false;
 
   const items = data;
 

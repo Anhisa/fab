@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { useGetData } from '../hooks/useGetData';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';

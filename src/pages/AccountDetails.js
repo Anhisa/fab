@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { MonthlyTweetsItems } from '../containers/MonthlyTweets';
 import { useParams } from 'react-router';
 import { useGetData } from '../hooks/useGetData';
@@ -24,11 +24,12 @@ import VerifiedPie from '../components/extraTables/VerifiedPie';
 import AccountCreationDate from '../components/extraTables/accountCreationDate';
 import AllDataByAccount from '../components/extraTables/allDataByAccount';
 import { GoblalStyles } from '../styles/styledComponents/GlobalStyles';
+import { DataContext } from '../context/dataContext';
 
 export const AccountDetails = () => {
   const { account } = useParams();
   const [innerLoading, setInnerLoading] = useState(true);
-  const { loading, data } = useGetData(apiUsuarios);
+  const { fol } = useContext(DataContext);
 
   const [period, setPeriod] = useState({
     startDate: 1,
@@ -38,8 +39,8 @@ export const AccountDetails = () => {
   const [dataSearch, setDataSearch] = useState(false);
 
   useEffect(() => {
-    if (!loading) {
-      const userId = data.filter((item) => item.official_account === account);
+  
+      const userId = fol.filter((item) => item.official_account === account);
       if (userId.length === 0) {
         return;
       }
@@ -56,30 +57,30 @@ export const AccountDetails = () => {
         },
         period: period,
       });
-    }
-  }, [loading, data, account, period]);
-  useEffect(() => {
-    setTimeout(() => {
-      setInnerLoading(false);
-    }, 1500);
-  }, []);
-  if (innerLoading) {
-    return (
-      <div
-        className="spinner"
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh',
-        }}
-      >
-        <Lottie animationData={lootieLoading} loop={true} label="loading" />
-        <span className="visually-hidden">Loading...</span>
-      </div>
-    );
-  }
-  if (data.length === 0) {
+    
+  }, [fol, account, period]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setInnerLoading(false);
+  //   }, 1500);
+  // }, []);
+  // if (innerLoading) {
+  //   return (
+  //     <div
+  //       className="spinner"
+  //       style={{
+  //         display: 'flex',
+  //         justifyContent: 'center',
+  //         alignItems: 'center',
+  //         height: '100vh',
+  //       }}
+  //     >
+  //       <Lottie animationData={lootieLoading} loop={true} label="loading" />
+  //       <span className="visually-hidden">Loading...</span>
+  //     </div>
+  //   );
+  // }
+  if (fol.length === 0) {
     return <div>Error no hay data en ese Usuario</div>;
   }
 

@@ -7,11 +7,11 @@ const CountrySelectFilter = ({
   countrysWithData,
   setCountryFilterActive,
   setCountryId,
-  countryDataState,
+  
 }) => {
   const [innerData, setInnerData] = useState([]);
   const [countriesData, setCountriesData] = useState([]);
-  const [countriesAllData, setCountriesAllData] = countryDataState;
+ 
   const [countryA, setCountryA] = useState('');
 
   let  countryNames  = useGetCountryNames();

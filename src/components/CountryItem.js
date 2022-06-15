@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom';
 import VerifiedIcon from '@mui/icons-material/Verified';
@@ -6,6 +6,7 @@ import { getFlag } from '../helpers/getFlag';
 import { CountryCardSelectStyled, EmptyCardStyled } from '../styles/styledComponents/CountryCardSelect';
 import useGetCountries from '../hooks/useGetCountries';
 import { DataTableStyled } from '../styles/styledComponents/ComparativeStyled';
+import { DataContext } from '../context/dataContext';
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
 const columns = [
@@ -45,17 +46,15 @@ const columns = [
   },
 
 ];
-export const CountryItem = ({ accountsCountry, countryListManagmentOpen, countryDataState, countrySelectedId }) => {
+export const CountryItem = ({ accountsCountry, countryListManagmentOpen,  countrySelectedId }) => {
   const {open, setOpen} = countryListManagmentOpen;
-  const [countriesAllData, setCountriesAllData] = countryDataState;  
-  const {data, loading} = useGetCountries()
-  useEffect(()=> {
-    if(!loading) setCountriesAllData(data)
-  },[loading])
+  
+  const {countries} = useContext(DataContext);
+   
 
   function hasRelationWithTaiwan(countryId) {
-   if(loading) return false
-   const countryData = countriesAllData.find(country => country.country_id === countryId);
+
+   const countryData = countries.find(country => country.country_id === countryId);
    
    return countryData.official_relations_spa === 'Taiwan' ?? false;
   }
@@ -63,7 +62,7 @@ export const CountryItem = ({ accountsCountry, countryListManagmentOpen, country
 
 
   if (accountsCountry.length === 0 && open) {
-    const countryData = countriesAllData.find(country => country.country_id === countrySelectedId);
+    const countryData = countries.find(country => country.country_id === countrySelectedId);
     if(open && hasRelationWithTaiwan(countrySelectedId)) {
       return (
         <div className={open ? 'open' : 'closed'}>

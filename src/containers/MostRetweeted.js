@@ -6,7 +6,7 @@ import { CreateChart } from '../helpers/createChart';
 import { Spinner } from 'react-bootstrap';
 
 import useActiveNames from '../hooks/useActiveNames';
-import usePeriodComparison from '../hooks/periodComparison';
+
 import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';
 import { MostRetweetedItemChange } from '../components/mostRetweet/MostRetweetedItemCHANGE';
 import MostRetwittedPie from '../components/mostRetweet/MostRetwittedPie';
