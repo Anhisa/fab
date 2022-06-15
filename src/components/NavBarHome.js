@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MenuButtonStyled, NavBarHomeStyled } from '../styles/styledComponents/NavBarHomeStyled';
 import { Spin as Hamburger } from 'hamburger-react'
+import { Link } from "react-router-dom";
 
 const NavBarHome = ({setCurrentMap, menu, countryListManagmentOpen, themeToggler}) => {
   const { setShowMap, setShowAccountComparing, setShowPeriodComparing, showMap } = menu;
@@ -67,7 +68,7 @@ const NavBarHome = ({setCurrentMap, menu, countryListManagmentOpen, themeToggler
           <p>{showMap ? 'COMPARADOR' : 'MAPA'}</p>
         </MenuButtonStyled>
         <MenuButtonStyled className="menu-item">
-          <p>DOCUMENTOS</p>
+        <a target="_blank" href="https://fundacionandresbello.org/documentos-dd/"><p>DOCUMENTOS</p></a>
         </MenuButtonStyled>
         <MenuButtonStyled className="menu-item"
           onClick={changeTheme}

@@ -16,9 +16,10 @@ export const PieContainerStyled = styled.div`
 
 export const PieChartContainer = styled.div`
   display: flex;
-width:${props => props.usuario ? '50%' : '100%' };
-  margin-top: 20px;
-  padding: 0px !important;
+  width:${props => props.usuario ? '50%' : '100%' };
+  padding: 0 !important;
+  margin-top: 25px;
+  margin-left: 5px;
   border-radius: 25px;
   background-color: ${({ theme }) => theme.background} !important;
   border: 2px solid ${({ theme }) => theme.toggleBorder};
@@ -32,7 +33,7 @@ width:${props => props.usuario ? '50%' : '100%' };
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 1.2rem;
     margin-bottom: 10px;
     border-top-right-radius: 24px;
@@ -41,6 +42,7 @@ width:${props => props.usuario ? '50%' : '100%' };
     border-bottom: 1px solid ${({ theme }) => theme.text};
     background-color: ${({ theme }) => theme.secondary};
   }
+
 
   @media (max-width: 1000px) {
     width: 100%;

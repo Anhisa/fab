@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const MapStyled = styled.div`
   cursor: grab;
-  width: 100vw;
+  width: 98vw;
   .geo{
   //hover
   &:hover{

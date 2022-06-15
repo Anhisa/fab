@@ -53,14 +53,14 @@ export const FloatingTextStyled = styled.div`
 export const FloatingTextRightIslandStyled = styled.div`
   position: absolute;
   margin-top: 100px;
+  padding: 10px 50px;
   right: 50px;
-  height: 70px;
   margin-right: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 250px;
-  border: 10px solid ${({ theme }) => theme.text};
+  border: 3px solid ${({ theme }) => theme.text};
+  border-radius: 20px;
   background-color: transparent;
   color: ${({ theme }) => theme.text};
   p {

@@ -54,8 +54,12 @@ export const UserCardStyled = styled.div`
     background-color:#ffce21;
   }
   .title {
+    h5 {
+      font-size: 1.3rem;
+    }
     p {
-      margin-bottom: 0;      
+      margin-bottom: 0; 
+      font-size: 1.2rem;     
     }
   }
   .innerGroup{
@@ -69,7 +73,7 @@ export const UserCardStyled = styled.div`
         font-size: 1.2rem;
         margin-top: 0;
         margin-bottom: 0;
-        font-weight: bold;
+        /* font-weight: bold; */
        
       }
     }
@@ -79,7 +83,7 @@ export const UserCardStyled = styled.div`
       flex-direction: row;      
      
       p{
-        font-size: 1rem;
+        font-size: 1.2rem;
         margin-top: 0;
         margin-bottom: 0;
         font-weight: bold;

@@ -101,8 +101,8 @@ export const MapIslands = ({
       width={windowSize.width ? windowSize.width  : 1000}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
-          rotate: [72, -17.4, 0],
-          scale: 2300,
+          rotate: [72, -17, 0],
+          scale: 1700,
         }}
         onClick={handleOnClick}
       >
@@ -112,7 +112,7 @@ export const MapIslands = ({
           positionLocal={localPosition}
           onMoveEnd={handleMoveEnd}
         > */}
-          <Graticule stroke="#ccc" step={[16, 9]} />
+          <Graticule stroke="#ccc" step={[27, 9]} />
           <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
             {({ geographies }) =>
               geographies

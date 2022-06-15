@@ -5,6 +5,8 @@ import {
   UserCardStyled,
   ViewUserCardStyled,
 } from '../styles/styledComponents/ViewUserCardStyled';
+
+
 const ViewUserCard = ({ data, period }) => {
   
   const dataLength = data.length - 1;
@@ -43,7 +45,9 @@ i = 1
   return (
     <ViewUserCardStyled>
       <div className="innerLeft">
-        <UserAccountCard user={data[0].official_account} />
+        <UserAccountCard 
+        user={data[0].official_account} 
+        />
         <hr />
         <UserCard
           name={'Institución / Nombre'}
@@ -97,7 +101,7 @@ export const UserAccountCard = ({ user }) => {
         <div className="dot" />
         <div className="innerGroup">
           <div className="title">
-            <b>Cuenta</b>
+            <h5>Cuenta</h5>
           </div>
           <div className="account">
             <p>{user}</p>

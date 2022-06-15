@@ -22,6 +22,7 @@ height: fit-content;
 padding: 0px !important;
 width: 100%;
 margin-top: 25px;
+margin-right: 5px;
 
 
 .rdt_TableHeader{
@@ -31,6 +32,7 @@ margin-top: 25px;
   margin: 0px;  
   p{
     font-weight: 500;
+    font-size: 1.2rem;
     margin: 0;
     padding: 0;
     text-align: center;
