@@ -7,19 +7,21 @@ import { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from '../styles/styledComponents/Themes';
 import useGetAllData from '../hooks/useGetAllData';
 import { DataContext } from '../context/dataContext';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Loading from '../components/Loading';
 
 
 export const App = () => {
   const [theme, themeToggler] = useTheme();
-  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const allData = useGetAllData()
+  console.log('allData', allData)
+  const [data, setData] = useState({});
 
-  useEffect(() => {
-    console.log('me ejecute')
-    if(Object.keys(allData).length > 0) {   
+  console.log('data', data);
+  useEffect(() => {    
+    if(Object.keys(allData).length > 0) {    
+    setData(allData) 
     setLoading(false)    
     }
   }
@@ -30,7 +32,7 @@ export const App = () => {
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-      <DataContext.Provider value={allData}>
+      <DataContext.Provider value={data}>
       <BrowserRouter>
         <Routes>
           <Route
