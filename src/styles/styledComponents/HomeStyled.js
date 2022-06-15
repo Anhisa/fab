@@ -10,8 +10,7 @@ export const HomeStyled = styled.div`
   justify-content: center;
   .open{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
-} */
-
+}
 `

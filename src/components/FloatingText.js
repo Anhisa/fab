@@ -7,7 +7,7 @@ import {
 } from '../styles/styledComponents/FloatingText.styled';
 
 const FloatingText = ({ setCurrentMap, islands, zoom }) => {
-  console.log(zoom)
+  console.log(zoom);
   function handleMap() {
     setCurrentMap((prev) => (prev = !prev));
   }
@@ -15,28 +15,30 @@ const FloatingText = ({ setCurrentMap, islands, zoom }) => {
   if (islands) {
     return (
       <FloatingTextIslandsStyled>
-       {!zoom && 
-       <p className='info'>
-          Base de datos interactiva de las cuentas de Twitter pertenecientes a
-          los diplomáticos y representaciones diplomáticas de la República
-          Popular China en América Latina y el Caribe.
-      </p>}
-        <ButtonFloatingStyled onClick={handleMap} type='button'>
-          <p>¡Cambia el mapa!</p>
+        {!zoom && (
+          <p className="info">
+            Base de datos interactiva de las cuentas de Twitter pertenecientes a
+            los diplomáticos y representaciones diplomáticas de la República
+            Popular China en América Latina y el Caribe.
+          </p>
+        )}
+        <ButtonFloatingStyled onClick={handleMap} type="button">
+          <p>Ver mapa continente</p>
         </ButtonFloatingStyled>
       </FloatingTextIslandsStyled>
     );
   }
   return (
     <FloatingTextStyled>
-      {!zoom && 
-       <p className='info'>
+      {!zoom && (
+        <p className="info">
           Base de datos interactiva de las cuentas de Twitter pertenecientes a
           los diplomáticos y representaciones diplomáticas de la República
           Popular China en América Latina y el Caribe.
-      </p>}
+        </p>
+      )}
       <ButtonFloatingStyled onClick={handleMap}>
-        <p>¡Cambia el mapa!</p>
+        <p>Ver mapa del Caribe</p>
       </ButtonFloatingStyled>
     </FloatingTextStyled>
   );

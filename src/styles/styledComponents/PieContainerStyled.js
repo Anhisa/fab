@@ -4,7 +4,7 @@ export const PieContainerStyled = styled.div`
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  
+
   width: 100%;
   gap: 10px;
   justify-content: center;
@@ -33,6 +33,7 @@ width:${props => props.usuario ? '50%' : '100%' };
     justify-content: center;
     align-items: center;
     font-weight: 500;
+    font-size: 1.2rem;
     margin-bottom: 10px;
     border-top-right-radius: 24px;
     border-top-left-radius: 24px;

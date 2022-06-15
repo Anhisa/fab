@@ -14,7 +14,7 @@ const FloatingTextRight = ({ currentMap }) => {
   } else {
   return (
     <FloatingTextRightStyled>
-      <p>America Latina Continental</p>
+      <p>América Latina Continental</p>
     </FloatingTextRightStyled>
   );
 };

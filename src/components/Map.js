@@ -27,8 +27,8 @@ export const Map = ({
 
 }) => {
   const [localPosition, setLocalPosition] = useState({
-    coordinates: [-81, -9],
-    zoom: 1.5,
+    coordinates: [-78, -11],
+    zoom: 1.2,
   });
   const { open, setOpen } = countryListManagmentOpen;
   const windowSize = useWindowSize();
@@ -102,12 +102,12 @@ export const Map = ({
       className='map'
     >
       <ComposableMap
-        height={windowSize.height ? windowSize.height * 0.9 :500}
-        width={windowSize.width ? windowSize.width : 500}
+        height={windowSize.height ? windowSize.height * 0.98 :500}
+        width={windowSize.width ? windowSize.width * 0.98 : 500}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
-          rotate: [73, 11.5, 0],
-          scale: 438,
+          rotate: [77, 12, 0],
+          scale: 448,
         }}
         onClick={handleOnClick}
         onWheelCapture={closeOnZoomIn}
@@ -116,13 +116,13 @@ export const Map = ({
 
 
       >
-        < CustomZoomableGroup
+        {/* < CustomZoomableGroup
           zoom={localPosition.zoom}
           center={localPosition.coordinates}
           positionLocal={localPosition}
           onMoveEnd={handleMoveEnd}
 
-        >
+        > */}
           <Graticule stroke="#ccc" step={[27, 9]} />
 
           <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
@@ -153,9 +153,9 @@ export const Map = ({
                 })
             }
           </Geographies>
-        </ CustomZoomableGroup>
+        {/* </ CustomZoomableGroup> */}
       </ComposableMap>
-      <div className="controls">
+      {/* <div className="controls">
         <button onClick={handleZoomIn}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -181,7 +181,7 @@ export const Map = ({
             <line x1="5" y1="12" x2="19" y2="12" />
           </svg>
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
@@ -237,9 +237,9 @@ const CustomZoomableGroup = ({ children, positionLocal, setPosition, ...restProp
     <g ref={mapRef}>
 
       <g
-        // transform={`translate(${position.x} ${
-        //   check ? position.y : ''
-        // }  ) scale(${positionLocal.zoom})`}
+        transform={`translate(${position.x} ${
+          check ? position.y : ''
+        }  ) scale(${positionLocal.zoom})`}
       >
         {children}
       </g>

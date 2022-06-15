@@ -30,7 +30,7 @@ export const MapIslands = ({
     zoom: 1,
   });
   const { open, setOpen } = countryListManagmentOpen;
-  
+
   function handleZoomIn() {
     setZoom(true)
     if (localPosition.zoom >= 4) return;
@@ -65,14 +65,14 @@ export const MapIslands = ({
       const filteredAccounts = items.filter(
         (item) => item.country_id === itemValue.value
       );
-      if(pageX + 250 > windowSize.width){        
+      if(pageX + 250 > windowSize.width){
         x = pageX - 250;
     }
 
-    if(pageY + 250 > windowSize.height){    
+    if(pageY + 250 > windowSize.height){
       y = pageY - 250;
     }
-  
+
       // console.log('x , y', x, y);
       setMouse({
         x: x,
@@ -101,17 +101,17 @@ export const MapIslands = ({
       width={windowSize.width ? windowSize.width  : 1000}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
-          rotate: [49, -67.5, 12],
-          scale: 2200,
+          rotate: [72, -17.4, 0],
+          scale: 2300,
         }}
         onClick={handleOnClick}
       >
-        <CustomZoomableGroup
+        {/* <CustomZoomableGroup
           zoom={localPosition.zoom}
           center={localPosition.coordinates}
           positionLocal={localPosition}
           onMoveEnd={handleMoveEnd}
-        >
+        > */}
           <Graticule stroke="#ccc" step={[16, 9]} />
           <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
             {({ geographies }) =>
@@ -137,9 +137,9 @@ export const MapIslands = ({
                 })
             }
           </Geographies>
-        </CustomZoomableGroup>
+        {/* </CustomZoomableGroup> */}
       </ComposableMap>
-      <div className="controls">
+      {/* <div className="controls">
         <button onClick={handleZoomIn}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -165,7 +165,7 @@ export const MapIslands = ({
             <line x1="5" y1="12" x2="19" y2="12" />
           </svg>
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
