@@ -16,7 +16,6 @@ const FloatingButton = ({ currentMap, setCurrentMap, countryListManagmentOpen, m
   useEffect(() => {
     let header = document.getElementById('floating-button');
     let sticky = 140;
-
     if (scroll > sticky) {
       header.classList.add('sticky');
       header.classList.add('hide');

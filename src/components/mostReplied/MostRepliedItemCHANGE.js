@@ -8,6 +8,7 @@ import { CreateChart } from '../../helpers/createChart';
 import { EmptyDataTable, StyledDataTable } from '../../styles/styledComponents/StyledDataTable';
 import { ExpandedStyled } from '../../styles/styledComponents/ExpandedStyled';
 import { columns } from '../../helpers/columns';
+import { ExpandedComponent } from '../ExpandedComponent';
 
 export const MostRepliedItemCHANGE = ({ newData, title, arrayBar }) => {
   console.log('newData', newData);
@@ -53,10 +54,7 @@ export const MostRepliedItemCHANGE = ({ newData, title, arrayBar }) => {
       item.most_replied_category_desc_spa
     )
   );
-  const ExpandedComponent = ({ data }) => <ExpandedStyled>
-    <h3>Categoría:<em>{data.categoría}</em></h3>
-    <span>{data.catDesc}</span>
-  </ExpandedStyled>;
+ 
   
   rows = rows?.map((item, index) => {
     return {

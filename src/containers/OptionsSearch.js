@@ -43,10 +43,11 @@ const OptionsSearch = ({ setDataComparing, context }) => {
     let elements ;
     if(open){
       elements = document.getElementsByClassName("open");
+      console.log('elements', elements);   
     } else {
       elements = document.getElementsByClassName("closed");
+      console.log('elements', elements);   
     }
-    console.log('elements', elements);   
 
     // const options = [
     //   'monthy-tweets',

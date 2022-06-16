@@ -4,6 +4,8 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie, Doughnut } from 'react-chartjs-2';
 import { PieChartContainer } from '../../styles/styledComponents/PieContainerStyled';
 import { colorsFromCategory } from '../../helpers/colorsFromCategory';
+import useOptionsPie from '../../helpers/optionsPie';
+
 
 ChartJS.register(Tooltip, Legend);
 
@@ -11,7 +13,7 @@ const MostRepliedPie = ({ newData, title, setCategories, usuario }) => {
   const repliedCategories = extractRepliedCategories(newData);
 
   const duplicates = filterDuplicates(repliedCategories);
-
+  const optionsPie = useOptionsPie()
   let dataSolved = addDuplicates(duplicates);
 
   let colors = colorsFromCategory(dataSolved);
@@ -37,23 +39,7 @@ const MostRepliedPie = ({ newData, title, setCategories, usuario }) => {
       <h4>Categorias de más respuesta de: <br/> {title}</h4>
       <Doughnut
         data={dataChart}
-        options={{
-          plugins: {
-            legend: {
-              position: 'top',
-              labels: {
-                boxWidth: 10,
-                font: {
-                  size: 12,
-                  weight: 'bold',
-                },
-                padding: 15,
-                pointStyle: 'rectRounded',
-                usePointStyle: true,
-              },
-            },
-          },
-        }}
+        options={optionsPie}
       />
     </PieChartContainer>}
     </>

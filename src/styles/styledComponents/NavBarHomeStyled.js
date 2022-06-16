@@ -58,6 +58,7 @@ export const NavBarHomeStyled = styled.nav`
     h3 {
       font-size: 1.5rem;
       margin: 7px 12px;
+      color: ${({ theme }) => theme.textContrast};
     }
   }
   @media (max-width: 968px) {

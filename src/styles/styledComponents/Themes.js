@@ -14,11 +14,11 @@ export const lightTheme = {
 
 export const darkTheme = {
   body: '#333',
-  background: '#333',
+  background: '#666',
   text: '#fff',
-  primary: 'black',
-  secondary: yellow,
+  primary: lightBlue,
+  secondary: darkBlue,
   tertiary: '#fff',
-  toggleBorder: '#fff',
-  textContrast: 'white',
+  toggleBorder: yellow,
+  textContrast: darkBlue,
 }

@@ -14,6 +14,7 @@ import {
 import { Line } from 'react-chartjs-2';
 
 import { dataReducer } from '../../helpers/dataReducer';
+import { useTheme } from 'styled-components';
 
 ChartJS.register(
   CategoryScale,
@@ -31,7 +32,7 @@ export const MonthlyTweetsChart = ({ newData, context }) => {
     return null;
   }
   let [dataSets, labels] = useCallback(createDatasets(newData, context), [newData]);
-
+  const theme = useTheme();
   const accountInfo = [];
   const account = newData[0];
 
@@ -42,12 +43,13 @@ export const MonthlyTweetsChart = ({ newData, context }) => {
 
   const options = {
     fill: true,
-    responsive: true,
+   
     interaction: {
       mode: 'index',
       axis: 'x',
       position: 'nearest'
     },
+   
     scales: {
       y: {
         min: 0,
@@ -55,6 +57,14 @@ export const MonthlyTweetsChart = ({ newData, context }) => {
       x: {
         min: 0,
       },
+      ticks: {
+        beginAtZero: true,
+        fontColor: theme.text,
+        fontSize: 12,
+        fontFamily: 'Roboto',
+      }
+      
+
     },
     plugins: {
       legend: {
@@ -65,11 +75,17 @@ export const MonthlyTweetsChart = ({ newData, context }) => {
         text: 'Número de Tweets mensuales',
         position: 'top',
         fullSize: true,
+        color: theme.text,
+       
         font: {
           size: 20,
-          weight: 'bold',
+          weight: 'bold', 
+
         },
       },
+      tooltip :{         
+          bodyColor: theme.text        
+      }
     },
   };
 
@@ -80,7 +96,89 @@ export const MonthlyTweetsChart = ({ newData, context }) => {
 
   return (
     <>
-      <Line data={data} options={options} />
+      <Line data={data} options={
+        {
+        //   animations: {
+        //   tension: {
+        //     duration: 5000,
+        //     easing: 'linear',
+        //     from: 1,
+        //     to: 0,
+        //     loop: true
+        //   }
+        // },
+          fill: true,
+   
+          interaction: {
+            mode: 'index',
+            axis: 'x',
+            position: 'nearest'
+          },
+         
+          scales: {
+            y: {
+              min: 0,
+              ticks: {
+                color: theme.text,
+              }             
+              
+            },
+            x: {
+              min: 0,
+              ticks: {
+                color: theme.text,
+              }             
+            },
+            
+       
+            
+      
+          },
+          plugins: {
+            legend: {
+              display: true,
+              labels: {
+                boxWidth: 10,
+                color: theme.text,
+                font: {
+                  size: 12,
+                  weight: 'bold',
+                }
+                
+              }
+            },
+            tooltip:{
+              bodyColor: theme.text,
+              titleFontSize: 20,
+              titleFontStyle: 'bold',
+              titleFontColor: theme.text,
+              titleMarginBottom: 10,
+              titleFontFamily: 'Roboto',
+              titleFontWeight: 'bold',
+            },
+
+            title: {
+              display: true,
+              text: 'Número de Tweets mensuales',
+              position: 'top',
+              fullSize: true,
+              color: theme.text,
+             
+              font: {
+                size: 20,
+                weight: 'bold',                
+      
+              },
+            },
+          
+          },
+        }
+      }
+
+
+
+
+      />
     </>
   );
 };

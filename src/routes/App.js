@@ -14,11 +14,9 @@ import Loading from '../components/Loading';
 export const App = () => {
   const [theme, themeToggler] = useTheme();
   const [loading, setLoading] = useState(true);
-  const allData = useGetAllData()
-  console.log('allData', allData)
+  const allData = useGetAllData()  
   const [data, setData] = useState({});
-
-  console.log('data', data);
+  
   useEffect(() => {    
     if(Object.keys(allData).length > 0) {    
     setData(allData) 
@@ -41,7 +39,7 @@ export const App = () => {
           />
           <Route
             path={`/diplomacia-digital/:account`}
-            element={<AccountDetails />}
+            element={<AccountDetails themeToggler = {themeToggler}/>}
           />
         </Routes>
       </BrowserRouter>

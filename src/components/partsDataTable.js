@@ -1,11 +1,14 @@
 import React from 'react'
 import VerifiedIcon from '@mui/icons-material/Verified';
+
+
 export const UserAccount = ({userAccount, userAccountDesc}) => {
   if(userAccountDesc){
 
     return (
       <>
-        <h6>
+        <h6
+          >
             {userAccount}
         </h6>
         <p>

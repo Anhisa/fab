@@ -3,21 +3,31 @@ import { Link } from 'react-router-dom';
 import { NavBarStyled } from '../styles/styledComponents/NavBarStyled';
 import OtherHousesIcon from '@mui/icons-material/OtherHouses';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { MenuButtonStyled } from '../styles/styledComponents/NavBarHomeStyled';
 
-const NavBar = () => {
+const NavBar = ({themeToggler}) => {
+  function changeTheme(){
+    themeToggler()
+  }
   return (
     <NavBarStyled>
       <div className="navbar-header">
-        <h1>
+        <i className='backArrow'>
           <Link to={'/diplomacia-digital'}>
             <ArrowBackIcon 
               sx={{
                 fontSize: 40,
                 color: '#ffce21',
+                
               }}
             />
           </Link>
-        </h1>
+        </i>
+        <MenuButtonStyled className="menu-item"type='button'
+          onClick={changeTheme}
+        >
+          <p>CAMBIAR TEMA</p>
+        </MenuButtonStyled>
       </div>
     </NavBarStyled>
   );

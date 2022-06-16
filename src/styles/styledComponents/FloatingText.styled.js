@@ -2,12 +2,13 @@ import styled from 'styled-components';
 
 export const FloatingTextStyled = styled.div`
   position: absolute;
-  top: 250px;
+  top: 450px;
   left: 60px;
   height: 100px;
   width: 500px;
   background-color: transparent;
   color: ${({ theme }) => theme.text};
+  
   p {
     font-size: 1.2rem;
     margin-bottom: 0;

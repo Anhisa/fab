@@ -26,7 +26,7 @@ import AllDataByAccount from '../components/extraTables/allDataByAccount';
 import { GoblalStyles } from '../styles/styledComponents/GlobalStyles';
 import { DataContext } from '../context/dataContext';
 
-export const AccountDetails = () => {
+export const AccountDetails = ({themeToggler}) => {
   const { account } = useParams();
   const [innerLoading, setInnerLoading] = useState(true);
   const { fol } = useContext(DataContext);
@@ -90,7 +90,7 @@ export const AccountDetails = () => {
         <>
           <GoblalStyles />
           <AccountDetailsStyled>
-            <NavBar />
+            <NavBar themeToggler ={themeToggler}/>
             <HeaderUserCard
               countryId={dataSearch.country}
               userName={dataSearch.userOfficialName}

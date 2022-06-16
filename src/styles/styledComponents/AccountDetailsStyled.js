@@ -3,10 +3,11 @@ import styled from 'styled-components';
 export const AccountDetailsStyled = styled.div`
   display: flex;
   width: 100%;
-  max-width: 100%;
+  height: 100%;
+
   flex-direction: column;
   justify-content: center;
-  padding: 0 20px;
+  
   background-color: ${({ theme }) => theme.body};
   color : ${({ theme }) => theme.text};
   .tableContainer{

@@ -4,6 +4,9 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import { PieChartContainer } from '../../styles/styledComponents/PieContainerStyled';
 import { colorsFromCategory } from '../../helpers/colorsFromCategory';
+import { useTheme } from 'styled-components';
+import optionsPie from '../../helpers/optionsPie';
+import useOptionsPie from '../../helpers/optionsPie';
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -11,7 +14,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const HtMostUsedPie = ({ newData, title, setCategories, usuario }) => {
   const htCategories = extractHtCategories(newData);
   const duplicates = filterDuplicates(htCategories);
-
+  const optionsPie = useOptionsPie()
   let dataSolved = addDuplicates(duplicates);
 
   let colors = colorsFromCategory(dataSolved);
@@ -46,23 +49,7 @@ const HtMostUsedPie = ({ newData, title, setCategories, usuario }) => {
       { data.length > 0 ?
       <Pie
         data={dataChart}
-        options={{
-          plugins: {
-            legend: {
-              position: 'bottom',
-              labels: {
-                boxWidth: 10,
-                font: {
-                  size: 12,
-                  weight: 'bold',
-                },
-                padding: 15,
-                pointStyle: 'rectRounded',
-                usePointStyle: true,
-              },
-            },
-          },
-        }}
+        options={optionsPie}
       />
       : <h4>No hay data correspondiente al periodo seleccionado</h4>}
     </PieChartContainer>

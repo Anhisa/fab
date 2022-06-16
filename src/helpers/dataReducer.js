@@ -1,5 +1,5 @@
 export function dataReducer(data, periods) {
-
+  
   if(data.length <= 1){
     let labels = data[0].map((item) => item.month);
     return [data, labels];

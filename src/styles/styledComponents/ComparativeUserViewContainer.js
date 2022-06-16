@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ComparativeUserViewContainerStyle = styled.div`
+export const ComparativeUserViewContainerStyle = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,7 +20,7 @@ export const ComparativeUserViewContainerStyle = styled.div`
       display: flex;
       flex-direction: row;
       .dataTable{
-        width: 50%;
+        width: 50%;        
       }
     }
   }

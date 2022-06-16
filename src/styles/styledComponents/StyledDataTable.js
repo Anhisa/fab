@@ -23,9 +23,10 @@ padding: 0px !important;
 width: 100%;
 margin-top: 25px;
 margin-right: 5px;
-
-
 .rdt_TableHeader{
+  border: 2px solid ${({ theme }) => theme.toggleBorder};
+  border-top-right-radius: 35px;
+  border-top-left-radius: 35px;
   background: ${({ theme }) => theme.secondary};
   color: ${({ theme }) => theme.text};
   padding: 0px;
@@ -38,7 +39,7 @@ margin-right: 5px;
     text-align: center;
 
   }  
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
   border-top-right-radius: 35px;
   border-top-left-radius: 35px;
 
@@ -48,7 +49,11 @@ margin-right: 5px;
   width: 100%;
   background: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.text};
-  border: 2px solid ${({ theme }) => theme.toggleBorder};
+  border-left: 2px solid ${({ theme }) => theme.toggleBorder};
+  border-right: 2px solid ${({ theme }) => theme.toggleBorder};
+  border-bottom: 2px solid ${({ theme }) => theme.toggleBorder};
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
   border-bottom-right-radius: 35px;
   border-bottom-left-radius: 35px;
   ;  
@@ -71,6 +76,20 @@ margin-right: 5px;
   border-bottom-left-radius: 35px;
     }
   }
+  .rdt_ExpanderRow{
+    &:last-child{
+      border-bottom: 0px;
+      border-bottom-right-radius: 35px;
+      border-bottom-left-radius: 35px;
+      .expanded {
+       
+          border-bottom: 0px;
+          border-bottom-right-radius: 35px;
+          border-bottom-left-radius: 35px;
+       
+      }
+  }
+}
 }
 .noData{
   display: flex;

@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-export const UserCardStyled = styled.div`
+export const UserCardStyled = styled.section`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
 
   .left {
@@ -10,24 +12,27 @@ export const UserCardStyled = styled.div`
     justify-content: center;
     align-items: center;
     width: 40%;
+    height:100%;
   }
   .right {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 60%;
+    width: 40%;
+    height: 50%;    
     border-radius: 16px;
     padding: 10px;
     background-color: ${({ theme }) => theme.background};
+    border:2px solid ${({ theme }) => theme.toggleBorder};
     section {
       height: 100%;
       width: 100%;
       /* background-color: lightgray; */
-      canvas {
+      /* canvas {
         height: 100%;
         width: 100%;
-      }
+      } */
     }
   }
   @media (max-width: 968px) {
@@ -60,7 +65,7 @@ export const HeaderUserView = styled.div`
   }
   .name {
     padding: 10px 50px 5px 15px;
-    background-color: #121f45;
+    background-color: ${({ theme }) => theme.primary};
     border-radius: 0% 0% 22% 0% / 0% 0% 100% 0%;
     min-width: 450px;
     display: flex;
@@ -68,12 +73,12 @@ export const HeaderUserView = styled.div`
     .countryName {
       font-size: 1.4rem;
       font-weight: bold;
-      color: #a4c2d3;
+      color: ${({ theme }) => theme.background};
     }
     .accountName {
       font-size: 1.2rem;
       font-weight: bold;
-      color: #ffce21;
+      color: ${({ theme }) => theme.secondary};
     }
   }
 `;

@@ -19,8 +19,7 @@ function sortArray(array, from) {
   return sortedArray;
 }
 
-export const useFilterData = (api,context, from) => {
-  // const context = useContext(TableContext);
+export const useFilterData = (api,context, from) => {  
   let data
   const {
     accounts,

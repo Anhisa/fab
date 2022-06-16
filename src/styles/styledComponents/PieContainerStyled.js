@@ -19,28 +19,39 @@ export const PieChartContainer = styled.div`
   width:${props => props.usuario ? '50%' : '100%' };
   padding: 0 !important;
   margin-top: 25px;
-  margin-left: 5px;
-  border-radius: 25px;
+  margin-left: 5px;  
   background-color: ${({ theme }) => theme.background} !important;
-  border: 2px solid ${({ theme }) => theme.toggleBorder};
+  color: ${({ theme }) => theme.text} ;
+  border-radius: 35px;
   flex-direction: column;
   min-height: 450px;
   align-items: center;
-  justify-content: flex-start;
+  justify-content:space-between;
+  border-bottom: 2px solid ${({ theme }) => theme.toggleBorder} !important;
   h4 {
+    
     width: 100%;
+    border: 2px solid ${({ theme }) => theme.toggleBorder};
     height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: 700;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    border-top-right-radius: 24px;
-    border-top-left-radius: 24px;
+    font-size: 1.2rem;    
+    border-top-right-radius: 35px;
+    border-top-left-radius: 35px;
     text-align: center;
-    border-bottom: 1px solid ${({ theme }) => theme.text};
+    border-bottom: 1px solid white;
     background-color: ${({ theme }) => theme.secondary};
+    margin:0;
+  }
+  canvas{
+    border-left: 2px solid ${({ theme }) => theme.toggleBorder};
+    border-right: 2px solid ${({ theme }) => theme.toggleBorder};
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    padding: 5px;
+    height: 100%;
   }
 
 

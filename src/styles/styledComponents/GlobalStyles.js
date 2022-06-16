@@ -15,6 +15,5 @@ export const GoblalStyles = createGlobalStyle`
  }
  *{
   font-family: 'Montserrat', sans-serif !important;
-
  }
 `

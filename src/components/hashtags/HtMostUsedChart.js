@@ -20,6 +20,7 @@ import {
   filterDuplicates,
 } from './HtMostUsedPie';
 import { colorsFromCategory } from '../../helpers/colorsFromCategory';
+import { useTheme } from 'styled-components';
 
 
 ChartJS.register(
@@ -38,7 +39,7 @@ export const HtMostUsedChart = ({ newData, title }) => {
   // const dataSet = newData.map(item => item.ht_mentions_number)
   let dataSets = createDatasets(newData, title);
   dataSets = sortLongestArray(dataSets);
-
+  const theme = useTheme()
   const labels = createLabels(newData);
 
   const options = {
@@ -81,20 +82,50 @@ export const HtMostUsedChart = ({ newData, title }) => {
     scales: {
       y: {
         min: 0,
+        ticks: {
+          color: theme.text,
+          font: {
+            size: 15,
+          }
+        }    ,         
       },
       x: {
         min: 0,
+        ticks: {
+          color: theme.text,
+          font: {
+            size: 15,
+          }
+        }    ,         
       },
+    },
+    interaction: {
+      mode: 'index',
+      axis: 'x',
+      position: 'nearest'
     },
     plugins: {
       legend: {
         display: true,
-        position: 'top',
-        pointStyle: 'circle',
+        labels: {
+          boxWidth: 10,
+          color: theme.text,
+          font: {
+            size: 12,
+            weight: 'bold',
+          }
+          
+        }
       },
       title: {
         display: true,
         text: 'Menciones por hashtags',
+        color: theme.text,
+        font: {
+          size: 20,
+          weight: 'bold',                
+
+        },
       },
       tooltip: {
         enabled: true,
