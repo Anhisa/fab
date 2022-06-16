@@ -30,7 +30,7 @@ export const Map = ({
     coordinates: [-78, -11],
     zoom: 1.2,
   });
-  const [loading, setLoading] = useState(true);
+  
   const { open, setOpen } = countryListManagmentOpen;
   const windowSize = useWindowSize();
 
