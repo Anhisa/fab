@@ -9,15 +9,11 @@ export function useGetTweetsByCountry(){
   const [innerData, setInnerData] = useState(fol);
   const [filteredData, setFilteredData] = useState([]);
   let arrayDuplicate = [];
-  useEffect(() => {
-  
-    
+  useEffect(() => {   
       let array = filterDuplicates(innerData);
       arrayDuplicate = addDuplicates(array);
-      setFilteredData(arrayDuplicate);
-  
-      
-  }, [fol]);
+      setFilteredData(arrayDuplicate);     
+  }, []);
   return filteredData
 }
 function filterDuplicates(data) {

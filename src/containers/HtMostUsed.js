@@ -38,14 +38,15 @@ export const HtMostUsedItems = memo(({ usuario, context }) => {
   }
 
   return (
-    <section className="closed ht" id="most-ht">
-     
+    <section className="closed" id="most-ht">
+     <div className='ht'>
       <HtMostUsedChart categories={categories} newData={innerData} title={accountsNames} />
       <PieContainerStyled usuario={usuario}>
         {innerData.map((item, index) => (
           <HtMostUsedPie newData={item} key={index} title={accountsNames[index]}  setCategories={setCategories} usuario={usuario} />
         ))}
       </PieContainerStyled>
+      </div>
 
     </section>
   );

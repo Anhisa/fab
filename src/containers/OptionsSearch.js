@@ -42,13 +42,11 @@ const OptionsSearch = ({ setDataComparing, context }) => {
   
     let elements ;
     if(open){
-      elements = document.getElementsByClassName("open");
-      console.log('elements', elements);   
+      elements = document.getElementsByClassName("open");        
     } else {
-      elements = document.getElementsByClassName("closed");
-      console.log('elements', elements);   
+      elements = document.getElementsByClassName("closed");      
     }
-
+    console.log('elements length', elements.length);
     // const options = [
     //   'monthy-tweets',
     //   'most-retweet',
@@ -56,20 +54,37 @@ const OptionsSearch = ({ setDataComparing, context }) => {
     //   'most-mentioned',
     //   'most-replied',
     // ];
-    for(let i = 0; i < elements.length; i++){    
-     let element = elements[i];     
-     console.log('element', element)
-     if(!open){
-      element.classList.remove('closed');
-      element.classList.add('open');
-     } else {
-      element.classList.remove('open');
-      element.classList.add('closed');
-     }        
-    };
-    setOpen((prev) => !prev);
+    for(let element of elements){   
+      
+    console.log('element', element);
+    if(open){
+    element.classList.toggle('closed');
+    element.classList.toggle('open');
+    } else {
+    element.classList.toggle('open');
+    element.classList.toggle('closed');
+    }
     
-    console.log('open', open);
+    //  
+    //  if(!open){     
+    //   element.classList.remove('closed');
+    //   element.classList.add('open');
+    //   continue
+    //  }
+    // else {     
+    //   element.classList.remove('open');
+    //   element.classList.add('closed');
+    //   continue
+    //  }     
+    }
+    
+  setOpen(!open);
+    
+
+
+    // setOpen((prev) => !prev);
+    
+    
     
     // if (open) {
     //   let element = document.getElementById('monthy-tweets');

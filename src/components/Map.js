@@ -30,6 +30,7 @@ export const Map = ({
     coordinates: [-78, -11],
     zoom: 1.2,
   });
+  const [loading, setLoading] = useState(true);
   const { open, setOpen } = countryListManagmentOpen;
   const windowSize = useWindowSize();
 
@@ -92,6 +93,7 @@ export const Map = ({
   };
 
   let tweetsByCountry = useGetTweetsByCountry();
+  console.log('tweetsByCountry', tweetsByCountry);
 
   const colorScale = scaleLinear()
     .domain([0, 11161])

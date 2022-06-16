@@ -13,16 +13,16 @@ export const CollapsableTableStyled = styled.section`
       display: flex;
       flex-direction: ${(props) => (props.usuario ? 'row' : 'column')};
     }
-    
-  }
-  .ht.open{
+    .ht{
+      width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .ht.closed{
-    display: none;
+    
   }
+  
+  
   .closed {
     display: none;
   }
