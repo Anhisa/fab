@@ -96,15 +96,15 @@ export const AccountDetails = ({themeToggler}) => {
               userName={dataSearch.userOfficialName}
             />
             <UserCardStyled>
-              <div className="left">
+              <section className="left">
                 <ViewUserCard
                   data={dataSearch.dataUser}
                   period={dataSearch.period}
                 />
-              </div>
-              <div className="right">
+              </section>
+              <section className="right">
                 <MonthlyTweetsItems period={period} context={dataSearch} />
-              </div>
+              </section>
             </UserCardStyled>
             {/* <AllDataByAccount /> */}
             <hr />

@@ -18,7 +18,7 @@ export const ColorBarStyled = styled.div`
 
 `;
 
-export const ColorBarContainer = styled.div`
+export const ColorBarContainer = styled.article`
   display: flex;
   flex-direction: row;
   justify-content: space-between;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const AccountPeriodContainer = styled.div`
+export const AccountPeriodContainer = styled.section`
   display: flex;
   flex-direction: ${(props) => props.flexDirection};
   align-items: center;

@@ -1,4 +1,5 @@
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import { useTheme } from 'styled-components';
 function getMaxValue(dataAccounts) { 
   let maxValue = 0;
   

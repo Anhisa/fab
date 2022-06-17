@@ -23,7 +23,7 @@ const FloatingText = ({ setCurrentMap, islands, zoom }) => {
           </p>
         )}
         <ButtonFloatingStyled onClick={handleMap} type="button">
-          <p>Ver mapa continente</p>
+          <p tabIndex={0}>Ver mapa continente</p>
         </ButtonFloatingStyled>
       </FloatingTextIslandsStyled>
     );
@@ -31,14 +31,14 @@ const FloatingText = ({ setCurrentMap, islands, zoom }) => {
   return (
     <FloatingTextStyled>
       {!zoom && (
-        <p className="info">
+        <p className="info" aria-label='info'>
           Base de datos interactiva de las cuentas de Twitter pertenecientes a
           los diplomáticos y representaciones diplomáticas de la República
           Popular China en América Latina y el Caribe.
         </p>
       )}
-      <ButtonFloatingStyled onClick={handleMap}>
-        <p>Ver mapa del Caribe</p>
+      <ButtonFloatingStyled onClick={handleMap} tabIndex={0}>
+        <p >Ver mapa del Caribe</p>
       </ButtonFloatingStyled>
     </FloatingTextStyled>
   );

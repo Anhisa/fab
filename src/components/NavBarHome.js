@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { MenuButtonStyled, NavBarHomeStyled } from '../styles/styledComponents/NavBarHomeStyled';
 import { Spin as Hamburger } from 'hamburger-react'
 import { Link } from "react-router-dom";
@@ -7,6 +7,7 @@ const NavBarHome = ({setCurrentMap, menu, countryListManagmentOpen, themeToggler
   const { setShowMap, setShowAccountComparing, setShowPeriodComparing, showMap } = menu;
   const { open, setOpen } = countryListManagmentOpen; 
   const [showMenu, setShowMenu] = useState(false)
+
 
   function handleClickChange() {
     setCurrentMap((prev) => !prev);
@@ -36,6 +37,12 @@ const NavBarHome = ({setCurrentMap, menu, countryListManagmentOpen, themeToggler
 
     themeToggler()    
   }
+  // useEffect(()=>{
+  //   if(showMap){
+  //     firstButton.current.classList.add('active')
+  //     secondButton.current.classList.remove('active')
+  //     thirdButton.current.classList.remove('active')    
+  // }},[showMap])
   return (
     <NavBarHomeStyled>
       <div className="title">
@@ -66,15 +73,18 @@ const NavBarHome = ({setCurrentMap, menu, countryListManagmentOpen, themeToggler
           onClick={handleClickAccounts}
           type='button'
         >
-          <p>{showMap ? 'COMPARADOR' : 'MAPA'}</p>
+          <p tabIndex={0}>{showMap ? 'COMPARADOR' : 'MAPA'}</p>
         </MenuButtonStyled>
-        <MenuButtonStyled className="menu-item" type='button'>
+        <MenuButtonStyled className="menu-item" type='button'
+  
+        >
         <a target="_blank" href="https://fundacionandresbello.org/documentos-dd/"><p>DOCUMENTOS</p></a>
         </MenuButtonStyled>
         <MenuButtonStyled className="menu-item"type='button'
           onClick={changeTheme}
+     
         >
-          <p>CAMBIAR TEMA</p>
+          <p tabIndex={0}>CAMBIAR TEMA</p>
         </MenuButtonStyled>
       </div>
 

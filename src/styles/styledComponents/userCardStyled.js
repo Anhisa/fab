@@ -5,7 +5,7 @@ export const UserCardStyled = styled.section`
   justify-content: center;
   align-items: center;
   gap: 10px;
-
+  
   .left {
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@ export const UserCardStyled = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 40%;
+    width: 45%;
     height: 50%;    
     border-radius: 16px;
     padding: 10px;
@@ -37,6 +37,7 @@ export const UserCardStyled = styled.section`
   }
   @media (max-width: 968px) {
     flex-direction: column;
+    padding: 10px;
     .left {
       width: 100%;
     }
@@ -52,7 +53,7 @@ export const ContainerButtons = styled.div`
   margin-top: 10px;
 `;
 
-export const HeaderUserView = styled.div`
+export const HeaderUserView = styled.header`
   display: flex;
   flex-direction: row;
   padding: 10px 25px;
@@ -64,7 +65,7 @@ export const HeaderUserView = styled.div`
     height: 80px;
   }
   .name {
-    padding: 10px 50px 5px 15px;
+    padding: 10px 50px 10px 15px;
     background-color: ${({ theme }) => theme.primary};
     border-radius: 0% 0% 22% 0% / 0% 0% 100% 0%;
     min-width: 450px;

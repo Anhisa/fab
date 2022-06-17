@@ -39,7 +39,8 @@ export const UserCardStyled = styled.div`
   align-items: flex-start;
   justify-content: space-between;  
   padding: 5px;  
-  height: 90px;
+  height: 120px;
+  
 
   .firstGroup{
     display: flex;

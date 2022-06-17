@@ -121,4 +121,8 @@ export const MenuButtonStyled = styled.button`
     text-decoration: none;
     color: ${({ theme }) => theme.textContrast};
   }
+  &:focus {
+    outline: red;
+    
+  }
 `;
