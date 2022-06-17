@@ -46,51 +46,28 @@ const OptionsSearch = ({ setDataComparing, context }) => {
     } else {
       elements = document.getElementsByClassName("closed");      
     }
-    console.log('elements length', elements.length);
-    // const options = [
-    //   'monthy-tweets',
-    //   'most-retweet',
-    //   'most-ht',
-    //   'most-mentioned',
-    //   'most-replied',
-    // ];
+
+    let options = [];
     for(let element of elements){   
-      
-    console.log('element', element);
-    if(open){
-    element.classList.toggle('closed');
-    element.classList.toggle('open');
-    } else {
-    element.classList.toggle('open');
-    element.classList.toggle('closed');
+      options.push(element.getAttribute('id'));
+    }    
+    options.forEach((item) => {
+      let element = document.getElementById(item);
+      if(open){
+        element.classList.remove("open");
+        element.classList.add("closed");
+      }
+      else{
+        element.classList.remove("closed");
+        element.classList.add("open");
+      }
+    }) 
+    let firstOption = document.getElementById(options[0]);
+    if(!open){
+    firstOption.scrollIntoView({ behavior: 'smooth' });   
     }
-    
-    //  
-    //  if(!open){     
-    //   element.classList.remove('closed');
-    //   element.classList.add('open');
-    //   continue
-    //  }
-    // else {     
-    //   element.classList.remove('open');
-    //   element.classList.add('closed');
-    //   continue
-    //  }     
-    }
-    
   setOpen(!open);
-    
-
-
-    // setOpen((prev) => !prev);
-    
-    
-    
-    // if (open) {
-    //   let element = document.getElementById('monthy-tweets');
-    //   element.scrollIntoView({ behavior: 'smooth' });
-    // }
-  }
+}
 
   return (
     <>
