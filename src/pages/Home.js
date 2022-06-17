@@ -139,6 +139,7 @@ export const Home = ({ themeToggler }) => {
             <OptionsSearch
               setDataComparing={setDataComparing}
               context={dataComparing}
+              dataComparing={dataComparing}
             />
             <ComponentContainer context={dataComparing} usuario={false} />
             <UpArrow />

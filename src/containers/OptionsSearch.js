@@ -2,9 +2,19 @@ import { Button } from '@mui/material';
 import React from 'react';
 import handleClick from '../helpers/HandleClick';
 
-const OptionsSearch = ({ setDataComparing, context }) => {
+const OptionsSearch = ({ setDataComparing, context, dataComparing }) => {
   const [open, setOpen] = React.useState(false);
+  const { categories } = dataComparing;
+  //categories = [false, false, false, false, false]
+  let isCategoriesTrue = Object.keys(categories)
+    .flatMap((key) => categories[key])
+    .some((item) => item === true);
 
+  if (categories === undefined || !isCategoriesTrue) {
+    return null;
+  }
+
+  // console.log('isCategoriesTrue', isCategoriesTrue)
   const { accounts, periodComparison } = context;
   const { accountIdA, accountIdB } = accounts;
   const { periodA, periodB } = periodComparison;
@@ -39,35 +49,33 @@ const OptionsSearch = ({ setDataComparing, context }) => {
     });
   }
   function openTables() {
-  
-    let elements ;
-    if(open){
-      elements = document.getElementsByClassName("open");        
+    let elements;
+    if (open) {
+      elements = document.getElementsByClassName('open');
     } else {
-      elements = document.getElementsByClassName("closed");      
+      elements = document.getElementsByClassName('closed');
     }
 
     let options = [];
-    for(let element of elements){   
+    for (let element of elements) {
       options.push(element.getAttribute('id'));
-    }    
+    }
     options.forEach((item) => {
       let element = document.getElementById(item);
-      if(open){
-        element.classList.remove("open");
-        element.classList.add("closed");
+      if (open) {
+        element.classList.remove('open');
+        element.classList.add('closed');
+      } else {
+        element.classList.remove('closed');
+        element.classList.add('open');
       }
-      else{
-        element.classList.remove("closed");
-        element.classList.add("open");
-      }
-    }) 
+    });
     let firstOption = document.getElementById(options[0]);
-    if(!open){
-    firstOption.scrollIntoView({ behavior: 'smooth' });   
+    if (!open) {
+      firstOption.scrollIntoView({ behavior: 'smooth' });
     }
-  setOpen(!open);
-}
+    setOpen(!open);
+  }
 
   return (
     <>
