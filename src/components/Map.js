@@ -11,9 +11,11 @@ import {
 } from 'react-simple-maps';
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
 import useWindowSize from '../hooks/useWindowSize';
+import { useContext } from 'react';
+import { DataContext } from '../context/dataContext';
 
-const geoUrl =
-  'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json';
+// const geoUrl =
+//   'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json';
 
 const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 
@@ -33,7 +35,7 @@ export const Map = ({
   
   const { open, setOpen } = countryListManagmentOpen;
   const windowSize = useWindowSize();
-
+  const {geoUrl} = useContext(DataContext)
   function handleZoomIn() {
     setZoom(true)
     if (localPosition.zoom >= 4) return;
@@ -93,7 +95,7 @@ export const Map = ({
   };
 
   let tweetsByCountry = useGetTweetsByCountry();
-  console.log('tweetsByCountry', tweetsByCountry);
+  
 
   const colorScale = scaleLinear()
     .domain([0, 11161])

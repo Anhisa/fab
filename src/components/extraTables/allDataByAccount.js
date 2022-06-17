@@ -7,7 +7,7 @@ import useGetAllData from '../../hooks/useGetAllData';
 
 const AllDataByAccount = () => {
 const results ='x'
-console.log('results', results);
+
 // 
 //   const dataMostMentioned = useGetData(apiMostMentioned);
 //   if(dataMostMentioned.loading){

@@ -2,16 +2,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import DataTable from 'react-data-table-component';
-import { Link } from 'react-router-dom';
-import { BarContainer, IsVerified, UserAccount } from '../partsDataTable';
-import { CreateChart } from '../../helpers/createChart';
+
 import { EmptyDataTable, StyledDataTable } from '../../styles/styledComponents/StyledDataTable';
-import { ExpandedStyled } from '../../styles/styledComponents/ExpandedStyled';
+
 import { columns } from '../../helpers/columns';
 import { ExpandedComponent } from '../ExpandedComponent';
 
 export const MostRepliedItemCHANGE = ({ newData, title, arrayBar }) => {
-  console.log('newData', newData);
+
   const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
   const totaltweets = tweetNumber.reduce(
     (totaltweetsNumber, item) => totaltweetsNumber + item,

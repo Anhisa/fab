@@ -1,16 +1,18 @@
 import { Button } from '@mui/material';
 import React from 'react';
-import handleClick from '../helpers/HandleClick';
 
 const OptionsSearch = ({ setDataComparing, context, dataComparing }) => {
   const [open, setOpen] = React.useState(false);
   const { categories } = dataComparing;
-  //categories = [false, false, false, false, false]
+  
+  if (categories === undefined) {
+    return null;
+  }
   let isCategoriesTrue = Object.keys(categories)
     .flatMap((key) => categories[key])
     .some((item) => item === true);
 
-  if (categories === undefined || !isCategoriesTrue) {
+  if ( !isCategoriesTrue) {
     return null;
   }
 

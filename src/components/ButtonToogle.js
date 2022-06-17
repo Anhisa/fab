@@ -8,7 +8,7 @@ const ButtonToogle = ({children, name, usuario}) => {
     setIsOpen(!isOpen);
     handleClick(name, isOpen);
   };
-  console.log('usuario', usuario);
+  
   return (
     <StyledFilterButton onClick={handleClickButton} name={name} type='button' usuario={usuario}>
      {!isOpen ? <ArrowForwardIosIcon className="icon" /> : 

@@ -13,6 +13,10 @@ let fol = 'https://fundacionandresbello.org/wp-json/fab/v1/official-fol';
 let countries = 'https://fundacionandresbello.org/wp-json/fab/v1/countries'
 let officialAccounts = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts'
 let monthlyTweets = 'https://fundacionandresbello.org/wp-json/fab/v1/monthly-tweets'
+const geoUrl =
+  'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json';
+
+
 
 const useGetAllData = () => {
   const [data, setData] = useState({});
@@ -47,7 +51,8 @@ const useGetAllData = () => {
         fol,
         countries,
         officialAccounts,
-        monthlyTweets
+        monthlyTweets,
+        geoUrl
       };
       setData(allData);
     

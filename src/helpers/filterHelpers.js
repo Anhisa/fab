@@ -156,7 +156,7 @@ export function addDuplicates(arrayDuplicades, from) {
           official_account,
         };
       });
-      console.log('newArray', newArray)
+     
       return newArray;
 
     case 'most-mentioned': // Mentions number

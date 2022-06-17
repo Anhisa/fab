@@ -7,7 +7,7 @@ import {
 } from '../styles/styledComponents/FloatingText.styled';
 
 const FloatingText = ({ setCurrentMap, islands, zoom }) => {
-  console.log(zoom);
+  
   function handleMap() {
     setCurrentMap((prev) => (prev = !prev));
   }
