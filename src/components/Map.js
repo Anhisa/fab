@@ -1,124 +1,119 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react'
 
-import { scaleLinear } from 'd3-scale';
+import { scaleLinear } from 'd3-scale'
 import {
   ComposableMap,
   Geographies,
   Geography,
   Graticule,
   ZoomableGroup,
-  useZoomPan,
-} from 'react-simple-maps';
-import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
-import useWindowSize from '../hooks/useWindowSize';
-import { useContext } from 'react';
-import { DataContext } from '../context/dataContext';
-
+  useZoomPan
+} from 'react-simple-maps'
+import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry'
+import useWindowSize from '../hooks/useWindowSize'
+import { DataContext } from '../context/dataContext'
+import PropTypes from 'prop-types'
 // const geoUrl =
 //   'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json';
 
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
+Map.propTypes = {
+  setAccounts: PropTypes.func.isRequired,
+  items: PropTypes.array.isRequired,
+  setMouse: PropTypes.func.isRequired,
+  countryListManagmentOpen: PropTypes.object.isRequired,
+  setCountrySelectedId: PropTypes.func.isRequired,
+  setZoom: PropTypes.func.isRequired
+}
 
-export const Map = ({
+export function Map ({
   setAccounts,
   items,
   setMouse,
   countryListManagmentOpen,
   setCountrySelectedId,
   setZoom
-
-}) => {
+}) {
   const [localPosition, setLocalPosition] = useState({
     coordinates: [-78, -11],
-    zoom: 1.2,
-  });
-  
-  const { open, setOpen } = countryListManagmentOpen;
-  const windowSize = useWindowSize();
-  const {geoUrl} = useContext(DataContext)
-  function handleZoomIn() {
+    zoom: 1.2
+  })
+
+  const { open, setOpen } = countryListManagmentOpen
+  const windowSize = useWindowSize()
+  const { geoUrl } = useContext(DataContext)
+  function handleZoomIn () {
     setZoom(true)
-    if (localPosition.zoom >= 4) return;
-    setLocalPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.1 }));
+    if (localPosition.zoom >= 4) return
+    setLocalPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.1 }))
   }
 
-  function handleZoomOut() {
+  function handleZoomOut () {
     setZoom(false)
 
-    if (localPosition.zoom <= 1) return;
-    setLocalPosition((pos) => ({ ...pos, zoom: 1 }));
+    if (localPosition.zoom <= 1) return
+    setLocalPosition((pos) => ({ ...pos, zoom: 1 }))
   }
 
-  function handleMoveEnd(position) {
+  function handleMoveEnd (position) {
+    const { coordinates, zoom } = position
 
-    const {coordinates, zoom} = position;
-
-    setLocalPosition({coordinates, zoom:localPosition.zoom});
+    setLocalPosition({ coordinates, zoom: localPosition.zoom })
   }
-  function closeOnZoomIn() {
-    setOpen(false);
-    //cancel zoom on scroll
+  function closeOnZoomIn () {
+    setOpen(false)
+    // cancel zoom on scroll
   }
   const handleOnClick = (e) => {
-    const { target, pageX, pageY } = e;
-
+    const { target, pageX, pageY } = e
 
     if (target.attributes.value) {
-      const itemValue = target.attributes.value;
-      let x = pageX;
-      let y = pageY;
+      const itemValue = target.attributes.value
+      let x = pageX
+      let y = pageY
       const filteredAccounts = items.filter(
         (item) => item.country_id === itemValue.value
-      );
-      if(pageX + 250 > windowSize.width){
-          x = pageX - 250;
+      )
+      if (pageX + 250 > windowSize.width) {
+        x = pageX - 250
       }
 
-      if(pageY + 250 > windowSize.height){
-        y = pageY - 250;
+      if (pageY + 250 > windowSize.height) {
+        y = pageY - 250
       }
 
       setMouse({
-        x: x,
-        y: y,
-      });
+        x,
+        y
+      })
 
-
-      setAccounts(filteredAccounts);
-      setCountrySelectedId(itemValue.value);
+      setAccounts(filteredAccounts)
+      setCountrySelectedId(itemValue.value)
       if (!open || open) {
-        return setOpen(true);
+        return setOpen(true)
       }
     }
 
-    return setOpen(false);
-  };
+    return setOpen(false)
+  }
 
-  let tweetsByCountry = useGetTweetsByCountry();
-  
+  const tweetsByCountry = useGetTweetsByCountry()
 
   const colorScale = scaleLinear()
     .domain([0, 11161])
-    .range(['#edf7ff', '#1d9bf0']);
+    .range(['#edf7ff', '#1d9bf0'])
 
   return (
-    <div
-      className='map'
-    >
+    <div className="map">
       <ComposableMap
-        height={windowSize.height ? windowSize.height * 0.98 :500}
+        height={windowSize.height ? windowSize.height * 0.98 : 500}
         width={windowSize.width ? windowSize.width * 0.98 : 500}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
           rotate: [77, 12, 0],
-          scale: 448,
+          scale: 448
         }}
         onClick={handleOnClick}
         onWheelCapture={closeOnZoomIn}
-
-
-
-
       >
         {/* < CustomZoomableGroup
           zoom={localPosition.zoom}
@@ -127,36 +122,34 @@ export const Map = ({
           onMoveEnd={handleMoveEnd}
 
         > */}
-          <Graticule stroke="#ccc" step={[27, 9]} />
+        <Graticule stroke="#ccc" step={[27, 9]} />
 
-          <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
-            {({ geographies }) =>
-              geographies
-                .filter(
-                  (d) =>
-                    d.properties.SUBREGION === 'South America' ||
-                    d.properties.SUBREGION === 'Central America'
+        <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
+          {({ geographies }) =>
+            geographies
+              .filter(
+                (d) =>
+                  d.properties.SUBREGION === 'South America' ||
+                  d.properties.SUBREGION === 'Central America'
+              )
+              .map((geo) => {
+                const d = tweetsByCountry.find(
+                  (s) => s.countryId === geo.properties.COUNTRY_ID
                 )
-                .map((geo) => {
-                  const d = tweetsByCountry.find(
-                    (s) => s.countryId === geo.properties.COUNTRY_ID
-                  );
-                  return (
-                    <Geography
-                      className="geo"
-                      key={geo.rsmKey}
-                      geography={geo}
-                      fill={
-                        d ? colorScale(d['total_tweets_period']) : '#F5F4F6'
-                      }
-                      value={geo.properties.COUNTRY_ID}
-                      stroke="#D6D6DA"
-                      strokeWidth="0.4"
-                    />
-                  );
-                })
-            }
-          </Geographies>
+                return (
+                  <Geography
+                    className="geo"
+                    key={geo.rsmKey}
+                    geography={geo}
+                    fill={d ? colorScale(d.total_tweets_period) : '#F5F4F6'}
+                    value={geo.properties.COUNTRY_ID}
+                    stroke="#D6D6DA"
+                    strokeWidth="0.4"
+                  />
+                )
+              })
+          }
+        </Geographies>
         {/* </ CustomZoomableGroup> */}
       </ComposableMap>
       {/* <div className="controls">
@@ -187,59 +180,70 @@ export const Map = ({
         </button>
       </div> */}
     </div>
-  );
-};
+  )
+}
+CustomZoomableGroup.propTypes = {
+  children: PropTypes.node.isRequired,
+  positionLocal: PropTypes.object.isRequired,
+  setPosition: PropTypes.func.isRequired,
+}
 
-const CustomZoomableGroup = ({ children, positionLocal, setPosition, ...restProps }) => {
-  let { mapRef, transformString, position } = useZoomPan(restProps);
+function CustomZoomableGroup ({
+  children,
+  positionLocal,
+  setPosition,
+  ...restProps
+}) {
+  let { mapRef, transformString, position } = useZoomPan(restProps)
 
-    let check = false;
-    if(positionLocal.zoom !== 1) {
-      check = true;
-    }
-    console.log(position.dragging?.type)
-    if (position.dragging?.type === 'wheel' || position.dragging?.type === 'dblclick') {
-
-    position= positionLocal;
+  let check = false
+  if (positionLocal.zoom !== 1) {
+    check = true
+  }
+  console.log(position.dragging?.type)
+  if (
+    position.dragging?.type === 'wheel' ||
+    position.dragging?.type === 'dblclick'
+  ) {
+    position = positionLocal
     return (
       <g
-      ref={mapRef}
-      transform={`translate(${positionLocal.coordinates[0]}, ${positionLocal.coordinates[1]}) scale(${positionLocal.zoom})`}
+        ref={mapRef}
+        transform={`translate(${positionLocal.coordinates[0]}, ${positionLocal.coordinates[1]}) scale(${positionLocal.zoom})`}
       >
         <g>{children}</g>
       </g>
-    );
+    )
   }
-  
-//   if(position.dragging === undefined){
-//     position= positionLocal;
-//     return (
-//       <g
-//       ref={mapRef}
-//       transform={`translate(${positionLocal.coordinates[0]}, ${positionLocal.coordinates[1]}) scale(${positionLocal.zoom})`}
-//       >
-//         <g>{children}</g>
-//       </g>
-//     );
-//
-//   }
+
+  //   if(position.dragging === undefined){
+  //     position= positionLocal;
+  //     return (
+  //       <g
+  //       ref={mapRef}
+  //       transform={`translate(${positionLocal.coordinates[0]}, ${positionLocal.coordinates[1]}) scale(${positionLocal.zoom})`}
+  //       >
+  //         <g>{children}</g>
+  //       </g>
+  //     );
+  //
+  //   }
 
   if (positionLocal.zoom === 1) {
     if (position.x > 0) {
       if (position.x > 465) {
-        position.x = 465;
+        position.x = 465
       }
     } else {
       if (position.x < -365) {
-        position.x = -365;
+        position.x = -365
       }
     }
   } else {
-    check = true;
+    check = true
   }
   return (
     <g ref={mapRef}>
-
       <g
         transform={`translate(${position.x} ${
           check ? position.y : ''
@@ -248,5 +252,5 @@ const CustomZoomableGroup = ({ children, positionLocal, setPosition, ...restProp
         {children}
       </g>
     </g>
-  );
-};
+  )
+}

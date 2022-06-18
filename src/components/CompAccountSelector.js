@@ -1,62 +1,64 @@
-import React, { useContext } from 'react';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import 'bootstrap/dist/css/bootstrap.css';
-import { DataContext } from '../context/dataContext';
+import React, { useContext } from 'react'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
+import 'bootstrap/dist/css/bootstrap.css'
+import { DataContext } from '../context/dataContext'
+import PropTypes from 'prop-types'
 
+CompAccountSelector.propTypes = {
+  setAccounts: PropTypes.func.isRequired
+}
 
-export const CompAccountSelector = ({ setAccounts }) => {
-  const [accountA, setAccountA] = React.useState('');
-  const [accountB, setAccountB] = React.useState('');
-  const {officialAccounts} = useContext(DataContext)
+export function CompAccountSelector ({ setAccounts }) {
+  const [accountA, setAccountA] = React.useState('')
+  const [accountB, setAccountB] = React.useState('')
+  const { officialAccounts } = useContext(DataContext)
 
-
-  const handleChangeA = ({target:{value}}) => {
-    if(value === 'none') {
+  const handleChangeA = ({ target: { value } }) => {
+    if (value === 'none') {
       setAccounts((prevState) => ({
         ...prevState,
         accountIdA: {
           id: '',
-          name: '',
-        },
-      }));
-     return setAccountA('');
-
+          name: ''
+        }
+      }))
+      return setAccountA('')
     }
-    setAccountA(value);
-    const name = officialAccounts.find(item => item.official_account_id === value);
- 
+    setAccountA(value)
+    const name = officialAccounts.find(item => item.official_account_id === value)
+
     setAccounts((prevState) => ({
       ...prevState,
       accountIdA: {
         id: value,
-        name: name.official_account,
-      },
-    }));
-  };
-  const handleChangeB = ({target:{value}}) => {
-    if(value === 'none') {
+        name: name.official_account
+      }
+    }))
+  }
+  const handleChangeB = ({ target: { value } }) => {
+    if (value === 'none') {
       setAccounts((prevState) => ({
         ...prevState,
         accountIdB: {
           id: '',
-          name: '',
-        },
-      }));
-      return setAccountB('');
+          name: ''
+        }
+      }))
+      return setAccountB('')
     }
-    const name = officialAccounts.find(item => item.official_account_id === value);
+    const name = officialAccounts.find(item => item.official_account_id === value)
     setAccounts((prevState) => ({
       ...prevState,
       accountIdB: {
         id: value,
-        name: name.official_account,
-      },
-    }));
-    setAccountB(value);
-  };
+        name: name.official_account
+      }
+    }))
+    setAccountB(value)
+  }
 
   return (
     <div className="countSelector">
@@ -83,7 +85,7 @@ export const CompAccountSelector = ({ setAccounts }) => {
               <MenuItem
                 key={`oa-${item.official_account_id}`}
                 value={item.official_account_id}
-                style={{borderBottom : '1px dotted black'}}
+                style={{ borderBottom: '1px dotted black' }}
               >
                 <div >
                   <span><b>{item.country_name_spa}</b></span>
@@ -114,11 +116,11 @@ export const CompAccountSelector = ({ setAccounts }) => {
                 key={`oa-${item.official_account_id}`}
                 value={item.official_account_id}
                 style={{
-                  borderBottom : '1px dotted black',
-                  zIndex: '100',
-              
-              }}
-               
+                  borderBottom: '1px dotted black',
+                  zIndex: '100'
+
+                }}
+
               >
                 <div>
                   <span><b>{item.country_name_spa}</b></span>
@@ -131,5 +133,5 @@ export const CompAccountSelector = ({ setAccounts }) => {
         </FormControl>
       </div>
     </div>
-  );
-};
+  )
+}

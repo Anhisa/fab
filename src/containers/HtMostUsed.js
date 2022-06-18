@@ -43,7 +43,7 @@ export const HtMostUsedItems = memo(({ usuario, context }) => {
       <HtMostUsedChart categories={categories} newData={innerData} title={accountsNames} />
       <PieContainerStyled usuario={usuario}>
         {innerData.map((item, index) => (
-          <HtMostUsedPie newData={item} key={index} title={accountsNames[index]}  setCategories={setCategories} usuario={usuario} />
+          <HtMostUsedPie newData={item} key={index} title={accountsNames[index]} usuario={usuario} />
         ))}
       </PieContainerStyled>
       </div>

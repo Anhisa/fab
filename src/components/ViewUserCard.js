@@ -1,53 +1,53 @@
-import React from 'react';
+import React from 'react'
 
-import VerifiedIcon from '@mui/icons-material/Verified';
+import VerifiedIcon from '@mui/icons-material/Verified'
 import {
   UserCardStyled,
-  ViewUserCardStyled,
-} from '../styles/styledComponents/ViewUserCardStyled';
+  ViewUserCardStyled
+} from '../styles/styledComponents/ViewUserCardStyled'
+import PropTypes from 'prop-types'
 
-
-const ViewUserCard = ({ data, period }) => {
-  
-  const dataLength = data.length - 1;
-  let periods
-  let i = 1;
-  
-  if(dataLength !== 3){
-    periods = Object.values(data).map((item) => {
-      return parseInt(item.period_id);
-    });   
-  } else {
-  periods = Object.values(data).map((item) => {
-    return i++
-  });
+ViewUserCard.propTypes = {
+  data: PropTypes.array.isRequired,
+  period: PropTypes.object.isRequired
 }
-i = 1
+
+function ViewUserCard ({ data, period }) {
+  const dataLength = data.length - 1
+  let periods
+  let i = 1
+
+  if (dataLength !== 3) {
+    periods = Object.values(data).map((item) => {
+      return parseInt(item.period_id)
+    })
+  } else {
+    periods = Object.values(data).map((item) => {
+      return i++
+    })
+  }
+  i = 1
   const totalCalculator = () => {
     if (period.startDate === period.endDate) {
-      let indexStart = periods.indexOf(period.startDate);
-  
-      return data[indexStart].total_tweets_period;
+      const indexStart = periods.indexOf(period.startDate)
+
+      return data[indexStart].total_tweets_period
     } else {
-      let start = periods.indexOf(period.startDate)
-     
-      let end = periods.indexOf(period.endDate)
+      const start = periods.indexOf(period.startDate)
+      const end = periods.indexOf(period.endDate)
+      const count = data.slice(start, end + 1).reduce((acc, curr) => {
+        return acc + parseInt(curr.total_tweets_period)
+      }, 0)
 
-      let count = data.slice(start, end + 1).reduce((acc, curr) => {
-        return acc + parseInt(curr.total_tweets_period);
-      }, 0);
-
-      return count;
+      return count
     }
-  };
-  const total_tweets_period = totalCalculator();  
+  }
+  const totalTweetsPeriod = totalCalculator()
 
   return (
     <ViewUserCardStyled>
       <div className="innerLeft">
-        <UserAccountCard 
-        user={data[0].official_account} 
-        />
+        <UserAccountCard user={data[0].official_account} />
         <hr />
         <UserCard
           name={'Institución / Nombre'}
@@ -64,7 +64,7 @@ i = 1
           name={'Nº Seguidores'}
           data={
             data[period.endDate - 1]?.followers_number === '0'
-              ? data[period.endDate-2]?.followers_number
+              ? data[period.endDate - 2]?.followers_number
               : data[period.endDate - 1]?.followers_number ??
                 'No hay data correspondiente al periodo seleccionado'
           }
@@ -74,7 +74,7 @@ i = 1
           name={'Nº cuentas seguidas'}
           data={
             data[period.endDate - 1]?.following_number === '0'
-              ? data[period.endDate-2]?.following_number
+              ? data[period.endDate - 2]?.following_number
               : data[period.endDate - 1]?.following_number ??
                 'No hay data correspondiente al periodo seleccionado'
           }
@@ -83,18 +83,22 @@ i = 1
         <UserCard
           name={'Total tuits período'}
           data={
-            total_tweets_period ??
+            totalTweetsPeriod ??
             'No hay data correspondiente al periodo seleccionado'
           }
         />
       </div>
     </ViewUserCardStyled>
-  );
-};
+  )
+}
 
-export default ViewUserCard;
+export default ViewUserCard
 
-export const UserAccountCard = ({ user }) => {
+UserAccountCard.propTypes = {
+  user: PropTypes.string.isRequired
+}
+
+export function UserAccountCard ({ user }) {
   return (
     <UserCardStyled>
       <div className="firstGroup">
@@ -112,10 +116,18 @@ export const UserAccountCard = ({ user }) => {
         </div>
       </div>
     </UserCardStyled>
-  );
-};
+  )
+}
 
-export const UserCard = ({ name, data }) => {
+UserCard.propTypes = {
+  name: PropTypes.string.isRequired,
+  data: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired
+}
+
+export function UserCard ({ name, data }) {
   return (
     <UserCardStyled>
       <div className="firstGroup">
@@ -130,5 +142,5 @@ export const UserCard = ({ name, data }) => {
         </div>
       </div>
     </UserCardStyled>
-  );
-};
+  )
+}

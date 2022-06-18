@@ -1,54 +1,53 @@
-import React from 'react';
-import DataTable from 'react-data-table-component';
-import { getActivityCreactionDate } from '../../helpers/getActivityCreactionDate';
-import useGetCountryNames from '../../hooks/useGetCountryNames';
+import React from 'react'
+import DataTable from 'react-data-table-component'
+import { getActivityCreactionDate } from '../../helpers/getActivityCreactionDate'
+import useGetCountryNames from '../../hooks/useGetCountryNames'
+
 const AccountCreationDate = () => {
-  let answer = getActivityCreactionDate();
-  let countryNames = useGetCountryNames();
-  
-  let data;
+  const answer = getActivityCreactionDate()
+  const countryNames = useGetCountryNames()
+
+  let data
   if (answer.length > 0) {
-    data = answer;
+    data = answer
   }
   if (countryNames.length === 0) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
   // console.log('data', data);
 
-  let columns = [
+  const columns = [
     {
       name: 'Usuario',
-      selector: row => row.official_account,
-     
-      wrap: true,
+      selector: (row) => row.official_account,
+
+      wrap: true
     },
     {
       name: 'País',
-      selector: row => {
-        let country = countryNames.find(
+      selector: (row) => {
+        const country = countryNames.find(
           (country) => country.countryInId === row.country_id
-        );
-       
-        return country?.countryName ?? 'Bahamas';
+        )
+
+        return country?.countryName ?? 'Bahamas'
       },
       sortable: true,
-      wrap: true,
+      wrap: true
     },
     {
       name: 'Fecha de Creación',
-      selector: row => row.creationDate,
+      selector: (row) => row.creationDate,
       sortable: true,
-      wrap: true,
+      wrap: true
     },
     {
       name: 'Numero de Seguidores',
-      selector: row => row.followers_number,
+      selector: (row) => row.followers_number,
       sortable: true,
-      wrap: true,
-    },
-  ];
-
-
+      wrap: true
+    }
+  ]
 
   return (
     <DataTable
@@ -63,15 +62,13 @@ const AccountCreationDate = () => {
         rangeSeparatorText: 'de',
         selectAllRowsItem: {
           text: 'Todos',
-          value: 'all',
-        },
-        selectAllRowsItem: true,
+          value: 'all'
+        }
       }}
       striped={true}
       highlightOnHover={true}
-
     />
-  );
-};
+  )
+}
 
-export default AccountCreationDate;
+export default AccountCreationDate

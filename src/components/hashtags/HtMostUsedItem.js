@@ -1,75 +1,72 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
+import React from 'react'
+import 'bootstrap/dist/css/bootstrap.css'
+import Box from '@mui/material/Box'
+import Collapse from '@mui/material/Collapse'
+import IconButton from '@mui/material/IconButton'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Typography from '@mui/material/Typography'
+import Paper from '@mui/material/Paper'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import {Link} from 'react-router-dom';
+HtMostUsedItem.propTypes = {
+  newData: PropTypes.array.isRequired,
+  periodId: PropTypes.array
+}
 
+export function HtMostUsedItem ({ newData, periodId }) {
+  const tweetNumber = newData.map((item) => parseInt(item.ht_mentions_number))
 
-export const HtMostUsedItem = ({ newData, periodId }) => {
+  const totaltweets = tweetNumber.reduce((totaltweetsNumber, item) => {
+    return totaltweetsNumber + item
+  }, 0)
 
-  // let accountId = '15';
-  // let periodId = '4';
-  const tweetNumber = newData.map(item => parseInt(item.ht_mentions_number));
-
-  const totaltweets = tweetNumber.reduce(
-    (totaltweetsNumber, item) =>
-    {return totaltweetsNumber + item},
-    0
-  );
-
-  const accountInfo = [];
-  const account = newData[0];
+  const accountInfo = []
+  const account = newData[0]
 
   if (account) {
-    accountInfo.push(account.official_account);
+    accountInfo.push(account.official_account)
     // accountInfo.push(account.period_id);
-    accountInfo.push(account.official_account_name_spa);
-    accountInfo.push(account.most_retweeted_category_desc_spa);
+    accountInfo.push(account.official_account_name_spa)
+    accountInfo.push(account.most_retweeted_category_desc_spa)
   }
 
-  function createData(
+  function createData (
     userAccountDesc,
     userAccount,
     categoría,
-    tweets_number,
+    tweetsNumber,
     catDesc
   ) {
     return {
       userAccountDesc,
       userAccount,
       categoría,
-      tweets_number,
+      tweets_number: tweetsNumber,
       history: [
         {
-          catDesc,
-        },
-      ],
-    };
+          catDesc
+        }
+      ]
+    }
   }
-  
+
   const rows = newData.map((item) =>
     createData(
       item.official_account_name_spa,
       item.ht,
       item.ht_category_spa,
       parseInt(item.ht_mentions_number),
-      item.ht_category_desc_spa,
-
+      item.ht_category_desc_spa
     )
-  );
+  )
 
   Row.propTypes = {
     row: PropTypes.shape({
@@ -79,15 +76,15 @@ export const HtMostUsedItem = ({ newData, periodId }) => {
       tweets_number: PropTypes.number.isRequired,
       history: PropTypes.arrayOf(
         PropTypes.shape({
-          catDesc: PropTypes.string.isRequired,
+          catDesc: PropTypes.string.isRequired
         })
-      ).isRequired,
-    }).isRequired,
-  };
+      ).isRequired
+    }).isRequired
+  }
 
-  function Row(props) {
-    const { row } = props;
-    const [open, setOpen] = React.useState(false);
+  function Row (props) {
+    const { row } = props
+    const [open, setOpen] = React.useState(false)
 
     return (
       <>
@@ -138,14 +135,19 @@ export const HtMostUsedItem = ({ newData, periodId }) => {
           </TableCell>
         </TableRow>
       </>
-    );
+    )
   }
 
   return (
     <div className="App">
       <div className="card">
         <h3> {accountInfo[2]} </h3>
-        <h3> <Link to={`/diplomacia-digital/${accountInfo[0]}`}>{accountInfo[0]}</Link> </h3>
+        <h3>
+          {' '}
+          <Link to={`/diplomacia-digital/${accountInfo[0]}`}>
+            {accountInfo[0]}
+          </Link>{' '}
+        </h3>
         <h5>
           {/* Periodo de {period.startDate.toString()} a{period.endDate.toString()} */}
         </h5>
@@ -170,9 +172,8 @@ export const HtMostUsedItem = ({ newData, periodId }) => {
         </TableContainer>
       </div>
     </div>
-  );
-};
-
+  )
+}
 
 /*
  <div>

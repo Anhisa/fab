@@ -1,46 +1,41 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import useGetCountries from '../hooks/useGetCountries';
-import useGetCountryNames from '../hooks/useGetCountryNames';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import useGetCountryNames from '../hooks/useGetCountryNames'
+import PropTypes from 'prop-types'
 
-const CountrySelectFilter = ({
-  countrysWithData,
-  setCountryFilterActive,
-  setCountryId,
-  
-}) => {
-  const [innerData, setInnerData] = useState([]);
-  const [countriesData, setCountriesData] = useState([]);
- 
-  const [countryA, setCountryA] = useState('');
+CountrySelectFilter.propTypes = {
+  setCountryFilterActive: PropTypes.func.isRequired,
+  setCountryId: PropTypes.func.isRequired
+}
 
-  let  countryNames  = useGetCountryNames();
-  
+function CountrySelectFilter ({ setCountryFilterActive, setCountryId }) {
+  const [countriesData, setCountriesData] = useState([])
+  const [countryA, setCountryA] = useState('')
+  const countryNames = useGetCountryNames()
 
   useEffect(() => {
-    setCountriesData(countryNames);
-    
-  }, [countryNames]);
+    setCountriesData(countryNames)
+  }, [countryNames])
 
   if (countryNames.length === 0) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
-  function handleChange({ target: { value } }) {
+  function handleChange ({ target: { value } }) {
     if (value !== 'null') {
-      let countryName = countriesData.find(
+      const countryName = countriesData.find(
         (country) => country.countryInId === value
-      );
+      )
 
-      setCountryA(value);
-      setCountryFilterActive(true);
+      setCountryA(value)
+      setCountryFilterActive(true)
       setCountryId({
         id: value,
-        name: countryName.countryName,
-      });
+        name: countryName.countryName
+      })
     } else {
-      setCountryFilterActive(false);
-      setCountryId('');
-      setCountryA('');
+      setCountryFilterActive(false)
+      setCountryId('')
+      setCountryA('')
     }
   }
 
@@ -74,7 +69,7 @@ const CountrySelectFilter = ({
         </FormControl>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CountrySelectFilter;
+export default CountrySelectFilter

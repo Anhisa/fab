@@ -1,55 +1,58 @@
-import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
-import DataTable from 'react-data-table-component';
+import PropTypes from 'prop-types'
+import React from 'react'
+import 'bootstrap/dist/css/bootstrap.css'
+import DataTable from 'react-data-table-component'
+import {
+  EmptyDataTable,
+  StyledDataTable
+} from '../../styles/styledComponents/StyledDataTable'
+import { ExpandedComponent } from '../ExpandedComponent'
+import { columns } from '../../helpers/columns'
 
+MostMentionedItemCHANGE.propTypes = {
+  newData: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+  arrayBar: PropTypes.array.isRequired
+}
 
-import { EmptyDataTable, StyledDataTable } from '../../styles/styledComponents/StyledDataTable';
-
-import { ExpandedComponent } from '../ExpandedComponent';
-import { columns } from '../../helpers/columns';
-
-export const MostMentionedItemCHANGE = ({
+export function MostMentionedItemCHANGE ({
   newData,
   title,
-  comparisonView,
-  arrayBar,
-}) => {
-  if(arrayBar === undefined){
+  arrayBar
+}) {
+  if (arrayBar === undefined) {
     return null
   }
 
-  
-  const tweetNumber = newData.map((item) => parseInt(item.mentions_number));
-  const totaltweets = tweetNumber.reduce(
-    (totaltweetsNumber, item) => totaltweetsNumber + item,
-    0
-  );
-  const accountInfo = [];
-  const account = newData[0];
+  // const tweetNumber = newData.map((item) => parseInt(item.mentions_number))
+  // const totaltweets = tweetNumber.reduce(
+  //   (totaltweetsNumber, item) => totaltweetsNumber + item,
+  //   0
+  // )
+  const accountInfo = []
+  const account = newData[0]
 
   if (account) {
-    accountInfo.push(account.official_account);
+    accountInfo.push(account.official_account)
     // accountInfo.push(account.period_id);
-    accountInfo.push(account.official_account_name_spa);
-    accountInfo.push(account.most_retweeted_category_desc_spa);
+    accountInfo.push(account.official_account_name_spa)
+    accountInfo.push(account.most_retweeted_category_desc_spa)
   }
 
-  function createData(
+  function createData (
     userAccountDesc,
     userAccount,
     categoría,
-    tweets_number,
+    tweetsNumber,
     catDesc
   ) {
     return {
       userAccountDesc,
       userAccount,
       categoría,
-      tweets_number,
-
-      catDesc,
-    };
+      tweets_number: tweetsNumber,
+      catDesc
+    }
   }
 
   let rows = newData.map((item) =>
@@ -60,29 +63,27 @@ export const MostMentionedItemCHANGE = ({
       parseInt(item.mentions_number),
       item.most_mentioned_category_desc_spa
     )
-  );
-      
-      rows = rows.map((item, index) => {
+  )
 
+  rows = rows.map((item, index) => {
     return {
       ...item,
-      tweets_number: arrayBar[index],
-    };
-  });
-  
-  
-
+      tweets_number: arrayBar[index]
+    }
+  })
 
   return (
     <StyledDataTable className="dataTable">
       <DataTable
         columns={columns}
         data={rows}
-        title={ <>
-          <p>
-            <b>{title}</b>
-          </p>
-        </>}
+        title={
+          <>
+            <p>
+              <b>{title}</b>
+            </p>
+          </>
+        }
         expandableRows
         expandableRowsComponent={ExpandedComponent}
         noDataComponent={
@@ -92,5 +93,5 @@ export const MostMentionedItemCHANGE = ({
         }
       />
     </StyledDataTable>
-  );
-};
+  )
+}

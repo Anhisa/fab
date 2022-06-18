@@ -1,86 +1,92 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import React from 'react';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import React from 'react'
+import 'bootstrap/dist/css/bootstrap.css'
+import PropTypes from 'prop-types'
 
-import 'bootstrap/dist/css/bootstrap.css';
 const periods = [
   {
     id: 1,
-    name: '2020 Semestre I',
+    name: '2020 Semestre I'
   },
   {
     id: 2,
-    name: '2020 Semestre II',
+    name: '2020 Semestre II'
   },
   {
     id: 3,
-    name: '2020-Consolidado',
+    name: '2020-Consolidado'
   },
   {
     id: 4,
-    name: '2021 Semestre I',
+    name: '2021 Semestre I'
   },
   {
     id: 5,
-    name: '2021 Semestre II',
+    name: '2021 Semestre II'
   },
   {
     id: 6,
-    name: '2021-Consolidado',
-  },
-];
-const ComparativePerPeriod = ({ setDataComparing }) => {
-  const [periodA, setPeriodA] = React.useState('');
-  const [periodB, setPeriodB] = React.useState('');
+    name: '2021-Consolidado'
+  }
+]
+
+ComparativePerPeriod.propTypes = {
+  setDataComparing: PropTypes.func.isRequired
+}
+
+function ComparativePerPeriod ({ setDataComparing }) {
+  const [periodA, setPeriodA] = React.useState('')
+  const [periodB, setPeriodB] = React.useState('')
   //
 
   const handleChangeA = ({ target: { value } }) => {
     if (value === '') {
-      setPeriodA('');
+      setPeriodA('')
       setDataComparing((prev) => {
         return {
           ...prev,
           periodA: {
             id: '',
-            name: '',
-          },
-        };
-      });
-      return;
+            name: ''
+          }
+        }
+      })
+      return
     }
 
-    setPeriodA(value);
+    setPeriodA(value)
     setDataComparing((prevState) => ({
       ...prevState,
       periodA: {
         id: value,
-        name: periods[value - 1].name,
-      },
-    }));
-  };
+        name: periods[value - 1].name
+      }
+    }))
+  }
   const handleChangeB = ({ target: { value } }) => {
     if (value === '') {
-      setPeriodB('');
+      setPeriodB('')
       setDataComparing((prev) => {
         return {
           ...prev,
           periodB: {
             id: '',
-            name: '',
-          },
-        };
-      });
-      return null;
+            name: ''
+          }
+        }
+      })
+      return null
     }
 
-    setPeriodB(value);
+    setPeriodB(value)
     setDataComparing((prevState) => ({
       ...prevState,
       periodB: {
         id: value,
-        name: periods[value - 1].name,
-      },
-    }));
-  };
+        name: periods[value - 1].name
+      }
+    }))
+  }
 
   return (
     <div className="countSelector">
@@ -90,7 +96,7 @@ const ComparativePerPeriod = ({ setDataComparing }) => {
       <div
         className="selectors"
         style={{
-          width: '100%',
+          width: '100%'
         }}
       >
         <FormControl
@@ -132,7 +138,7 @@ const ComparativePerPeriod = ({ setDataComparing }) => {
             <MenuItem value="">
               <em>Ninguna</em>
             </MenuItem>
-            {periods.map((item, index) => (
+            {periods.map((item) => (
               <MenuItem key={`oa-${item.id}`} value={item.id} name={item.name}>
                 <div>
                   <h6>{item.name}</h6>
@@ -143,7 +149,7 @@ const ComparativePerPeriod = ({ setDataComparing }) => {
         </FormControl>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ComparativePerPeriod;
+export default ComparativePerPeriod

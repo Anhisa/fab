@@ -1,46 +1,47 @@
-import React, { useState } from 'react';
-import Button from '@mui/material/Button';
-import ComparativePerPeriod from '../components/ComparativePerPeriod';
-import { CompCategoryCb } from '../components/CompCategoryCb';
+import React, { useState } from 'react'
+import Button from '@mui/material/Button'
+import ComparativePerPeriod from '../components/ComparativePerPeriod'
+import { CompCategoryCb } from '../components/CompCategoryCb'
+import { ComparativeStyled } from '../styles/styledComponents/ComparativeStyled'
+import UsePeriodErrors from '../hooks/usePeriodErrors'
+import PropTypes from 'prop-types'
+import CountrySelectFilter from '../components/countrySelectFilter'
 
-import { ComparativeStyled } from '../styles/styledComponents/ComparativeStyled';
-import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
-import CountrySelectFilter from '../components/countrySelectFilter';
+SelectorComparative.propTypes = {
+  setDataComparing: PropTypes.func.isRequired
+}
 
-import UsePeriodErrors from '../hooks/usePeriodErrors';
-const SelectorComparative = ({ setDataComparing, countryDataState }) => {
+function SelectorComparative ({ setDataComparing }) {
   const [periodComparison, setPeriodComparison] = useState({
     periodA: {
       id: '',
-      name: '',
+      name: ''
     },
     periodB: {
       id: '',
-      name: '',
-    },
-  });
-  const [isCountryFilterActive, setCountryFilterActive] = useState(false);
-  const [country_id, setCountryId] = useState('');
+      name: ''
+    }
+  })
+  const [isCountryFilterActive, setCountryFilterActive] = useState(false)
+  const [countryId, setCountryId] = useState('')
   const [categories, setCategories] = useState({
     mostRetweeted: true,
     mostHashtags: true,
     mostMentioned: true,
     mostReplied: true,
-    monthlyTweets: true,
-  });
+    monthlyTweets: true
+  })
   const [errors, setErrors] = useState({
     samePeriods: false,
     emptyPeriods: false,
-    nonAscendingPeriods: false,
-  });
-  const [firstTime, setFirstTime] = useState(true);
-  const thereIsError = Object.values(errors).some((error) => error);
-  
-  let tweetsByCountry = useGetTweetsByCountry();
+    nonAscendingPeriods: false
+  })
+  const [firstTime, setFirstTime] = useState(true)
+  const thereIsError = Object.values(errors).some((error) => error)
 
   const handleComparison = () => {
-    window.scrollTo(0, 550);
-    setFirstTime(false);
+    window.scrollTo(0, window.innerHeight)
+    setFirstTime(false)
     setDataComparing((prev) => {
       return {
         ...prev,
@@ -48,20 +49,20 @@ const SelectorComparative = ({ setDataComparing, countryDataState }) => {
         accounts: {
           accountIdA: {
             id: 'null',
-            name: '',
+            name: ''
           },
           accountIdB: {
             id: 'null1',
-            name: '',
-          },
+            name: ''
+          }
         },
         categories,
         isPeriodComparisonActive: true,
         isCountryFilterActive,
-        country_id,
-      };
-    });
-  };
+        country_id: countryId
+      }
+    })
+  }
   return (
     <ComparativeStyled>
       <ComparativePerPeriod setDataComparing={setPeriodComparison} />
@@ -71,19 +72,28 @@ const SelectorComparative = ({ setDataComparing, countryDataState }) => {
         isPeriodComparisonActive={true}
       />
       <CountrySelectFilter
-        countrysWithData={tweetsByCountry}
         setCountryFilterActive={setCountryFilterActive}
         setCountryId={setCountryId}
-        countryDataState={countryDataState}
       />
       <div className="btnContainer">
-        <Button variant="contained" onClick={handleComparison} className="btn" disabled={thereIsError}>
+        <Button
+          variant="contained"
+          onClick={handleComparison}
+          className="btn"
+          disabled={thereIsError}
+        >
           COMPARAR
         </Button>
       </div>
-     {!firstTime &&  <UsePeriodErrors periodComparison={periodComparison} errors={errors} setErrors={setErrors}/>}
+      {!firstTime && (
+        <UsePeriodErrors
+          periodComparison={periodComparison}
+          errors={errors}
+          setErrors={setErrors}
+        />
+      )}
     </ComparativeStyled>
-  );
-};
+  )
+}
 
-export default SelectorComparative;
+export default SelectorComparative

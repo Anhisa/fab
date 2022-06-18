@@ -1,12 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { NavBarStyled } from '../styles/styledComponents/NavBarStyled';
-import OtherHousesIcon from '@mui/icons-material/OtherHouses';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { MenuButtonStyled } from '../styles/styledComponents/NavBarHomeStyled';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { NavBarStyled } from '../styles/styledComponents/NavBarStyled'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import { MenuButtonStyled } from '../styles/styledComponents/NavBarHomeStyled'
+import PropTypes from 'prop-types'
 
-const NavBar = ({themeToggler}) => {
-  function changeTheme(){
+NavBar.propTypes = {
+  themeToggler: PropTypes.func.isRequired
+}
+
+function NavBar ({ themeToggler }) {
+  function changeTheme () {
     themeToggler()
   }
   return (
@@ -14,13 +18,13 @@ const NavBar = ({themeToggler}) => {
       <div className="navbar-header">
         <i className='backArrow'>
           <Link to={'/diplomacia-digital'} tabIndex={0}>
-            <ArrowBackIcon 
+            <ArrowBackIcon
               sx={{
                 fontSize: 40,
-                color: '#ffce21',
-                
+                color: '#ffce21'
+
               }}
-              
+
             />
           </Link>
         </i>
@@ -31,7 +35,7 @@ const NavBar = ({themeToggler}) => {
         </MenuButtonStyled>
       </div>
     </NavBarStyled>
-  );
-};
+  )
+}
 
-export default NavBar;
+export default NavBar

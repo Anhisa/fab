@@ -1,108 +1,116 @@
-import React, { useState } from 'react';
-
-import { scaleLinear } from 'd3-scale';
+import React, { useState } from 'react'
+import { scaleLinear } from 'd3-scale'
 import {
   ComposableMap,
   Geographies,
   Geography,
   useZoomPan,
-  Graticule,
-} from 'react-simple-maps';
-import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
-import useWindowSize from '../hooks/useWindowSize';
+  Graticule
+} from 'react-simple-maps'
+import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry'
+import useWindowSize from '../hooks/useWindowSize'
+import PropTypes from 'prop-types'
 
 const geoUrl =
-  'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json';
+  'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json'
 
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
+// const geoUrl =
+//   'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json';
 
-export const MapIslands = ({
+MapIslands.propTypes = {
+  setAccounts: PropTypes.func.isRequired,
+  items: PropTypes.array.isRequired,
+  setMouse: PropTypes.func.isRequired,
+  countryListManagmentOpen: PropTypes.object.isRequired,
+  setCountrySelectedId: PropTypes.func.isRequired,
+  setZoom: PropTypes.func.isRequired
+}
+
+export function MapIslands ({
   setAccounts,
   items,
   setMouse,
   countryListManagmentOpen,
   setCountrySelectedId,
   setZoom
-}) => {
+}) {
   const windowSize = useWindowSize()
   const [localPosition, setLocalPosition] = useState({
     coordinates: [-73, 17],
-    zoom: 1,
-  });
-  const { open, setOpen } = countryListManagmentOpen;
+    zoom: 1
+  })
+  const { open, setOpen } = countryListManagmentOpen
 
   function handleZoomIn() {
     setZoom(true)
-    if (localPosition.zoom >= 4) return;
-    setLocalPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.5 }));
+    if (localPosition.zoom >= 4) return
+    setLocalPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.5 }))
   }
 
   function handleZoomOut() {
     setZoom(false)
-    if (localPosition.zoom <= 1) return;
+    if (localPosition.zoom <= 1) return
     setLocalPosition((pos) => ({
       ...pos,
-      zoom:1,
-    }));
+      zoom: 1
+    }))
   }
   function closeOnZoomIn() {
-    setOpen(false);
+    setOpen(false)
     //cancel zoom on scroll
   }
 
   function handleMoveEnd(position) {
-
-
-    const { coordinates, zoom } = position;
-   setLocalPosition({coordinates, zoom:localPosition.zoom});
+    const { coordinates, zoom } = position
+    setLocalPosition({ coordinates, zoom: localPosition.zoom })
   }
 
   const handleOnClick = ({ target, pageX, pageY }) => {
     if (target.attributes.value) {
-      const itemValue = target.attributes.value;
-      let x = pageX;
-      let y = pageY;
+      const itemValue = target.attributes.value
+      let x = pageX
+      let y = pageY
       const filteredAccounts = items.filter(
         (item) => item.country_id === itemValue.value
-      );
-      if(pageX + 250 > windowSize.width){
-        x = pageX - 250;
-    }
+      )
+      if (pageX + 250 > windowSize.width) {
+        x = pageX - 250
+      }
 
-    if(pageY + 250 > windowSize.height){
-      y = pageY - 250;
-    }
+      if (pageY + 250 > windowSize.height) {
+        y = pageY - 250
+      }
 
       // console.log('x , y', x, y);
       setMouse({
-        x: x,
-        y: y,
-      });
-      setAccounts(filteredAccounts);
-      setCountrySelectedId(itemValue.value);
+        x,
+        y
+      })
+      setAccounts(filteredAccounts)
+      setCountrySelectedId(itemValue.value)
       if (!open || open) {
-        return setOpen(true);
+        return setOpen(true)
       }
     }
 
-    return setOpen(false);
-  };
+    return setOpen(false)
+  }
 
-  let tweetsByCountry = useGetTweetsByCountry();
+  const tweetsByCountry = useGetTweetsByCountry()
 
   const colorScale = scaleLinear()
     .domain([0, 11161])
-    .range(['#edf7ff', '#1d9bf0']);
+    .range(['#edf7ff', '#1d9bf0'])
 
   return (
     <div className="map">
       <ComposableMap
-      height={windowSize.height ? windowSize.height * 0.9 : 1000}
-      width={windowSize.width ? windowSize.width  : 1000}
+        height={windowSize.height ? windowSize.height * 0.9 : 1000}
+        width={windowSize.width ? windowSize.width : 1000}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
           rotate: [72, -17, 0],
-          scale: 1700,
+          scale: 1700
         }}
         onClick={handleOnClick}
       >
@@ -112,31 +120,29 @@ export const MapIslands = ({
           positionLocal={localPosition}
           onMoveEnd={handleMoveEnd}
         > */}
-          <Graticule stroke="#ccc" step={[27, 9]} />
-          <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
-            {({ geographies }) =>
-              geographies
-                .filter((d) => d.properties.SUBREGION === 'Caribbean')
-                .map((geo) => {
-                  const d = tweetsByCountry.find(
-                    (s) => s.countryId === geo.properties.COUNTRY_ID
-                  );
-                  return (
-                    <Geography
-                      className="geo"
-                      key={geo.rsmKey}
-                      geography={geo}
-                      fill={
-                        d ? colorScale(d['total_tweets_period']) : '#F5F4F6'
-                      }
-                      value={geo.properties.COUNTRY_ID}
-                      stroke="#333"
-                      strokeWidth="0.4"
-                    />
-                  );
-                })
-            }
-          </Geographies>
+        <Graticule stroke="#ccc" step={[27, 9]} />
+        <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
+          {({ geographies }) =>
+            geographies
+              .filter((d) => d.properties.SUBREGION === 'Caribbean')
+              .map((geo) => {
+                const d = tweetsByCountry.find(
+                  (s) => s.countryId === geo.properties.COUNTRY_ID
+                )
+                return (
+                  <Geography
+                    className="geo"
+                    key={geo.rsmKey}
+                    geography={geo}
+                    fill={d ? colorScale(d['total_tweets_period']) : '#F5F4F6'}
+                    value={geo.properties.COUNTRY_ID}
+                    stroke="#333"
+                    strokeWidth="0.4"
+                  />
+                )
+              })
+          }
+        </Geographies>
         {/* </CustomZoomableGroup> */}
       </ComposableMap>
       {/* <div className="controls">
@@ -167,29 +173,38 @@ export const MapIslands = ({
         </button>
       </div> */}
     </div>
-  );
-};
-const CustomZoomableGroup = ({
+  )
+}
+
+CustomZoomableGroup.propTypes = {
+  children: PropTypes.node.isRequired,
+  positionLocal: PropTypes.object.isRequired,
+  setPosition: PropTypes.func.isRequired
+}
+function CustomZoomableGroup ({
   children,
   positionLocal,
   setPosition,
   ...restProps
-}) => {
-  const { mapRef, transformString, position } = useZoomPan(restProps);
-  let check = false;
+}) {
+  const { mapRef, transformString, position } = useZoomPan(restProps)
+  let check = false
 
-  if (position.dragging?.type === 'wheel' || position.dragging?.type === 'dblclick') {
+  if (
+    position.dragging?.type === 'wheel' ||
+    position.dragging?.type === 'dblclick'
+  ) {
     return (
       <g ref={mapRef}>
         <g
-          // transform={`translate(${positionLocal.coordinates[0]} ${
-          //   check ? positionLocal.coordinates[1] : ''
-          // }  ) scale(${positionLocal.zoom})`}
+        // transform={`translate(${positionLocal.coordinates[0]} ${
+        //   check ? positionLocal.coordinates[1] : ''
+        // }  ) scale(${positionLocal.zoom})`}
         >
           {children}
         </g>
       </g>
-    );
+    )
   }
 
   return (
@@ -203,5 +218,5 @@ const CustomZoomableGroup = ({
         {children}
       </g>
     </g>
-  );
-};
+  )
+}

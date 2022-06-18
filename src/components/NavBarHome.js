@@ -1,47 +1,58 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { MenuButtonStyled, NavBarHomeStyled } from '../styles/styledComponents/NavBarHomeStyled';
+import React, { useState } from 'react'
+import {
+  MenuButtonStyled,
+  NavBarHomeStyled
+} from '../styles/styledComponents/NavBarHomeStyled'
 import { Spin as Hamburger } from 'hamburger-react'
-import { Link } from "react-router-dom";
+import PropTypes from 'prop-types'
+// import { Link } from 'react-router-dom'
+NavBarHome.propTypes = {
+  menu: PropTypes.object.isRequired,
+  countryListManagmentOpen: PropTypes.object.isRequired,
+  themeToggler: PropTypes.func.isRequired
+}
 
-const NavBarHome = ({setCurrentMap, menu, countryListManagmentOpen, themeToggler}) => {
-  const { setShowMap, setShowAccountComparing, setShowPeriodComparing, showMap } = menu;
-  const { open, setOpen } = countryListManagmentOpen; 
+function NavBarHome ({ menu, countryListManagmentOpen, themeToggler }) {
+  const {
+    setShowMap,
+    setShowAccountComparing,
+    setShowPeriodComparing,
+    showMap
+  } = menu
+  const { setOpen } = countryListManagmentOpen
   const [showMenu, setShowMenu] = useState(false)
 
-
-  function handleClickChange() {
-    setCurrentMap((prev) => !prev);
-    setOpen(false);
-    setShowAccountComparing(false);
-    setShowPeriodComparing(false);      
-  }
-  function handleClickAccounts() {
+  // function handleClickChange () {
+  //   setCurrentMap((prev) => !prev)
+  //   setOpen(false)
+  //   setShowAccountComparing(false)
+  //   setShowPeriodComparing(false)
+  // }
+  function handleClickAccounts () {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: 'smooth'
     })
-    setShowMenu(false);
-    if(!showMap){
-      setShowMap(true);
-      setShowAccountComparing(false);
-      setShowPeriodComparing(false);
+    setShowMenu(false)
+    if (!showMap) {
+      setShowMap(true)
+      setShowAccountComparing(false)
+      setShowPeriodComparing(false)
     } else {
-      setShowAccountComparing(true);
-      setShowPeriodComparing(true);
-      setShowMap(false);
-      setOpen(false);
+      setShowAccountComparing(true)
+      setShowPeriodComparing(true)
+      setShowMap(false)
+      setOpen(false)
     }
-    
   }
-  function changeTheme(){
-
-    themeToggler()    
+  function changeTheme () {
+    themeToggler()
   }
   // useEffect(()=>{
   //   if(showMap){
   //     firstButton.current.classList.add('active')
   //     secondButton.current.classList.remove('active')
-  //     thirdButton.current.classList.remove('active')    
+  //     thirdButton.current.classList.remove('active')
   // }},[showMap])
   return (
     <NavBarHomeStyled>
@@ -53,12 +64,12 @@ const NavBarHome = ({setCurrentMap, menu, countryListManagmentOpen, themeToggler
           </em>
         </h3>
       </div>
-      <div className="hamburger">
+      <div className="hamburger" tabIndex={1}>
         <Hamburger
           toggled={showMenu}
           toggle={setShowMenu}
           size={30}
-          direction= 'left'
+          direction="left"
           strokeWidth={3}
           color="white"
           duration={0.5}
@@ -66,31 +77,33 @@ const NavBarHome = ({setCurrentMap, menu, countryListManagmentOpen, themeToggler
         />
       </div>
 
-      <div className={
-        showMenu ? 'menu opened' : 'menu close'
-      }>
-        <MenuButtonStyled className="menu-item"
+      <div className={showMenu ? 'menu opened' : 'menu close'}>
+        <MenuButtonStyled
+          className="menu-item"
           onClick={handleClickAccounts}
-          type='button'
+          type="button"
         >
           <p tabIndex={0}>{showMap ? 'COMPARADOR' : 'MAPA'}</p>
         </MenuButtonStyled>
-        <MenuButtonStyled className="menu-item" type='button'
-  
-        >
-        <a target="_blank" href="https://fundacionandresbello.org/documentos-dd/"><p>DOCUMENTOS</p></a>
+        <MenuButtonStyled className="menu-item" type="button">
+          <a
+            target="_blank"
+            href="https://fundacionandresbello.org/documentos-dd/"
+            rel="noreferrer"
+          >
+            <p>DOCUMENTOS</p>
+          </a>
         </MenuButtonStyled>
-        <MenuButtonStyled className="menu-item"type='button'
+        <MenuButtonStyled
+          className="menu-item"
+          type="button"
           onClick={changeTheme}
-     
         >
           <p tabIndex={0}>CAMBIAR TEMA</p>
         </MenuButtonStyled>
       </div>
-
     </NavBarHomeStyled>
-  );
-};
+  )
+}
 
-export default NavBarHome;
-
+export default NavBarHome

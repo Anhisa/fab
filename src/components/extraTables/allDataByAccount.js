@@ -1,20 +1,16 @@
-import axios from 'axios';
-
-
-import React, { useEffect, useState } from 'react'
-import useGetAllData from '../../hooks/useGetAllData';
+import React, { useEffect, useState, useContext } from 'react'
 
 
 const AllDataByAccount = () => {
-const results ='x'
+  
 
-// 
-//   const dataMostMentioned = useGetData(apiMostMentioned);
-//   if(dataMostMentioned.loading){
-//     return "loading..."
-//   }
+  //
+  //   const dataMostMentioned = useGetData(apiMostMentioned);
+  //   if(dataMostMentioned.loading){
+  //     return "loading..."
+  //   }
   // const dataMostReplied = useGetData(apiMostReplied);
-  // console.log('dataMostReplied', dataMostReplied);  
+  // console.log('dataMostReplied', dataMostReplied);
   // const dataMostRetweeted = useGetData(apiMostRetweeted);
   // console.log('dataMostRetweeted', dataMostRetweeted);
   // const dataHtMostUsed = useGetData(apiHtMostUsed);
@@ -26,64 +22,53 @@ const results ='x'
   // let itemSol = filterDuplicates(item, 'category');
   // let filtered = addDuplicates(itemSol);
   // return filtered;
-  // 
+  //
   // })
-  
 
-  return (
-    <div>allDataByAccount</div>
-  )
+  return <div>allDataByAccount</div>
 }
 
 export default AllDataByAccount
 
 function extractCategories(data, category) {
-  switch(category) {
-    case 'mentioned':       
-      const htCategories = [];
-      return data.forEach(item => {
+  switch (category) {
+    case 'mentioned':
+      let htCategories = []
+      return data.forEach((item) => {
         htCategories.push({
           category: item.most_mentioned_category_spa,
           count: item.mentions_number,
           account: item.official_account,
-          accountId : item.official_account_id
-        });
-      });
+          accountId: item.official_account_id
+        })
+      })
     case 'replied':
-      const repliedCategories = [];
-       
+      const repliedCategories = []
   }
-
-
-
 }
 
-
-
-
-
-export function filterDuplicates(data, key) {
-  let usersAccountCheck = [];
-  let arrayDuplicates = [];
+export function filterDuplicates (data, key) {
+  const usersAccountCheck = []
+  const arrayDuplicates = []
   // Devuelve un array con los elementos duplicados
   data.forEach((item) => {
     if (!usersAccountCheck.includes(item[key])) {
       let duplicates = data.filter((item2) => {
-        return item[key] === item2[key];
-      });
-      usersAccountCheck.push(item[key]);
-      arrayDuplicates.push(duplicates);
+        return item[key] === item2[key]
+      })
+      usersAccountCheck.push(item[key])
+      arrayDuplicates.push(duplicates)
     }
-  });
+  })
 
-  return arrayDuplicates;
+  return arrayDuplicates
 }
 
-export function addDuplicates (data){
-  let newArray = data.map(item => {
-    let itemCount = item.reduce((acc, item) => {
-      return acc + parseInt(item.count);
-    },0)
+export function addDuplicates (data) {
+  const newArray = data.map((item) => {
+    const itemCount = item.reduce((acc, item) => {
+      return acc + parseInt(item.count)
+    }, 0)
     return {
       category: item[0].category,
       count: itemCount,
@@ -91,5 +76,5 @@ export function addDuplicates (data){
       account: item[0].account
     }
   })
-  return newArray;
-  }
+  return newArray
+}
