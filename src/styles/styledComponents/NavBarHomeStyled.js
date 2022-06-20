@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const NavBarHomeStyled = styled.nav`
   width: 100%;
@@ -107,7 +107,7 @@ export const NavBarHomeStyled = styled.nav`
       justify-content: center;
     }
   }
-`;
+`
 
 export const MenuButtonStyled = styled.button`
   // no styles
@@ -125,4 +125,4 @@ export const MenuButtonStyled = styled.button`
     outline: red;
     
   }
-`;
+`

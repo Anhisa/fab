@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const CountryCardSelectStyled = styled.div`
   display: flex;
@@ -42,8 +42,7 @@ export const CountryCardSelectStyled = styled.div`
     }  
     
   }
-`;
-
+`
 
 export const EmptyCardStyled = styled.div`
   background-color: white;

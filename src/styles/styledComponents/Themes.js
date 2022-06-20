@@ -9,7 +9,7 @@ export const lightTheme = {
   secondary: yellow,
   tertiary: '#333',
   toggleBorder: yellow,
-  textContrast: '#fff',
+  textContrast: '#fff'
 }
 
 export const darkTheme = {
@@ -20,5 +20,5 @@ export const darkTheme = {
   secondary: darkBlue,
   tertiary: '#fff',
   toggleBorder: yellow,
-  textContrast: darkBlue,
+  textContrast: darkBlue
 }

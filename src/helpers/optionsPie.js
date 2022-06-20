@@ -1,9 +1,7 @@
-import { useTheme } from "styled-components";
+import { useTheme } from 'styled-components'
 
-
-
-function useOptionsPie(){
-  const theme = useTheme();
+function useOptionsPie () {
+  const theme = useTheme()
   return {
     plugins: {
       legend: {
@@ -13,18 +11,15 @@ function useOptionsPie(){
           color: theme.text,
           font: {
             size: 12,
-            weight: 'bold',
+            weight: 'bold'
           },
           padding: 15,
           pointStyle: 'rectRounded',
-          usePointStyle: true,
-        },
-      },
-    },  
-  }  
+          usePointStyle: true
+        }
+      }
+    }
+  }
 }
 
-
-
-export default useOptionsPie;
-
+export default useOptionsPie

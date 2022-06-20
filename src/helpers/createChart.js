@@ -1,60 +1,52 @@
-import ProgressBar from 'react-bootstrap/ProgressBar';
-import { useTheme } from 'styled-components';
-function getMaxValue(dataAccounts) { 
-  let maxValue = 0;
-  
-  if(Object.keys(dataAccounts).length < 3){
+import ProgressBar from 'react-bootstrap/ProgressBar'
+import React from 'react'
 
-  dataAccounts.map((item) => {
-    
-    const tweetNumber = item.map((innerItem) =>
-      {if(innerItem.tweets_number){
-        
-        return parseInt(innerItem.tweets_number)
+function getMaxValue (dataAccounts) {
+  let maxValue = 0
+
+  if (Object.keys(dataAccounts).length < 3) {
+    dataAccounts.forEach((item) => {
+      const tweetNumber = item.map((innerItem) => {
+        if (innerItem.tweets_number) {
+          return parseInt(innerItem.tweets_number)
+        }
+
+        return innerItem.mentions_number
       }
-      
-     return innerItem.mentions_number}
-    );
-    
-    let innerMaxValue = Math.max(...tweetNumber);
-    if (innerMaxValue > maxValue) {
-      maxValue = innerMaxValue;
-    }
-  });
+      )
+
+      const innerMaxValue = Math.max(...tweetNumber)
+      if (innerMaxValue > maxValue) {
+        maxValue = innerMaxValue
+      }
+    })
   } else {
-
     maxValue = Math.max(dataAccounts)
-
   }
 
-  return maxValue;
+  return maxValue
 }
-export function CreateChart(dataAccounts) {
- 
-  //get max value from list
+export function CreateChart (dataAccounts) {
+  // get max value from list
 
-  const maxValue = getMaxValue(dataAccounts);
-  const maxValueClosest = Math.ceil(maxValue / 10) * 10;
-  
-  const arrayBarPerAccount = [];
+  const maxValue = getMaxValue(dataAccounts)
+  const maxValueClosest = Math.ceil(maxValue / 10) * 10
 
-  if(Object.keys(dataAccounts).length < 3){
-    
-  
-  dataAccounts.forEach((item) => {
-    const tweetNumber = item.map((innerItem) =>
-    {
-    if(innerItem.tweets_number >= 0){     
-  
-      return innerItem.tweets_number
-    } else {
-      return parseInt(innerItem.mentions_number)}
-    }      
-    );
+  const arrayBarPerAccount = []
 
-    const progressBarList = tweetNumber.map((item2, index) => {
-      
-      return (
+  if (Object.keys(dataAccounts).length < 3) {
+    dataAccounts.forEach((item) => {
+      const tweetNumber = item.map((innerItem) => {
+        if (innerItem.tweets_number >= 0) {
+          return innerItem.tweets_number
+        } else {
+          return parseInt(innerItem.mentions_number)
+        }
+      }
+      )
+
+      const progressBarList = tweetNumber.map((item2, index) => {
+        return (
         <>
         <ProgressBar
           variant="warning"
@@ -72,8 +64,8 @@ export function CreateChart(dataAccounts) {
                 padding: '0px',
                 width: '50px',
                 position: 'absolute',
-              
-                right: '10px',
+
+                right: '10px'
               }}
             >
               {item2}
@@ -82,11 +74,10 @@ export function CreateChart(dataAccounts) {
         />
 
         </>
-      );
-    });
-    arrayBarPerAccount.push(progressBarList);
-  })} else {
+        )
+      })
+      arrayBarPerAccount.push(progressBarList)
+    })
   }
-
-  return arrayBarPerAccount;
+  return arrayBarPerAccount
 }

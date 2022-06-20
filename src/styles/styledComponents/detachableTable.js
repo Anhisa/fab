@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const DetachableTable = styled.section`
   position: absolute;
@@ -62,4 +62,4 @@ export const DetachableTable = styled.section`
   @media (max-width: 768px) {
     width: 250px;
   }
-`;
+`

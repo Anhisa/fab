@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const PieContainerStyled = styled.div`
   display: flex;
@@ -12,11 +12,11 @@ export const PieContainerStyled = styled.div`
   @media (max-width: 1000px) {
     flex-direction: column;
   }
-`;
+`
 
 export const PieChartContainer = styled.div`
   display: flex;
-  width:${props => props.usuario ? '50%' : '100%' };
+  width:${props => props.usuario ? '50%' : '100%'};
   padding: 0 !important;
   margin-top: 25px;
   margin-left: 5px;  
@@ -58,4 +58,4 @@ export const PieChartContainer = styled.div`
   @media (max-width: 1000px) {
     width: 100%;
   }
-`;
+`

@@ -1,52 +1,49 @@
-import { useEffect, useState } from "react";
-import { useGetData } from "../hooks/useGetData";
+/* eslint-disable camelcase */
+import { useEffect, useState, useContext } from 'react'
+import { DataContext } from '../context/dataContext'
 
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-fol'
-
-export function getDataAccounts(){
-  const {data, loading} = useGetData(api);
-  const [innerData, setInnerData] = useState(data);
-  const [filteredData, setFilteredData] = useState([]);
-  let arrayDuplicate = [];
+export function getDataAccounts () {
+  const { fol } = useContext(DataContext)
+  const [innerData, setInnerData] = useState(fol)
+  const [filteredData, setFilteredData] = useState([])
+  let arrayDuplicate = []
   useEffect(() => {
     if (innerData !== false) {
-      setInnerData(data);
+      setInnerData(fol)
     }
-    
-      let array = filterDuplicates(innerData);
-      arrayDuplicate = addDuplicates(array);
-      setFilteredData(arrayDuplicate);
-  
-      
-  }, [data, loading]);
+
+    const array = filterDuplicates(innerData)
+    arrayDuplicate = addDuplicates(array)
+    setFilteredData(arrayDuplicate)
+  }, [fol])
   return filteredData
 }
-function filterDuplicates(data) {
-  let accountCheck = [];
-  let arrayDuplicates = [];
+function filterDuplicates (data) {
+  const accountCheck = []
+  const arrayDuplicates = []
   // Devuelve un array con los elementos duplicados
   data.forEach((item) => {
     if (!accountCheck.includes(item.official_account_id)) {
-      let duplicates = data.filter((item2) => {
+      const duplicates = data.filter((item2) => {
         return item.official_account_id === item2.official_account_id
-      });
+      })
       accountCheck.push(item.official_account_id)
-      arrayDuplicates.push(duplicates);
+      arrayDuplicates.push(duplicates)
     }
-  });
+  })
 
-  return arrayDuplicates;
+  return arrayDuplicates
 }
-function addDuplicates(data){
-  let newArray = data.map(item => {
-    let accId = item[0].official_account_id;
-    let creationDate = item[0]["official_account creation_date"]
-    let isVerified = item[0]["official_account_verified"]
+function addDuplicates (data) {
+  const newArray = data.map(item => {
+    const accId = item[0].official_account_id
+    const creationDate = item[0]['official_account creation_date']
+    const isVerified = item[0].official_account_verified
 
-    let total_tweets_period = item.reduce((acc, item) => {
+    const total_tweets_period = item.reduce((acc, item) => {
       return acc + parseInt(item.total_tweets_period)
     }, 0)
-    let followers_number = item.reduce((acc, item) => {
+    const followers_number = item.reduce((acc, item) => {
       return acc + parseInt(item.followers_number)
     }, 0)
     return {
@@ -57,5 +54,5 @@ function addDuplicates(data){
       followers_number
     }
   })
-  return newArray  
+  return newArray
 }

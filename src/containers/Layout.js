@@ -1,10 +1,11 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { HomeStyled } from '../styles/styledComponents/HomeStyled'
 
-export const Layout = ({children}) => {
-  return (
-      <div className="container-xl">
-        {children}
-      </div>
-  );
+Layout.propTypes = {
+  children: PropTypes.node.isRequired
 }
 
+export function Layout ({ children }) {
+  return <HomeStyled>{children}</HomeStyled>
+}

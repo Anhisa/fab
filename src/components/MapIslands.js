@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { scaleLinear } from 'd3-scale'
 import {
   ComposableMap,
@@ -35,35 +35,35 @@ export function MapIslands ({
   setZoom
 }) {
   const windowSize = useWindowSize()
-  const [localPosition, setLocalPosition] = useState({
-    coordinates: [-73, 17],
-    zoom: 1
-  })
+  // const [localPosition, setLocalPosition] = useState({
+  //   coordinates: [-73, 17],
+  //   zoom: 1
+  // })
   const { open, setOpen } = countryListManagmentOpen
 
-  function handleZoomIn() {
-    setZoom(true)
-    if (localPosition.zoom >= 4) return
-    setLocalPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.5 }))
-  }
+  // function handleZoomIn() {
+  //   setZoom(true)
+  //   if (localPosition.zoom >= 4) return
+  //   setLocalPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.5 }))
+  // }
 
-  function handleZoomOut() {
-    setZoom(false)
-    if (localPosition.zoom <= 1) return
-    setLocalPosition((pos) => ({
-      ...pos,
-      zoom: 1
-    }))
-  }
-  function closeOnZoomIn() {
-    setOpen(false)
-    //cancel zoom on scroll
-  }
+  // function handleZoomOut() {
+  //   setZoom(false)
+  //   if (localPosition.zoom <= 1) return
+  //   setLocalPosition((pos) => ({
+  //     ...pos,
+  //     zoom: 1
+  //   }))
+  // }
+  // function closeOnZoomIn() {
+  //   setOpen(false)
+  //   //cancel zoom on scroll
+  // }
 
-  function handleMoveEnd(position) {
-    const { coordinates, zoom } = position
-    setLocalPosition({ coordinates, zoom: localPosition.zoom })
-  }
+  // function handleMoveEnd(position) {
+  //   const { coordinates, zoom } = position
+  //   setLocalPosition({ coordinates, zoom: localPosition.zoom })
+  // }
 
   const handleOnClick = ({ target, pageX, pageY }) => {
     if (target.attributes.value) {
@@ -134,7 +134,7 @@ export function MapIslands ({
                     className="geo"
                     key={geo.rsmKey}
                     geography={geo}
-                    fill={d ? colorScale(d['total_tweets_period']) : '#F5F4F6'}
+                    fill={d ? colorScale(d.total_tweets_period) : '#F5F4F6'}
                     value={geo.properties.COUNTRY_ID}
                     stroke="#333"
                     strokeWidth="0.4"
@@ -188,7 +188,7 @@ function CustomZoomableGroup ({
   ...restProps
 }) {
   const { mapRef, transformString, position } = useZoomPan(restProps)
-  let check = false
+  // let check = false
 
   if (
     position.dragging?.type === 'wheel' ||

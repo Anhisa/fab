@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const ColorBarStyled = styled.div`
   /* background: white; */
@@ -16,7 +16,7 @@ export const ColorBarStyled = styled.div`
   border-radius: 20px;
 
 
-`;
+`
 
 export const ColorBarContainer = styled.article`
   display: flex;

@@ -31,7 +31,7 @@ MonthlyTweetsChart.propTypes = {
 }
 
 export function MonthlyTweetsChart ({ newData, context }) {
-  if (!newData) {
+  if (newData.length === 0) {
     return null
   }
   const [dataSets, labels] = useCallback(createDatasets(newData, context), [
@@ -130,7 +130,6 @@ export function MonthlyTweetsChart ({ newData, context }) {
 function createDatasets (data, context) {
   const { periodComparison, isPeriodComparisonActive } = context
   const data2 = { ...data }
-
   let newLabels = []
 
   if (isPeriodComparisonActive) {
@@ -172,16 +171,14 @@ function createDatasets (data, context) {
     return [datasets, newLabels]
   } else {
     // para las cuentas
-    const periods = [periodComparison.periodA, periodComparison.periodB]
+    // const periods = [periodComparison.periodA, periodComparison.periodB]
     const datasets = []
     let controlColor = 0
     data.forEach((item) => {
       const color =
         controlColor === 0 ? 'rgba(255, 206, 33, 0.7' : 'rgba(0, 60, 123, 0.7)'
       datasets.push({
-        label: isPeriodComparisonActive
-          ? periods[controlColor].name
-          : item[0].official_account,
+        label: item[0].official_account,
         data: item.map((item2) => parseInt(item2.tweets_number)),
         tension: 0.3,
         borderColor: 'black',

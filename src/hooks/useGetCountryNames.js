@@ -1,38 +1,33 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { DataContext } from '../context/dataContext';
-import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry';
-
+import { useContext, useEffect, useState } from 'react'
+import { DataContext } from '../context/dataContext'
+import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry'
 
 const useGetCountryNames = () => {
-  const {countries} = useContext(DataContext);
-  const [countryNames, setCountryNames] = useState([]);
-  let tweetsByCountry = useGetTweetsByCountry();
-  
-  
-  useEffect(() => {   
-    if (countries) {  
-        let countryIds = tweetsByCountry.map((tweet) => tweet.countryId);
-      
-        let countryNames = countryIds.map((countryId) => {
-   
-          const country = countries.find(
-            (country) => country.country_id === countryId
-          );
+  const { countries } = useContext(DataContext)
+  const [countryNames, setCountryNames] = useState([])
+  const tweetsByCountry = useGetTweetsByCountry()
 
-          let countryName = country.country_name_spa;
-          
-          let countryInId = country.country_id;
-          
-          return {countryName, countryInId};
-        });
+  useEffect(() => {
+    if (countries) {
+      const countryIds = tweetsByCountry.map((tweet) => tweet.countryId)
 
-        setCountryNames(countryNames);
+      const countryNames = countryIds.map((countryId) => {
+        const country = countries.find(
+          (country) => country.country_id === countryId
+        )
+
+        const countryName = country.country_name_spa
+
+        const countryInId = country.country_id
+
+        return { countryName, countryInId }
+      })
+
+      setCountryNames(countryNames)
     }
-  }, [ tweetsByCountry]);
-  
-  return countryNames;
+  }, [tweetsByCountry])
 
-  
+  return countryNames
 }
 
 export default useGetCountryNames

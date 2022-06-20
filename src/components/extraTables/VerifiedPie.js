@@ -1,8 +1,8 @@
 import React from 'react'
 import { getActivityCreactionDate } from '../../helpers/getActivityCreactionDate'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
-import { Pie, Doughnut } from 'react-chartjs-2'
-import { PieChartContainer } from '../../styles/styledComponents/PieContainerStyled'
+import { Pie } from 'react-chartjs-2'
+// import { PieChartContainer } from '../../styles/styledComponents/PieContainerStyled'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
@@ -16,7 +16,7 @@ const VerifiedPie = () => {
     data = [verified, notVerified]
   }
 
-  let dataChart = {
+  const dataChart = {
     labels: ['Verificados', 'No verificados'],
     datasets: [
       {
@@ -52,7 +52,7 @@ const VerifiedPie = () => {
 
 export default VerifiedPie
 
-function getVerifiedPieData(data) {
+function getVerifiedPieData (data) {
   const verified = []
   const notVerified = []
   data.forEach((item) => {

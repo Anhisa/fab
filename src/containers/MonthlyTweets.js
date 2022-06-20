@@ -1,38 +1,31 @@
-import React, { useEffect, useState, memo } from 'react';
-import { useFilterData } from '../hooks/useFilterData';
-import { Spinner } from 'react-bootstrap';
-import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';
-import { MonthlyTweetsChart } from '../components/monthyTweets/MonthlyTweetsChart';
+import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import { useFilterData } from '../hooks/useFilterData'
+import { MonthlyTweetsChart } from '../components/monthyTweets/MonthlyTweetsChart'
 
+MonthlyTweetsItems.propTypes = {
+  context: PropTypes.object.isRequired
+}
 
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/monthly-tweets';
-export const MonthlyTweetsItems = ( {context}) => {
-
-  const [ data, loading] = useFilterData(api, context, 'monthly-tweets');
-  const [innerData, setInnerData] = useState(false);
+export function MonthlyTweetsItems ({ context }) {
+  const [data] = useFilterData(context, 'monthly-tweets')
+  console.log('data', data.length)
+  const [innerData, setInnerData] = useState([])
 
   useEffect(() => {
-    if (!loading && data.length > 0) {
-      setInnerData(data);
+    if (data.length > 0) {
+      setInnerData(data)
+      console.log('innerData', innerData)
     }
-  }, [data]);
+  }, [data])
 
-  if (!innerData) {
-    return (
-      <Spinner animation="border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
-    );
+  if (data.length === 0) {
+    return <p> Loading... </p>
   }
-
-  if (innerData.length === 0 || innerData.length === undefined) {
-    return <EmptyDataStyled>No hay data correspondiente al periodo seleccionado</EmptyDataStyled>;
-  }
- ;
 
   return (
     <section className="closed" id="monthy-tweets">
-      <MonthlyTweetsChart newData={innerData} context={context}/>
-    </section >
-  );
-};
+      <MonthlyTweetsChart newData={innerData} context={context} />
+    </section>
+  )
+}

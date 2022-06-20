@@ -1,78 +1,60 @@
-import React, { useEffect, useState, memo } from 'react';
+import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import { useFilterData } from '../hooks/useFilterData'
+import { CreateChart } from '../helpers/createChart'
+import useActiveNames from '../hooks/useActiveNames'
+import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled'
+import { MostRetweetedItemChange } from '../components/mostRetweet/MostRetweetedItemCHANGE'
+import MostRetwittedPie from '../components/mostRetweet/MostRetwittedPie'
 
-import { useFilterData } from '../hooks/useFilterData';
+MostRetweetedItems.propTypes = {
+  context: PropTypes.object.isRequired,
+  usuario: PropTypes.bool.isRequired
+}
 
-import { CreateChart } from '../helpers/createChart';
-import { Spinner } from 'react-bootstrap';
-
-import useActiveNames from '../hooks/useActiveNames';
-
-import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled';
-import { MostRetweetedItemChange } from '../components/mostRetweet/MostRetweetedItemCHANGE';
-import MostRetwittedPie from '../components/mostRetweet/MostRetwittedPie';
-
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted';
-
-export const MostRetweetedItems = ({context, usuario}) => {
-
+export function MostRetweetedItems ({ context, usuario }) {
   const accountsNames = useActiveNames(context)
-  
-  const {isPeriodComparisonActive} = context
-
+  const { isPeriodComparisonActive } = context
   // const [comparisonView, setComparisonView] = useState(false);
-  const [chartData, setChartData] = useState([]);
-  const [data, loading] = useFilterData(api, context, 'most-retweeted');
+  const [chartData, setChartData] = useState([])
+  const [data] = useFilterData(context, 'most-retweeted')
 
-  let arraysBar = [];
- 
+  let arraysBar = []
+
   useEffect(() => {
-    if (!loading && data.length > 0) { 
- 
+    if (data.length > 0) {
       arraysBar = CreateChart(data)
 
-    setChartData(arraysBar);  
-  }
-  }, [data, loading]);
-
-  if (!data || data.length === 0) {
-    return   <Spinner animation="border" role="status" style={{
-      margin: '0, auto',
-    }}>
-    <span className="visually-hidden">Loading...</span>
-  </Spinner>
-  }
-
-  
-
-
+      setChartData(arraysBar)
+    }
+  }, [data])
 
   return (
     <>
-    {chartData.length > 0 ? 
+    {chartData.length > 0
 
-      <section className="closed" id="most-retweet">
+      ? <section className="closed" id="most-retweet">
       {data.map((dataAccount, index) => {
         return (
           <section className="column" key={index}>
-            
+
               <MostRetweetedItemChange newData={dataAccount} arrayBar={chartData[index]} comparisonView={isPeriodComparisonActive} title={
                 accountsNames[index]
               }/>
               <MostRetwittedPie newData={dataAccount} title={accountsNames[index]} usuario={usuario}/>
-       
+
           </section>
-        );
+        )
       })}
-      {accountsNames.length > data.length && <> 
+      {accountsNames.length > data.length && <>
       <EmptyDataStyled>
         No hay datos para mostrar
       </EmptyDataStyled>
 
-      
       </>}
     </section>
-  : ""
+      : ''
   }
   </>
-  );
-};
+  )
+}

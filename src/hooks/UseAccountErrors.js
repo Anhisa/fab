@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import {
   ErrorContainer,
-  ErrorTable,
-} from '../styles/styledComponents/ErrorTable.styled';
+  ErrorTable
+} from '../styles/styledComponents/ErrorTable.styled'
 
-const UseAccountErrors = ({ accounts, errors, setErrors }) => {
+UseAccountErrors.propTypes = {
+  accounts: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  setErrors: PropTypes.func.isRequired
+}
+
+function UseAccountErrors ({ accounts, errors, setErrors }) {
   useEffect(() => {
     if (
       accounts.accountIdA.id === accounts.accountIdB.id &&
@@ -13,26 +20,26 @@ const UseAccountErrors = ({ accounts, errors, setErrors }) => {
     ) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        sameAccounts: true,
-      }));
+        sameAccounts: true
+      }))
     } else {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        sameAccounts: false,
-      }));
+        sameAccounts: false
+      }))
     }
     if (accounts.accountIdA.id === '' || accounts.accountIdB.id === '') {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        emptyAccounts: true,
-      }));
+        emptyAccounts: true
+      }))
     } else {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        emptyAccounts: false,
-      }));
+        emptyAccounts: false
+      }))
     }
-  }, [accounts]);
+  }, [accounts])
   return (
     <ErrorContainer>
       {errors.sameAccounts === true && (
@@ -46,7 +53,7 @@ const UseAccountErrors = ({ accounts, errors, setErrors }) => {
         </ErrorTable>
       )}
     </ErrorContainer>
-  );
-};
+  )
+}
 
-export default UseAccountErrors;
+export default UseAccountErrors

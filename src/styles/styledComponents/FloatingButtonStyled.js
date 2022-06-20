@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const FloatingButtonStyled = styled.div`
   padding: 10px 16px;
@@ -19,7 +19,7 @@ export const FloatingButtonStyled = styled.div`
     margin-bottom: 0px;
     padding: 50px 10px;
   }
-`;
+`
 export const FloatingButtonInner = styled.button`
   background: #fafafa;
   border: 1px solid #e6e6e6; 
@@ -87,4 +87,4 @@ export const FloatingButtonContainer = styled.div`
       transition: all 0.3s ease-in-out;
     }
   }
-`;
+`

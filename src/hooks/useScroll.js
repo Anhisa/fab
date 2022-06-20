@@ -1,18 +1,17 @@
 import React from 'react'
 
 const useScroll = () => {
-  const [scroll, setScroll] = React.useState(0);
+  const [scroll, setScroll] = React.useState(0)
   const handleScroll = () => {
-    setScroll(window.scrollY);
-  };
+    setScroll(window.scrollY)
+  }
   React.useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll)
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-  return scroll;
-  
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+  return scroll
 }
 
 export default useScroll

@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useContext } from 'react'
-
-
+/* eslint-disable no-case-declarations */
+/* eslint-disable no-unused-vars */
+import React from 'react'
+// { useEffect, useState, useContext }
 const AllDataByAccount = () => {
-  
-
   //
   //   const dataMostMentioned = useGetData(apiMostMentioned);
   //   if(dataMostMentioned.loading){
@@ -30,10 +29,10 @@ const AllDataByAccount = () => {
 
 export default AllDataByAccount
 
-function extractCategories(data, category) {
+function extractCategories (data, category) {
   switch (category) {
     case 'mentioned':
-      let htCategories = []
+      const htCategories = []
       return data.forEach((item) => {
         htCategories.push({
           category: item.most_mentioned_category_spa,
@@ -43,7 +42,7 @@ function extractCategories(data, category) {
         })
       })
     case 'replied':
-      const repliedCategories = []
+     // const repliedCategories = []
   }
 }
 
@@ -53,7 +52,7 @@ export function filterDuplicates (data, key) {
   // Devuelve un array con los elementos duplicados
   data.forEach((item) => {
     if (!usersAccountCheck.includes(item[key])) {
-      let duplicates = data.filter((item2) => {
+      const duplicates = data.filter((item2) => {
         return item[key] === item2[key]
       })
       usersAccountCheck.push(item[key])

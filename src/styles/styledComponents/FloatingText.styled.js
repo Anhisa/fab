@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const FloatingTextStyled = styled.div`
   position: absolute;
@@ -50,7 +50,7 @@ export const FloatingTextStyled = styled.div`
       display: none;
     }
   }
-`;
+`
 export const FloatingTextRightIslandStyled = styled.div`
   position: absolute;
   margin-top: 100px;
@@ -88,7 +88,7 @@ export const FloatingTextRightIslandStyled = styled.div`
       font-size: 1.2rem;
     }
   }
-`;
+`
 
 export const FloatingTextRightStyled = styled.div`
   position: absolute;
@@ -137,7 +137,7 @@ export const FloatingTextRightStyled = styled.div`
       font-size: 1.2rem;
     }
   }
-`;
+`
 
 export const ButtonFloatingStyled = styled.button`
   width: 50%;
@@ -159,7 +159,7 @@ export const ButtonFloatingStyled = styled.button`
 
     height: 40px;
   }
-`;
+`
 
 export const FloatingTextIslandsStyled = styled.div`
   position: absolute;
@@ -207,4 +207,4 @@ export const FloatingTextIslandsStyled = styled.div`
       display: none;
     }
   }
-`;
+`

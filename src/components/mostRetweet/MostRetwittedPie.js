@@ -1,43 +1,47 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Doughnut } from 'react-chartjs-2'
+import { colorsFromCategory } from '../../helpers/colorsFromCategory'
+import { PieChartContainer } from '../../styles/styledComponents/PieContainerStyled'
+import useOptionsPie from '../../helpers/optionsPie'
 
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie, Doughnut } from 'react-chartjs-2';
-import { colorsFromCategory } from '../../helpers/colorsFromCategory';
-import { PieChartContainer } from '../../styles/styledComponents/PieContainerStyled';
-import useOptionsPie from '../../helpers/optionsPie';
+ChartJS.register(ArcElement, Tooltip, Legend)
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+MostRetwittedPie.propTypes = {
+  newData: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+  usuario: PropTypes.bool.isRequired
+}
 
-const MostRetwittedPie = ({ newData, title, setCategories, usuario }) => {
-  const repliedCategories = extractRetwittedCategories(newData);
+function MostRetwittedPie ({ newData, title, usuario }) {
+  const repliedCategories = extractRetwittedCategories(newData)
   const optionsPie = useOptionsPie()
 
-  const duplicates = filterDuplicates(repliedCategories);
-  
+  const duplicates = filterDuplicates(repliedCategories)
 
-  let dataSolved = addDuplicates(duplicates);
+  const dataSolved = addDuplicates(duplicates)
 
-  let colors = colorsFromCategory(dataSolved);
+  const colors = colorsFromCategory(dataSolved)
 
-  let labels = dataSolved.map((item) => item.category);
-  let data = dataSolved.map((item) => item.count);
-  
+  const labels = dataSolved.map((item) => item.category)
+  const data = dataSolved.map((item) => item.count)
 
-  let dataChart = {
-    labels: labels,
+  const dataChart = {
+    labels,
     datasets: [
       {
-        data: data,
-        backgroundColor: colors,
-      },
+        data,
+        backgroundColor: colors
+      }
     ],
-    options: { 
+    options: {
       legend: {
         display: true,
-        position: 'top',
-      },
-    },
-  };
+        position: 'top'
+      }
+    }
+  }
   return (<>
    {data.length > 0 && <PieChartContainer usuario={usuario}>
       <h4>
@@ -50,58 +54,58 @@ const MostRetwittedPie = ({ newData, title, setCategories, usuario }) => {
       />
     </PieChartContainer>}
     </>
-  );
-};
+  )
+}
 
-export default MostRetwittedPie;
+export default MostRetwittedPie
 
-export function extractRetwittedCategories(data) {
-  const htCategories = [];
+export function extractRetwittedCategories (data) {
+  const htCategories = []
   data.forEach((item) => {
     htCategories.push({
       category: item.most_retweeted_category_spa,
-      count: item.tweets_number,
-    });
-  });
+      count: item.tweets_number
+    })
+  })
 
-  return htCategories;
+  return htCategories
 }
 
-export function filterDuplicates(data) {
-  let usersAccountCheck = [];
-  let arrayDuplicates = [];
+export function filterDuplicates (data) {
+  const usersAccountCheck = []
+  const arrayDuplicates = []
   // Devuelve un array con los elementos duplicados
   data.forEach((item) => {
     if (!usersAccountCheck.includes(item.category)) {
-      let duplicates = data.filter((item2) => {
-        return item.category === item2.category;
-      });
-      usersAccountCheck.push(item.category);
-      arrayDuplicates.push(duplicates);
+      const duplicates = data.filter((item2) => {
+        return item.category === item2.category
+      })
+      usersAccountCheck.push(item.category)
+      arrayDuplicates.push(duplicates)
     }
-  });
+  })
 
-  return arrayDuplicates;
+  return arrayDuplicates
 }
 
-export function addDuplicates(data) {
-  let newArray = data.map((item) => {
-    let itemCount = item.reduce((acc, item) => {
-      return acc + item.count;
-    }, 0);
+export function addDuplicates (data) {
+  const newArray = data.map((item) => {
+    const itemCount = item.reduce((acc, item) => {
+      return acc + item.count
+    }, 0)
     return {
       category: item[0].category,
-      count: itemCount,
-    };
-  });
-  return newArray;
+      count: itemCount
+    }
+  })
+  return newArray
 }
-export function addDuplicates2(data) {
-  let newArray = data.map((item) => {
+export function addDuplicates2 (data) {
+  const newArray = data.map((item) => {
     return {
       category: item[0].category,
-      count: item.count,
-    };
-  });
-  return newArray;
+      count: item.count
+    }
+  })
+  return newArray
 }

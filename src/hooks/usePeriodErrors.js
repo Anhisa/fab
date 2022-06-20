@@ -1,39 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import {
   ErrorContainer,
-  ErrorTable,
-} from '../styles/styledComponents/ErrorTable.styled';
+  ErrorTable
+} from '../styles/styledComponents/ErrorTable.styled'
 
-const UsePeriodErrors = ({ periodComparison, errors, setErrors }) => {
+UsePeriodErrors.propTypes = {
+  periodComparison: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  setErrors: PropTypes.func.isRequired
+}
 
+function UsePeriodErrors ({ periodComparison, errors, setErrors }) {
   useEffect(() => {
-    if (periodComparison.periodA.id === periodComparison.periodB.id && periodComparison.periodA.id !== '' && periodComparison.periodB.id !== '')  {
+    if (periodComparison.periodA.id === periodComparison.periodB.id && periodComparison.periodA.id !== '' && periodComparison.periodB.id !== '') {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        samePeriods: true,
-      }));
+        samePeriods: true
+      }))
     } else if (
       periodComparison.periodA.id === '' ||
       periodComparison.periodB.id === ''
     ) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        emptyPeriods: true,
-      }));
+        emptyPeriods: true
+      }))
     } else if (periodComparison.periodA.id > periodComparison.periodB.id) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        nonAscendingPeriods: true,
-      }));
+        nonAscendingPeriods: true
+      }))
     } else {
       setErrors((prevErrors) => ({
         ...prevErrors,
         samePeriods: false,
         emptyPeriods: false,
-        nonAscendingPeriods: false,
-      }));
+        nonAscendingPeriods: false
+      }))
     }
-  }, [periodComparison]);
+  }, [periodComparison])
 
   // return [
   //   errors.samePeriods, errors.emptyPeriods, errors.nonAscendingPeriods,
@@ -56,7 +62,7 @@ const UsePeriodErrors = ({ periodComparison, errors, setErrors }) => {
         </ErrorTable>
       )}
     </ErrorContainer>
-  );
-};
+  )
+}
 
-export default UsePeriodErrors;
+export default UsePeriodErrors

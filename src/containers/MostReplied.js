@@ -1,18 +1,21 @@
-import React, { useEffect, useState, memo } from 'react'
+import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import { Spinner } from 'react-bootstrap'
 import useActiveNames from '../hooks/useActiveNames'
-
 import { CreateChart } from '../helpers/createChart'
 import { useFilterData } from '../hooks/useFilterData'
 import { StyledDataTable } from '../styles/styledComponents/StyledDataTable'
 import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled'
 import { MostRepliedItemCHANGE } from '../components/mostReplied/MostRepliedItemCHANGE'
 import MostRepliedPie from '../components/mostReplied/MostRepliedPie'
-import { MostRepliedChart } from '../components/mostReplied/MostRepliedChart'
 
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-replied'
-export const MostRepliedItems = ({ usuario, context }) => {
-  const [data, loading] = useFilterData(api, context, 'most-replied')
+MostRepliedItems.propTypes = {
+  usuario: PropTypes.bool.isRequired,
+  context: PropTypes.object.isRequired
+}
+
+export function MostRepliedItems ({ usuario, context }) {
+  const [data] = useFilterData(context, 'most-replied')
   const accountsNames = useActiveNames(context)
   const { isPeriodComparisonActive } = context
 
@@ -21,11 +24,11 @@ export const MostRepliedItems = ({ usuario, context }) => {
   const [chartData, setChartData] = useState([])
 
   useEffect(() => {
-    if (!loading && data.length > 0) {
+    if (data.length > 0) {
       setInnerData(data)
       setChartData(CreateChart(data))
     }
-  }, [data, loading])
+  }, [data])
 
   if (!data) {
     return <Spinner animation="border" role="status">

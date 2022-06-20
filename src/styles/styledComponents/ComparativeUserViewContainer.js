@@ -1,18 +1,18 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const ComparativeUserViewContainerStyle = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
   width: 100%;
 
-  #left {
+ .button {
     width: 100%;
-  }
-  #right {
-    width: 100%;
-  }
+    margin: 10px;
+    
+    
+ }
   .table {
     width: 100%;
     .column {
@@ -65,4 +65,4 @@ export const ComparativeUserViewContainerStyle = styled.section`
       }
     }
   }
-`;
+`

@@ -1,61 +1,83 @@
-import React from 'react';
-import handleClick from '../../helpers/HandleClick';
-import { CollapsableTableStyled } from '../../styles/styledComponents/CollapsableTableStyled';
-import { ComparativeUserViewContainerStyle } from '../../styles/styledComponents/ComparativeUserViewContainer';
-import { StyledFilterButton } from '../../styles/styledComponents/StyledFilterButton';
-import { HtMostUsedItems } from '../HtMostUsed';
-import { MostMentionedItems } from '../MostMentioned';
-import { MostRepliedItems } from '../MostReplied';
-import { MostRetweetedItems } from '../MostRetweeted';
-import ButtonToogle from '../../components/ButtonToogle';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Button } from '@mui/material'
+import { CollapsableTableStyled } from '../../styles/styledComponents/CollapsableTableStyled'
+import { ComparativeUserViewContainerStyle } from '../../styles/styledComponents/ComparativeUserViewContainer'
+import { HtMostUsedItems } from '../HtMostUsed'
+import { MostMentionedItems } from '../MostMentioned'
+import { MostRepliedItems } from '../MostReplied'
+import { MostRetweetedItems } from '../MostRetweeted'
+import ButtonToogle from '../../components/ButtonToogle'
+import openTables from '../../helpers/OpenTables'
+import UpArrow from '../../components/UpArrow'
 
-const ComparativeUserViewContainer = ({ period, usuario,  context }) => {
+ComparativeUserViewContainer.propTypes = {
+  period: PropTypes.object.isRequired,
+  usuario: PropTypes.bool.isRequired,
+  context: PropTypes.object.isRequired
+}
+
+function ComparativeUserViewContainer ({ period, usuario, context }) {
+  const [open, setOpen] = React.useState(false)
+  console.log('usuario', usuario)
+  function handleClick () {
+    openTables(open, setOpen)
+  }
   return (
+    <>
+
     <ComparativeUserViewContainerStyle usuario={usuario}>
-        <div id='left'>
-      <CollapsableTableStyled className='table'>
-        <ButtonToogle 
-          usuario={true}
-          name="most-retweet"
-          
-        >
-          Usuarios más retuiteados
-        </ButtonToogle>
-        <MostRetweetedItems period={period} usuario={usuario} context={context} />
-      </CollapsableTableStyled>
-      <CollapsableTableStyled className='table'>
-        <ButtonToogle    
-         usuario={true}     
-          name="most-replied"          
-        >
-          Usuarios que más han recibido respuesta
-        </ButtonToogle>
+     <Button className='button' variant="contained" onClick={handleClick}>
+        {!open ? 'Abrir' : 'Cerrar'} tablas
+      </Button>
+        <CollapsableTableStyled className="table">
+          <ButtonToogle usuario={true} name="most-retweet">
+            Usuarios más retuiteados
+          </ButtonToogle>
+          <MostRetweetedItems
+            period={period}
+            usuario={usuario}
+            context={context}
+          />
+        </CollapsableTableStyled>
+        <CollapsableTableStyled className="table" >
+          <ButtonToogle usuario={true} name="most-replied">
+            Usuarios que más han recibido respuesta
+          </ButtonToogle>
 
-        <MostRepliedItems period={period} usuario={usuario} context={context}/>
-      </CollapsableTableStyled>
-      </div>
-      <div id='right'>
-      <CollapsableTableStyled className='table'>
-        <ButtonToogle name="most-ht"  usuario={true} >
-          Hashtags más usados
-        </ButtonToogle>
+          <MostRepliedItems
+            period={period}
+            usuario={usuario}
+            context={context}
+          />
+        </CollapsableTableStyled>
 
-        <HtMostUsedItems period={period} usuario={usuario} context={context} />
-      </CollapsableTableStyled>
-      <CollapsableTableStyled className='table'>
-        <ButtonToogle    
-         usuario={true}     
-          name="most-mentioned"         
-        >
-          Usuarios más mencionados
-        </ButtonToogle>
+        <CollapsableTableStyled className="table">
+          <ButtonToogle name="most-ht" usuario={true}>
+            Hashtags más usados
+          </ButtonToogle>
 
-        <MostMentionedItems period={period} usuario={usuario} context={context} />
-      </CollapsableTableStyled>
-      </div>  
-  
+          <HtMostUsedItems
+            period={period}
+            usuario={usuario}
+            context={context}
+          />
+        </CollapsableTableStyled>
+        <CollapsableTableStyled className="table">
+          <ButtonToogle usuario={true} name="most-mentioned">
+            Usuarios más mencionados
+          </ButtonToogle>
+
+          <MostMentionedItems
+            period={period}
+            usuario={usuario}
+            context={context}
+          />
+        </CollapsableTableStyled>
+        <UpArrow />
     </ComparativeUserViewContainerStyle>
-  );
-};
+    </>
+  )
+}
 
-export default ComparativeUserViewContainer;
+export default ComparativeUserViewContainer

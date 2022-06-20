@@ -1,46 +1,48 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
-import DataTable from 'react-data-table-component';
+import PropTypes from 'prop-types'
+import React from 'react'
+import 'bootstrap/dist/css/bootstrap.css'
+import DataTable from 'react-data-table-component'
+import { EmptyDataTable, StyledDataTable } from '../../styles/styledComponents/StyledDataTable'
+import { columns } from '../../helpers/columns'
+import { ExpandedComponent } from '../ExpandedComponent'
 
-import { EmptyDataTable, StyledDataTable } from '../../styles/styledComponents/StyledDataTable';
+MostRepliedItemCHANGE.propTypes = {
+  newData: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+  arrayBar: PropTypes.array.isRequired
+}
 
-import { columns } from '../../helpers/columns';
-import { ExpandedComponent } from '../ExpandedComponent';
+export function MostRepliedItemCHANGE ({ newData, title, arrayBar }) {
+  // const tweetNumber = newData.map((item) => parseInt(item.tweets_number))
+  // const totaltweets = tweetNumber.reduce(
+  //   (totaltweetsNumber, item) => totaltweetsNumber + item,
+  //   0
+  // )
 
-export const MostRepliedItemCHANGE = ({ newData, title, arrayBar }) => {
-
-  const tweetNumber = newData.map((item) => parseInt(item.tweets_number));
-  const totaltweets = tweetNumber.reduce(
-    (totaltweetsNumber, item) => totaltweetsNumber + item,
-    0
-  );
-  
-  const accountInfo = [];
-  const account = newData[0];
+  const accountInfo = []
+  const account = newData[0]
 
   if (account) {
-    accountInfo.push(account.official_account);
+    accountInfo.push(account.official_account)
     // accountInfo.push(account.period_id);
-    accountInfo.push(account.official_account_name_spa);
-    accountInfo.push(account.most_retweeted_category_desc_spa);
+    accountInfo.push(account.official_account_name_spa)
+    accountInfo.push(account.most_retweeted_category_desc_spa)
   }
 
-  function createData(
+  function createData (
     userAccountDesc,
     userAccount,
     categoría,
-    tweets_number,
+    tweetsNumber,
     catDesc
   ) {
     return {
       userAccountDesc,
       userAccount,
       categoría,
-      tweets_number,
-
-      catDesc,
-    };
+      tweetsNumber,
+      catDesc
+    }
   }
 
   let rows = newData.map((item) =>
@@ -48,21 +50,18 @@ export const MostRepliedItemCHANGE = ({ newData, title, arrayBar }) => {
       item.most_replied_description_spa,
       item.user_account,
       item.most_replied_category_spa,
-      parseInt(item.tweets_number),
+      parseInt(item.tweetsNumber),
       item.most_replied_category_desc_spa
     )
-  );
- 
-  
+  )
+
   rows = rows?.map((item, index) => {
     return {
       ...item,
-      tweets_number: arrayBar[index],
-    };
-  });
-  
+      tweets_number: arrayBar[index]
+    }
+  })
 
-  
   return (
     <StyledDataTable className="dataTable">
     <DataTable
@@ -77,7 +76,7 @@ export const MostRepliedItemCHANGE = ({ newData, title, arrayBar }) => {
       }
       expandableRows
       expandableRowsComponent={ExpandedComponent}
-      expandableRowsOnClick={true}      
+      expandableRowsOnClick={true}
       noDataComponent={
         <EmptyDataTable>
           <h5>No se registran datos en el periodo seleccionado</h5>
@@ -85,17 +84,17 @@ export const MostRepliedItemCHANGE = ({ newData, title, arrayBar }) => {
       }
     />
     </StyledDataTable>
-  );
-};
+  )
+}
 
-/* 
+/*
  return (
     <div>
       <h1>cuenta oficial:<Link to={`/diplomacia-digital/${newData[0].official_account}`}>{newData[0].official_account}</Link> </h1>
       <h1>Periodo de {periodId.startDate.toString()} a {periodId.endDate.toString()}</h1>
       <h1>menciones totales del periodo: {totaltweets}</h1>
       {newData.map((data) => (
-        <div key={data.users_most_replied_id}>            
+        <div key={data.users_most_replied_id}>
             <span>
               {data.user_account} -{' '}
               {data.most_replied_description_spa} -{' '}

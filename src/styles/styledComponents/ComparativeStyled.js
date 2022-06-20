@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import DataTable from 'react-data-table-component';
+import styled from 'styled-components'
+import DataTable from 'react-data-table-component'
 
 export const ComparativeStyled = styled.section`
   display: flex;
@@ -155,7 +155,7 @@ export const ComparativeStyled = styled.section`
     }
   }
 
-`;
+`
 
 export const ComparativePeriodStyled = styled.section`
   display: flex;
@@ -229,7 +229,7 @@ export const ComparativePeriodStyled = styled.section`
       }
     }
   }
-`;
+`
 
 export const DataTableStyled = styled(DataTable)`
   background-color: ${({ theme }) => theme.background};
@@ -244,4 +244,4 @@ export const DataTableStyled = styled(DataTable)`
   }
   
  
-`;
+`

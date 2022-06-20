@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 export const UserCardStyled = styled.section`
   display: flex;
   flex-direction: row;
@@ -45,13 +45,13 @@ export const UserCardStyled = styled.section`
       width: 100%;
     }
   }
-`;
+`
 export const ContainerButtons = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
-`;
+`
 
 export const HeaderUserView = styled.header`
   display: flex;
@@ -82,4 +82,4 @@ export const HeaderUserView = styled.header`
       color: ${({ theme }) => theme.secondary};
     }
   }
-`;
+`

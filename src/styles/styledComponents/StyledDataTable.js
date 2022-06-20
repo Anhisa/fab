@@ -1,5 +1,5 @@
-import DataTable from "react-data-table-component";
-import styled from "styled-components";
+// import DataTable from 'react-data-table-component'
+import styled from 'styled-components'
 
 export const StyledDataTable = styled.div`
   /*
@@ -20,9 +20,9 @@ border-top-right-radius: 35px;
   border-top-left-radius: 35px; */
 height: fit-content;
 padding: 0px !important;
-width: 100%;
 margin-top: 25px;
 margin-right: 5px;
+width: 100%;
 .rdt_TableHeader{
   border: 2px solid ${({ theme }) => theme.toggleBorder};
   border-top-right-radius: 35px;

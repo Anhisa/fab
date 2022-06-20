@@ -1,35 +1,36 @@
-import { useContext, useEffect } from 'react';
-import ButtonToogle from '../components/ButtonToogle';
-import { HtMostUsedItems } from './HtMostUsed';
-import { MonthlyTweetsItems } from './MonthlyTweets';
-import { MostMentionedItems } from './MostMentioned';
-import { MostRepliedItems } from './MostReplied';
-import { MostRetweetedItems } from './MostRetweeted';
-import { TableContext } from '../context/InitialState';
-import handleClick from '../helpers/HandleClick';
-import { CollapsableTableStyled } from '../styles/styledComponents/CollapsableTableStyled';
-import { StyledFilterButton } from '../styles/styledComponents/StyledFilterButton';
+import React from 'react'
+import PropTypes from 'prop-types'
+import ButtonToogle from '../components/ButtonToogle'
+import { HtMostUsedItems } from './HtMostUsed'
+import { MonthlyTweetsItems } from './MonthlyTweets'
+import { MostMentionedItems } from './MostMentioned'
+import { MostRepliedItems } from './MostReplied'
+import { MostRetweetedItems } from './MostRetweeted'
+import { CollapsableTableStyled } from '../styles/styledComponents/CollapsableTableStyled'
 
-export const ComponentContainer = ({ context, usuario }) => {
+ComponentContainer.propTypes = {
+  context: PropTypes.object.isRequired,
+  usuario: PropTypes.bool.isRequired
+}
+
+export function ComponentContainer ({ context, usuario }) {
   const { categories, accounts, periodComparison, isPeriodComparisonActive } =
-    context;
-  const { accountIdA, accountIdB } = accounts;
-  const { periodA, periodB } = periodComparison;
-
-
+    context
+  const { accountIdA, accountIdB } = accounts
+  const { periodA, periodB } = periodComparison
 
   if (isPeriodComparisonActive) {
     if (periodA.id === periodB.id) {
-      return [];
+      return []
     } else if (periodA.id > periodB.id) {
-      return [];
+      return []
     }
   } else if (
     accountIdA.id === '' ||
     accountIdB.id === '' ||
     accountIdA.id === accountIdB.id
   ) {
-    return [];
+    return []
   }
 
   return (
@@ -46,7 +47,7 @@ export const ComponentContainer = ({ context, usuario }) => {
         </CollapsableTableStyled>
       )}
       {categories.mostRetweeted && (
-        <CollapsableTableStyled>
+        <CollapsableTableStyled className='comparative'>
           <ButtonToogle name="most-retweet">
             {isPeriodComparisonActive
               ? `Usuarios más retuiteados del periodo ${periodA.name} al ${periodB.name}`
@@ -93,5 +94,5 @@ export const ComponentContainer = ({ context, usuario }) => {
         </CollapsableTableStyled>
       )}
     </>
-  );
+  )
 };

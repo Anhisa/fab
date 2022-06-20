@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-export const ComparisonContainerStyled = styled.div`
+export const ComparisonContainerStyled = styled.section`
   display: flex;
   flex-direction: column;  
   gap:10px;

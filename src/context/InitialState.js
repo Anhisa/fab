@@ -1,55 +1,51 @@
-import { createContext } from 'react';
+import { createContext } from 'react'
 const initialStateCategories = {
   mostRetweeted: true,
   mostHashtags: true,
   mostMentioned: true,
   mostReplied: true,
-  monthlyTweets: true,
-};
-const mapManagment =
-  {
-    country_id: ''
-  }
+  monthlyTweets: true
+}
+const mapManagment = {
+  country_id: ''
+}
 
-const booleanValues =
-  {
-    isPeriodComparisonActive: false,
-    isCountryFilterActive: false,
+const booleanValues = {
+  isPeriodComparisonActive: false,
+  isCountryFilterActive: false
+}
+const accounts = {
+  accountIdA: {
+    id: '',
+    name: ''
+  },
+  accountIdB: {
+    id: '',
+    name: ''
   }
-const accounts =
-  {
-    accountIdA: {
-      id: '',
-      name: '',
-    },
-    accountIdB: {
-      id: '',
-      name: '',
-    },
-  }
-const period =  {
+}
+const period = {
   startDate: 1,
-  endDate: 4,
+  endDate: 4
 }
 const periodComparison = {
   periodA: {
     id: '',
-    name: '',
+    name: ''
   },
   periodB: {
     id: '',
-    name: '',
-  },
+    name: ''
+  }
 }
 
-
-export const TableContext = createContext();
+export const TableContext = createContext()
 
 export const initialState = {
   categories: initialStateCategories,
-  mapManagment: mapManagment,
-  booleanValues: booleanValues,
-  accounts: accounts,
-  period: period,
-  periodComparison: periodComparison,
+  mapManagment,
+  booleanValues,
+  accounts,
+  period,
+  periodComparison
 }

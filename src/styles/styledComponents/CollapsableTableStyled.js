@@ -1,12 +1,11 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const CollapsableTableStyled = styled.section`
 .open {
     gap: 10px;
     margin-top: 10px;
     display: flex;
-    flex-direction: ${(props) => (props.usuario ? 'row' : 'column')};
-    flex-direction: row;
+    flex-direction: ${(props) => (props.usuario ? 'column' : 'row')} !important;
     width: 100%;
     .column {
       width: 50%;
@@ -49,4 +48,4 @@ export const CollapsableTableStyled = styled.section`
   }
   @media (max-width: 768px) {
   }
-`;
+`

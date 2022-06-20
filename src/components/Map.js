@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 
 import { scaleLinear } from 'd3-scale'
 import {
@@ -6,7 +6,7 @@ import {
   Geographies,
   Geography,
   Graticule,
-  ZoomableGroup,
+  // ZoomableGroup,
   useZoomPan
 } from 'react-simple-maps'
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry'
@@ -33,32 +33,32 @@ export function Map ({
   setCountrySelectedId,
   setZoom
 }) {
-  const [localPosition, setLocalPosition] = useState({
-    coordinates: [-78, -11],
-    zoom: 1.2
-  })
+  // const [localPosition, setLocalPosition] = useState({
+  //   coordinates: [-78, -11],
+  //   zoom: 1.2
+  // })
 
   const { open, setOpen } = countryListManagmentOpen
   const windowSize = useWindowSize()
   const { geoUrl } = useContext(DataContext)
-  function handleZoomIn () {
-    setZoom(true)
-    if (localPosition.zoom >= 4) return
-    setLocalPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.1 }))
-  }
+  // function handleZoomIn () {
+  //   setZoom(true)
+  //   if (localPosition.zoom >= 4) return
+  //   setLocalPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.1 }))
+  // }
 
-  function handleZoomOut () {
-    setZoom(false)
+  //   function handleZoomOut () {
+  //     setZoom(false)
+  //
+  //     if (localPosition.zoom <= 1) return
+  //     setLocalPosition((pos) => ({ ...pos, zoom: 1 }))
+  //   }
 
-    if (localPosition.zoom <= 1) return
-    setLocalPosition((pos) => ({ ...pos, zoom: 1 }))
-  }
-
-  function handleMoveEnd (position) {
-    const { coordinates, zoom } = position
-
-    setLocalPosition({ coordinates, zoom: localPosition.zoom })
-  }
+  //   function handleMoveEnd (position) {
+  //     const { coordinates, zoom } = position
+  //
+  //     setLocalPosition({ coordinates, zoom: localPosition.zoom })
+  //   }
   function closeOnZoomIn () {
     setOpen(false)
     // cancel zoom on scroll
@@ -185,7 +185,7 @@ export function Map ({
 CustomZoomableGroup.propTypes = {
   children: PropTypes.node.isRequired,
   positionLocal: PropTypes.object.isRequired,
-  setPosition: PropTypes.func.isRequired,
+  setPosition: PropTypes.func.isRequired
 }
 
 function CustomZoomableGroup ({
@@ -194,8 +194,8 @@ function CustomZoomableGroup ({
   setPosition,
   ...restProps
 }) {
-  let { mapRef, transformString, position } = useZoomPan(restProps)
-
+  // let { mapRef, transformString, position } = useZoomPan(restProps)
+  let { mapRef, position } = useZoomPan(restProps)
   let check = false
   if (positionLocal.zoom !== 1) {
     check = true

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 export const ExpandedStyled = styled.div`
 padding:15px;
 background-color:${({ theme }) => theme.primary};

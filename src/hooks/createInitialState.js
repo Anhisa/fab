@@ -1,29 +1,28 @@
-import {useState} from 'react';
-export default function useCreateInitialState(){
+import { useState } from 'react'
+export default function useCreateInitialState () {
   const [dataComparing, setDataComparing] = useState({
     accounts: {
       accountIdA: {
         id: '',
-        name: '',
+        name: ''
       },
       accountIdB: {
         id: '',
-        name: '',
-      },
+        name: ''
+      }
     },
     periodComparison: {
       periodA: {
         id: '',
-        name: '',
+        name: ''
       },
       periodB: {
         id: '',
-        name: '',
-      },
+        name: ''
+      }
     },
     isPeriodComparisonActive: false,
-    isCountryFilterActive: false,
-  });
-  return [dataComparing, setDataComparing];
-  
+    isCountryFilterActive: false
+  })
+  return [dataComparing, setDataComparing]
 }

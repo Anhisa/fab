@@ -1,42 +1,39 @@
-import { useContext, useEffect, useState } from "react";
-import { DataContext } from "../context/dataContext";
+/* eslint-disable camelcase */
+import { useContext, useEffect, useState } from 'react'
+import { DataContext } from '../context/dataContext'
 
-
-
-
-export function useGetTweetsByCountry(){
-  const {fol} = useContext(DataContext);
-  const [innerData, setInnerData] = useState(fol);
-  const [filteredData, setFilteredData] = useState([]);
-  let arrayDuplicate = [];
-  useEffect(() => {   
-      let array = filterDuplicates(innerData);
-      arrayDuplicate = addDuplicates(array);
-      setFilteredData(arrayDuplicate);     
-  }, []);
+export function useGetTweetsByCountry () {
+  const { fol } = useContext(DataContext)
+  const [filteredData, setFilteredData] = useState([])
+  let arrayDuplicate = []
+  useEffect(() => {
+    const array = filterDuplicates(fol)
+    arrayDuplicate = addDuplicates(array)
+    setFilteredData(arrayDuplicate)
+  }, [])
   return filteredData
 }
-function filterDuplicates(data) {
-  let accountCheck = [];
-  let arrayDuplicates = [];
+function filterDuplicates (data) {
+  const accountCheck = []
+  const arrayDuplicates = []
   // Devuelve un array con los elementos duplicados
   data.forEach((item) => {
     if (!accountCheck.includes(item.country_id)) {
-      let duplicates = data.filter((item2) => {
+      const duplicates = data.filter((item2) => {
         return item.country_id === item2.country_id
-      });
-      accountCheck.push(item.country_id);
+      })
+      accountCheck.push(item.country_id)
 
-      arrayDuplicates.push(duplicates);
+      arrayDuplicates.push(duplicates)
     }
-  });
+  })
 
-  return arrayDuplicates;
+  return arrayDuplicates
 }
-function addDuplicates(data){
+function addDuplicates (data) {
   let newArray = data.map(item => {
-    let countryId = item[0].country_id;
-    let total_tweets_period = item.reduce((acc, item) => {
+    const countryId = item[0].country_id
+    const total_tweets_period = item.reduce((acc, item) => {
       return acc + parseInt(item.total_tweets_period)
     }, 0)
     return {
@@ -47,5 +44,5 @@ function addDuplicates(data){
   newArray = newArray.filter(item => {
     return item.total_tweets_period > 0
   })
-  return newArray  
+  return newArray
 }
