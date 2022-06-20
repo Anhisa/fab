@@ -33,10 +33,10 @@ export const CollapsableTableStyled = styled.section`
       margin-top: 20px;
     }
   } */
-  @media (max-width: 968px) {
+  @media (max-width: 1150px) {
     .open {
       display: flex;
-      flex-direction: column;
+      flex-direction: column !important;
       width: 100%;
       margin-top: 20px;
       .column{
