@@ -34,8 +34,8 @@ export const NavBarHomeStyled = styled.nav`
       margin-right: 50px;
       cursor: pointer;
       &:hover {
-        color: ${({ theme }) => theme.text};
-        border-bottom: 6px solid ${({ theme }) => theme.text};
+        color: ${({ theme }) => theme.secondary};
+        border-bottom: 6px solid ${({ theme }) => theme.secondary};
       }
       p {
         display: flex;
@@ -89,7 +89,7 @@ export const NavBarHomeStyled = styled.nav`
         margin-right: 50px;
         cursor: pointer;
         &:hover {
-          color: ${({ theme }) => theme.text};
+          color: ${({ theme }) => theme.secondary};
         }
         p {
           display: flex;
@@ -115,11 +115,14 @@ export const MenuButtonStyled = styled.button`
   background: none;
   cursor: pointer;
   outline: none;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.textContrast};
 
   a {
     text-decoration: none;
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.textContrast};
+    &:hover {
+      color: ${({ theme }) => theme.secondary};
+    }
   }
   &:focus {
     outline: red;

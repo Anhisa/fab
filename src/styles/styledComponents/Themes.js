@@ -16,9 +16,9 @@ export const darkTheme = {
   body: '#333',
   background: '#666',
   text: '#fff',
-  primary: lightBlue,
-  secondary: darkBlue,
+  primary: '#064663',
+  secondary: '#ECB365',
   tertiary: '#fff',
   toggleBorder: yellow,
-  textContrast: darkBlue
+  textContrast: '#fff'
 }

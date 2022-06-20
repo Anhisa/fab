@@ -21,7 +21,7 @@ export const PieChartContainer = styled.div`
   margin-top: 25px;
   margin-left: 5px;  
   background-color: ${({ theme }) => theme.background} !important;
-  color: ${({ theme }) => theme.text} ;
+  color: ${({ theme }) => theme.primary};
   border-radius: 35px;
   flex-direction: column;
   min-height: 450px;

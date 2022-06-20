@@ -64,8 +64,7 @@ export function CreateChart (dataAccounts) {
                 padding: '0px',
                 width: '50px',
                 position: 'absolute',
-
-                right: '10px'
+                left: '25px'
               }}
             >
               {item2}

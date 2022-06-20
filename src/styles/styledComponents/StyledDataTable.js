@@ -28,7 +28,7 @@ width: 100%;
   border-top-right-radius: 35px;
   border-top-left-radius: 35px;
   background: ${({ theme }) => theme.secondary};
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.primary};
   padding: 0px;
   margin: 0px;  
   p{

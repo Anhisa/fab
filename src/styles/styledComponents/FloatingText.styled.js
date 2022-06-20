@@ -54,6 +54,7 @@ export const FloatingTextStyled = styled.div`
 export const FloatingTextRightIslandStyled = styled.div`
   position: absolute;
   margin-top: 100px;
+  top:0;
   padding: 10px 50px;
   right: 50px;
   margin-right: 0px;
