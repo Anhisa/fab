@@ -9,13 +9,12 @@ MonthlyTweetsItems.propTypes = {
 
 export function MonthlyTweetsItems ({ context }) {
   const [data] = useFilterData(context, 'monthly-tweets')
-  console.log('data', data.length)
+
   const [innerData, setInnerData] = useState([])
 
   useEffect(() => {
     if (data.length > 0) {
       setInnerData(data)
-      console.log('innerData', innerData)
     }
   }, [data])
 
