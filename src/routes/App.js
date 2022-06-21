@@ -16,6 +16,7 @@ export const App = () => {
   const [data, setData] = useState({})
 
   useEffect(() => {
+    console.log('useEffect')
     if (Object.keys(allData).length > 0) {
       setData(allData)
       setLoading(false)
@@ -27,8 +28,8 @@ export const App = () => {
   }
 
   return (
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-      <DataContext.Provider value={data}>
+    <DataContext.Provider value={data}>
+        <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <BrowserRouter>
         <Routes>
           <Route
@@ -41,7 +42,7 @@ export const App = () => {
           />
         </Routes>
       </BrowserRouter>
-      </DataContext.Provider>
       </ThemeProvider>
+      </DataContext.Provider>
   )
 }

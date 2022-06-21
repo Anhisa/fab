@@ -9,7 +9,7 @@ export const StyledFilterButton = styled.button`
   align-items: center;
   border: none;
   background-color : ${props => props.usuario ? '' : ({ theme }) => theme.primary} ;
-  color: ${props => props.usuario ? 'black' : ({ theme }) => theme.text} ;
+  color: ${props => props.usuario ? 'black' : ({ theme }) => theme.textContrast} ;
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
