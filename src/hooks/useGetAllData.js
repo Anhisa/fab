@@ -16,6 +16,17 @@ const monthlyTweets = 'https://fundacionandresbello.org/wp-json/fab/v1/monthly-t
 const geoUrl =
   'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json'
 
+export const promisesUrl = [
+  axios.get(apiMostMentioned),
+  axios.get(apiMostReplied),
+  axios.get(apiMostRetweeted),
+  axios.get(apiHtMostUsed),
+  axios.get(fol),
+  axios.get(countries),
+  axios.get(officialAccounts),
+  axios.get(monthlyTweets)
+]
+
 const useGetAllData = () => {
   const [data, setData] = useState({})
   const allPromises = [
