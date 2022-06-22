@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { useFilterData } from '../hooks/useFilterData'
+import useFilterData from '../hooks/useFilterData'
 import { MostMentionedItemCHANGE } from '../components/mostMentioned/MostMentionedItemCHANGE'
 import { CreateChart } from '../helpers/createChart'
 import useActiveNames from '../hooks/useActiveNames'
@@ -11,7 +11,7 @@ MostMentionedItems.propTypes = {
   context: PropTypes.object.isRequired
 }
 
-export function MostMentionedItems ({ usuario, context }) {
+export default function MostMentionedItems ({ usuario, context }) {
   const [innerData, setInnerData] = useState([])
   const [chartData, setChartData] = useState([])
   const accountsNames = useActiveNames(context)

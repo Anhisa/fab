@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const DetachableTable = styled.section`
+const DetachableTable = styled.section`
   position: absolute;
 
   padding: 0px;
@@ -61,5 +61,7 @@ export const DetachableTable = styled.section`
   }
   @media (max-width: 768px) {
     width: 250px;
-  }
+  }  
 `
+
+export default DetachableTable

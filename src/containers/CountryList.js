@@ -8,7 +8,7 @@ CountryList.propTypes = {
   countrySelectedId: PropTypes.string
 }
 
-export function CountryList ({
+export default function CountryList ({
   accountsCountry,
   countryListManagmentOpen,
   countrySelectedId

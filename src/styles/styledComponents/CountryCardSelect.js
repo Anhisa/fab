@@ -49,6 +49,7 @@ export const EmptyCardStyled = styled.div`
   border-radius: 15px;
   padding: 7px;
   p{
+    color: black;
     font-size: 1rem;
     margin: 0;
   }

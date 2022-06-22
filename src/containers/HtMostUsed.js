@@ -4,7 +4,7 @@ import { Spinner } from 'react-bootstrap'
 import { HtMostUsedChart } from '../components/hashtags/HtMostUsedChart'
 import HtMostUsedPie from '../components/hashtags/HtMostUsedPie'
 import useActiveNames from '../hooks/useActiveNames'
-import { useFilterData } from '../hooks/useFilterData'
+import useFilterData from '../hooks/useFilterData'
 import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled'
 import { PieContainerStyled } from '../styles/styledComponents/PieContainerStyled'
 
@@ -13,7 +13,7 @@ HtMostUsedItems.propTypes = {
   context: PropTypes.object.isRequired
 }
 
-export function HtMostUsedItems ({ usuario, context }) {
+export default function HtMostUsedItems ({ usuario, context }) {
   const [innerData, setInnerData] = useState([])
   const accountsNames = useActiveNames(context)
   // const { isPeriodComparisonActive } = context

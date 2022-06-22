@@ -16,7 +16,7 @@ ComparativeTool.propTypes = {
   setDataComparing: PropTypes.func.isRequired
 }
 
-export function ComparativeTool ({ setDataComparing }) {
+export default function ComparativeTool ({ setDataComparing }) {
   const [errors, setErrors] = useState({
     sameAccounts: false,
     emptyAccounts: false

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { useFilterData } from '../hooks/useFilterData'
+import useFilterData from '../hooks/useFilterData'
 import { CreateChart } from '../helpers/createChart'
 import useActiveNames from '../hooks/useActiveNames'
 import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled'
@@ -12,7 +12,7 @@ MostRetweetedItems.propTypes = {
   usuario: PropTypes.bool.isRequired
 }
 
-export function MostRetweetedItems ({ context, usuario }) {
+export default function MostRetweetedItems ({ context, usuario }) {
   const accountsNames = useActiveNames(context)
   const { isPeriodComparisonActive } = context
   // const [comparisonView, setComparisonView] = useState(false);

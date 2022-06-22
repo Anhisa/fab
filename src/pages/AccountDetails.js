@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { MonthlyTweetsItems } from '../containers/MonthlyTweets'
+import MonthlyTweetsItems from '../containers/MonthlyTweets'
 import { useParams } from 'react-router'
 import ViewUserCard from '../components/ViewUserCard'
 import {

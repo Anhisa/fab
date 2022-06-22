@@ -18,16 +18,14 @@ import PropTypes from 'prop-types'
 
 Map.propTypes = {
   setAccounts: PropTypes.func.isRequired,
-  items: PropTypes.array.isRequired,
   setMouse: PropTypes.func.isRequired,
   countryListManagmentOpen: PropTypes.object.isRequired,
   setCountrySelectedId: PropTypes.func.isRequired,
   setZoom: PropTypes.func.isRequired
 }
 
-export function Map ({
+export default function Map ({
   setAccounts,
-  items,
   setMouse,
   countryListManagmentOpen,
   setCountrySelectedId,
@@ -40,7 +38,7 @@ export function Map ({
 
   const { open, setOpen } = countryListManagmentOpen
   const windowSize = useWindowSize()
-  const { geoUrl } = useContext(DataContext)
+  const { geoUrl, officialAccounts } = useContext(DataContext)
   // function handleZoomIn () {
   //   setZoom(true)
   //   if (localPosition.zoom >= 4) return
@@ -70,7 +68,7 @@ export function Map ({
       const itemValue = target.attributes.value
       let x = pageX
       let y = pageY
-      const filteredAccounts = items.filter(
+      const filteredAccounts = officialAccounts.filter(
         (item) => item.country_id === itemValue.value
       )
       if (pageX + 250 > windowSize.width) {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Spinner } from 'react-bootstrap'
 import useActiveNames from '../hooks/useActiveNames'
 import { CreateChart } from '../helpers/createChart'
-import { useFilterData } from '../hooks/useFilterData'
+import useFilterData from '../hooks/useFilterData'
 import { StyledDataTable } from '../styles/styledComponents/StyledDataTable'
 import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled'
 import { MostRepliedItemCHANGE } from '../components/mostReplied/MostRepliedItemCHANGE'
@@ -14,7 +14,7 @@ MostRepliedItems.propTypes = {
   context: PropTypes.object.isRequired
 }
 
-export function MostRepliedItems ({ usuario, context }) {
+export default function MostRepliedItems ({ usuario, context }) {
   const [data] = useFilterData(context, 'most-replied')
   const accountsNames = useActiveNames(context)
   const { isPeriodComparisonActive } = context

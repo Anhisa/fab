@@ -6,6 +6,6 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired
 }
 
-export function Layout ({ children }) {
+export default function Layout ({ children }) {
   return <HomeStyled>{children}</HomeStyled>
 }

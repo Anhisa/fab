@@ -1,13 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useState, Suspense, lazy } from 'react'
 import PropTypes from 'prop-types'
-// import '../styles/App.css'
-import { Map } from '../components/Map'
-import { CountryList } from '../containers/CountryList'
-import { ComparativeTool } from '../containers/ComparativeTool'
+import '../styles/App.css'
+
 import { MapStyled } from '../styles/styledComponents/MapStyled'
-import { MapIslands } from '../components/MapIslands'
-import { DetachableTable } from '../styles/styledComponents/detachableTable'
-import SelectorComparative from '../containers/SelectorComparative'
 import { SectionToolsStyled } from '../styles/styledComponents/SectionToolsStyled'
 import { SectionMapsStyled } from '../styles/styledComponents/SectionMapStyled'
 import { ComparisonContainerStyled } from '../styles/styledComponents/ComparisonContainerStyled'
@@ -18,25 +13,26 @@ import ColorBar from '../components/colorBar'
 import NavBarHome from '../components/NavBarHome'
 import { GoblalStyles } from '../styles/styledComponents/GlobalStyles'
 import FloatingText from '../components/FloatingText'
-import { ComponentContainer } from '../containers/ComponerContainer'
 import UpArrow from '../components/UpArrow'
-import OptionsSearch from '../containers/OptionsSearch'
-import { DataContext } from '../context/dataContext'
-import { Layout } from '../containers/Layout'
+import Layout from '../containers/Layout'
 
+const Map = lazy(() => import('../components/Map'))
+const MapIslands = lazy(() => import('../components/MapIslands'))
+const ComponentContainer = lazy(() => import('../containers/ComponerContainer'))
+const ComparativeTool = lazy(() => import('../containers/ComparativeTool'))
+const SelectorComparative = lazy(() => import('../containers/SelectorComparative'))
+const DetachableTable = lazy(() => import('../styles/styledComponents/detachableTable'))
+const CountryList = lazy(() => import('../containers/CountryList'))
+const OptionsSearch = lazy(() => import('../containers/OptionsSearch'))
 // import userQueries from './queries.php';
 Home.propTypes = {
   themeToggler: PropTypes.func.isRequired
 }
 
 export function Home ({ themeToggler }) {
-  const { officialAccounts } = useContext(DataContext)
   const [zoom, setZoom] = useState(false)
-  const [countriesAllData, setCountriesAllData] = useState([])
   const [countrySelectedId, setCountrySelectedId] = useState(null)
-  const countryDataState = [countriesAllData, setCountriesAllData]
   const [currentMap, setCurrentMap] = useState(true)
-
   const [open, setOpen] = useState(false)
 
   const countryListManagmentOpen = { open, setOpen }
@@ -59,24 +55,22 @@ export function Home ({ themeToggler }) {
           countryListManagmentOpen={countryListManagmentOpen}
           themeToggler={themeToggler}
         />
-
-        {showMap && <ColorBar />}
-
         {showMap && (
-          <SectionMapsStyled>
-            {showMap
-              ? (
-                  currentMap
-                    ? (
+          <>
+            <ColorBar />
+            <SectionMapsStyled>
+              {currentMap
+                ? (
                 <MapStyled className="map-container col-6">
+                  <Suspense fallback={<></>}>
                   <Map
-                    items={officialAccounts}
                     setAccounts={setAccountsCountry}
                     setMouse={setMousePosition}
                     countryListManagmentOpen={countryListManagmentOpen}
                     setCountrySelectedId={setCountrySelectedId}
                     setZoom={setZoom}
                   />
+                  </Suspense>
                   <FloatingText setCurrentMap={setCurrentMap} zoom={zoom} />
                   {!zoom && (
                     <>
@@ -84,17 +78,18 @@ export function Home ({ themeToggler }) {
                     </>
                   )}
                 </MapStyled>
-                      )
-                    : (
+                  )
+                : (
                 <MapStyled className="map-container col-6">
+                  <Suspense fallback={<></>}>
                   <MapIslands
-                    items={officialAccounts}
                     setAccounts={setAccountsCountry}
                     setMouse={setMousePosition}
                     countryListManagmentOpen={countryListManagmentOpen}
                     setCountrySelectedId={setCountrySelectedId}
                     setZoom={setZoom}
                   />
+                  </Suspense>
 
                   <FloatingText
                     setCurrentMap={setCurrentMap}
@@ -107,33 +102,32 @@ export function Home ({ themeToggler }) {
                     </>
                   )}
                 </MapStyled>
-                      )
-                )
-              : null}
-            {showMap && (
+                  )}
+              <Suspense fallback={<></>}>
               <DetachableTable top={mousePosition.y} left={mousePosition.x}>
+              <Suspense fallback={<></>}>
                 <CountryList
                   accountsCountry={accountsCountry}
                   countryListManagmentOpen={countryListManagmentOpen}
-                  countryDataState={countryDataState}
                   countrySelectedId={countrySelectedId}
                 />
+              </Suspense>
               </DetachableTable>
-            )}
-          </SectionMapsStyled>
+              </Suspense>
+            </SectionMapsStyled>
+          </>
         )}
         {!showMap && (
           <SectionToolsStyled>
             {showAccountComparing && (
+              <Suspense fallback={() => <div>Loading</div>}>
               <ComparativeTool setDataComparing={setDataComparing} />
+              </Suspense>
             )}
             {showPeriodComparing && (
-              <>
-                <SelectorComparative
-                  countryDataState={countryDataState}
-                  setDataComparing={setDataComparing}
-                />
-              </>
+              <Suspense fallback={() => <div>Loading</div>}>
+              <SelectorComparative setDataComparing={setDataComparing} />
+              </Suspense>
             )}
           </SectionToolsStyled>
         )}
@@ -141,12 +135,16 @@ export function Home ({ themeToggler }) {
           ? null
           : (
           <ComparisonContainerStyled>
+            <Suspense fallback={<></>}>
             <OptionsSearch
               setDataComparing={setDataComparing}
               context={dataComparing}
               dataComparing={dataComparing}
             />
+            </Suspense>
+            <Suspense fallback={() => <div>Loading</div>}>
             <ComponentContainer context={dataComparing} usuario={false} />
+            </Suspense>
             <UpArrow />
           </ComparisonContainerStyled>
             )}

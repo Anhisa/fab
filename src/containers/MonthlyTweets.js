@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { useFilterData } from '../hooks/useFilterData'
+import useFilterData from '../hooks/useFilterData'
 import { MonthlyTweetsChart } from '../components/monthyTweets/MonthlyTweetsChart'
 
 MonthlyTweetsItems.propTypes = {
   context: PropTypes.object.isRequired
 }
 
-export function MonthlyTweetsItems ({ context }) {
+export default function MonthlyTweetsItems ({ context }) {
   const [data] = useFilterData(context, 'monthly-tweets')
 
   const [innerData, setInnerData] = useState([])

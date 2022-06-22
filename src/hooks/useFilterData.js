@@ -20,7 +20,7 @@ function sortArray (array, from) {
   return sortedArray
 }
 
-export const useFilterData = (context, from) => {
+export default function useFilterData (context, from) {
   let data = []
   const {
     accounts,

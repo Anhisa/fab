@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { scaleLinear } from 'd3-scale'
 import {
   ComposableMap,
@@ -10,31 +10,25 @@ import {
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry'
 import useWindowSize from '../hooks/useWindowSize'
 import PropTypes from 'prop-types'
-
-const geoUrl =
-  'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json'
-
-// const geoUrl =
-//   'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json';
+import { DataContext } from '../context/dataContext'
 
 MapIslands.propTypes = {
   setAccounts: PropTypes.func.isRequired,
-  items: PropTypes.array.isRequired,
   setMouse: PropTypes.func.isRequired,
   countryListManagmentOpen: PropTypes.object.isRequired,
   setCountrySelectedId: PropTypes.func.isRequired,
   setZoom: PropTypes.func.isRequired
 }
 
-export function MapIslands ({
+export default function MapIslands ({
   setAccounts,
-  items,
   setMouse,
   countryListManagmentOpen,
   setCountrySelectedId,
   setZoom
 }) {
   const windowSize = useWindowSize()
+  const { geoUrl, officialAccounts } = useContext(DataContext)
   // const [localPosition, setLocalPosition] = useState({
   //   coordinates: [-73, 17],
   //   zoom: 1
@@ -70,7 +64,7 @@ export function MapIslands ({
       const itemValue = target.attributes.value
       let x = pageX
       let y = pageY
-      const filteredAccounts = items.filter(
+      const filteredAccounts = officialAccounts.filter(
         (item) => item.country_id === itemValue.value
       )
       if (pageX + 250 > windowSize.width) {
