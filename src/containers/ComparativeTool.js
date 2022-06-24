@@ -1,22 +1,25 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState, useContext } from 'react'
+// import PropTypes from 'prop-types'
 import { CompAccountSelector } from '../components/CompAccountSelector'
 import { CompCategoryCb } from '../components/CompCategoryCb'
 import { CompPeriodSlider } from '../components/CompPeriodSlider'
-
 import Button from '@mui/material/Button'
 import 'bootstrap/dist/css/bootstrap.css'
 import { AccountPeriodContainer } from '../styles/styledComponents/AccountPeriodContainer'
 import {
   ComparativeStyled
 } from '../styles/styledComponents/ComparativeStyled'
+import { TableContext } from '../context/InitialState'
+// const ComparativeStyled = lazy(() => import('../styles/styledComponents/ComparativeStyled'))
 import UseAccountErrors from '../hooks/UseAccountErrors'
 
-ComparativeTool.propTypes = {
-  setDataComparing: PropTypes.func.isRequired
-}
+// ComparativeTool.propTypes = {
+//   setDataComparing: PropTypes.func.isRequired
+// }
 
-export default function ComparativeTool ({ setDataComparing }) {
+export default function ComparativeTool () {
+  const [, setDataComparing] = useContext(TableContext)
+
   const [errors, setErrors] = useState({
     sameAccounts: false,
     emptyAccounts: false

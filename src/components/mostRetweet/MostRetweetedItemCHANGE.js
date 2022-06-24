@@ -13,7 +13,7 @@ MostRetweetedItemChange.propTypes = {
   title: PropTypes.string.isRequired
 }
 
-export function MostRetweetedItemChange ({ newData, arrayBar, title }) {
+export default function MostRetweetedItemChange ({ newData, arrayBar, title }) {
   // const tweetNumber = newData.map((item) => parseInt(item.tweets_number))
   // const totaltweets = tweetNumber.reduce(
   //   (totaltweetsNumber, item) => totaltweetsNumber + item,

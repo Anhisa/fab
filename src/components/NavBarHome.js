@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 import {
   MenuButtonStyled,
   NavBarHomeStyled
@@ -6,13 +6,8 @@ import {
 import { Spin as Hamburger } from 'hamburger-react'
 import PropTypes from 'prop-types'
 // import { Link } from 'react-router-dom'
-NavBarHome.propTypes = {
-  menu: PropTypes.object.isRequired,
-  countryListManagmentOpen: PropTypes.object.isRequired,
-  themeToggler: PropTypes.func.isRequired
-}
 
-function NavBarHome ({ menu, countryListManagmentOpen, themeToggler }) {
+const NavBarHome = memo(function memoNavBar ({ menu, countryListManagmentOpen, themeToggler }) {
   const {
     setShowMap,
     setShowAccountComparing,
@@ -104,6 +99,12 @@ function NavBarHome ({ menu, countryListManagmentOpen, themeToggler }) {
       </div>
     </NavBarHomeStyled>
   )
-}
+})
 
 export default NavBarHome
+
+NavBarHome.propTypes = {
+  menu: PropTypes.object.isRequired,
+  countryListManagmentOpen: PropTypes.object.isRequired,
+  themeToggler: PropTypes.func.isRequired
+}

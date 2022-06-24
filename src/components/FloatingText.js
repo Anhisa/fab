@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import {
   ButtonFloatingStyled,
@@ -6,13 +6,7 @@ import {
   FloatingTextStyled
 } from '../styles/styledComponents/FloatingText.styled'
 
-FloatingText.propTypes = {
-  setCurrentMap: PropTypes.func.isRequired,
-  islands: PropTypes.bool,
-  zoom: PropTypes.bool.isRequired
-}
-
-function FloatingText ({ setCurrentMap, islands, zoom }) {
+const FloatingText = memo(function memoFloatingText ({ setCurrentMap, islands, zoom }) {
   function handleMap () {
     setCurrentMap((prev) => (prev = !prev))
   }
@@ -47,8 +41,13 @@ function FloatingText ({ setCurrentMap, islands, zoom }) {
       </ButtonFloatingStyled>
     </FloatingTextStyled>
   )
-}
+})
 
 export default FloatingText
 
+FloatingText.propTypes = {
+  setCurrentMap: PropTypes.func.isRequired,
+  islands: PropTypes.bool,
+  zoom: PropTypes.bool.isRequired
+}
 /* text  <p>Base de datos interactiva de las cuentas de Twitter pertenecientes a los diplomáticos y representaciones diplomáticas de la República Popular China en América Latina y el Caribe.</p> */

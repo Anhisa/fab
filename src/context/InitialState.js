@@ -1,4 +1,5 @@
-import { createContext } from 'react'
+import React, { createContext } from 'react'
+import PropTypes from 'prop-types'
 const initialStateCategories = {
   mostRetweeted: true,
   mostHashtags: true,
@@ -41,6 +42,22 @@ const periodComparison = {
 
 export const TableContext = createContext()
 
+export const ComparingDataContext = ({ children }) => {
+  const [dataComparing, setDataComparing] = React.useState({
+    accounts,
+    periodComparison,
+    isPeriodComparisonActive: false,
+    isCountryFilterActive: false,
+    countryId: '',
+    categories: initialStateCategories
+  })
+  return (
+    <TableContext.Provider value={[dataComparing, setDataComparing]}>
+      {children}
+    </TableContext.Provider>
+  )
+}
+
 export const initialState = {
   categories: initialStateCategories,
   mapManagment,
@@ -48,4 +65,8 @@ export const initialState = {
   accounts,
   period,
   periodComparison
+}
+
+ComparingDataContext.propTypes = {
+  children: PropTypes.node.isRequired
 }

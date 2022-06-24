@@ -1,15 +1,11 @@
-import React from 'react'
+import React, { memo } from 'react'
 import {
   FloatingTextRightIslandStyled,
   FloatingTextRightStyled
 } from '../styles/styledComponents/FloatingText.styled'
 import PropTypes from 'prop-types'
 
-FloatingTextRight.propTypes = {
-  currentMap: PropTypes.bool.isRequired
-}
-
-function FloatingTextRight ({ currentMap }) {
+const FloatingTextRight = memo(function memoNameMap ({ currentMap }) {
   if (!currentMap) {
     return (
       <FloatingTextRightIslandStyled>
@@ -23,6 +19,10 @@ function FloatingTextRight ({ currentMap }) {
       </FloatingTextRightStyled>
     )
   }
+})
+
+FloatingTextRight.propTypes = {
+  currentMap: PropTypes.bool.isRequired
 }
 
 export default FloatingTextRight

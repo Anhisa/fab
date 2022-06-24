@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useCallback, useContext, memo } from 'react'
 
 import { scaleLinear } from 'd3-scale'
 import {
@@ -16,21 +16,13 @@ import PropTypes from 'prop-types'
 // const geoUrl =
 //   'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json';
 
-Map.propTypes = {
-  setAccounts: PropTypes.func.isRequired,
-  setMouse: PropTypes.func.isRequired,
-  countryListManagmentOpen: PropTypes.object.isRequired,
-  setCountrySelectedId: PropTypes.func.isRequired,
-  setZoom: PropTypes.func.isRequired
-}
-
-export default function Map ({
+// eslint-disable-next-line react/display-name
+const Map = memo(({
   setAccounts,
   setMouse,
   countryListManagmentOpen,
-  setCountrySelectedId,
-  setZoom
-}) {
+  setCountrySelectedId
+}) => {
   // const [localPosition, setLocalPosition] = useState({
   //   coordinates: [-78, -11],
   //   zoom: 1.2
@@ -61,7 +53,7 @@ export default function Map ({
     setOpen(false)
     // cancel zoom on scroll
   }
-  const handleOnClick = (e) => {
+  const handleOnClick = useCallback((e) => {
     const { target, pageX, pageY } = e
 
     if (target.attributes.value) {
@@ -92,7 +84,7 @@ export default function Map ({
     }
 
     return setOpen(false)
-  }
+  }, [])
 
   const tweetsByCountry = useGetTweetsByCountry()
 
@@ -179,7 +171,8 @@ export default function Map ({
       </div> */}
     </div>
   )
-}
+})
+
 CustomZoomableGroup.propTypes = {
   children: PropTypes.node.isRequired,
   positionLocal: PropTypes.object.isRequired,
@@ -251,4 +244,13 @@ function CustomZoomableGroup ({
       </g>
     </g>
   )
+}
+
+export default Map
+Map.propTypes = {
+  setAccounts: PropTypes.func.isRequired,
+  setMouse: PropTypes.func.isRequired,
+  countryListManagmentOpen: PropTypes.object.isRequired,
+  setCountrySelectedId: PropTypes.func.isRequired,
+  setZoom: PropTypes.func.isRequired
 }

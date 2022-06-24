@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, lazy, Suspense } from 'react'
 import PropTypes from 'prop-types'
 import useFilterData from '../hooks/useFilterData'
 import { CreateChart } from '../helpers/createChart'
 import useActiveNames from '../hooks/useActiveNames'
 import { EmptyDataStyled } from '../styles/styledComponents/EmptyData.styled'
-import { MostRetweetedItemChange } from '../components/mostRetweet/MostRetweetedItemCHANGE'
-import MostRetwittedPie from '../components/mostRetweet/MostRetwittedPie'
+
+const MostRetweetedItemChange = lazy(() => import('../components/mostRetweet/MostRetweetedItemCHANGE'))
+const MostRetwittedPie = lazy(() => import('../components/mostRetweet/MostRetwittedPie'))
 
 MostRetweetedItems.propTypes = {
   context: PropTypes.object.isRequired,
@@ -37,11 +38,14 @@ export default function MostRetweetedItems ({ context, usuario }) {
       {data.map((dataAccount, index) => {
         return (
           <section className="column" key={index}>
-
+              <Suspense fallback={<div>Loading...</div>}>
               <MostRetweetedItemChange newData={dataAccount} arrayBar={chartData[index]} comparisonView={isPeriodComparisonActive} title={
                 accountsNames[index]
               }/>
+              </Suspense>
+              <Suspense fallback={<div>Loading...</div>}>
               <MostRetwittedPie newData={dataAccount} title={accountsNames[index]} usuario={usuario}/>
+              </Suspense>
 
           </section>
         )

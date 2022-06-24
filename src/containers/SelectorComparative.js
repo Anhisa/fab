@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Button from '@mui/material/Button'
 import ComparativePerPeriod from '../components/ComparativePerPeriod'
 import { CompCategoryCb } from '../components/CompCategoryCb'
 import { ComparativeStyled } from '../styles/styledComponents/ComparativeStyled'
 import UsePeriodErrors from '../hooks/usePeriodErrors'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import CountrySelectFilter from '../components/countrySelectFilter'
+import { TableContext } from '../context/InitialState'
 
-SelectorComparative.propTypes = {
-  setDataComparing: PropTypes.func.isRequired
-}
+// SelectorComparative.propTypes = {
+//   setDataComparing: PropTypes.func.isRequired
+// }
 
-function SelectorComparative ({ setDataComparing }) {
+function SelectorComparative () {
+  const [, setDataComparing] = useContext(TableContext)
   const [periodComparison, setPeriodComparison] = useState({
     periodA: {
       id: '',
