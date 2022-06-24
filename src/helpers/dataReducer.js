@@ -59,7 +59,7 @@ export function dataReducer (data, periods) {
         ...data[1]
       ]
     ]
-  } else if (periods[0].id === 3 && periods[1].id === 6) {
+  } else if ((periods[0].id === 3 || periods[0].id === 1) && periods[1].id === 6) {
     newData = [
       [...data[0]],
       [
