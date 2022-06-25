@@ -30,11 +30,7 @@ const periods = [
   }
 ]
 
-ComparativePerPeriod.propTypes = {
-  setDataComparing: PropTypes.func.isRequired
-}
-
-function ComparativePerPeriod ({ setDataComparing }) {
+const ComparativePerPeriod = React.memo(function ComparativeSelectorMemo ({ setDataComparing }) {
   const [periodA, setPeriodA] = React.useState('')
   const [periodB, setPeriodB] = React.useState('')
   //
@@ -150,6 +146,10 @@ function ComparativePerPeriod ({ setDataComparing }) {
       </div>
     </div>
   )
+})
+
+ComparativePerPeriod.propTypes = {
+  setDataComparing: PropTypes.func.isRequired
 }
 
 export default ComparativePerPeriod

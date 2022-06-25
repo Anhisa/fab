@@ -1,5 +1,4 @@
-import React, { useState, Suspense, lazy, useContext } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState, Suspense, lazy } from 'react'
 import '../styles/App.css'
 
 import { MapStyled } from '../styles/styledComponents/MapStyled'
@@ -16,7 +15,6 @@ import FloatingText from '../components/FloatingText'
 import UpArrow from '../components/UpArrow'
 import Layout from '../containers/Layout'
 import useOpenList from '../hooks/useOpenList'
-import { TableContext } from '../context/InitialState'
 import DetachableTable from '../styles/styledComponents/detachableTable'
 import Spinner from 'react-bootstrap/esm/Spinner'
 const Map = lazy(() => import('../components/Map'))
@@ -27,18 +25,13 @@ const SelectorComparative = lazy(() => import('../containers/SelectorComparative
 const CountryList = lazy(() => import('../containers/CountryList'))
 const OptionsSearch = lazy(() => import('../containers/OptionsSearch'))
 // import userQueries from './queries.php';
-Home.propTypes = {
-  themeToggler: PropTypes.func.isRequired
-}
-
-export function Home ({ themeToggler }) {
+export default function Home () {
   const [zoom, setZoom] = useState(false)
   const [countrySelectedId, setCountrySelectedId] = useState(null)
   const [currentMap, setCurrentMap] = useState(true)
   const [open, setOpen] = useOpenList()
   const countryListManagmentOpen = { open, setOpen }
   const [accountsCountry, setAccountsCountry] = useState([])
-  const [dataComparing, setDataComparing] = useContext(TableContext)
   const [mousePosition, setMousePosition] = useState({
     x: 0,
     y: 0
@@ -52,9 +45,8 @@ export function Home ({ themeToggler }) {
       <Layout>
         <NavBarHome
           menu={menu}
-          countryListManagmentOpen={countryListManagmentOpen}
-          themeToggler={themeToggler}
-        />
+          setOpen={setOpen}
+                  />
         {showMap && (
           <>
             <ColorBar />
@@ -135,14 +127,8 @@ export function Home ({ themeToggler }) {
           : (
           <ComparisonContainerStyled>
             <Suspense fallback={<Spinner/>}>
-            <OptionsSearch
-              setDataComparing={setDataComparing}
-              context={dataComparing}
-              dataComparing={dataComparing}
-            />
-            </Suspense>
-            <Suspense fallback={<Spinner/>}>
-            <ComponentContainer context={dataComparing} usuario={false} />
+            <OptionsSearch/>
+            <ComponentContainer usuario={false} />
             </Suspense>
             <UpArrow />
           </ComparisonContainerStyled>

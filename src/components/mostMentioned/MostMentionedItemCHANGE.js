@@ -1,13 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
-import DataTable from 'react-data-table-component'
-import {
-  EmptyDataTable,
-  StyledDataTable
-} from '../../styles/styledComponents/StyledDataTable'
-import { ExpandedComponent } from '../ExpandedComponent'
-import { columns } from '../../helpers/columns'
+import DataTableGn from '../DataTableGn'
 
 MostMentionedItemCHANGE.propTypes = {
   newData: PropTypes.array.isRequired,
@@ -73,25 +67,6 @@ export function MostMentionedItemCHANGE ({
   })
 
   return (
-    <StyledDataTable className="dataTable">
-      <DataTable
-        columns={columns}
-        data={rows}
-        title={
-          <>
-            <p>
-              <b>{title}</b>
-            </p>
-          </>
-        }
-        expandableRows
-        expandableRowsComponent={ExpandedComponent}
-        noDataComponent={
-          <EmptyDataTable>
-            <h5>No se registran datos en el periodo seleccionado</h5>
-          </EmptyDataTable>
-        }
-      />
-    </StyledDataTable>
+<DataTableGn rows={rows} title={title} />
   )
 }

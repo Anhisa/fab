@@ -43,7 +43,7 @@ export const columns = [
     wrap: true,
     maxWidth: '250px',
     minWidth: '100px',
-    omit: window.innerWidth < 1108
+    omit: window.innerWidth < 408
   },
   {
     name: 'Verificado',

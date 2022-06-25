@@ -42,7 +42,7 @@ const periodComparison = {
 
 export const TableContext = createContext()
 
-export const ComparingDataContext = ({ children }) => {
+export const ComparingDataContext = ({ children, themeToggler }) => {
   const [dataComparing, setDataComparing] = React.useState({
     accounts,
     periodComparison,
@@ -52,7 +52,7 @@ export const ComparingDataContext = ({ children }) => {
     categories: initialStateCategories
   })
   return (
-    <TableContext.Provider value={[dataComparing, setDataComparing]}>
+    <TableContext.Provider value={[dataComparing, setDataComparing, themeToggler]}>
       {children}
     </TableContext.Provider>
   )
@@ -68,5 +68,6 @@ export const initialState = {
 }
 
 ComparingDataContext.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  themeToggler: PropTypes.func.isRequired
 }

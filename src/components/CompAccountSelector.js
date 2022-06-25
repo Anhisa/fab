@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, memo } from 'react'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
@@ -7,11 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { DataContext } from '../context/dataContext'
 import PropTypes from 'prop-types'
 
-CompAccountSelector.propTypes = {
-  setAccounts: PropTypes.func.isRequired
-}
-
-export function CompAccountSelector ({ setAccounts }) {
+export const CompAccountSelector = memo(function accountSelectorMemo ({ setAccounts }) {
   const [accountA, setAccountA] = React.useState('')
   const [accountB, setAccountB] = React.useState('')
   const { officialAccounts } = useContext(DataContext)
@@ -134,4 +130,8 @@ export function CompAccountSelector ({ setAccounts }) {
       </div>
     </div>
   )
+})
+
+CompAccountSelector.propTypes = {
+  setAccounts: PropTypes.func.isRequired
 }

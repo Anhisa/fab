@@ -1,28 +1,18 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useState, memo } from 'react'
 import useGetCountryNames from '../hooks/useGetCountryNames'
 import PropTypes from 'prop-types'
 
-CountrySelectFilter.propTypes = {
-  setCountryFilterActive: PropTypes.func.isRequired,
-  setCountryId: PropTypes.func.isRequired
-}
-
-function CountrySelectFilter ({ setCountryFilterActive, setCountryId }) {
-  const [countriesData, setCountriesData] = useState([])
+const CountrySelectFilter = memo(function CountrySelectMemo ({ setCountryFilterActive, setCountryId }) {
   const [countryA, setCountryA] = useState('')
   const countryNames = useGetCountryNames()
-
-  useEffect(() => {
-    setCountriesData(countryNames)
-  }, [countryNames])
 
   if (countryNames.length === 0) {
     return <div>Loading...</div>
   }
   function handleChange ({ target: { value } }) {
     if (value !== 'null') {
-      const countryName = countriesData.find(
+      const countryName = countryNames.find(
         (country) => country.countryInId === value
       )
 
@@ -70,6 +60,10 @@ function CountrySelectFilter ({ setCountryFilterActive, setCountryId }) {
       </div>
     </div>
   )
+})
+CountrySelectFilter.propTypes = {
+  setCountryFilterActive: PropTypes.func.isRequired,
+  setCountryId: PropTypes.func.isRequired
 }
 
 export default CountrySelectFilter

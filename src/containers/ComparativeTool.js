@@ -17,7 +17,7 @@ import UseAccountErrors from '../hooks/UseAccountErrors'
 //   setDataComparing: PropTypes.func.isRequired
 // }
 
-export default function ComparativeTool () {
+const ComparativeTool = React.memo(function comparativeMemo () {
   const [, setDataComparing] = useContext(TableContext)
 
   const [errors, setErrors] = useState({
@@ -26,12 +26,12 @@ export default function ComparativeTool () {
   })
   const [accounts, setAccounts] = useState({
     accountIdA: {
-      id: '',
-      name: ''
+      id: 'null1',
+      name: 'null1'
     },
     accountIdB: {
-      id: '',
-      name: ''
+      id: 'null2',
+      name: 'null2'
     }
   })
   const [categories, setCategories] = useState({
@@ -46,13 +46,11 @@ export default function ComparativeTool () {
     startDate: 1,
     endDate: 4
   })
-  const [firstTime, setFirstTime] = useState(true)
+
   const thereIsError = Object.values(errors).some((error) => error)
 
-  const handleComparison = () => {
-    // scroll to bottom
+  const handleComparison = () => { // scroll to bottom
     window.scrollTo(0, 550)
-    setFirstTime(false)
     setDataComparing((prev) => {
       return {
         ...prev,
@@ -76,7 +74,9 @@ export default function ComparativeTool () {
           COMPARAR
         </Button>
       </div>
-    {!firstTime && <UseAccountErrors accounts={accounts} errors={errors} setErrors={setErrors}/>}
+     <UseAccountErrors accounts={accounts} errors={errors} setErrors={setErrors}/>
     </ComparativeStyled>
   )
-}
+})
+
+export default ComparativeTool

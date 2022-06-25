@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
-import DataTable from 'react-data-table-component'
-import { EmptyDataTable, StyledDataTable } from '../../styles/styledComponents/StyledDataTable'
-import { columns } from '../../helpers/columns'
-import { ExpandedComponent } from '../ExpandedComponent'
+import DataTableGn from '../DataTableGn'
 
 MostRepliedItemCHANGE.propTypes = {
   newData: PropTypes.array.isRequired,
@@ -13,12 +10,6 @@ MostRepliedItemCHANGE.propTypes = {
 }
 
 export function MostRepliedItemCHANGE ({ newData, title, arrayBar }) {
-  // const tweetNumber = newData.map((item) => parseInt(item.tweets_number))
-  // const totaltweets = tweetNumber.reduce(
-  //   (totaltweetsNumber, item) => totaltweetsNumber + item,
-  //   0
-  // )
-
   const accountInfo = []
   const account = newData[0]
 
@@ -63,27 +54,7 @@ export function MostRepliedItemCHANGE ({ newData, title, arrayBar }) {
   })
 
   return (
-    <StyledDataTable className="dataTable">
-    <DataTable
-      columns={columns}
-      data={rows}
-      title={
-        <>
-          <p>
-            <b>{title}</b>
-          </p>
-        </>
-      }
-      expandableRows
-      expandableRowsComponent={ExpandedComponent}
-      expandableRowsOnClick={true}
-      noDataComponent={
-        <EmptyDataTable>
-          <h5>No se registran datos en el periodo seleccionado</h5>
-        </EmptyDataTable>
-      }
-    />
-    </StyledDataTable>
+    <DataTableGn rows={rows} title={title} />
   )
 }
 

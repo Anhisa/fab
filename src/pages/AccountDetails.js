@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import MonthlyTweetsItems from '../containers/MonthlyTweets'
 import { useParams } from 'react-router'
 import ViewUserCard from '../components/ViewUserCard'
@@ -16,20 +15,17 @@ import { AccountPeriodContainer } from '../styles/styledComponents/AccountPeriod
 import ComparativeUserViewContainer from '../containers/ComparativeUserView/ComparativeUserViewContainer'
 import { GoblalStyles } from '../styles/styledComponents/GlobalStyles'
 import { DataContext } from '../context/dataContext'
+import { TableContext } from '../context/InitialState'
 
-AccountDetails.propTypes = {
-  themeToggler: PropTypes.func.isRequired
-}
-
-export function AccountDetails ({ themeToggler }) {
+export default function AccountDetails () {
   const { account } = useParams()
   const { fol } = useContext(DataContext)
+  const [,, themeToggler] = useContext(TableContext)
 
   const [period, setPeriod] = useState({
     startDate: 1,
     endDate: 4
   })
-
   const [dataSearch, setDataSearch] = useState(false)
 
   useEffect(() => {

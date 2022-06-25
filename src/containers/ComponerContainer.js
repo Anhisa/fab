@@ -1,7 +1,8 @@
-import React, { lazy, Suspense } from 'react'
+import React, { lazy, Suspense, useContext } from 'react'
 import PropTypes from 'prop-types'
 import ButtonToogle from '../components/ButtonToogle'
 import { CollapsableTableStyled } from '../styles/styledComponents/CollapsableTableStyled'
+import { TableContext } from '../context/InitialState'
 
 const HtMostUsedItems = lazy(() => import('./HtMostUsed'))
 const MonthlyTweetsItems = lazy(() => import('./MonthlyTweets'))
@@ -10,13 +11,13 @@ const MostRepliedItems = lazy(() => import('./MostReplied'))
 const MostRetweetedItems = lazy(() => import('./MostRetweeted'))
 
 ComponentContainer.propTypes = {
-  context: PropTypes.object.isRequired,
   usuario: PropTypes.bool.isRequired
 }
 
-export default function ComponentContainer ({ context, usuario }) {
+export default function ComponentContainer ({ usuario }) {
+  const [dataComparing] = useContext(TableContext)
   const { categories, accounts, periodComparison, isPeriodComparisonActive } =
-    context
+    dataComparing
   const { accountIdA, accountIdB } = accounts
   const { periodA, periodB } = periodComparison
 
@@ -44,7 +45,7 @@ export default function ComponentContainer ({ context, usuario }) {
               : ` Número de tweets por mes de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </ButtonToogle>
           <Suspense fallback={<div>Loading...</div>}>
-          <MonthlyTweetsItems context={context} />
+          <MonthlyTweetsItems context={dataComparing} />
           </Suspense>
         </CollapsableTableStyled>
       )}
@@ -56,7 +57,7 @@ export default function ComponentContainer ({ context, usuario }) {
               : `Usuarios más retuiteados de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </ButtonToogle>
           <Suspense fallback={<div>Loading...</div>}>
-          <MostRetweetedItems context={context} usuario={usuario} />
+          <MostRetweetedItems context={dataComparing} usuario={usuario} />
           </Suspense>
         </CollapsableTableStyled>
       )}
@@ -68,7 +69,7 @@ export default function ComponentContainer ({ context, usuario }) {
               : `Usuarios que más han recibido respuesta de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </ButtonToogle>
           <Suspense fallback={<div>Loading...</div>}>
-          <MostRepliedItems usuario={usuario} context={context} />
+          <MostRepliedItems usuario={usuario} context={dataComparing} />
           </Suspense>
         </CollapsableTableStyled>
       )}
@@ -81,9 +82,9 @@ export default function ComponentContainer ({ context, usuario }) {
           </ButtonToogle>
           <Suspense fallback={<div>Loading...</div>}>
           <HtMostUsedItems
-            period={context.period}
+            period={dataComparing.period}
             usuario={usuario}
-            context={context}
+            context={dataComparing}
           />
           </Suspense>
         </CollapsableTableStyled>
@@ -96,7 +97,7 @@ export default function ComponentContainer ({ context, usuario }) {
               : `Usuarios más mencionados de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </ButtonToogle>
           <Suspense fallback={<div>Loading...</div>}>
-          <MostMentionedItems usuario={usuario} context={context} />
+          <MostMentionedItems usuario={usuario} context={dataComparing} />
           </Suspense>
         </CollapsableTableStyled>
       )}

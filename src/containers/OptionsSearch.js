@@ -1,16 +1,11 @@
 import { Button } from '@mui/material'
 import React from 'react'
-import PropTypes from 'prop-types'
 import openTables from '../helpers/OpenTables'
+import { TableContext } from '../context/InitialState'
 
-OptionsSearch.propTypes = {
-  setDataComparing: PropTypes.func.isRequired,
-  context: PropTypes.object.isRequired,
-  dataComparing: PropTypes.object.isRequired
-}
-
-function OptionsSearch ({ setDataComparing, context, dataComparing }) {
+function OptionsSearch () {
   const [open, setOpen] = React.useState(false)
+  const [dataComparing, setDataComparing] = React.useContext(TableContext)
   const { categories } = dataComparing
 
   if (categories === undefined) {

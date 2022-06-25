@@ -5,17 +5,18 @@ import {
 } from '../styles/styledComponents/NavBarHomeStyled'
 import { Spin as Hamburger } from 'hamburger-react'
 import PropTypes from 'prop-types'
+import { TableContext } from '../context/InitialState'
 // import { Link } from 'react-router-dom'
 
-const NavBarHome = memo(function memoNavBar ({ menu, countryListManagmentOpen, themeToggler }) {
+const NavBarHome = memo(function memoNavBar ({ menu, setOpen }) {
   const {
     setShowMap,
     setShowAccountComparing,
     setShowPeriodComparing,
     showMap
   } = menu
-  const { setOpen } = countryListManagmentOpen
   const [showMenu, setShowMenu] = useState(false)
+  const [, , themeToggler] = React.useContext(TableContext)
 
   // function handleClickChange () {
   //   setCurrentMap((prev) => !prev)
@@ -105,6 +106,5 @@ export default NavBarHome
 
 NavBarHome.propTypes = {
   menu: PropTypes.object.isRequired,
-  countryListManagmentOpen: PropTypes.object.isRequired,
-  themeToggler: PropTypes.func.isRequired
+  setOpen: PropTypes.func.isRequired
 }
