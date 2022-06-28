@@ -66,7 +66,6 @@ export const initialState = {
   period,
   periodComparison
 }
-
 ComparingDataContext.propTypes = {
   children: PropTypes.node.isRequired,
   themeToggler: PropTypes.func.isRequired
