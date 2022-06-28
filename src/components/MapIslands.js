@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { scaleLinear } from 'd3-scale'
 import {
   ComposableMap,
@@ -10,7 +10,7 @@ import {
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry'
 import useWindowSize from '../hooks/useWindowSize'
 import PropTypes from 'prop-types'
-import { DataContext } from '../context/dataContext'
+import useQueryData from '../hooks/useQueryData'
 
 MapIslands.propTypes = {
   setAccounts: PropTypes.func.isRequired,
@@ -28,7 +28,7 @@ export default function MapIslands ({
   setZoom
 }) {
   const windowSize = useWindowSize()
-  const { geoUrl, officialAccounts } = useContext(DataContext)
+  const { geoUrl, officialAccounts } = useQueryData()
   // const [localPosition, setLocalPosition] = useState({
   //   coordinates: [-73, 17],
   //   zoom: 1

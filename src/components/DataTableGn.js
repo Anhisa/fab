@@ -34,7 +34,6 @@ const DataTableGn = (props) => {
 }
 
 DataTableGn.propTypes = {
-  props: PropTypes.object.isRequired,
   rows: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired
 }

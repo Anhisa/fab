@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import VerifiedIcon from '@mui/icons-material/Verified'
 import { getFlag } from '../helpers/getFlag'
@@ -7,8 +7,8 @@ import {
   EmptyCardStyled
 } from '../styles/styledComponents/CountryCardSelect'
 import { DataTableStyled } from '../styles/styledComponents/ComparativeStyled'
-import { DataContext } from '../context/dataContext'
 import PropTypes from 'prop-types'
+import useQueryData from '../hooks/useQueryData'
 const columns = [
   {
     name: 'Nombre',
@@ -58,7 +58,7 @@ export function CountryItem ({
   countrySelectedId
 }) {
   const { open } = countryListManagmentOpen
-  const { countries } = useContext(DataContext)
+  const { countries } = useQueryData()
 
   function hasRelationWithTaiwan (countryId) {
     const countryData = countries.find(

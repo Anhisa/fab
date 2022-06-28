@@ -14,12 +14,12 @@ import ErrorComponent from '../components/errorComponent'
 import { AccountPeriodContainer } from '../styles/styledComponents/AccountPeriodContainer'
 import ComparativeUserViewContainer from '../containers/ComparativeUserView/ComparativeUserViewContainer'
 import { GoblalStyles } from '../styles/styledComponents/GlobalStyles'
-import { DataContext } from '../context/dataContext'
 import { TableContext } from '../context/InitialState'
+import useQueryData from '../hooks/useQueryData'
 
 export default function AccountDetails () {
   const { account } = useParams()
-  const { fol } = useContext(DataContext)
+  const { fol } = useQueryData()
   const [,, themeToggler] = useContext(TableContext)
 
   const [period, setPeriod] = useState({

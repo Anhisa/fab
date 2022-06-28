@@ -5,7 +5,7 @@ const useScroll = () => {
   const handleScroll = () => {
     setScroll(window.scrollY)
   }
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     window.addEventListener('scroll', handleScroll)
     return () => {
       window.removeEventListener('scroll', handleScroll)

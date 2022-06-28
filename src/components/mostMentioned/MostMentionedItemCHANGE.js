@@ -9,11 +9,7 @@ MostMentionedItemCHANGE.propTypes = {
   arrayBar: PropTypes.array.isRequired
 }
 
-export function MostMentionedItemCHANGE ({
-  newData,
-  title,
-  arrayBar
-}) {
+export function MostMentionedItemCHANGE ({ newData, title, arrayBar }) {
   if (arrayBar === undefined) {
     return null
   }
@@ -65,8 +61,5 @@ export function MostMentionedItemCHANGE ({
       tweets_number: arrayBar[index]
     }
   })
-
-  return (
-<DataTableGn rows={rows} title={title} />
-  )
+  return <DataTableGn rows={rows} title={title} />
 }

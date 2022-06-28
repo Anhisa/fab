@@ -12,7 +12,7 @@ export const App = () => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-    <DataProvider>
+      <DataProvider>
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <ComparingDataContext themeToggler={themeToggler}>
           <RoutesApp/>

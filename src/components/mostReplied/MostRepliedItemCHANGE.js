@@ -46,16 +46,13 @@ export function MostRepliedItemCHANGE ({ newData, title, arrayBar }) {
     )
   )
 
-  rows = rows?.map((item, index) => {
+  rows = rows.map((item, index) => {
     return {
       ...item,
       tweets_number: arrayBar[index]
     }
   })
-
-  return (
-    <DataTableGn rows={rows} title={title} />
-  )
+  return <DataTableGn rows={rows} title={title} />
 }
 
 /*

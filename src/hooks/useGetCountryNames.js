@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from 'react'
-import { DataContext } from '../context/dataContext'
+import { useEffect, useState } from 'react'
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry'
+import useQueryData from './useQueryData'
 
 const useGetCountryNames = () => {
-  const { countries } = useContext(DataContext)
+  const { countries } = useQueryData()
   const [countryNames, setCountryNames] = useState([])
   const tweetsByCountry = useGetTweetsByCountry()
 

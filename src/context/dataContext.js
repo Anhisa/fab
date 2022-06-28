@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Loading from '../components/Loading'
 import { promisesUrl } from '../helpers/promisesUrl'
@@ -7,14 +7,12 @@ import { useQuery } from 'react-query'
 const geoUrl =
   'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json'
 
-export const DataContext = createContext()
-
 DataProvider.propTypes = {
   children: PropTypes.node.isRequired
 }
 
 export default function DataProvider ({ children }) {
-  const { data, error, isError, isLoading } = useQuery('data', fetchData)
+  const { error, isError, isLoading } = useQuery('data', fetchData)
 
   if (isError) {
     console.log(error.message)
@@ -25,7 +23,7 @@ export default function DataProvider ({ children }) {
     return <Loading />
   }
 
-  return <DataContext.Provider value={data}>{children}</DataContext.Provider>
+  return <>{children}</>
 }
 
 async function fetchData () {

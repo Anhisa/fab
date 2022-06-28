@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, memo } from 'react'
+import React, { useCallback, memo } from 'react'
 
 import { scaleLinear } from 'd3-scale'
 import {
@@ -11,8 +11,8 @@ import {
 } from 'react-simple-maps'
 import { useGetTweetsByCountry } from '../helpers/getTweetsByCountry'
 import useWindowSize from '../hooks/useWindowSize'
-import { DataContext } from '../context/dataContext'
 import PropTypes from 'prop-types'
+import useQueryData from '../hooks/useQueryData'
 // const geoUrl =
 //   'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json';
 
@@ -30,7 +30,7 @@ const Map = memo(({
 
   const { open, setOpen } = countryListManagmentOpen
   const windowSize = useWindowSize()
-  const { geoUrl, officialAccounts } = useContext(DataContext)
+  const { geoUrl, officialAccounts } = useQueryData()
   // function handleZoomIn () {
   //   setZoom(true)
   //   if (localPosition.zoom >= 4) return

@@ -1,9 +1,10 @@
 /* eslint-disable camelcase */
-import { useContext, useEffect, useState } from 'react'
-import { DataContext } from '../context/dataContext'
+import { useEffect, useState } from 'react'
+
+import useQueryData from '../hooks/useQueryData'
 
 export function getActivityCreactionDate () {
-  const { fol } = useContext(DataContext)
+  const { fol } = useQueryData()
   const [innerData, setInnerData] = useState(fol)
   const [filteredData, setFilteredData] = useState([])
   let arrayDuplicate = []

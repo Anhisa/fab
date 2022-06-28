@@ -1,9 +1,10 @@
 /* eslint-disable camelcase */
-import { useContext, useEffect, useState } from 'react'
-import { DataContext } from '../context/dataContext'
+import { useEffect, useState } from 'react'
+
+import useQueryData from '../hooks/useQueryData'
 
 export function useGetTweetsByCountry () {
-  const { fol } = useContext(DataContext)
+  const { fol } = useQueryData()
   const [filteredData, setFilteredData] = useState([])
   let arrayDuplicate = []
   useEffect(() => {

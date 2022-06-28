@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 // import { format } from 'date-fns'
-import { useContext, useEffect, useState } from 'react'
-import { DataContext } from '../context/dataContext'
+import { useEffect, useState } from 'react'
 
 import {
   addDuplicates,
@@ -11,6 +10,7 @@ import {
   getPeriodNumbers,
   mergeSort
 } from '../helpers/filterHelpers'
+import useQueryData from './useQueryData'
 // import { useGetData } from './useGetData'
 
 // Toma las cuentas y el periodo del contexto y devuelve un array con los datos de los usuarios
@@ -37,7 +37,7 @@ export default function useFilterData (context, from) {
     mostRetweeted,
     htMostUsed,
     monthlyTweets
-  } = useContext(DataContext)
+  } = useQueryData()
   switch (from) {
     case 'most-mentioned':
       data = mostMentioned

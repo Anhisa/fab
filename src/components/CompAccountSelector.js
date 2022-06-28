@@ -1,16 +1,16 @@
-import React, { useContext, memo } from 'react'
+import React, { memo } from 'react'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import 'bootstrap/dist/css/bootstrap.css'
-import { DataContext } from '../context/dataContext'
 import PropTypes from 'prop-types'
+import useQueryData from '../hooks/useQueryData'
 
 export const CompAccountSelector = memo(function accountSelectorMemo ({ setAccounts }) {
   const [accountA, setAccountA] = React.useState('')
   const [accountB, setAccountB] = React.useState('')
-  const { officialAccounts } = useContext(DataContext)
+  const { officialAccounts } = useQueryData()
 
   const handleChangeA = ({ target: { value } }) => {
     if (value === 'none') {
