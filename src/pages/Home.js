@@ -24,6 +24,7 @@ import ComparativeTool from '../containers/ComparativeTool'
 import SelectorComparative from '../containers/SelectorComparative'
 import CountryList from '../containers/CountryList'
 import OptionsSearch from '../containers/OptionsSearch'
+import OptionsAndTables from '../containers/OptionsAndTables'
 
 // import userQueries from './queries.php';
 export default function Home () {
@@ -111,9 +112,10 @@ export default function Home () {
           ? null
           : (
           <ComparisonContainerStyled>
-            <OptionsSearch />
-            <ComponentContainer usuario={false} />
-
+            <OptionsAndTables>
+              <OptionsSearch />
+              <ComponentContainer usuario={false} />
+            </OptionsAndTables>
             <UpArrow />
           </ComparisonContainerStyled>
             )}

@@ -19,7 +19,7 @@ ComparativeUserViewContainer.propTypes = {
 
 function ComparativeUserViewContainer ({ period, usuario, context }) {
   const [open, setOpen] = React.useState(false)
-  console.log('usuario', usuario)
+  console.log('open comparative', open)
   function handleClick () {
     openTables(open, setOpen)
   }
@@ -31,7 +31,7 @@ function ComparativeUserViewContainer ({ period, usuario, context }) {
         {!open ? 'Abrir' : 'Cerrar'} tablas
       </Button>
         <CollapsableTableStyled className="table">
-          <ButtonToogle usuario={true} name="most-retweet">
+          <ButtonToogle usuario={true} name="most-retweet" open={open} setOpen={setOpen}>
             Usuarios más retuiteados
           </ButtonToogle>
           <MostRetweetedItems
@@ -41,7 +41,7 @@ function ComparativeUserViewContainer ({ period, usuario, context }) {
           />
         </CollapsableTableStyled>
         <CollapsableTableStyled className="table" >
-          <ButtonToogle usuario={true} name="most-replied">
+          <ButtonToogle usuario={true} name="most-replied" open={open} setOpen={setOpen}>
             Usuarios que más han recibido respuesta
           </ButtonToogle>
 
@@ -53,7 +53,7 @@ function ComparativeUserViewContainer ({ period, usuario, context }) {
         </CollapsableTableStyled>
 
         <CollapsableTableStyled className="table">
-          <ButtonToogle name="most-ht" usuario={true}>
+          <ButtonToogle name="most-ht" usuario={true} open={open} setOpen={setOpen}>
             Hashtags más usados
           </ButtonToogle>
 
@@ -64,7 +64,7 @@ function ComparativeUserViewContainer ({ period, usuario, context }) {
           />
         </CollapsableTableStyled>
         <CollapsableTableStyled className="table">
-          <ButtonToogle usuario={true} name="most-mentioned">
+          <ButtonToogle usuario={true} name="most-mentioned" open={open} setOpen={setOpen}>
             Usuarios más mencionados
           </ButtonToogle>
 

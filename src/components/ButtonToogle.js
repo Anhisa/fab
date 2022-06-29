@@ -7,15 +7,20 @@ import PropTypes from 'prop-types'
 ButtonToogle.propTypes = {
   children: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
-  usuario: PropTypes.bool
+  usuario: PropTypes.bool,
+  open: PropTypes.bool
 }
 
-function ButtonToogle ({ children, name, usuario }) {
+function ButtonToogle ({ children, name, usuario, open }) {
   const [isOpen, setIsOpen] = React.useState(false)
   const handleClickButton = ({ target: { name } }) => {
     setIsOpen(!isOpen)
     handleClick(name, isOpen)
   }
+  React.useEffect(() => {
+    setIsOpen(open)
+  }
+  , [open])
 
   return (
     <StyledFilterButton

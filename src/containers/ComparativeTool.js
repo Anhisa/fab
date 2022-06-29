@@ -19,19 +19,19 @@ import UseAccountErrors from '../hooks/UseAccountErrors'
 
 const ComparativeTool = React.memo(function comparativeMemo () {
   const [, setDataComparing] = useContext(TableContext)
-
+  const [firstTime, setFirstTime] = useState(true)
   const [errors, setErrors] = useState({
     sameAccounts: false,
     emptyAccounts: false
   })
   const [accounts, setAccounts] = useState({
     accountIdA: {
-      id: 'null1',
-      name: 'null1'
+      id: '',
+      name: ''
     },
     accountIdB: {
-      id: 'null2',
-      name: 'null2'
+      id: '',
+      name: ''
     }
   })
   const [categories, setCategories] = useState({
@@ -50,6 +50,7 @@ const ComparativeTool = React.memo(function comparativeMemo () {
   const thereIsError = Object.values(errors).some((error) => error)
 
   const handleComparison = () => { // scroll to bottom
+    setFirstTime(false)
     window.scrollTo(0, 550)
     setDataComparing((prev) => {
       return {
@@ -74,7 +75,7 @@ const ComparativeTool = React.memo(function comparativeMemo () {
           COMPARAR
         </Button>
       </div>
-     <UseAccountErrors accounts={accounts} errors={errors} setErrors={setErrors}/>
+    {!firstTime && <UseAccountErrors accounts={accounts} errors={errors} setErrors={setErrors}/>}
     </ComparativeStyled>
   )
 })
