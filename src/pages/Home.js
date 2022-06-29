@@ -1,4 +1,4 @@
-import React, { useState, Suspense, lazy } from 'react'
+import React, { useState } from 'react'
 import '../styles/App.css'
 
 import { MapStyled } from '../styles/styledComponents/MapStyled'
@@ -16,14 +16,15 @@ import UpArrow from '../components/UpArrow'
 import Layout from '../containers/Layout'
 import useOpenList from '../hooks/useOpenList'
 import DetachableTable from '../styles/styledComponents/detachableTable'
-import Spinner from 'react-bootstrap/esm/Spinner'
-const Map = lazy(() => import('../components/Map'))
-const MapIslands = lazy(() => import('../components/MapIslands'))
-const ComponentContainer = lazy(() => import('../containers/ComponerContainer'))
-const ComparativeTool = lazy(() => import('../containers/ComparativeTool'))
-const SelectorComparative = lazy(() => import('../containers/SelectorComparative'))
-const CountryList = lazy(() => import('../containers/CountryList'))
-const OptionsSearch = lazy(() => import('../containers/OptionsSearch'))
+
+import Map from '../components/Map'
+import MapIslands from '../components/MapIslands'
+import ComponentContainer from '../containers/ComponerContainer'
+import ComparativeTool from '../containers/ComparativeTool'
+import SelectorComparative from '../containers/SelectorComparative'
+import CountryList from '../containers/CountryList'
+import OptionsSearch from '../containers/OptionsSearch'
+
 // import userQueries from './queries.php';
 export default function Home () {
   const [zoom, setZoom] = useState(false)
@@ -43,10 +44,7 @@ export default function Home () {
     <>
       <GoblalStyles />
       <Layout>
-        <NavBarHome
-          menu={menu}
-          setOpen={setOpen}
-                  />
+        <NavBarHome menu={menu} setOpen={setOpen} />
         {showMap && (
           <>
             <ColorBar />
@@ -54,7 +52,6 @@ export default function Home () {
               {currentMap
                 ? (
                 <MapStyled className="map-container col-6">
-                  <Suspense fallback={<Spinner/>}>
                   <Map
                     setAccounts={setAccountsCountry}
                     setMouse={setMousePosition}
@@ -62,7 +59,7 @@ export default function Home () {
                     setCountrySelectedId={setCountrySelectedId}
                     setZoom={setZoom}
                   />
-                  </Suspense>
+
                   <FloatingText setCurrentMap={setCurrentMap} zoom={zoom} />
                   {!zoom && (
                     <>
@@ -73,7 +70,6 @@ export default function Home () {
                   )
                 : (
                 <MapStyled className="map-container col-6">
-                  <Suspense fallback={<></>}>
                   <MapIslands
                     setAccounts={setAccountsCountry}
                     setMouse={setMousePosition}
@@ -81,7 +77,6 @@ export default function Home () {
                     setCountrySelectedId={setCountrySelectedId}
                     setZoom={setZoom}
                   />
-                  </Suspense>
 
                   <FloatingText
                     setCurrentMap={setCurrentMap}
@@ -97,39 +92,28 @@ export default function Home () {
                   )}
 
               <DetachableTable top={mousePosition.y} left={mousePosition.x}>
-              <Suspense fallback={<div>Loading</div>}>
                 <CountryList
                   accountsCountry={accountsCountry}
                   countryListManagmentOpen={countryListManagmentOpen}
                   countrySelectedId={countrySelectedId}
                 />
-              </Suspense>
               </DetachableTable>
             </SectionMapsStyled>
           </>
         )}
         {!showMap && (
           <SectionToolsStyled>
-            {showAccountComparing && (
-              <Suspense fallback={<Spinner/>}>
-              <ComparativeTool />
-              </Suspense>
-            )}
-            {showPeriodComparing && (
-              <Suspense fallback={<Spinner/>}>
-              <SelectorComparative />
-              </Suspense>
-            )}
+            {showAccountComparing && <ComparativeTool />}
+            {showPeriodComparing && <SelectorComparative />}
           </SectionToolsStyled>
         )}
         {showMap
           ? null
           : (
           <ComparisonContainerStyled>
-            <Suspense fallback={<Spinner/>}>
-            <OptionsSearch/>
+            <OptionsSearch />
             <ComponentContainer usuario={false} />
-            </Suspense>
+
             <UpArrow />
           </ComparisonContainerStyled>
             )}

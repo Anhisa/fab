@@ -8,6 +8,7 @@ export function dataReducer (data, periods) {
     (periods[0].id === 1 || periods[0].id === 4) &&
     (periods[1].id === 2 || periods[1].id === 5)
   ) {
+    // add the first period to the second period
     newData = [
       [...data[0]],
       [
@@ -22,6 +23,7 @@ export function dataReducer (data, periods) {
       ]
     ]
   } else if (periods[0].id === 2 && periods[1].id === 3) {
+    // add the second period to the first period
     newData = [
       [...data[1]
         .slice(0, 8)
@@ -60,6 +62,7 @@ export function dataReducer (data, periods) {
       ]
     ]
   } else if ((periods[0].id === 3 || periods[0].id === 1) && periods[1].id === 6) {
+    // add two months to the second array
     newData = [
       [...data[0]],
       [
@@ -69,6 +72,7 @@ export function dataReducer (data, periods) {
       ]
     ]
   } else if (periods[0].id === 3 && periods[1].id === 5) {
+    // add eight months to the second array
     newData = [
       [...data[0]],
       [
@@ -84,6 +88,7 @@ export function dataReducer (data, periods) {
       ]
     ]
   } else if (periods[0].id === 2 && periods[1].id === 6) {
+    // add six months to the second array
     newData = [
       [
         ...data[1]
@@ -100,6 +105,7 @@ export function dataReducer (data, periods) {
       [...data[1]]
     ]
   } else if (periods[0].id === 1 && periods[1].id === 4) {
+    // add two months to the second array
     newData = [
       [...data[0]],
       [

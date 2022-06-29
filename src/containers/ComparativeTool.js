@@ -10,7 +10,7 @@ import {
   ComparativeStyled
 } from '../styles/styledComponents/ComparativeStyled'
 import { TableContext } from '../context/InitialState'
-// const ComparativeStyled = lazy(() => import('../styles/styledComponents/ComparativeStyled'))
+
 import UseAccountErrors from '../hooks/UseAccountErrors'
 
 // ComparativeTool.propTypes = {

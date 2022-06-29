@@ -7,11 +7,11 @@ import { useQuery } from 'react-query'
 const geoUrl =
   'https://raw.githubusercontent.com/Anhisa/fab/main/latin_america_and_caribbean.json'
 
-DataProvider.propTypes = {
+QueryData.propTypes = {
   children: PropTypes.node.isRequired
 }
 
-export default function DataProvider ({ children }) {
+export default function QueryData ({ children }) {
   const { error, isError, isLoading } = useQuery('data', fetchData)
 
   if (isError) {

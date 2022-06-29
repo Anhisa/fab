@@ -1,14 +1,14 @@
-import React, { lazy, Suspense, useContext } from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import ButtonToogle from '../components/ButtonToogle'
 import { CollapsableTableStyled } from '../styles/styledComponents/CollapsableTableStyled'
 import { TableContext } from '../context/InitialState'
 
-const HtMostUsedItems = lazy(() => import('./HtMostUsed'))
-const MonthlyTweetsItems = lazy(() => import('./MonthlyTweets'))
-const MostMentionedItems = lazy(() => import('./MostMentioned'))
-const MostRepliedItems = lazy(() => import('./MostReplied'))
-const MostRetweetedItems = lazy(() => import('./MostRetweeted'))
+import HtMostUsedItems from './HtMostUsed'
+import MonthlyTweetsItems from './MonthlyTweets'
+import MostMentionedItems from './MostMentioned'
+import MostRepliedItems from './MostReplied'
+import MostRetweetedItems from './MostRetweeted'
 
 ComponentContainer.propTypes = {
   usuario: PropTypes.bool.isRequired
@@ -44,9 +44,9 @@ export default function ComponentContainer ({ usuario }) {
               ? ` Número de tweets por mes  del periodo ${periodA.name} al ${periodB.name}`
               : ` Número de tweets por mes de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </ButtonToogle>
-          <Suspense fallback={<div>Loading...</div>}>
+
           <MonthlyTweetsItems context={dataComparing} />
-          </Suspense>
+
         </CollapsableTableStyled>
       )}
       {categories.mostRetweeted && (
@@ -56,9 +56,9 @@ export default function ComponentContainer ({ usuario }) {
               ? `Usuarios más retuiteados del periodo ${periodA.name} al ${periodB.name}`
               : `Usuarios más retuiteados de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </ButtonToogle>
-          <Suspense fallback={<div>Loading...</div>}>
+
           <MostRetweetedItems context={dataComparing} usuario={usuario} />
-          </Suspense>
+
         </CollapsableTableStyled>
       )}
       {categories.mostReplied && (
@@ -68,9 +68,9 @@ export default function ComponentContainer ({ usuario }) {
               ? `Usuarios que más han recibido respuesta del periodo ${periodA.name} al ${periodB.name}`
               : `Usuarios que más han recibido respuesta de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </ButtonToogle>
-          <Suspense fallback={<div>Loading...</div>}>
+
           <MostRepliedItems usuario={usuario} context={dataComparing} />
-          </Suspense>
+
         </CollapsableTableStyled>
       )}
       {categories.mostHashtags && (
@@ -80,13 +80,13 @@ export default function ComponentContainer ({ usuario }) {
               ? `Hashtags más usados del periodo ${periodA.name} al ${periodB.name}`
               : `Hashtags más usados de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </ButtonToogle>
-          <Suspense fallback={<div>Loading...</div>}>
+
           <HtMostUsedItems
             period={dataComparing.period}
             usuario={usuario}
             context={dataComparing}
           />
-          </Suspense>
+
         </CollapsableTableStyled>
       )}
       {categories.mostMentioned && (
@@ -96,9 +96,9 @@ export default function ComponentContainer ({ usuario }) {
               ? `Usuarios más mencionados del periodo ${periodA.name} al ${periodB.name}`
               : `Usuarios más mencionados de las cuentas ${accountIdA.name} y ${accountIdB.name}`}
           </ButtonToogle>
-          <Suspense fallback={<div>Loading...</div>}>
+
           <MostMentionedItems usuario={usuario} context={dataComparing} />
-          </Suspense>
+
         </CollapsableTableStyled>
       )}
     </>
