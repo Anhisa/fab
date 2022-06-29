@@ -18,7 +18,7 @@ ComparativeUserViewContainer.propTypes = {
 }
 
 function ComparativeUserViewContainer ({ period, usuario, context }) {
-  const [open, setOpen] = React.useState(false)  
+  const [open, setOpen] = React.useState(false)
   function handleClick () {
     openTables(open, setOpen)
   }
