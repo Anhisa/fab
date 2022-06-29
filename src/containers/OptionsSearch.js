@@ -10,7 +10,6 @@ OptionsSearch.propTypes = {
 }
 
 function OptionsSearch ({ open, setOpen }) {
-  console.log('OptionsSearch.js: open: ', open)
   const [isOpen, setIsOpen] = React.useState(false)
   const [dataComparing, setDataComparing] = React.useContext(TableContext)
   const { accounts: { accountIdA, accountIdB }, categories } = dataComparing
