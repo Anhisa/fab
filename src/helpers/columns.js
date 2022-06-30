@@ -5,7 +5,8 @@ export const columns = [
   {
     name: <p
       style={{
-        fontSize: '0.8rem'
+        fontSize: '0.8rem',
+        title: 'Usuario/ Nombre cuenta'
       }}
     >Usuario/ Nombre cuenta</p>,
     selector: (row) => (

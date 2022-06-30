@@ -60,15 +60,27 @@ width: 100%;
   .rdt_TableHeadRow{
     background: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.text};  
+    padding-top: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   
   }
   .rdt_TableRow{
     background: ${({ theme }) => theme.background};
-
     color: ${({ theme }) => theme.text};  
-    h6{
-      font-weight: 700;
+    padding: 10px;
+    h6{      
+      font-size: 0.9rem;
     }  
+    p{
+      font-size:0.8rem;
+    }
+    b{
+      font-size:0.8rem;
+    }
     //last row
     &:last-child{
       border-bottom: 0px;

@@ -11,15 +11,11 @@ export function UserAccount ({ userAccount, userAccountDesc }) {
   if (userAccountDesc) {
     return (
       <>
-        <h6
-          style={{
-            fontSize: '1.0rem'
-          }}
-          >{userAccount}</h6>
+        <h6>
+          {userAccount}
+          </h6>
         <p
-          style={{
-            fontSize: '0.8rem'
-          }}
+
           >{userAccountDesc}</p>
       </>
     )
@@ -27,9 +23,7 @@ export function UserAccount ({ userAccount, userAccountDesc }) {
     return (
       <>
         <h6
-          style={{
-            fontSize: '1.0rem'
-          }}
+
         >{userAccount}</h6>
       </>
     )
