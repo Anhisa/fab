@@ -5,7 +5,7 @@ export const FloatingTextStyled = styled.div`
   top: 450px;
   left: 60px;
   height: 100px;
-  width: 500px;
+  width: fit-content;
   background-color: transparent;
   color: ${({ theme }) => theme.text};
   
@@ -22,7 +22,7 @@ export const FloatingTextStyled = styled.div`
     bottom: 250px;
     justify-content: center;
     flex-direction: column;
-    width: 300px;
+    
     p {
       font-size: 1rem;
     }
@@ -32,12 +32,10 @@ export const FloatingTextStyled = styled.div`
     bottom: 300px;
     left: 10px;
     top: auto;
-
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 300px;
-    p {
+       p {
       font-size: 0.8rem;
     }
   }
@@ -54,9 +52,9 @@ export const FloatingTextStyled = styled.div`
 export const FloatingTextRightIslandStyled = styled.div`
   position: absolute;
   margin-top: 100px;
-  top:0;
+  top:110px;
   padding: 10px 50px;
-  right: 50px;
+  margin: 0 auto;
   margin-right: 0px;
   display: flex;
   justify-content: center;
@@ -93,8 +91,8 @@ export const FloatingTextRightIslandStyled = styled.div`
 
 export const FloatingTextRightStyled = styled.div`
   position: absolute;
-  padding: 10px 50px;
-  bottom: 30px;
+    bottom: 30px;
+  width: fit-content;
   left: 55px;
   border: 3px solid ${({ theme }) => theme.text};
   border-radius: 20px;
@@ -122,7 +120,7 @@ export const FloatingTextRightStyled = styled.div`
   }
   @media (max-width: 768px) {
     border: 10px solid transparent;
-    top: 180px;
+    top: 100px;
     height: 60px;
     margin: 0 auto;
     width: fit-content;
