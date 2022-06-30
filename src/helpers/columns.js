@@ -3,7 +3,11 @@ import React from 'react'
 
 export const columns = [
   {
-    name: 'Usuario/ Nombre cuenta',
+    name: <p
+      style={{
+        fontSize: '0.8rem'
+      }}
+    >Usuario/ Nombre cuenta</p>,
     selector: (row) => (
       <UserAccount
         userAccount={row.userAccount}
@@ -26,7 +30,11 @@ export const columns = [
 
   },
   {
-    name: 'Categoría',
+    name: <p
+    style={{
+      fontSize: '0.8rem'
+    }}
+    >Categoría</p>,
     selector: (row) => <b>{row.categoría}</b>,
     sortable: true,
     sortFunction: (a, b) => {
@@ -46,7 +54,11 @@ export const columns = [
     omit: window.innerWidth < 408
   },
   {
-    name: 'Verificado',
+    name: <p
+    style={{
+      fontSize: '0.8rem'
+    }}
+    >Verificado</p>,
     selector: (row) => <IsVerified isVerified={row.isVerified} />,
     compact: true,
     id: 'isVerified',
@@ -56,7 +68,11 @@ export const columns = [
     maxWidth: '100px'
   },
   {
-    name: 'Número de Tweets',
+    name: <p
+    style={{
+      fontSize: '0.8rem'
+    }}
+    >Número de Tweets</p>,
     selector: (row) => <BarContainer dataBar={row.tweets_number} />,
     id: 'tweetsNumber',
     maxWidth: '450px',
