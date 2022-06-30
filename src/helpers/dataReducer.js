@@ -1,3 +1,13 @@
+/*
+id 1 = 2020-01 // 8 meses [2019-11, 2019-12, 2020-01, 2020-02, 2020-03, 2020-04, 2020-05, 2020-06]
+id 2 = 2020-02 // 6 meses [2020-07, 2020-08, 2020-09, 2020-10, 2020-11, 2020-12]
+id 3 = 2020-Consolidado // 14 meses [2019-11, 2019-12, 2020-01, 2020-02, 2020-03, 2020-04, 2020-05, 2020-06, 2020-07, 2020-08, 2020-09, 2020-10, 2020-11, 2020-12]
+// 2020 viene con dos meses adicionales correspondientes al año inmediatamente anterior 2019-11 y 2019-12
+id 4 = 2021-01 // 6 meses
+id 5 = 2021-02  // 6 meses
+id 6 = 2021-Consolidado // 12 meses
+*/
+
 export function dataReducer (data, periods) {
   if (data.length <= 1) {
     const labels = data[0].map((item) => item.month)
