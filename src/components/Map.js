@@ -30,7 +30,7 @@ const Map = memo(({
 
   const { open, setOpen } = countryListManagmentOpen
   const windowSize = useWindowSize()
-  console.log('windowSize', windowSize)
+
   const { geoUrl, officialAccounts } = useQueryData()
   // function handleZoomIn () {
   //   setZoom(true)
