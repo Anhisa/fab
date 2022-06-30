@@ -55,7 +55,7 @@ const Map = memo(({
   }
   const handleOnClick = useCallback((e) => {
     const { target, pageX, pageY } = e
-
+    console.log(pageX, windowSize.width, pageY, windowSize.height)
     if (target.attributes.value) {
       const itemValue = target.attributes.value
       let x = pageX
@@ -67,7 +67,7 @@ const Map = memo(({
         x = pageX - 250
       }
 
-      if (pageY + 250 > windowSize.height) {
+      if (pageY + 450 > windowSize.height) {
         y = pageY - 250
       }
 

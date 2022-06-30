@@ -122,9 +122,9 @@ export const FloatingTextRightStyled = styled.div`
   }
   @media (max-width: 768px) {
     border: 10px solid transparent;
-    top: 100px;
+    top: 180px;
     height: 60px;
-    right: 100px;
+    margin: 0 auto;
     width: fit-content;
     p {
       font-size: 1.4rem;

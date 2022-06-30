@@ -79,6 +79,7 @@ width: 100%;
       font-size:0.8rem;
     }
     b{
+      font-weight: 550;
       font-size:0.8rem;
     }
     //last row
@@ -122,6 +123,7 @@ export const EmptyDataTable = styled.div`
   padding: 15px;
   h4{
     font-weight: 500;
+    font-size: 0.75rem;
     margin: 0;
     padding: 0;
     text-align: center;

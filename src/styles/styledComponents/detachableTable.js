@@ -8,7 +8,7 @@ const DetachableTable = styled.section`
 
   z-index: 210;
   height: fit-content;
-  top: ${(props) => props.top + 0 + 'px'};
+  top: ${(props) => props.top + 'px'};
   border-radius: 30px;
 
   left: ${(props) => props.left + 'px'};
