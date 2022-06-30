@@ -30,6 +30,7 @@ const Map = memo(({
 
   const { open, setOpen } = countryListManagmentOpen
   const windowSize = useWindowSize()
+  console.log('windowSize', windowSize)
   const { geoUrl, officialAccounts } = useQueryData()
   // function handleZoomIn () {
   //   setZoom(true)
@@ -55,7 +56,6 @@ const Map = memo(({
   }
   const handleOnClick = useCallback((e) => {
     const { target, pageX, pageY } = e
-    console.log(pageX, windowSize.width, pageY, windowSize.height)
     if (target.attributes.value) {
       const itemValue = target.attributes.value
       let x = pageX
@@ -84,7 +84,7 @@ const Map = memo(({
     }
 
     return setOpen(false)
-  }, [])
+  }, [windowSize])
 
   const tweetsByCountry = useGetTweetsByCountry()
 
