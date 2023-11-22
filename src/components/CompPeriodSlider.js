@@ -20,6 +20,18 @@ const marks = [
   {
     value: 4,
     label: '2021 semestre II'
+  },
+  {
+    value: 5,
+    label: '2022 semestre I'
+  },
+  {
+    value: 6,
+    label: '2022 semestre II'
+  },
+  {
+    value: 7,
+    label: '2023 semestre I'
   }
 ]
 
@@ -33,8 +45,8 @@ CompPeriodSlider.propTypes = {
 }
 
 export function CompPeriodSlider ({ setPeriod, data }) {
-  const [value, setValue] = useState([1, 4])
-  let periods = [1, 4]
+  const [value, setValue] = useState([1, 7])
+  let periods = [1, 7]
   if (data) {
     periods = data.map((item) => {
       return parseInt(item.period_id)
@@ -88,7 +100,7 @@ export function CompPeriodSlider ({ setPeriod, data }) {
           getAriaValueText={valuetext}
           marks={marks}
           min={periods[0] ?? 1}
-          max={periods[periods.length] ?? 4}
+          max={periods[periods.length] ?? 7}
         />
       </Box>
     </div>

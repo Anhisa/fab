@@ -18,35 +18,36 @@ import { TableContext } from '../context/InitialState'
 import useQueryData from '../hooks/useQueryData'
 
 export default function AccountDetails () {
-  const { account } = useParams()
+  const { account, countryId } = useParams()
   const { fol } = useQueryData()
+  // console.log('🚀 ~ file: AccountDetails.js:23 ~ AccountDetails ~ fol:', fol)
   const [,, themeToggler] = useContext(TableContext)
-
   const [period, setPeriod] = useState({
     startDate: 1,
-    endDate: 4
+    endDate: 7
   })
   const [dataSearch, setDataSearch] = useState(false)
 
   useEffect(() => {
+    const country = fol.find((item) => item.country_id === countryId)
     const userId = fol.filter((item) => item.official_account === account)
     if (userId.length === 0) {
       return
     }
 
     setDataSearch({
-      country: userId[0].country_id,
+      Country: country.country_id,
       dataUser: userId,
-      userOfficialName: userId[0].official_account_name_spa,
+      userOfficialName: userId.find((id) => id.country_id === country.country_id).official_account_name_spa,
       accounts: {
         accountIdA: {
-          id: userId[0].official_account_id,
-          name: userId[0].official_account_name_spa
+          id: userId.find((id) => id.country_id === country.country_id).official_account_id,
+          name: userId.find((id) => id.country_id === country.country_id).official_account
         }
       },
       period
     })
-  }, [fol, account, period])
+  }, [fol, account, period, countryId])
 
   if (fol.length === 0) {
     return <div>Error no hay data en ese Usuario</div>
@@ -61,7 +62,7 @@ export default function AccountDetails () {
           <AccountDetailsStyled>
             <NavBar themeToggler ={themeToggler}/>
             <HeaderUserCard
-              countryId={dataSearch.country}
+              countryId={dataSearch.Country}
               userName={dataSearch.userOfficialName}
             />
             <UserCardStyled>

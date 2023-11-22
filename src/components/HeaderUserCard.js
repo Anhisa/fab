@@ -26,10 +26,10 @@ function HeaderUserCard ({ countryId, userName }) {
         (country) => country.country_id === countryId
       )
 
-      flagUrl = getFlag(countryName.country_name_eng)
+      flagUrl = getFlag(countryName?.country_name_eng)
 
       setData({
-        countryName: countryName.country_name_spa,
+        countryName: countryName?.country_name_spa,
         flagUrl
       })
     }

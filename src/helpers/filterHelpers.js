@@ -322,6 +322,26 @@ export function getPeriodNumbers (number) {
         startDate: 3,
         endDate: 4
       }
+    case 7:
+      return {
+        startDate: 5,
+        endDate: 5
+      }
+    case 8:
+      return {
+        startDate: 6,
+        endDate: 6
+      }
+    case 9:
+      return {
+        startDate: 5,
+        endDate: 6
+      }
+    case 10:
+      return {
+        startDate: 7,
+        endDate: 7
+      }
   }
   return {
     startDate,

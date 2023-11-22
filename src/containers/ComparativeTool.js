@@ -44,7 +44,7 @@ const ComparativeTool = React.memo(function comparativeMemo () {
 
   const [period, setPeriod] = useState({
     startDate: 1,
-    endDate: 4
+    endDate: 7
   })
 
   const thereIsError = Object.values(errors).some((error) => error)

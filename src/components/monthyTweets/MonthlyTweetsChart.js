@@ -178,8 +178,8 @@ function createDatasets (data, context) {
       const color =
         controlColor === 0 ? 'rgba(255, 206, 33, 0.7' : 'rgba(0, 60, 123, 0.7)'
       datasets.push({
-        label: item[0].official_account,
-        data: item.map((item2) => parseInt(item2.tweets_number)),
+        label: item[0]?.official_account,
+        data: item.map((item2) => parseInt(item2?.tweets_number)),
         tension: 0.3,
         borderColor: 'black',
         pointRadius: 6,
@@ -188,7 +188,7 @@ function createDatasets (data, context) {
       })
       controlColor++
     })
-    let labels = data2[0]?.map((item) => item.month)
+    let labels = data2[0]?.map((item) => item?.month)
     labels = labels.map((item) =>
       new Date(item).toLocaleString('es-ES', {
         month: 'short',

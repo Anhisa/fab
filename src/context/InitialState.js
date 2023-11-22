@@ -27,7 +27,7 @@ const accounts = {
 }
 const period = {
   startDate: 1,
-  endDate: 4
+  endDate: 7
 }
 const periodComparison = {
   periodA: {

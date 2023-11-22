@@ -20,7 +20,7 @@ const columns = [
   {
     name: 'Cuenta',
     selector: (row) => (
-      <Link to={`/diplomacia-digital/${row.official_account}`}>
+      <Link to={`/diplomacia-digital/${row.country_id}/${row.official_account}`}>
         {' '}
         {row.official_account}{' '}
       </Link>
@@ -64,6 +64,7 @@ export function CountryItem ({
     const countryData = countries.find(
       (country) => country.country_id === countryId
     )
+    console.log('🚀 ~ file: CountryItem.js:75 ~ countryData:', countryData)
 
     return countryData.official_relations_spa === 'Taiwan' ?? false
   }

@@ -12,7 +12,7 @@ function RoutesApp () {
         element={<Home />}
       />
       <Route
-        path={'/diplomacia-digital/:account'}
+        path={'/diplomacia-digital/:countryId/:account'}
         element={<AccountDetails />}
       />
     </Routes>

@@ -46,7 +46,7 @@
       "not dead",
       "not op_mini all"
     ],
-    "proxy": "https://fundacionandresbello.local/wp-json/fab/v1",
+    "proxy": "https://fab.local/wp-json/fab/v1",
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

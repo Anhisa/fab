@@ -27,6 +27,22 @@ const periods = [
   {
     id: 6,
     name: '2021-Consolidado'
+  },
+  {
+    id: 7,
+    name: '2022 Semestre I'
+  },
+  {
+    id: 8,
+    name: '2022 Semestre II'
+  },
+  {
+    id: 9,
+    name: '2022-Consolidado'
+  },
+  {
+    id: 10,
+    name: '2023 Semestre I'
   }
 ]
 

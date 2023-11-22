@@ -31,12 +31,12 @@ function ViewUserCard ({ data, period }) {
     if (period.startDate === period.endDate) {
       const indexStart = periods.indexOf(period.startDate)
 
-      return data[indexStart].total_tweets_period
+      return data[indexStart]?.total_tweets_period
     } else {
-      const start = periods.indexOf(period.startDate)
-      const end = periods.indexOf(period.endDate)
-      const count = data.slice(start, end + 1).reduce((acc, curr) => {
-        return acc + parseInt(curr.total_tweets_period)
+      const start = periods?.indexOf(period.startDate)
+      const end = periods?.indexOf(period.endDate)
+      const count = data?.slice(start, end + 1).reduce((acc, curr) => {
+        return acc + parseInt(curr?.total_tweets_period)
       }, 0)
 
       return count
