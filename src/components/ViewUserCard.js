@@ -6,6 +6,7 @@ import {
   ViewUserCardStyled
 } from '../styles/styledComponents/ViewUserCardStyled'
 import PropTypes from 'prop-types'
+import { useParams } from 'react-router'
 
 ViewUserCard.propTypes = {
   data: PropTypes.array.isRequired,
@@ -13,7 +14,8 @@ ViewUserCard.propTypes = {
 }
 
 function ViewUserCard ({ data, period }) {
-  const dataLength = data.length - 1
+  const { countryId } = useParams()
+  const dataLength = data.length
   let periods
   let i = 1
 
@@ -44,6 +46,10 @@ function ViewUserCard ({ data, period }) {
   }
   const totalTweetsPeriod = totalCalculator()
 
+  const followersNumber = data.find((fn) => parseInt(fn.period_id) === period.endDate)?.followers_number
+  const followingNumber = data.find((fn) => parseInt(fn.period_id) === period.endDate)?.following_number
+  const accountName = data.find((user) => user.country_id === countryId)?.official_account_name_spa
+
   return (
     <ViewUserCardStyled>
       <div className="innerLeft">
@@ -51,7 +57,7 @@ function ViewUserCard ({ data, period }) {
         <hr />
         <UserCard
           name={'Institución / Nombre'}
-          data={data[0].official_account_name_spa}
+          data={accountName}
         />
         <hr />
         <UserCard
@@ -62,21 +68,21 @@ function ViewUserCard ({ data, period }) {
       <div className="innerRight">
         <UserCard
           name={'Nº Seguidores'}
-          data={
-            data[period.endDate - 1]?.followers_number === '0'
-              ? data[period.endDate - 2]?.followers_number
-              : data[period.endDate - 1]?.followers_number ??
-                'No hay data correspondiente al periodo seleccionado'
+          data={followersNumber
+            // data[period.endDate - 1]?.followers_number === '0'
+            //   ? data[period.endDate - 2]?.followers_number
+            //   : data[period.endDate - 1]?.followers_number ?? 'No hay data correspondiente al periodo seleccionado'
+            // data[0]?.followers_number
           }
         />
         <hr />
         <UserCard
           name={'Nº cuentas seguidas'}
-          data={
-            data[period.endDate - 1]?.following_number === '0'
-              ? data[period.endDate - 2]?.following_number
-              : data[period.endDate - 1]?.following_number ??
-                'No hay data correspondiente al periodo seleccionado'
+          data={followingNumber
+            // data[period.endDate - 1]?.following_number === '0'
+            //   ? data[period.endDate - 2]?.following_number
+            //   : data[period.endDate - 1]?.following_number ??
+            //     'No hay data correspondiente al periodo seleccionado'
           }
         />
         <hr />

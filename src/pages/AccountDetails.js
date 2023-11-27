@@ -18,19 +18,20 @@ import { TableContext } from '../context/InitialState'
 import useQueryData from '../hooks/useQueryData'
 
 export default function AccountDetails () {
+  const [,, themeToggler] = useContext(TableContext)
   const { account, countryId } = useParams()
   const { fol } = useQueryData()
-  // console.log('🚀 ~ file: AccountDetails.js:23 ~ AccountDetails ~ fol:', fol)
-  const [,, themeToggler] = useContext(TableContext)
+  const country = fol.find((item) => item.country_id === countryId)
+  const userId = fol.filter((item) => item.official_account === account)
+  const periodsArray = userId.map((periods) => parseInt(periods.period_id))
   const [period, setPeriod] = useState({
-    startDate: 1,
-    endDate: 7
+    startDate: Math.min(periodsArray),
+    endDate: Math.max(periodsArray)
   })
   const [dataSearch, setDataSearch] = useState(false)
+  console.log('"🚀 ~ file: AccountDetails.js:30 ~ AccountDetails ~ dataSearch:"', dataSearch)
 
   useEffect(() => {
-    const country = fol.find((item) => item.country_id === countryId)
-    const userId = fol.filter((item) => item.official_account === account)
     if (userId.length === 0) {
       return
     }
@@ -68,7 +69,7 @@ export default function AccountDetails () {
             <UserCardStyled>
               <section className="left">
                 <ViewUserCard
-                  data={dataSearch.dataUser}
+                  data={dataSearch?.dataUser}
                   period={dataSearch.period}
                 />
               </section>

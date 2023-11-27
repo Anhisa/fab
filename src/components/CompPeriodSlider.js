@@ -7,31 +7,31 @@ import PropTypes from 'prop-types'
 const marks = [
   {
     value: 1,
-    label: '2020 semestre I'
+    label: <p style={{ textAlign: 'center' }}>2020<br/>semestre<br/>I</p>
   },
   {
     value: 2,
-    label: '2020 semestre II'
+    label: <p style={{ textAlign: 'center' }}>2020<br/>semestre<br/>II</p>
   },
   {
     value: 3,
-    label: '2021 semestre I'
+    label: <p style={{ textAlign: 'center' }}>2021<br/>semestre<br/>I</p>
   },
   {
     value: 4,
-    label: '2021 semestre II'
+    label: <p style={{ textAlign: 'center' }}>2021<br/>semestre<br/>II</p>
   },
   {
     value: 5,
-    label: '2022 semestre I'
+    label: <p style={{ textAlign: 'center' }}>2022<br/>semestre<br/>I</p>
   },
   {
     value: 6,
-    label: '2022 semestre II'
+    label: <p style={{ textAlign: 'center' }}>2022<br/>semestre<br/>II</p>
   },
   {
     value: 7,
-    label: '2023 semestre I'
+    label: <p style={{ textAlign: 'center' }}>2023<br/>semestre<br/>I</p>
   }
 ]
 
@@ -51,6 +51,7 @@ export function CompPeriodSlider ({ setPeriod, data }) {
     periods = data.map((item) => {
       return parseInt(item.period_id)
     })
+    console.log('"🚀 ~ file: CompPeriodSlider.js:54 ~ periods=data.map ~ periods:"', periods)
   }
 
   const handleChange = (event, newValue) => {
