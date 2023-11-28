@@ -1,16 +1,16 @@
 import axios from 'axios'
 const apiMostMentioned =
-  'https://fab.local/wp-json/fab/v1/most-mentioned'
+  'https://fundacionandresbello.org/wp-json/fab/v1/most-mentioned'
 const apiMostReplied =
-  'https://fab.local/wp-json/fab/v1/most-replied'
+  'https://fundacionandresbello.org/wp-json/fab/v1/most-replied'
 const apiMostRetweeted =
-  'https://fab.local/wp-json/fab/v1/most-retweeted'
+  'https://fundacionandresbello.org/wp-json/fab/v1/most-retweeted'
 const apiHtMostUsed =
-  'https://fab.local/wp-json/fab/v1/ht-most-used'
-const fol = 'https://fab.local/wp-json/fab/v1/official-fol'
-const countries = 'https://fab.local/wp-json/fab/v1/countries'
-const officialAccounts = 'https://fab.local/wp-json/fab/v1/official-accounts'
-const monthlyTweets = 'https://fab.local/wp-json/fab/v1/monthly-tweets'
+  'https://fundacionandresbello.org/wp-json/fab/v1/ht-most-used'
+const fol = 'https://fundacionandresbello.org/wp-json/fab/v1/official-fol'
+const countries = 'https://fundacionandresbello.org/wp-json/fab/v1/countries'
+const officialAccounts = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts'
+const monthlyTweets = 'https://fundacionandresbello.org/wp-json/fab/v1/monthly-tweets'
 
 export const promisesUrl = [
   axios.get(apiMostMentioned),

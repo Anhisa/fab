@@ -13,7 +13,7 @@ export function getFlag (countryName) {
     countryNameEng = 'ar'
   }
   if (countryNameEng === 'Barbados') {
-    countryNameEng = 'ar'
+    countryNameEng = 'bb'
   }
   if (countryNameEng === 'Belize') {
     countryNameEng = 'bz'

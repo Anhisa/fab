@@ -51,6 +51,8 @@ export function CompPeriodSlider ({ setPeriod, data }) {
     periods = data.map((item) => {
       return parseInt(item.period_id)
     })
+    console.log('"🚀 ~ file: CompPeriodSlider.js:48 ~ CompPeriodSlider ~ setPeriod:"', setPeriod)
+    console.log('"🚀 ~ file: CompPeriodSlider.js:49 ~ CompPeriodSlider ~ value:"', value)
     console.log('"🚀 ~ file: CompPeriodSlider.js:54 ~ periods=data.map ~ periods:"', periods)
   }
 
@@ -101,7 +103,7 @@ export function CompPeriodSlider ({ setPeriod, data }) {
           getAriaValueText={valuetext}
           marks={marks}
           min={periods[0] ?? 1}
-          max={periods[periods.length] ?? 7}
+          max={periods[periods.length - 1] ?? 7}
         />
       </Box>
     </div>

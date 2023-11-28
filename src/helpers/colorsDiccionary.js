@@ -52,7 +52,7 @@ export const colorsDictionary = [
     color: '#006699'
   },
   {
-    category: 'Medios de Comunicación y Sites de Promoción RPCh',
+    category: 'Medios de comunicación y Sites de Promoción RPCh',
     color: '#0099ff'
   },
   {
