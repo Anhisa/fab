@@ -1,19 +1,11 @@
-.App {
-  font-family: sans-serif;
-  text-align: center;
-}
 
 .map-container {
   margin-top:0px;
   display: flex;
-  min-width: 500px;
-  height: 670px;
   justify-content: center;
-  /* z-index: 0; */
-  /* max-width: 700px; */
-  /* margin: 0 auto; */
-  /* border: 1px solid #333; */
   border-radius: 20px;
+  scroll-behavior: none;
+
 }
 
 .map-container-islands {
@@ -53,3 +45,4 @@
 .geo:focus {
   outline: none;
 }
+

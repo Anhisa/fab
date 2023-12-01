@@ -1,38 +1,66 @@
-import React from 'react';
-import { useGetData } from '../hooks/useGetData';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import 'bootstrap/dist/css/bootstrap.css';
+import React, { memo } from 'react'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
+import 'bootstrap/dist/css/bootstrap.css'
+import PropTypes from 'prop-types'
+import useQueryData from '../hooks/useQueryData'
 
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
+export const CompAccountSelector = memo(function accountSelectorMemo ({ setAccounts }) {
+  const [accountA, setAccountA] = React.useState('')
+  const [accountB, setAccountB] = React.useState('')
+  const { officialAccounts } = useQueryData()
 
-export const CompAccountSelector = ({ setAccounts }) => {
-  const [accountA, setAccountA] = React.useState('');
-  const [accountB, setAccountB] = React.useState('');
+  const handleChangeA = ({ target: { value } }) => {
+    if (value === 'none') {
+      setAccounts((prevState) => ({
+        ...prevState,
+        accountIdA: {
+          id: '',
+          name: ''
+        }
+      }))
+      return setAccountA('')
+    }
+    setAccountA(value)
+    const name = officialAccounts.find(item => item.official_account_id === value)
 
-  const response = useGetData(api);
-  const items = response.data;
-
-  const handleChangeA = (event) => {
-    setAccountA(event.target.value);
     setAccounts((prevState) => ({
       ...prevState,
-      accountIdA: event.target.value,
-    }));
-  };
-  const handleChangeB = (event) => {
+      accountIdA: {
+        id: value,
+        name: name.official_account
+      }
+    }))
+  }
+  const handleChangeB = ({ target: { value } }) => {
+    if (value === 'none') {
+      setAccounts((prevState) => ({
+        ...prevState,
+        accountIdB: {
+          id: '',
+          name: ''
+        }
+      }))
+      return setAccountB('')
+    }
+    const name = officialAccounts.find(item => item.official_account_id === value)
     setAccounts((prevState) => ({
       ...prevState,
-      accountIdB: event.target.value,
-    }));
-    setAccountB(event.target.value);
-  };
+      accountIdB: {
+        id: value,
+        name: name.official_account
+      }
+    }))
+    setAccountB(value)
+  }
 
   return (
     <div className="countSelector">
+      <div className='title'>
       <h4>Cuentas que deseas comparar</h4>
+      </div>
       <div className="selector-wrap container-fluid">
         <FormControl
           className="container-fluid form"
@@ -46,16 +74,17 @@ export const CompAccountSelector = ({ setAccounts }) => {
             value={accountA}
             onChange={handleChangeA}
           >
-            <MenuItem value="">
+            <MenuItem value="none">
               <em>Ninguna</em>
             </MenuItem>
-            {items.map((item) => (
+            {officialAccounts.map((item) => (
               <MenuItem
                 key={`oa-${item.official_account_id}`}
                 value={item.official_account_id}
+                style={{ borderBottom: '1px dotted black' }}
               >
-                <div>
-                  <span>{item.country_name_spa}</span>
+                <div >
+                  <span><b>{item.country_name_spa}</b></span>
                   <h6>{item.official_account}</h6>
                   <span>{item.official_account_name_spa}</span>
                 </div>
@@ -75,16 +104,22 @@ export const CompAccountSelector = ({ setAccounts }) => {
             value={accountB}
             onChange={handleChangeB}
           >
-            <MenuItem value="">
+            <MenuItem value="none">
               <em>Ninguna</em>
             </MenuItem>
-            {items.map((item) => (
+            {officialAccounts.map((item) => (
               <MenuItem
                 key={`oa-${item.official_account_id}`}
                 value={item.official_account_id}
+                style={{
+                  borderBottom: '1px dotted black',
+                  zIndex: '100'
+
+                }}
+
               >
                 <div>
-                  <span>{item.country_name_spa}</span>
+                  <span><b>{item.country_name_spa}</b></span>
                   <h6>{item.official_account}</h6>
                   <span>{item.official_account_name_spa}</span>
                 </div>
@@ -94,5 +129,9 @@ export const CompAccountSelector = ({ setAccounts }) => {
         </FormControl>
       </div>
     </div>
-  );
-};
+  )
+})
+
+CompAccountSelector.propTypes = {
+  setAccounts: PropTypes.func.isRequired
+}

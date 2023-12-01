@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const ErrorStyled = styled.div`
   // 404 error page

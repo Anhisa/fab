@@ -1,37 +1,30 @@
-import React, { useContext, useEffect, useState, memo } from 'react';
-import { MonthlyTweetsItem } from '../components/MonthlyTweetsItem';
-import { MonthlyTweetsChart } from '../components/MonthlyTweetsChart';
-import { TableContext } from '../context/TableContext';
-import { useFilterData } from '../hooks/useFilterData';
+import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import useFilterData from '../hooks/useFilterData'
+import { MonthlyTweetsChart } from '../components/monthyTweets/MonthlyTweetsChart'
 
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/monthly-tweets';
-export const MonthlyTweetsItems = memo((period) => {
-  const data = useFilterData(api, 'monthly-tweets');
-  const [innerData, setInnerData] = useState(false);
- 
-  
-  useEffect(() => {   
-    if (data !== false) {
-      setInnerData(data);
+MonthlyTweetsItems.propTypes = {
+  context: PropTypes.object.isRequired
+}
+
+export default function MonthlyTweetsItems ({ context }) {
+  const [data] = useFilterData(context, 'monthly-tweets')
+
+  const [innerData, setInnerData] = useState([])
+
+  useEffect(() => {
+    if (data.length > 0) {
+      setInnerData(data)
     }
-  }, [data, period]);
+  }, [data])
 
-  if (!data) {
-    return <div>Loading...</div>;
-  }
-  if (innerData.length === 0) {
-    return <div>No hay data en el periodo seleccionado</div>;
+  if (data.length === 0) {
+    return <p> Loading... </p>
   }
 
   return (
     <section className="closed" id="monthy-tweets">
-      {Object.values(data).map((accountId, index) => {
-        return (
-          <section className="column" key={index}>
-            <MonthlyTweetsChart newData={accountId} periodId={period} />
-          </section>
-        );
-      })}
+      <MonthlyTweetsChart newData={innerData} context={context} />
     </section>
-  );
-});
+  )
+}

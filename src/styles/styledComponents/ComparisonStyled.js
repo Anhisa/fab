@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const ComparisonStyled = styled.div`
   display: flex;
@@ -12,5 +12,6 @@ export const ComparisonStyled = styled.div`
   .right{
     width: 50%;
   }
+  
 
 `

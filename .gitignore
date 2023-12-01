@@ -9,7 +9,8 @@
 
 # KDE directory preferences
 .directory
-
+# End of directory preferences
+.vscode/*
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
 
@@ -194,4 +195,4 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/node,windows,linux,macos
 
-
+src/stateManagment/

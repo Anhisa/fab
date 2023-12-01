@@ -1,17 +1,21 @@
-import React from 'react';
-import { useGetData } from '../hooks/useGetData';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import 'bootstrap/dist/css/bootstrap.css';
+import React from 'react'
+import FormGroup from '@mui/material/FormGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Checkbox from '@mui/material/Checkbox'
+import 'bootstrap/dist/css/bootstrap.css'
+import PropTypes from 'prop-types'
 
-export const CompCategoryCb = ({ setCategories }) => {
+CompCategoryCb.propTypes = {
+  setCategories: PropTypes.func.isRequired
+}
+
+export function CompCategoryCb ({ setCategories }) {
   const handleSelect = (event) => {
     setCategories((prevState) => ({
       ...prevState,
-      [event.target.name]: event.target.checked,
-    }));
-  };
+      [event.target.name]: event.target.checked
+    }))
+  }
 
   return (
     <>
@@ -45,9 +49,9 @@ export const CompCategoryCb = ({ setCategories }) => {
             name="mostHashtags"
             onChange={handleSelect}
           />
-          <FormControlLabel
+       <FormControlLabel
             control={<Checkbox defaultChecked />}
-            label="Tweets mensuales"
+            label="Número de Tweets mensuales"
             name="monthlyTweets"
             onChange={handleSelect}
           />
@@ -56,10 +60,5 @@ export const CompCategoryCb = ({ setCategories }) => {
       </FormGroup>
     </div>
     </>
-  );
-};
-
-// mostRetweeted: false,
-// hashtags: false,
-// mostMentioned: false,
-// mostReplied: false,
+  )
+}

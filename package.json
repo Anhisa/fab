@@ -18,11 +18,14 @@
     "chart.js": "^3.7.1",
     "d3": "^7.4.4",
     "date-fns": "^2.28.0",
+    "hamburger-react": "^2.5.0",
+    "lottie-react": "^2.2.1",
     "react": "^17.0.0",
     "react-bootstrap": "^2.4.0",
     "react-chartjs-2": "^4.1.0",
     "react-data-table-component": "^7.5.2",
     "react-dom": "^17.0.0",
+    "react-query": "^3.39.1",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
@@ -34,7 +37,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest tests/ --coverage",
     "eject": "react-scripts eject"
   },
   "browserslist": {
@@ -43,7 +46,7 @@
       "not dead",
       "not op_mini all"
     ],
-    "proxy": "https://fundacionandresbello.local/wp-json/fab/v1",
+    "proxy": "https://fundacionandresbello.org/wp-json/fab/v1",
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
@@ -53,6 +56,14 @@
   "devDependencies": {
     "@wordpress/scripts": "^22.5.0",
     "css-loader": "^6.7.1",
+    "eslint": "^8.18.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.3",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "jest": "^28.1.1",
     "mini-css-extract-plugin": "^2.6.0",
     "prettier": "^2.6.2",
     "sass": "^1.51.0",

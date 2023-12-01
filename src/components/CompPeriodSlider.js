@@ -1,49 +1,100 @@
-import React, { useState } from 'react';
-import { useGetData } from '../hooks/useGetData';
-import 'bootstrap/dist/css/bootstrap.css';
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
+import React, { useEffect, useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.css'
+import Box from '@mui/material/Box'
+import Slider from '@mui/material/Slider'
+import PropTypes from 'prop-types'
 
 const marks = [
   {
     value: 1,
-    label: '2020 - 1',
+    label: <p style={{ textAlign: 'center' }}>2020<br/>semestre<br/>I</p>
   },
   {
     value: 2,
-    label: '2020 - 2',
+    label: <p style={{ textAlign: 'center' }}>2020<br/>semestre<br/>II</p>
   },
   {
     value: 3,
-    label: '2021 - 1',
+    label: <p style={{ textAlign: 'center' }}>2021<br/>semestre<br/>I</p>
   },
   {
     value: 4,
-    label: '2021 - 2',
+    label: <p style={{ textAlign: 'center' }}>2021<br/>semestre<br/>II</p>
   },
-];
+  {
+    value: 5,
+    label: <p style={{ textAlign: 'center' }}>2022<br/>semestre<br/>I</p>
+  },
+  {
+    value: 6,
+    label: <p style={{ textAlign: 'center' }}>2022<br/>semestre<br/>II</p>
+  },
+  {
+    value: 7,
+    label: <p style={{ textAlign: 'center' }}>2023<br/>semestre<br/>I</p>
+  }
+]
 
 const valuetext = (value) => {
-  
-  return value;
-};
+  return value
+}
 
-export const CompPeriodSlider = ({ setPeriod }) => {
-  const [value, setValue] = useState([1, 4]);
+CompPeriodSlider.propTypes = {
+  setPeriod: PropTypes.func.isRequired,
+  data: PropTypes.array
+}
+
+export function CompPeriodSlider ({ setPeriod, data }) {
+  const [value, setValue] = useState([1, 7])
+  let periods = [1, 7]
+  if (data) {
+    periods = data.map((item) => {
+      return parseInt(item.period_id)
+    })
+    console.log('"🚀 ~ file: CompPeriodSlider.js:48 ~ CompPeriodSlider ~ setPeriod:"', setPeriod)
+    console.log('"🚀 ~ file: CompPeriodSlider.js:49 ~ CompPeriodSlider ~ value:"', value)
+    console.log('"🚀 ~ file: CompPeriodSlider.js:54 ~ periods=data.map ~ periods:"', periods)
+  }
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-
+    setValue(newValue)
     setPeriod({
       startDate: newValue[0],
-      endDate: newValue[1],
-    });
-  };
+      endDate: newValue[1]
+    })
+  }
+
+  useEffect(() => {
+    if (data) {
+      setPeriod({
+        startDate: periods[0],
+        endDate: periods[periods.length - 1]
+      })
+
+      setValue([periods[0], periods[periods.length - 1]])
+      return
+    }
+
+    setPeriod({
+      startDate: value[0],
+      endDate: value[1]
+    })
+  }, [])
 
   return (
-    <div>
-      <h4>¿En qué periodo?</h4>
-      <Box sx={{ width: 300, marginLeft: 10 }}>
+    <div
+      style={{
+        width: '100%',
+        display: ' flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '10px'
+      }}
+    >
+      <h4>Periodo de búsqueda</h4>
+      <small>Acorde a la data disponible de la cuenta</small>
+      <Box>
         <Slider
           getAriaLabel={() => 'Period range'}
           value={value}
@@ -51,10 +102,10 @@ export const CompPeriodSlider = ({ setPeriod }) => {
           valueLabelDisplay="off"
           getAriaValueText={valuetext}
           marks={marks}
-          min={1}
-          max={4}
+          min={periods[0] ?? 1}
+          max={periods[periods.length - 1] ?? 7}
         />
       </Box>
     </div>
-  );
-};
+  )
+}

@@ -1,108 +1,125 @@
-import '../styles/App.css';
-import { Map } from '../components/Map';
-import { Layout } from '../containers/Layout';
-import { CountryList } from '../containers/CountryDetails';
-import { ComparativeTool } from '../containers/ComparativeTool';
-import { useEffect, useState } from 'react';
-import { MapStyled } from '../styles/styledComponents/MapStyled';
-import { useGetData } from '../hooks/useGetData';
+import React, { useState } from 'react'
+import '../styles/App.css'
 
-import { TableContext } from '../context/TableContext';
+import { MapStyled } from '../styles/styledComponents/MapStyled'
+import { SectionToolsStyled } from '../styles/styledComponents/SectionToolsStyled'
+import { SectionMapsStyled } from '../styles/styledComponents/SectionMapStyled'
+import { ComparisonContainerStyled } from '../styles/styledComponents/ComparisonContainerStyled'
+// import useCreateInitialState from '../hooks/createInitialState'
+import FloatingTextRight from '../components/FloatingTextRight'
+import useMenu from '../hooks/useMenu'
+import ColorBar from '../components/colorBar'
+import NavBarHome from '../components/NavBarHome'
+import { GoblalStyles } from '../styles/styledComponents/GlobalStyles'
+import FloatingText from '../components/FloatingText'
+import UpArrow from '../components/UpArrow'
+import Layout from '../containers/Layout'
+import useOpenList from '../hooks/useOpenList'
+import DetachableTable from '../styles/styledComponents/detachableTable'
 
-import { ComponentContainer } from '../hooks/ComponerContainer';
-import { DetachableTable } from '../styles/styledComponents/detachableTable';
-import { HomeStyled } from '../styles/styledComponents/HomeStyled';
-import { ComparativeStyled } from '../styles/styledComponents/ComparativeStyled';
-import ComparativePerPeriod from '../components/ComparativePerPeriod';
-import SelectorComparative from '../containers/SelectorComparative';
+import Map from '../components/Map'
+import MapIslands from '../components/MapIslands'
+import ComponentContainer from '../containers/ComponerContainer'
+import ComparativeTool from '../containers/ComparativeTool'
+import SelectorComparative from '../containers/SelectorComparative'
+import CountryList from '../containers/CountryList'
+import OptionsSearch from '../containers/OptionsSearch'
+import OptionsAndTables from '../containers/OptionsAndTables'
 
-
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/official-accounts';
 // import userQueries from './queries.php';
-
-export const Home = () => {
-  const response = useGetData(api);
-  const [countriesAllData, setCountriesAllData] = useState([]);
-  const [countrySelectedId, setCountrySelectedId] = useState(null);
-  const countryDataState = [countriesAllData, setCountriesAllData];
-  const [open, setOpen] = useState(false);
-  const countryListManagment = {open, setOpen};
-  const items = response.data;
-
-  const [accountsCountry, setAccountsCountry] = useState([]);
-  const [dataComparing, setDataComparing] = useState({
-    accounts: {
-      accountIdA: '',
-      accountIdB: '',
-    },
-    periodComparison: {
-      periodA: {
-        id:'',
-        name: '',
-      },
-      periodB: {
-        id:'',
-        name: '',
-      },
-    },
-    isPeriodComparisonActive: false,
-    isCountryFilterActive: false,
-    country_id: '',
-    categories: {
-      mostRetweeted: true,
-      mostHashtags: true,
-      mostMentioned: true,
-      mostReplied: true,
-      monthlyTweets: true,
-    },
-    period: {
-      startDate: 1,
-      endDate: 4,
-    },
-  });
+export default function Home () {
+  const [zoom, setZoom] = useState(false)
+  const [countrySelectedId, setCountrySelectedId] = useState(null)
+  const [currentMap, setCurrentMap] = useState(true)
+  const [open, setOpen] = useOpenList()
+  const countryListManagmentOpen = { open, setOpen }
+  const [accountsCountry, setAccountsCountry] = useState([])
   const [mousePosition, setMousePosition] = useState({
     x: 0,
-    y: 0,
-  });
-  useEffect(() => {}, [dataComparing]);
+    y: 0
+  })
+  const menu = useMenu()
+  const { showMap, showAccountComparing, showPeriodComparing } = menu
 
   return (
-    <HomeStyled className="container-xl">
-      <div className="banner-container">
-        <h2 className="banner-title">
-          CHINA LATAM TWITTER DATABASE
-        </h2>
-      </div>
+    <>
+      <GoblalStyles />
+      <Layout>
+        <NavBarHome menu={menu} setOpen={setOpen} />
+        {showMap && (
+          <>
+            <ColorBar />
+            <SectionMapsStyled>
+              {currentMap
+                ? (
+                <MapStyled className="map-container col-6">
+                  <Map
+                    setAccounts={setAccountsCountry}
+                    setMouse={setMousePosition}
+                    countryListManagmentOpen={countryListManagmentOpen}
+                    setCountrySelectedId={setCountrySelectedId}
+                    setZoom={setZoom}
+                  />
 
-      <div className="row">
-        <MapStyled className="map-container col-6">
-          <Map
-            items={items}
-            setAccounts={setAccountsCountry}
-            setMouse={setMousePosition}
-            countryListManagment={countryListManagment}
-            setCountrySelectedId={setCountrySelectedId}
+                  <FloatingText setCurrentMap={setCurrentMap} zoom={zoom} />
+                  {!zoom && (
+                    <>
+                      <FloatingTextRight currentMap={currentMap} />
+                    </>
+                  )}
+                </MapStyled>
+                  )
+                : (
+                <MapStyled className="map-container col-6">
+                  <MapIslands
+                    setAccounts={setAccountsCountry}
+                    setMouse={setMousePosition}
+                    countryListManagmentOpen={countryListManagmentOpen}
+                    setCountrySelectedId={setCountrySelectedId}
+                    setZoom={setZoom}
+                  />
 
-          />
-        </MapStyled>
-        <DetachableTable
+                  <FloatingText
+                    setCurrentMap={setCurrentMap}
+                    islands={true}
+                    zoom={zoom}
+                  />
+                  {!zoom && (
+                    <>
+                      <FloatingTextRight currentMap={currentMap} />
+                    </>
+                  )}
+                </MapStyled>
+                  )}
 
-          top={mousePosition.y}
-          left={mousePosition.x}
-        >
-          <CountryList  accountsCountry={accountsCountry} countryListManagment={countryListManagment} 
-            countryDataState={countryDataState} countrySelectedId={countrySelectedId}
-          />
-        </DetachableTable>
-        <div className='right col-6'>
-        <ComparativeStyled >
-          <ComparativeTool setDataComparing={setDataComparing} />
-        </ComparativeStyled>
-        <SelectorComparative countryDataState={countryDataState} setDataComparing={setDataComparing}/>
-
-        </div>
-        <ComponentContainer context={dataComparing} />
-      </div>
-    </HomeStyled>
-  );
-};
+              <DetachableTable top={mousePosition.y} left={mousePosition.x}>
+                <CountryList
+                  accountsCountry={accountsCountry}
+                  countryListManagmentOpen={countryListManagmentOpen}
+                  countrySelectedId={countrySelectedId}
+                />
+              </DetachableTable>
+            </SectionMapsStyled>
+          </>
+        )}
+        {!showMap && (
+          <SectionToolsStyled>
+            {showAccountComparing && <ComparativeTool />}
+            {showPeriodComparing && <SelectorComparative />}
+          </SectionToolsStyled>
+        )}
+        {showMap
+          ? null
+          : (
+          <ComparisonContainerStyled>
+            <OptionsAndTables>
+              <OptionsSearch />
+              <ComponentContainer usuario={false} />
+            </OptionsAndTables>
+            <UpArrow />
+          </ComparisonContainerStyled>
+            )}
+      </Layout>
+    </>
+  )
+}

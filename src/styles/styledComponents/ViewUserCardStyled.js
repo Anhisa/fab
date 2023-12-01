@@ -5,18 +5,18 @@ export const ViewUserCardStyled = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 600px;
-  height: 300px;
+  padding:10px;  
+  width: 100%;
   font-size: 1rem;
   border-radius: 20px;
   border: 1px solid #e0e0e0;  
-  padding: 15px;
+
   .innerLeft{
     display: flex;
     flex-direction: column;
     width: 50%;
     align-items: flex-start;
-    margin-right: 20px;
+    margin-right: 10px;
   }
   .innerRight{
     display: flex;
@@ -39,7 +39,8 @@ export const UserCardStyled = styled.div`
   align-items: flex-start;
   justify-content: space-between;  
   padding: 5px;  
-  height: 90px;
+  height: 120px;
+  
 
   .firstGroup{
     display: flex;
@@ -54,8 +55,12 @@ export const UserCardStyled = styled.div`
     background-color:#ffce21;
   }
   .title {
+    h5 {
+      font-size: 1.3rem;
+    }
     p {
-      margin-bottom: 0;      
+      margin-bottom: 0; 
+      font-size: 1.2rem;     
     }
   }
   .innerGroup{
@@ -69,7 +74,7 @@ export const UserCardStyled = styled.div`
         font-size: 1.2rem;
         margin-top: 0;
         margin-bottom: 0;
-        font-weight: bold;
+        /* font-weight: bold; */
        
       }
     }
@@ -79,7 +84,7 @@ export const UserCardStyled = styled.div`
       flex-direction: row;      
      
       p{
-        font-size: 1rem;
+        font-size: 1.2rem;
         margin-top: 0;
         margin-bottom: 0;
         font-weight: bold;

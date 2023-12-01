@@ -1,55 +1,51 @@
-import React, { useContext, useEffect, useState, memo } from 'react';
-import { MostMentionedItem } from '../components/MostMentionedItem';
-import { MostMentionedChart } from '../components/MostMentionedChart';
-import { TableContext } from '../context/TableContext';
-import { useFilterData } from '../hooks/useFilterData';
-import { MostMentionedItemCHANGE } from '../components/MostMentionedItemCHANGE';
-import { CreateChart } from '../helpers/createChart';
+import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import useFilterData from '../hooks/useFilterData'
+import { MostMentionedItemCHANGE } from '../components/mostMentioned/MostMentionedItemCHANGE'
+import { CreateChart } from '../helpers/createChart'
+import useActiveNames from '../hooks/useActiveNames'
+import MostMentionedPie from '../components/mostMentioned/MostMentionedPie'
 
-const api = 'https://fundacionandresbello.org/wp-json/fab/v1/most-mentioned';
-export const MostMentionedItems = memo(({ period }) => {
-  const [innerData, setInnerData] = useState([]);
-  const [comparisonView, setComparisonView] = useState(false);
-  const [chartData, setChartData] = useState([]);
-  let arraysBar = [];
-  const data = useFilterData(api, 'most-mentioned');
+MostMentionedItems.propTypes = {
+  usuario: PropTypes.bool.isRequired,
+  context: PropTypes.object.isRequired
+}
+
+export default function MostMentionedItems ({ usuario, context }) {
+  const [innerData, setInnerData] = useState([])
+  const [chartData, setChartData] = useState([])
+  const accountsNames = useActiveNames(context)
+  const { isPeriodComparisonActive } = context
+
+  const [data] = useFilterData(context, 'most-mentioned')
 
   useEffect(() => {
-    if (data !== false) {
-      if (data.length > 1) {
-        setComparisonView(true);
-      }
-      setInnerData(data);
-
-      setChartData(CreateChart(data));
+    if (data.length > 0) {
+      setInnerData(data)
+      setChartData(CreateChart(data))
     }
-  }, [data, period]);
-  if (!data) {
-    return <div>Loading...</div>;
-  }
-  if (innerData.length === 0) {
-    return <div>No hay data correspondiente al periodo seleccionado</div>;
-  }
+  }, [data])
 
   return (
     <section className="closed" id="most-mentioned">
-      {data.map((accountId, index) => {
+      { innerData.map((accountId, index) => {
         return (
           <section className="column" key={index}>
-            <div>
-              <MostMentionedItemCHANGE
-                newData={accountId}
-                arrayBar={chartData[index]}
-                period={period}
-                comparisonView={comparisonView}
-              />
-            </div>
-            {/* <div>
-              <MostMentionedChart newData={accountId} periodId={period}/>
-            </div> */}
+            <MostMentionedItemCHANGE
+              newData={accountId}
+              arrayBar={chartData[index]}
+              comparisonView={isPeriodComparisonActive}
+              title={accountsNames[index]}
+            />
+
+            <MostMentionedPie
+              newData={accountId}
+              title={accountsNames[index]}
+              usuario={usuario}
+            />
           </section>
-        );
+        )
       })}
     </section>
-  );
-});
+  )
+}

@@ -1,143 +1,102 @@
-import React, { useEffect, useState } from 'react';
-import { MostRetweetedItems } from '../containers/MostRetweeted';
-import { MostRepliedItems } from '../containers/MostReplied';
-import { MostMentionedItems } from '../containers/MostMentioned';
-import { MonthlyTweetsItems } from '../containers/MonthlyTweets';
-import { HtMostUsedItems } from '../containers/HtMostUsed';
-
-import { useParams } from 'react-router';
-import { useGetData } from '../hooks/useGetData';
-import { TableContext } from '../context/TableContext';
-import ViewUserCard from '../components/ViewUserCard';
-import { CollapsableTableStyled } from '../styles/styledComponents/CollapsableTableStyled';
-import handleClick from '../helpers/HandleClick';
+import React, { useContext, useEffect, useState } from 'react'
+import MonthlyTweetsItems from '../containers/MonthlyTweets'
+import { useParams } from 'react-router'
+import ViewUserCard from '../components/ViewUserCard'
 import {
-  UserCardStyled,
-  ContainerButtons,
-} from '../styles/styledComponents/userCardStyled';
-import HeaderUserCard from '../components/HeaderUserCard';
-import { AccountDetailsStyled } from '../styles/styledComponents/AccountDetailsStyled';
-import { CompPeriodSlider } from '../components/CompPeriodSlider';
-import { StyledFilterButton } from '../styles/styledComponents/StyledFilterButton';
-import NavBar from '../components/NavBar';
-import ErrorComponent from '../components/errorComponent';
+  UserCardStyled
+} from '../styles/styledComponents/userCardStyled'
+import HeaderUserCard from '../components/HeaderUserCard'
+import { AccountDetailsStyled } from '../styles/styledComponents/AccountDetailsStyled'
+import { CompPeriodSlider } from '../components/CompPeriodSlider'
 
-const apiUsuarios =
-  'https://fundacionandresbello.org/wp-json/fab/v1/official-fol';
+import NavBar from '../components/NavBar'
+import ErrorComponent from '../components/errorComponent'
+import { AccountPeriodContainer } from '../styles/styledComponents/AccountPeriodContainer'
+import ComparativeUserViewContainer from '../containers/ComparativeUserView/ComparativeUserViewContainer'
+import { GoblalStyles } from '../styles/styledComponents/GlobalStyles'
+import { TableContext } from '../context/InitialState'
+import useQueryData from '../hooks/useQueryData'
 
-export const AccountDetails = () => {
-  const { account } = useParams();
-
-  const { loading, data } = useGetData(apiUsuarios);
-
+export default function AccountDetails () {
+  const [,, themeToggler] = useContext(TableContext)
+  const { account, countryId } = useParams()
+  const { fol } = useQueryData()
+  const country = fol.find((item) => item.country_id === countryId)
+  const userId = fol.filter((item) => item.official_account === account)
+  const periodsArray = userId.map((periods) => parseInt(periods.period_id))
   const [period, setPeriod] = useState({
-    startDate: 1,
-    endDate: 4,
-  });
-
-  const [dataSearch, setDataSearch] = useState(false);
+    startDate: Math.min(periodsArray),
+    endDate: Math.max(periodsArray)
+  })
+  const [dataSearch, setDataSearch] = useState(false)
+  console.log('"🚀 ~ file: AccountDetails.js:30 ~ AccountDetails ~ dataSearch:"', dataSearch)
 
   useEffect(() => {
-    if (!loading) {
-      const userId = data.filter((item) => item.official_account === account);
-      if (userId.length === 0) {
-        return;
-      }
-
-      setDataSearch({
-        country: userId[0].country_id,
-        dataUser: userId,
-        userOfficialName: userId[0].official_account_name_spa,
-        accounts: {
-          accountIdA: userId[0].official_account_id,
-        },
-        period: period,
-      });
+    if (userId.length === 0) {
+      return
     }
-  }, [loading, data, account, period]);
-  if (loading) {
-    return <div>Loading</div>;
-  }
-  if (data.length === 0) {
-    return <div>Error no hay data en ese Usuario</div>;
+
+    setDataSearch({
+      Country: country.country_id,
+      dataUser: userId,
+      userOfficialName: userId.find((id) => id.country_id === country.country_id).official_account_name_spa,
+      accounts: {
+        accountIdA: {
+          id: userId.find((id) => id.country_id === country.country_id).official_account_id,
+          name: userId.find((id) => id.country_id === country.country_id).official_account
+        }
+      },
+      period
+    })
+  }, [fol, account, period, countryId])
+
+  if (fol.length === 0) {
+    return <div>Error no hay data en ese Usuario</div>
   }
 
   return (
     <>
-      {dataSearch !== false ? (
-        <TableContext.Provider value={dataSearch}>
+      {dataSearch !== false
+        ? (
+        <>
+          <GoblalStyles />
           <AccountDetailsStyled>
-            <NavBar />
+            <NavBar themeToggler ={themeToggler}/>
             <HeaderUserCard
-              countryId={dataSearch.country}
+              countryId={dataSearch.Country}
               userName={dataSearch.userOfficialName}
             />
             <UserCardStyled>
-              <div className="left">
+              <section className="left">
                 <ViewUserCard
-                  data={dataSearch.dataUser}
-                  period={dataSearch.period.endDate - 1}
+                  data={dataSearch?.dataUser}
+                  period={dataSearch.period}
                 />
-              </div>
-              <div className="right">
-                <MonthlyTweetsItems period={period} />
-              </div>
+              </section>
+              <section className="right">
+                <MonthlyTweetsItems period={period} context={dataSearch} />
+              </section>
             </UserCardStyled>
-            <div>
-              <hr />
-              <CompPeriodSlider setPeriod={setPeriod} />
-              <hr />
-            </div>
-
-            <CollapsableTableStyled usuario="usuario">
-              <StyledFilterButton
-                type="button"
-                name="most-retweet"
-                onClick={handleClick}
-              >
-                Usuarios más retuiteados
-              </StyledFilterButton>
-              <MostRetweetedItems period={period} />
-            </CollapsableTableStyled>
-            <CollapsableTableStyled usuario="usuario">
-              <StyledFilterButton
-                type="button"
-                name="most-replied"
-                onClick={handleClick}
-              >
-                Usuarios que más han recibido respuesta
-              </StyledFilterButton>
-
-              <MostRepliedItems period={period} />
-            </CollapsableTableStyled>
-
-            <CollapsableTableStyled usuario="usuario">
-              <StyledFilterButton
-                type="button"
-                name="most-mentioned"
-                onClick={handleClick}
-              >
-                Usuarios más mencionados
-              </StyledFilterButton>
-
-              <MostMentionedItems period={period} />
-            </CollapsableTableStyled>
-            <CollapsableTableStyled usuario="usuario">
-              <StyledFilterButton
-                type="button"
-                name="most-ht"
-                onClick={handleClick}
-              >
-                Most used hashtags
-              </StyledFilterButton>
-
-              <HtMostUsedItems period={period} />
-            </CollapsableTableStyled>
+            {/* <AllDataByAccount /> */}
+            <hr />
+            <AccountPeriodContainer>
+              <CompPeriodSlider
+                setPeriod={setPeriod}
+                data={dataSearch.dataUser}
+              />
+            </AccountPeriodContainer>
+            <hr />
+            <ComparativeUserViewContainer
+              period={period}
+              usuario={true}
+              context={dataSearch}
+            />
           </AccountDetailsStyled>
-        </TableContext.Provider>
-      ) : (
+        </>
+          )
+        : (
         <ErrorComponent />
-      )}
+          )}
     </>
-  );
-};
+  )
+}
