@@ -51,9 +51,6 @@ export function CompPeriodSlider ({ setPeriod, data }) {
     periods = data.map((item) => {
       return parseInt(item.period_id)
     })
-    console.log('"🚀 ~ file: CompPeriodSlider.js:48 ~ CompPeriodSlider ~ setPeriod:"', setPeriod)
-    console.log('"🚀 ~ file: CompPeriodSlider.js:49 ~ CompPeriodSlider ~ value:"', value)
-    console.log('"🚀 ~ file: CompPeriodSlider.js:54 ~ periods=data.map ~ periods:"', periods)
   }
 
   const handleChange = (event, newValue) => {

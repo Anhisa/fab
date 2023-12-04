@@ -20,7 +20,7 @@ export default function MostRetweetedItemChange ({ newData, arrayBar, title }) {
       item.user_account,
       item.most_retweeted_category_spa,
       parseInt(item.tweetsNumber),
-      item.user_accounts_verified,
+      // item.user_accounts_verified,
       item.most_retweeted_category_desc_spa
     )
   )
@@ -41,7 +41,7 @@ function createData (
   userAccount,
   categoría,
   tweetsNumber,
-  isVerified,
+  // isVerified,
   catDesc
 ) {
   return {
@@ -49,7 +49,7 @@ function createData (
     userAccount,
     categoría,
     tweetsNumber,
-    isVerified,
+    // isVerified,
     catDesc
   }
 }

@@ -34,10 +34,10 @@ const columns = [
     selector: (row) =>
       row.official_account_verified === 'si'
         ? (
-        <VerifiedIcon color="primary" />
+        <VerifiedIcon style={{ color: '#44D549' }} />
           )
         : (
-        <VerifiedIcon color="disabled" />
+        <VerifiedIcon style={{ display: 'none' }} />
           ),
 
     minWidth: '50px',
@@ -64,7 +64,6 @@ export function CountryItem ({
     const countryData = countries.find(
       (country) => country.country_id === countryId
     )
-    console.log('🚀 ~ file: CountryItem.js:75 ~ countryData:', countryData)
 
     return countryData.official_relations_spa === 'Taiwan' ?? false
   }

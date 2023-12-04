@@ -9,11 +9,8 @@ const AllDataByAccount = () => {
   //     return "loading..."
   //   }
   // const dataMostReplied = useGetData(apiMostReplied);
-  // console.log('dataMostReplied', dataMostReplied);
   // const dataMostRetweeted = useGetData(apiMostRetweeted);
-  // console.log('dataMostRetweeted', dataMostRetweeted);
   // const dataHtMostUsed = useGetData(apiHtMostUsed);
-  // console.log('dataHtMostUsed', dataHtMostUsed);
   // const [data, setData] = useState([]);
   // let categories = extractCategories(dataMostMentioned.data, 'mentioned');
   // let duplicados = filterDuplicates(categories, 'account');

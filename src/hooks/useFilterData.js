@@ -55,7 +55,7 @@ export default function useFilterData (context, from) {
       data = monthlyTweets
       break
     default:
-      console.log('No se encontró el from')
+      console.error('No se encontró el from')
       break
   }
 

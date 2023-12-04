@@ -1,4 +1,4 @@
-import { BarContainer, IsVerified, UserAccount } from '../components/partsDataTable'
+import { BarContainer, /* IsVerified, */ UserAccount } from '../components/partsDataTable'
 import React from 'react'
 
 export const columns = [
@@ -8,7 +8,7 @@ export const columns = [
         fontSize: '0.8rem',
         title: 'Usuario/ Nombre cuenta'
       }}
-    >Usuario/ Nombre cuenta</p>,
+    >Usuario / Nombre cuenta</p>,
     selector: (row) => (
       <UserAccount
         userAccount={row.userAccount}
@@ -54,20 +54,20 @@ export const columns = [
     minWidth: '100px',
     omit: window.innerWidth < 408
   },
-  {
-    name: <p
-    style={{
-      fontSize: '0.8rem'
-    }}
-    >Verificado</p>,
-    selector: (row) => <IsVerified isVerified={row.isVerified} />,
-    compact: true,
-    id: 'isVerified',
-    wrap: false,
-    center: true,
-    minWidth: '5px',
-    maxWidth: '100px'
-  },
+  // {
+  //   name: <p
+  //   style={{
+  //     fontSize: '0.8rem'
+  //   }}
+  //   >Verificado</p>,
+  //   selector: (row) => <IsVerified isVerified={row.isVerified} />,
+  //   compact: true,
+  //   id: 'isVerified',
+  //   wrap: false,
+  //   center: true,
+  //   minWidth: '5px',
+  //   maxWidth: '100px'
+  // },
   {
     name: <p
     style={{

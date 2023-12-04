@@ -15,8 +15,7 @@ export default function QueryData ({ children }) {
   const { error, isError, isLoading } = useQuery('data', fetchData)
 
   if (isError) {
-    console.log(error.message)
-    return <div>Error</div>
+    return <div>{error.message}</div>
   }
 
   if (isLoading) {
@@ -50,6 +49,6 @@ async function fetchData () {
     }
     return allData
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }

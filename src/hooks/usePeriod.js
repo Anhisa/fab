@@ -5,10 +5,7 @@ export const usePeriod = (periodId) => {
 
   useEffect(() => {
     const response = periodId
-    console.log(response)
     setPeriod(response)
-    console.log(period)
-    console.log(periodId)
   }, [])
   return { period }
 }
