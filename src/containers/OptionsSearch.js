@@ -34,7 +34,6 @@ function OptionsSearch ({ open, setOpen }) {
   if (categories === undefined) {
     return null
   }
-  // console.log('isCategoriesTrue', isCategoriesTrue)
 
   function handleClear () {
     setDataComparing((prev) => {

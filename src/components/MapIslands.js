@@ -75,7 +75,6 @@ export default function MapIslands ({
         y = pageY - 250
       }
 
-      // console.log('x , y', x, y);
       setMouse({
         x,
         y
@@ -93,17 +92,17 @@ export default function MapIslands ({
   const tweetsByCountry = useGetTweetsByCountry()
 
   const colorScale = scaleLinear()
-    .domain([0, 11161])
+    .domain([0, 20000])
     .range(['#edf7ff', '#1d9bf0'])
 
   return (
     <div className="map">
       <ComposableMap
-        height={windowSize.height ? windowSize.height * 0.9 : 1000}
-        width={windowSize.width ? windowSize.width : 1000}
+        height={(windowSize.width > 458) ? windowSize.height * 0.9 : windowSize.height * 1.5}
+        width={(windowSize.width > 458) ? windowSize.width : windowSize.width * 1.54}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
-          rotate: [72, -17, 0],
+          rotate: (windowSize.width > 458) ? [72, -18, 0] : [72, -12, 0],
           scale: 1700
         }}
         onClick={handleOnClick}
@@ -114,7 +113,7 @@ export default function MapIslands ({
           positionLocal={localPosition}
           onMoveEnd={handleMoveEnd}
         > */}
-        <Graticule stroke="#ccc" step={[27, 9]} />
+        <Graticule stroke="#ccc" step={[15, 6]} />
         <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
           {({ geographies }) =>
             geographies

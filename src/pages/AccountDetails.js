@@ -29,7 +29,6 @@ export default function AccountDetails () {
     endDate: Math.max(periodsArray)
   })
   const [dataSearch, setDataSearch] = useState(false)
-  console.log('"🚀 ~ file: AccountDetails.js:30 ~ AccountDetails ~ dataSearch:"', dataSearch)
 
   useEffect(() => {
     if (userId.length === 0) {

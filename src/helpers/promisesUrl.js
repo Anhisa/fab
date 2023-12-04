@@ -22,4 +22,3 @@ export const promisesUrl = [
   axios.get(officialAccounts),
   axios.get(monthlyTweets)
 ]
-console.log('🚀 ~ file: promisesUrl.js:25 ~ promisesUrl:', promisesUrl)

@@ -1,7 +1,7 @@
 export const colorsDictionary = [
   {
     category: 'COVID-19',
-    color: '#00CC33'
+    color: '#007C1F'
   },
   {
     category: 'PROMOCIÓN RPCh',
@@ -13,7 +13,7 @@ export const colorsDictionary = [
   },
   {
     category: 'AVANCES TECNOLÓGICOS RPCh',
-    color: '#CC66FF'
+    color: '#65327E'
   },
   {
     category: 'ORGANISMOS FOROS Y ESPACIOS MULTILATERALES',
@@ -37,7 +37,7 @@ export const colorsDictionary = [
   },
   {
     category: 'Ciudadano',
-    color: 'darkblue'
+    color: '#0042A1'
   },
   {
     category: 'Gobiernos y Entidades Gubernamentales ALC',

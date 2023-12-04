@@ -14,7 +14,6 @@ const AccountCreationDate = () => {
   if (countryNames.length === 0) {
     return <div>Loading...</div>
   }
-  // console.log('data', data);
 
   const columns = [
     {

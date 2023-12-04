@@ -9,8 +9,6 @@ id 6 = 2021-Consolidado // 12 meses
 */
 
 export function dataReducer (data, periods) {
-  console.log('"🚀 ~ file: dataReducer.js:12 ~ dataReducer ~ periods:"', periods)
-  console.log('🚀 ~ file: dataReducer.js:12 ~ dataReducer ~ data:', data)
   if (data.length <= 1) {
     const labels = data[0].map((item) => item.month)
     return [data, labels]

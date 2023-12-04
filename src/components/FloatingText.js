@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import {
+  ButtonFloatingIslandStyled,
   ButtonFloatingStyled,
   FloatingTextIslandsStyled,
   FloatingTextStyled
@@ -16,14 +17,12 @@ const FloatingText = memo(function memoFloatingText ({ setCurrentMap, islands, z
       <FloatingTextIslandsStyled>
         {!zoom && (
           <p className="info">
-            Base de datos interactiva de las cuentas de Twitter pertenecientes a
-            los diplomáticos y representaciones diplomáticas de la República
-            Popular China en América Latina y el Caribe.
+            Base de datos interactiva de las cuentas de X (antiguo Twitter) pertenecientes a los diplomáticos y representaciones diplomáticas de la República Popular China en América Latina y el Caribe.
           </p>
         )}
-        <ButtonFloatingStyled onClick={handleMap} type="button">
+        <ButtonFloatingIslandStyled onClick={handleMap} type="button">
           <p tabIndex={0}>Ver mapa continente</p>
-        </ButtonFloatingStyled>
+        </ButtonFloatingIslandStyled>
       </FloatingTextIslandsStyled>
     )
   }
@@ -31,9 +30,7 @@ const FloatingText = memo(function memoFloatingText ({ setCurrentMap, islands, z
     <FloatingTextStyled>
       {!zoom && (
         <p className="info" aria-label="info">
-          Base de datos interactiva de las cuentas de Twitter pertenecientes a
-          los diplomáticos y representaciones diplomáticas de la República
-          Popular China en América Latina y el Caribe.
+          Base de datos interactiva de las cuentas de X (antiguo Twitter) pertenecientes a los diplomáticos y representaciones diplomáticas de la República Popular China en América Latina y el Caribe.
         </p>
       )}
       <ButtonFloatingStyled onClick={handleMap}>

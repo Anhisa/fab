@@ -30,7 +30,6 @@ const Map = memo(({
 
   const { open, setOpen } = countryListManagmentOpen
   const windowSize = useWindowSize()
-
   const { geoUrl, officialAccounts } = useQueryData()
   // function handleZoomIn () {
   //   setZoom(true)
@@ -87,20 +86,21 @@ const Map = memo(({
   }, [windowSize])
 
   const tweetsByCountry = useGetTweetsByCountry()
+  console.log('"🚀 ~ file: Map.js:89 ~ tweetsByCountry:"', tweetsByCountry)
 
   const colorScale = scaleLinear()
-    .domain([0, 11161])
+    .domain([0, 15000])
     .range(['#edf7ff', '#1d9bf0'])
 
   return (
     <div className="map">
       <ComposableMap
-        height={windowSize.height ? windowSize.height * 0.98 : 500}
-        width={windowSize.width ? windowSize.width * 0.98 : 500}
+        height={(windowSize.width > 500) ? windowSize.height * 1.12 : windowSize.height * 0.91}
+        width={(windowSize.width > 500) ? windowSize.width * 1.08 : windowSize.width * 1.01}
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
           rotate: [77, 12, 0],
-          scale: 448
+          scale: (windowSize.width > 500) ? 448 : 295
         }}
         onClick={handleOnClick}
         onWheelCapture={closeOnZoomIn}
@@ -112,7 +112,7 @@ const Map = memo(({
           onMoveEnd={handleMoveEnd}
 
         > */}
-        <Graticule stroke="#ccc" step={[27, 9]} />
+        <Graticule stroke="#ccc" step={[18, 8]} />
 
         <Geographies geography={geoUrl} style={{ cursor: 'pointer' }}>
           {({ geographies }) =>
@@ -191,7 +191,6 @@ function CustomZoomableGroup ({
   if (positionLocal.zoom !== 1) {
     check = true
   }
-  console.log(position.dragging?.type)
   if (
     position.dragging?.type === 'wheel' ||
     position.dragging?.type === 'dblclick'

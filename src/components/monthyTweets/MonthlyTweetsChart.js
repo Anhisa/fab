@@ -91,7 +91,6 @@ export function MonthlyTweetsChart ({ newData, context }) {
         }
       },
       tooltip: {
-        bodyColor: theme.text,
         titleFontSize: 20,
         titleFontStyle: 'bold',
         titleFontColor: theme.text,

@@ -2,7 +2,6 @@
 export default function monthyHelper (data, periods) {
   // copy of obj to avoid mutating the original
   const data3 = { ...data }
-  //   console.log('pure data', data3);
   //
   //   if(periods[0].id === 1 || periods[0].id === 3){
   //       let [a,b, ...rest] = data3[0]

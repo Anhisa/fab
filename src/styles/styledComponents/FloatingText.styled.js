@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const FloatingTextStyled = styled.div`
   position: absolute;
-  top: 250px;
+  top: 435px;
   left: 60px;  
   min-width:100px;
   height: fit-content;
@@ -11,45 +11,40 @@ export const FloatingTextStyled = styled.div`
   color: ${({ theme }) => theme.text};
   
   p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 0;
     font-weight: 500;    
     text-align: left;
     pointer-events: none;
   }
-  @media (max-width: 1200px) {
+  /* @media (max-width: 1200px) {
     top: 450px;
     
-  }
+  } */
   @media (max-width: 968px) {
     display: flex;
     position: absolute;    
-    bottom: 250px;
     justify-content: center;
     flex-direction: column;
     width: 300px;
     p {
-      font-size: 1rem;
+      font-size: 0.8rem;
     }
   }
   @media (max-width: 768px) {
     position: absolute;
-    bottom: 300px;
     left: 10px;
-    top: auto;
     display: flex;
     justify-content: center;
     flex-direction: column;
-       p {
+    max-width: 232px;
+        p {
       font-size: 0.8rem;
     }
   }
   @media (max-width: 480px) {
-    position: absolute;
-    bottom: 300px;
-    left: 140px;
+    top: 500px;
     width: 150px;
-    top: 100px;
     .info {
       display: none;
     }
@@ -58,15 +53,13 @@ export const FloatingTextStyled = styled.div`
 export const FloatingTextRightIslandStyled = styled.div`
   position: absolute;
   margin-top: 100px;
-  top:220px;
+  top: 163px;
   padding: 10px 50px;
   margin: 0 auto;
   margin-right: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 3px solid ${({ theme }) => theme.text};
-  border-radius: 20px;
   background-color: transparent;
   color: ${({ theme }) => theme.text};
   p {
@@ -97,13 +90,10 @@ export const FloatingTextRightIslandStyled = styled.div`
 
 export const FloatingTextRightStyled = styled.div`
   position: absolute;
-  top: 280px;
-  min-width:100px;
+  top: 193px;
+  min-width:193px;
   max-width:350px;
   right: 55px;
-  border: 3px solid ${({ theme }) => theme.text};
-  border-radius: 20px;
-  background-color: transparent;
   color: ${({ theme }) => theme.text};
   display: flex;
   flex-direction: column;
@@ -118,22 +108,19 @@ export const FloatingTextRightStyled = styled.div`
     text-align: auto;
   }
   @media (max-width: 968px) {
-    top: 100px;
     height: 60px;
-    right: 100px;
-    width: fit-content;
+    right: 10px;
+    max-width: 150px;
     p {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
     }
   }
   @media (max-width: 768px) {
-    border: 10px solid transparent;
-    top: 100px;
     height: 60px;
-    margin: 0 auto;
-    width: fit-content;
+    max-width: 150px;
+    top: 193px;
     p {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
   }
   @media (max-width: 480px) {
@@ -147,9 +134,10 @@ export const FloatingTextRightStyled = styled.div`
 `
 
 export const ButtonFloatingStyled = styled.button`
-  width: 60%;
-  height: 50px;
-  margin-top: 50px;
+  position: absolute;
+  width: 70%;
+  height: 40px;
+  bottom: 130px;
   border-radius: 25px;
   background-color: ${({ theme }) => theme.primary};
   opacity: 0.8;  
@@ -164,33 +152,59 @@ export const ButtonFloatingStyled = styled.button`
     background-color: ${({ theme }) => theme.secondary};
   }
   @media (max-width: 768px) {
-    width: 100%;
     height: 40px;
   }
   @media (max-width: 480px) {
-    width: 70%;
+    bottom: auto;
+    width: 100%;
     height: 40px;
+  }
+`
+export const ButtonFloatingIslandStyled = styled.button`
+  position: absolute;
+  width: 70%;
+  height: 40px;
+  bottom: 130px;
+  margin-bottom: 10px;
+  border-radius: 25px;
+  background-color: ${({ theme }) => theme.primary};
+  opacity: 0.8;  
+  color: ${({ theme }) => theme.textContrast};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p{
+    width: fit-content;
+  }
+  &:hover {
+    background-color: ${({ theme }) => theme.secondary};
+  }
+  @media (max-width: 768px) {
+    bottom: 100px;
+    height: 40px;
+  }
+  @media (max-width: 480px) {
+    bottom: auto;
+    margin-bottom: auto;
   }
 `
 
 export const FloatingTextIslandsStyled = styled.div`
   position: absolute;  
-  left: 60px;  
-  bottom: 150px;
-  width: 550px;
+  left: 40px; 
+  bottom: 30px;
+  width: 450px;
   background-color: transparent;
   color: ${({ theme }) => theme.text};
+  display: flex;
   p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 0;
     font-weight: 500;
     text-align: auto;
   }
 
   @media (max-width: 968px) {
-    display: flex;
-    position: absolute;
-    top: 450px;    
     justify-content: center;
     flex-direction: column;    
     p {
@@ -199,18 +213,20 @@ export const FloatingTextIslandsStyled = styled.div`
   }
   @media (max-width: 768px) {
     position: absolute;
-    bottom: 150px;
+    bottom: 70px;
     left: 10px;
+    width: 280px;
 
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 300px;
+    /* width: 300px; */
     p {
       font-size: 0.8rem;
     }
   }
   @media (max-width: 480px) {
+    bottom: 100px;
     .info {
       display: none;
     }

@@ -116,7 +116,7 @@ export function UserAccountCard ({ user }) {
           <div className="account">
             <p>{user}</p>
             <div className="verified">
-              <VerifiedIcon color="primary" />
+              <VerifiedIcon style={{ color: '#44D549' }} />
             </div>
           </div>
         </div>

@@ -7,31 +7,31 @@ import PropTypes from 'prop-types'
 const marks = [
   {
     value: 1,
-    label: <p style={{ textAlign: 'center' }}>2020<br/>semestre<br/>I</p>
+    label: <p style={{ textAlign: 'center', fontSize: '13px' }}>2020<br/>semestre<br/>I</p>
   },
   {
     value: 2,
-    label: <p style={{ textAlign: 'center' }}>2020<br/>semestre<br/>II</p>
+    label: <p style={{ textAlign: 'center', fontSize: '13px' }}>2020<br/>semestre<br/>II</p>
   },
   {
     value: 3,
-    label: <p style={{ textAlign: 'center' }}>2021<br/>semestre<br/>I</p>
+    label: <p style={{ textAlign: 'center', fontSize: '13px' }}>2021<br/>semestre<br/>I</p>
   },
   {
     value: 4,
-    label: <p style={{ textAlign: 'center' }}>2021<br/>semestre<br/>II</p>
+    label: <p style={{ textAlign: 'center', fontSize: '13px' }}>2021<br/>semestre<br/>II</p>
   },
   {
     value: 5,
-    label: <p style={{ textAlign: 'center' }}>2022<br/>semestre<br/>I</p>
+    label: <p style={{ textAlign: 'center', fontSize: '13px' }}>2022<br/>semestre<br/>I</p>
   },
   {
     value: 6,
-    label: <p style={{ textAlign: 'center' }}>2022<br/>semestre<br/>II</p>
+    label: <p style={{ textAlign: 'center', fontSize: '13px' }}>2022<br/>semestre<br/>II</p>
   },
   {
     value: 7,
-    label: <p style={{ textAlign: 'center' }}>2023<br/>semestre<br/>I</p>
+    label: <p style={{ textAlign: 'center', fontSize: '13px' }}>2023<br/>semestre<br/>I</p>
   }
 ]
 
@@ -51,9 +51,6 @@ export function CompPeriodSlider ({ setPeriod, data }) {
     periods = data.map((item) => {
       return parseInt(item.period_id)
     })
-    console.log('"🚀 ~ file: CompPeriodSlider.js:48 ~ CompPeriodSlider ~ setPeriod:"', setPeriod)
-    console.log('"🚀 ~ file: CompPeriodSlider.js:49 ~ CompPeriodSlider ~ value:"', value)
-    console.log('"🚀 ~ file: CompPeriodSlider.js:54 ~ periods=data.map ~ periods:"', periods)
   }
 
   const handleChange = (event, newValue) => {

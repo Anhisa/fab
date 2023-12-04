@@ -53,12 +53,7 @@ const NavBarHome = memo(function memoNavBar ({ menu, setOpen }) {
   return (
     <NavBarHomeStyled>
       <div className="title">
-        <h3 className="banner-title">
-          CHINA LATAM TWITTER DATABASE{' '}
-          <em>
-            <small>Beta</small>
-          </em>
-        </h3>
+        <h3 className="banner-title">CHINA LATAM X DATABASE</h3>
       </div>
       <div className="hamburger" tabIndex={1}>
         <Hamburger
