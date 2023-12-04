@@ -92,7 +92,7 @@ export default function MapIslands ({
   const tweetsByCountry = useGetTweetsByCountry()
 
   const colorScale = scaleLinear()
-    .domain([0, 11161])
+    .domain([0, 20000])
     .range(['#edf7ff', '#1d9bf0'])
 
   return (

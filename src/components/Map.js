@@ -86,9 +86,10 @@ const Map = memo(({
   }, [windowSize])
 
   const tweetsByCountry = useGetTweetsByCountry()
+  console.log('"🚀 ~ file: Map.js:89 ~ tweetsByCountry:"', tweetsByCountry)
 
   const colorScale = scaleLinear()
-    .domain([0, 11161])
+    .domain([0, 15000])
     .range(['#edf7ff', '#1d9bf0'])
 
   return (
