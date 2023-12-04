@@ -17,11 +17,11 @@ const FloatingText = memo(function memoFloatingText ({ setCurrentMap, islands, z
       <FloatingTextIslandsStyled>
         {!zoom && (
           <p className="info">
-            Base de datos interactiva de las cuentas de X (antiguo Twitter) pertenecientes a los diplomáticos y representaciones diplomáticas de la República Popular China en América Latina y el Caribe.
+            Interactive database of the X accounts (former Twitter) corresponding to PCR’s diplomatic representations and representatives in Latin America and the Caribbean.
           </p>
         )}
         <ButtonFloatingIslandStyled onClick={handleMap} type="button">
-          <p tabIndex={0}>Ver mapa continente</p>
+          <p tabIndex={0}>Map of the continent</p>
         </ButtonFloatingIslandStyled>
       </FloatingTextIslandsStyled>
     )
@@ -30,11 +30,11 @@ const FloatingText = memo(function memoFloatingText ({ setCurrentMap, islands, z
     <FloatingTextStyled>
       {!zoom && (
         <p className="info" aria-label="info">
-          Base de datos interactiva de las cuentas de X (antiguo Twitter) pertenecientes a los diplomáticos y representaciones diplomáticas de la República Popular China en América Latina y el Caribe.
+            Interactive database of the X accounts (former Twitter) corresponding to PCR’s diplomatic representations and representatives in Latin America and the Caribbean.
         </p>
       )}
       <ButtonFloatingStyled onClick={handleMap}>
-        <p>Ver mapa del Caribe</p>
+        <p>Map of the Caribbean</p>
       </ButtonFloatingStyled>
     </FloatingTextStyled>
   )

@@ -12,7 +12,7 @@ import useQueryData from '../hooks/useQueryData'
 const columns = [
   {
     name: 'Nombre',
-    selector: (row) => row.official_account_category_spa,
+    selector: (row) => row.official_account_category_eng,
     sortable: true,
     minWidth: '100px',
     maxWidth: '130px'
@@ -20,7 +20,7 @@ const columns = [
   {
     name: 'Cuenta',
     selector: (row) => (
-      <Link to={`/diplomacia-digital/${row.country_id}/${row.official_account}`}>
+      <Link to={`/en/digital-diplomacy/${row.country_id}/${row.official_account}`}>
         {' '}
         {row.official_account}{' '}
       </Link>
@@ -65,7 +65,7 @@ export function CountryItem ({
       (country) => country.country_id === countryId
     )
 
-    return countryData.official_relations_spa === 'Taiwan' ?? false
+    return countryData.official_relations_eng === 'Taiwan' ?? false
   }
 
   if (accountsCountry.length === 0 && open) {
@@ -76,10 +76,10 @@ export function CountryItem ({
       return (
         <div className={open ? 'open' : 'closed'}>
           <CountryCardSelectStyled>
-            <p>{countryData.country_name_spa ?? ''}</p>
+            <p>{countryData.country_name_eng ?? ''}</p>
             <img
               src={getFlag(countryData.country_name_eng)}
-              alt={`Bandera de ${countryData.country_name_spa}`}
+              alt={`Bandera de ${countryData.country_name_eng}`}
             />
             <hr />
           </CountryCardSelectStyled>
@@ -95,10 +95,10 @@ export function CountryItem ({
     return (
       <div className={open ? 'open' : 'closed'}>
         <CountryCardSelectStyled>
-          <p>{countryData?.country_name_spa ?? ''}</p>
+          <p>{countryData?.country_name_eng ?? ''}</p>
           <img
             src={getFlag(countryData.country_name_eng)}
-            alt={`Bandera de ${countryData.country_name_spa}`}
+            alt={`Bandera de ${countryData.country_name_eng}`}
           />
           <hr />
         </CountryCardSelectStyled>
@@ -117,10 +117,10 @@ export function CountryItem ({
           <DataTableStyled
             title={
               <CountryCardSelectStyled>
-                <p>{accountsCountry[0]?.country_name_spa ?? ''}</p>
+                <p>{accountsCountry[0]?.country_name_eng ?? ''}</p>
                 <img
                   src={getFlag(accountsCountry[0].country_name_eng)}
-                  alt={`Bandera de ${accountsCountry[0].country_name_spa}`}
+                  alt={`Bandera de ${accountsCountry[0].country_name_eng}`}
                 />
                 <hr />
               </CountryCardSelectStyled>

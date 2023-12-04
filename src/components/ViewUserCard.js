@@ -48,7 +48,7 @@ function ViewUserCard ({ data, period }) {
 
   const followersNumber = data.find((fn) => parseInt(fn.period_id) === period.endDate)?.followers_number
   const followingNumber = data.find((fn) => parseInt(fn.period_id) === period.endDate)?.following_number
-  const accountName = data.find((user) => user.country_id === countryId)?.official_account_name_spa
+  const accountName = data.find((user) => user.country_id === countryId)?.official_account_name_eng
 
   return (
     <ViewUserCardStyled>
@@ -56,18 +56,18 @@ function ViewUserCard ({ data, period }) {
         <UserAccountCard user={data[0].official_account} />
         <hr />
         <UserCard
-          name={'Institución / Nombre'}
+          name={'Institution / Name'}
           data={accountName}
         />
         <hr />
         <UserCard
-          name={'Fecha de creación de la cuenta'}
+          name={'Account creation date'}
           data={data[0]['official_account creation_date']}
         />
       </div>
       <div className="innerRight">
         <UserCard
-          name={'Nº Seguidores'}
+          name={'Followers Nº'}
           data={followersNumber
             // data[period.endDate - 1]?.followers_number === '0'
             //   ? data[period.endDate - 2]?.followers_number
@@ -77,7 +77,7 @@ function ViewUserCard ({ data, period }) {
         />
         <hr />
         <UserCard
-          name={'Nº cuentas seguidas'}
+          name={'Following accounts Nº'}
           data={followingNumber
             // data[period.endDate - 1]?.following_number === '0'
             //   ? data[period.endDate - 2]?.following_number
@@ -87,7 +87,7 @@ function ViewUserCard ({ data, period }) {
         />
         <hr />
         <UserCard
-          name={'Total tuits período'}
+          name={'Total tweets period'}
           data={
             totalTweetsPeriod ??
             'No hay data correspondiente al periodo seleccionado'
@@ -111,7 +111,7 @@ export function UserAccountCard ({ user }) {
         <div className="dot" />
         <div className="innerGroup">
           <div className="title">
-            <h5>Cuenta</h5>
+            <h5>Account</h5>
           </div>
           <div className="account">
             <p>{user}</p>

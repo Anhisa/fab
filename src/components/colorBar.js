@@ -8,13 +8,13 @@ const ColorBar = memo(function memoColor () {
   return (
     <ColorBarContainer>
       <em>
-        Menor <br />
-        actividad
+      Lower<br/>
+      activity
       </em>
       <ColorBarStyled />
       <em>
-        Mayor <br />
-        actividad
+      Highest<br />
+      activity
       </em>
     </ColorBarContainer>
   )

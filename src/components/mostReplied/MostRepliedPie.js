@@ -41,7 +41,7 @@ function MostRepliedPie ({ newData, title, usuario }) {
   return (
     <>
     {data.length > 0 && <PieChartContainer usuario={usuario}>
-      <h4>Categorias de más respuesta de: <br/> {title}</h4>
+      <h4>Most replied Categories of: <br/> {title}</h4>
       <Doughnut
         data={dataChart}
         options={optionsPie}
@@ -57,7 +57,7 @@ export function extractRepliedCategories (data) {
   const htCategories = []
   data.forEach((item) => {
     htCategories.push({
-      category: item.most_replied_category_spa,
+      category: item.most_replied_category_eng,
       count: item.tweets_number
     })
   })

@@ -16,8 +16,8 @@ export function MostRepliedItemCHANGE ({ newData, title, arrayBar }) {
   if (account) {
     accountInfo.push(account.official_account)
     // accountInfo.push(account.period_id);
-    accountInfo.push(account.official_account_name_spa)
-    accountInfo.push(account.most_retweeted_category_desc_spa)
+    accountInfo.push(account.official_account_name_eng)
+    accountInfo.push(account.most_retweeted_category_desc_eng)
   }
 
   function createData (
@@ -38,11 +38,11 @@ export function MostRepliedItemCHANGE ({ newData, title, arrayBar }) {
 
   let rows = newData.map((item) =>
     createData(
-      item.most_replied_description_spa,
+      item.most_replied_description_eng,
       item.user_account,
-      item.most_replied_category_spa,
+      item.most_replied_category_eng,
       parseInt(item.tweetsNumber),
-      item.most_replied_category_desc_spa
+      item.most_replied_category_desc_eng
     )
   )
 
@@ -58,16 +58,16 @@ export function MostRepliedItemCHANGE ({ newData, title, arrayBar }) {
 /*
  return (
     <div>
-      <h1>cuenta oficial:<Link to={`/diplomacia-digital/${newData[0].official_account}`}>{newData[0].official_account}</Link> </h1>
+      <h1>cuenta oficial:<Link to={`/en/digital-diplomacy/${newData[0].official_account}`}>{newData[0].official_account}</Link> </h1>
       <h1>Periodo de {periodId.startDate.toString()} a {periodId.endDate.toString()}</h1>
       <h1>menciones totales del periodo: {totaltweets}</h1>
       {newData.map((data) => (
         <div key={data.users_most_replied_id}>
             <span>
               {data.user_account} -{' '}
-              {data.most_replied_description_spa} -{' '}
-              {data.most_replied_category_spa} -{' '}
-              {data.most_replied_category_desc_spa} -{' '}
+              {data.most_replied_description_eng} -{' '}
+              {data.most_replied_category_eng} -{' '}
+              {data.most_replied_category_desc_eng} -{' '}
               {data.tweets_number} - {data.period_id} -{' '}
               {data.user_accounts_verified}
             </span>

@@ -10,7 +10,7 @@ export function ExpandedComponent ({ data }) {
   return (
     <ExpandedStyled className="expanded">
       <h3>
-        Categoría:<em>{data.categoría}</em>
+        Category:<em> {data.categoría}</em>
       </h3>
       <span>{data.catDesc}</span>
     </ExpandedStyled>

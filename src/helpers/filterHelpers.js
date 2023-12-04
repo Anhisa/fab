@@ -126,20 +126,20 @@ export function addDuplicates (arrayDuplicades, from) {
     case 'most-retweeted': // Suma los tweetsNumber
       newArray = []
       newArray = arrayDuplicades.map((item) => {
-        let most_retweeted_description_spa = ''
+        let most_retweeted_description_eng = ''
         let user_account = ''
-        let most_retweeted_category_spa = ''
-        let most_retweeted_category_desc_spa = ''
+        let most_retweeted_category_eng = ''
+        let most_retweeted_category_desc_eng = ''
         let user_accounts_verified = ''
         let official_account = ''
         let period_id
 
         const tweets_number = item.reduce((acc, item) => {
           user_account = item.user_account
-          most_retweeted_description_spa = item.most_retweeted_description_spa
-          most_retweeted_category_desc_spa =
-            item.most_retweeted_category_desc_spa
-          most_retweeted_category_spa = item.most_retweeted_category_spa
+          most_retweeted_description_eng = item.most_retweeted_description_eng
+          most_retweeted_category_desc_eng =
+            item.most_retweeted_category_desc_eng
+          most_retweeted_category_eng = item.most_retweeted_category_eng
           user_accounts_verified = item.user_accounts_verified
           official_account = item.official_account
           period_id = item.period_id
@@ -148,12 +148,12 @@ export function addDuplicates (arrayDuplicades, from) {
           return acc + parseInt(item.tweets_number)
         }, 0)
         return {
-          most_retweeted_description_spa,
+          most_retweeted_description_eng,
           user_account,
           tweets_number,
           period_id,
-          most_retweeted_category_spa,
-          most_retweeted_category_desc_spa,
+          most_retweeted_category_eng,
+          most_retweeted_category_desc_eng,
           user_accounts_verified,
           official_account
         }
@@ -165,10 +165,10 @@ export function addDuplicates (arrayDuplicades, from) {
       const newArrayTwo = []
 
       for (const item of arrayDuplicades) {
-        const most_mentioned_description_spa = item[0].most_mentioned_description_spa
+        const most_mentioned_description_eng = item[0].most_mentioned_description_eng
         const user_account = item[0].user_account
-        const most_mentioned_category_spa = item[0].most_mentioned_category_spa
-        const most_mentioned_category_desc_spa = item[0].most_mentioned_category_desc_spa
+        const most_mentioned_category_eng = item[0].most_mentioned_category_eng
+        const most_mentioned_category_desc_eng = item[0].most_mentioned_category_desc_eng
         const user_accounts_verified = item[0].user_accounts_verified
         const official_account = item[0].official_account
         const users_most_metioned_id = item[0].users_most_metioned_id
@@ -179,11 +179,11 @@ export function addDuplicates (arrayDuplicades, from) {
         // let mentions_number = item[0].mentions_number;
 
         newArrayTwo.push({
-          most_mentioned_description_spa,
+          most_mentioned_description_eng,
           user_account,
           mentions_number,
-          most_mentioned_category_spa,
-          most_mentioned_category_desc_spa,
+          most_mentioned_category_eng,
+          most_mentioned_category_desc_eng,
           user_accounts_verified,
           official_account,
           users_most_metioned_id,
@@ -197,29 +197,29 @@ export function addDuplicates (arrayDuplicades, from) {
     case 'most-replied': // tweets_number
       newArray = []
       newArray = arrayDuplicades.map((item) => {
-        let most_replied_description_spa = ''
+        let most_replied_description_eng = ''
         let user_account = ''
-        let most_replied_category_spa = ''
-        let most_replied_category_desc_spa = ''
+        let most_replied_category_eng = ''
+        let most_replied_category_desc_eng = ''
         let user_accounts_verified = ''
         let official_account = ''
         let users_most_replied_id = ''
         const tweets_number = item.reduce((acc, item) => {
           user_account = item.user_account
-          most_replied_description_spa = item.most_replied_description_spa
-          most_replied_category_desc_spa = item.most_replied_category_desc_spa
-          most_replied_category_spa = item.most_replied_category_spa
+          most_replied_description_eng = item.most_replied_description_eng
+          most_replied_category_desc_eng = item.most_replied_category_desc_eng
+          most_replied_category_eng = item.most_replied_category_eng
           user_accounts_verified = item.user_accounts_verified
           official_account = item.official_account
           users_most_replied_id = item.users_most_replied_id
           return acc + parseInt(item.tweets_number)
         }, 0)
         return {
-          most_replied_description_spa,
+          most_replied_description_eng,
           user_account,
           tweets_number,
-          most_replied_category_spa,
-          most_replied_category_desc_spa,
+          most_replied_category_eng,
+          most_replied_category_desc_eng,
           user_accounts_verified,
           official_account,
           users_most_replied_id
@@ -256,28 +256,28 @@ export function addDuplicates (arrayDuplicades, from) {
     case 'ht-most-used': // hashtags_number
       newArray = []
       newArray = arrayDuplicades.map((item, index) => {
-        let ht_category_desc_spa = ''
-        let ht_category_spa = ''
+        let ht_category_desc_eng = ''
+        let ht_category_eng = ''
         let ht_most_used_id = ''
         let official_account = ''
-        let official_account_name_spa = ''
+        let official_account_name_eng = ''
         let ht = ''
         let ht_mentions_number = ''
 
         ht_mentions_number = item.reduce((acc, innerItem) => {
-          ht_category_desc_spa = innerItem.ht_category_desc_spa
-          ht_category_spa = innerItem.ht_category_spa
+          ht_category_desc_eng = innerItem.ht_category_desc_eng
+          ht_category_eng = innerItem.ht_category_eng
           ht_most_used_id = innerItem.ht_most_used_id
           official_account = innerItem.official_account
           ht = innerItem.ht
-          official_account_name_spa = innerItem.official_account_name_spa
+          official_account_name_eng = innerItem.official_account_name_eng
           return acc + parseInt(innerItem.ht_mentions_number)
         }, 0)
 
         return {
-          ht_category_desc_spa,
-          official_account_name_spa,
-          ht_category_spa,
+          ht_category_desc_eng,
+          official_account_name_eng,
+          ht_category_eng,
           ht_mentions_number,
           ht_most_used_id,
           official_account,

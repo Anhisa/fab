@@ -103,7 +103,7 @@ const ComparativePerPeriod = React.memo(function ComparativeSelectorMemo ({ setD
   return (
     <div className="countSelector">
       <div className="title">
-        <h4>Periodos que desea comparar:</h4>
+        <h4>Periods to compare:</h4>
       </div>
       <div
         className="selectors"
@@ -116,7 +116,7 @@ const ComparativePerPeriod = React.memo(function ComparativeSelectorMemo ({ setD
           variant="filled"
           sx={{ m: 1, minWidth: 120 }}
         >
-          <InputLabel id="label1">Periodo 1</InputLabel>
+          <InputLabel id="label1">Period 1</InputLabel>
           <Select
             labelId="demo-simple-select-filled-label2"
             id="demo-simple-select-filled1"
@@ -124,7 +124,7 @@ const ComparativePerPeriod = React.memo(function ComparativeSelectorMemo ({ setD
             onChange={handleChangeA}
           >
             <MenuItem value="">
-              <em>Ninguna</em>
+              <em>None</em>
             </MenuItem>
             {periods.map((item) => (
               <MenuItem key={`oa-${item.id}`} value={item.id} name={item.name}>
@@ -140,7 +140,7 @@ const ComparativePerPeriod = React.memo(function ComparativeSelectorMemo ({ setD
           variant="filled"
           sx={{ m: 1, minWidth: 120 }}
         >
-          <InputLabel id="label2">Periodo 2</InputLabel>
+          <InputLabel id="label2">Period 2</InputLabel>
           <Select
             labelId="demo-simple-select-filled-label2"
             id="demo-simple-select-filled2"
@@ -148,7 +148,7 @@ const ComparativePerPeriod = React.memo(function ComparativeSelectorMemo ({ setD
             onChange={handleChangeB}
           >
             <MenuItem value="">
-              <em>Ninguna</em>
+              <em>None</em>
             </MenuItem>
             {periods.map((item) => (
               <MenuItem key={`oa-${item.id}`} value={item.id} name={item.name}>

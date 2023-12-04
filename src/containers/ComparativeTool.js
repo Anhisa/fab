@@ -72,7 +72,7 @@ const ComparativeTool = React.memo(function comparativeMemo () {
       </AccountPeriodContainer>
       <div className="btnContainer">
         <Button variant="contained" onClick={handleComparison} className="btn" disabled={thereIsError}>
-          COMPARAR
+          COMPARE
         </Button>
       </div>
     {!firstTime && <UseAccountErrors accounts={accounts} errors={errors} setErrors={setErrors}/>}

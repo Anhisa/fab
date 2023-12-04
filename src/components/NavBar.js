@@ -17,7 +17,7 @@ function NavBar ({ themeToggler }) {
     <NavBarStyled>
       <div className="navbar-header">
         <i className='backArrow'>
-          <Link to={'/diplomacia-digital'} tabIndex={0}>
+          <Link to={'/en/digital-diplomacy/'} tabIndex={0}>
             <ArrowBackIcon
               sx={{
                 fontSize: 40,

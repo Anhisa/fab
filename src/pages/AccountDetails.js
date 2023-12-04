@@ -38,7 +38,7 @@ export default function AccountDetails () {
     setDataSearch({
       Country: country.country_id,
       dataUser: userId,
-      userOfficialName: userId.find((id) => id.country_id === country.country_id).official_account_name_spa,
+      userOfficialName: userId.find((id) => id.country_id === country.country_id).official_account_name_eng,
       accounts: {
         accountIdA: {
           id: userId.find((id) => id.country_id === country.country_id).official_account_id,

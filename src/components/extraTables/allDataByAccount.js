@@ -32,7 +32,7 @@ function extractCategories (data, category) {
       const htCategories = []
       return data.forEach((item) => {
         htCategories.push({
-          category: item.most_mentioned_category_spa,
+          category: item.most_mentioned_category_eng,
           count: item.mentions_number,
           account: item.official_account,
           accountId: item.official_account_id

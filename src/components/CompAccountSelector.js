@@ -59,7 +59,7 @@ export const CompAccountSelector = memo(function accountSelectorMemo ({ setAccou
   return (
     <div className="countSelector">
       <div className='title'>
-      <h4>Cuentas que deseas comparar</h4>
+      <h4>Accounts to compare</h4>
       </div>
       <div className="selector-wrap container-fluid">
         <FormControl
@@ -67,7 +67,7 @@ export const CompAccountSelector = memo(function accountSelectorMemo ({ setAccou
           variant="filled"
           sx={{ m: 1, minWidth: 120 }}
         >
-          <InputLabel id="demo-simple-select-filled-label">Cuenta A</InputLabel>
+          <InputLabel id="demo-simple-select-filled-label">Account A</InputLabel>
           <Select
             labelId="demo-simple-select-filled-label2"
             id="demo-simple-select-filled1"
@@ -75,7 +75,7 @@ export const CompAccountSelector = memo(function accountSelectorMemo ({ setAccou
             onChange={handleChangeA}
           >
             <MenuItem value="none">
-              <em>Ninguna</em>
+              <em>None</em>
             </MenuItem>
             {officialAccounts.map((item) => (
               <MenuItem
@@ -84,9 +84,9 @@ export const CompAccountSelector = memo(function accountSelectorMemo ({ setAccou
                 style={{ borderBottom: '1px dotted black' }}
               >
                 <div >
-                  <span><b>{item.country_name_spa}</b></span>
+                  <span><b>{item.country_name_eng}</b></span>
                   <h6>{item.official_account}</h6>
-                  <span>{item.official_account_name_spa}</span>
+                  <span>{item.official_account_name_eng}</span>
                 </div>
               </MenuItem>
             ))}
@@ -97,7 +97,7 @@ export const CompAccountSelector = memo(function accountSelectorMemo ({ setAccou
           variant="filled"
           sx={{ m: 1, minWidth: 120 }}
         >
-          <InputLabel id="demo-simple-select-filled-label">Cuenta B</InputLabel>
+          <InputLabel id="demo-simple-select-filled-label">Account B</InputLabel>
           <Select
             labelId="demo-simple-select-filled-label2"
             id="demo-simple-select-filled2"
@@ -105,7 +105,7 @@ export const CompAccountSelector = memo(function accountSelectorMemo ({ setAccou
             onChange={handleChangeB}
           >
             <MenuItem value="none">
-              <em>Ninguna</em>
+              <em>None</em>
             </MenuItem>
             {officialAccounts.map((item) => (
               <MenuItem
@@ -119,9 +119,9 @@ export const CompAccountSelector = memo(function accountSelectorMemo ({ setAccou
 
               >
                 <div>
-                  <span><b>{item.country_name_spa}</b></span>
+                  <span><b>{item.country_name_eng}</b></span>
                   <h6>{item.official_account}</h6>
-                  <span>{item.official_account_name_spa}</span>
+                  <span>{item.official_account_name_eng}</span>
                 </div>
               </MenuItem>
             ))}

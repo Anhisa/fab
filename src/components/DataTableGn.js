@@ -25,7 +25,7 @@ const DataTableGn = (props) => {
       striped={true}
       noDataComponent={
         <EmptyDataTable>
-          <h5>No se registran datos en el periodo seleccionado</h5>
+          <h5>No data for the selected period</h5>
         </EmptyDataTable>
       }
     />

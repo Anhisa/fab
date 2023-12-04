@@ -31,14 +31,14 @@ const CountrySelectFilter = memo(function CountrySelectMemo ({ setCountryFilterA
 
   return (
     <div className="countSelector2">
-      <h4>Filtrar por país:</h4>
+      <h4>Filter by country:</h4>
       <div className="selectors">
         <FormControl
           className="container-fluid form"
           variant="filled"
           sx={{ m: 1, minWidth: 120 }}
         >
-          <InputLabel>Todos los paises</InputLabel>
+          <InputLabel>All Countries</InputLabel>
           <Select
             labelId="demo-simple-select-filled-label"
             id="demo-simple-select-filled"
@@ -46,7 +46,7 @@ const CountrySelectFilter = memo(function CountrySelectMemo ({ setCountryFilterA
             onChange={handleChange}
           >
             <MenuItem value="null">
-              <em>Todos</em>
+              <em>All</em>
             </MenuItem>
             {countryNames.map((item) => (
               <MenuItem key={`oa-${item.countryInId}`} value={item.countryInId}>

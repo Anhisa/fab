@@ -69,10 +69,10 @@ function OptionsSearch ({ open, setOpen }) {
   return (
     <>
       <Button variant="contained" onClick={handleClear}>
-        Limpiar busqueda
+        Clean search
       </Button>
       <Button variant="contained" onClick={handleClick}>
-        {!open ? 'Abrir' : 'Cerrar'} tablas
+        {!open ? 'Open' : 'Close'} tables
       </Button>
     </>
   )

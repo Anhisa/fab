@@ -8,7 +8,7 @@ function ErrorComponent () {
       <h1>404</h1>
       <h2>Page not found</h2>
       <h3>
-        <a href="/diplomacia-digital">Go to the home page</a>
+        <a href="/en/digital-diplomacy">Go to the home page</a>
       </h3>
     </ErrorStyled>
   )

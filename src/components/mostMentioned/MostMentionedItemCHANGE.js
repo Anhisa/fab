@@ -25,8 +25,8 @@ export function MostMentionedItemCHANGE ({ newData, title, arrayBar }) {
   if (account) {
     accountInfo.push(account.official_account)
     // accountInfo.push(account.period_id);
-    accountInfo.push(account.official_account_name_spa)
-    accountInfo.push(account.most_retweeted_category_desc_spa)
+    accountInfo.push(account.official_account_name_eng)
+    accountInfo.push(account.most_retweeted_category_desc_eng)
   }
 
   function createData (
@@ -47,11 +47,11 @@ export function MostMentionedItemCHANGE ({ newData, title, arrayBar }) {
 
   let rows = newData.map((item) =>
     createData(
-      item.most_mentioned_description_spa,
+      item.most_mentioned_description_eng,
       item.user_account,
-      item.most_mentioned_category_spa,
+      item.most_mentioned_category_eng,
       parseInt(item.mentions_number),
-      item.most_mentioned_category_desc_spa
+      item.most_mentioned_category_desc_eng
     )
   )
 

@@ -34,7 +34,7 @@ export function MonthlyTweetsItem ({ newData }) {
   ]
   function createData (month, tweetsNumber) {
     const stringMonth =
-      new Date(month).toLocaleString('es-ES', {
+      new Date(month).toLocaleString('en-US', {
         month: 'long',
         timeZone: 'UTC'
       }) +
@@ -56,18 +56,18 @@ export function MonthlyTweetsItem ({ newData }) {
         <h3> {accountInfo[2]} </h3>
         <h3>
           {' '}
-          <Link to={`/diplomacia-digital/${accountInfo[0]}`}>
+          <Link to={`/en/digital-diplomacy/${accountInfo[0]}`}>
             {accountInfo[0]}
           </Link>{' '}
         </h3>
         <h5>
           {/* Periodo de {period.startDate.toString()} a{period.endDate.toString()} */}
         </h5>
-        <h5>Tweets totales periodo - {totaltweets} </h5>
+        <h5>total Tweets period - {totaltweets} </h5>
         <DataTable
           columns={columns}
           data={rows}
-          title="Tweets por mes"
+          title="Tweets per month"
           subHeader
           subHeaderAlign="left"
           highlightOnHover

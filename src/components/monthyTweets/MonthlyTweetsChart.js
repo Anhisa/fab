@@ -101,7 +101,7 @@ export function MonthlyTweetsChart ({ newData, context }) {
 
       title: {
         display: true,
-        text: 'Número de Tweets mensuales',
+        text: 'Number of tweets per month',
         position: 'top',
         fullSize: true,
         color: theme.text,
@@ -138,7 +138,7 @@ function createDatasets (data, context) {
     newLabels = labels
 
     newLabels = newLabels.map((item) =>
-      new Date(item).toLocaleString('es-ES', {
+      new Date(item).toLocaleString('en-US', {
         month: 'short',
         timeZone: 'UTC'
       })
@@ -189,7 +189,7 @@ function createDatasets (data, context) {
     })
     let labels = data2[0]?.map((item) => item?.month)
     labels = labels.map((item) =>
-      new Date(item).toLocaleString('es-ES', {
+      new Date(item).toLocaleString('en-US', {
         month: 'short',
         timeZone: 'UTC',
         year: 'numeric'

@@ -74,7 +74,7 @@ const NavBarHome = memo(function memoNavBar ({ menu, setOpen }) {
           onClick={handleClickAccounts}
           type="button"
         >
-          <p tabIndex={0}>{showMap ? 'COMPARADOR' : 'MAPA'}</p>
+          <p tabIndex={0}>{showMap ? 'COMPARATOR' : 'MAP'}</p>
         </MenuButtonStyled>
         <MenuButtonStyled className="menu-item" type="button">
           <a
@@ -82,7 +82,7 @@ const NavBarHome = memo(function memoNavBar ({ menu, setOpen }) {
             href="https://fundacionandresbello.org/documento-diplomacia-digital/"
             rel="noreferrer"
           >
-            <p>DOCUMENTOS</p>
+            <p>DOCUMENTS</p>
           </a>
         </MenuButtonStyled>
         <MenuButtonStyled
@@ -90,7 +90,7 @@ const NavBarHome = memo(function memoNavBar ({ menu, setOpen }) {
           type="button"
           onClick={changeTheme}
         >
-          <p tabIndex={0}>CAMBIAR TEMA</p>
+          <p tabIndex={0}>CHANGE THEME</p>
         </MenuButtonStyled>
       </div>
     </NavBarHomeStyled>

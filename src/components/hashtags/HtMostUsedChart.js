@@ -69,7 +69,7 @@ export function HtMostUsedChart ({ newData, title }) {
       },
       title: {
         display: true,
-        text: 'Menciones por hashtags',
+        text: 'Mentions per hashtags',
         color: theme.text,
         font: {
           size: 20,

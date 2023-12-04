@@ -45,7 +45,7 @@ function MostRetwittedPie ({ newData, title, usuario }) {
   return (<>
    {data.length > 0 && <PieChartContainer usuario={usuario}>
       <h4>
-      Categorías más retuiteadas de: <br/>
+      Most retweeted categoies of: <br/>
         {title}
         </h4>
       <Doughnut
@@ -63,7 +63,7 @@ export function extractRetwittedCategories (data) {
   const htCategories = []
   data.forEach((item) => {
     htCategories.push({
-      category: item.most_retweeted_category_spa,
+      category: item.most_retweeted_category_eng,
       count: item.tweets_number
     })
   })

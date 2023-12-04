@@ -48,7 +48,7 @@ function MostMentionedPie ({ newData, title, usuario }) {
       {data.length > 0 && (
         <PieChartContainer usuario={usuario}>
           <h4>
-            Categorias de los más mencionados de: <br />
+            Most mentioned categories of: <br />
             {title}
           </h4>
           <Doughnut data={dataChart} options={optionsPie} />
@@ -64,7 +64,7 @@ export function extractMentionedCategories (data) {
   const htCategories = []
   data.forEach((item) => {
     htCategories.push({
-      category: item.most_mentioned_category_spa,
+      category: item.most_mentioned_category_eng,
       count: item.mentions_number
     })
   })

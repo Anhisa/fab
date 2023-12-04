@@ -16,12 +16,12 @@ export default function MostRetweetedItemChange ({ newData, arrayBar, title }) {
 
   let rows = newData.map((item) =>
     createData(
-      item.most_retweeted_description_spa,
+      item.most_retweeted_description_eng,
       item.user_account,
-      item.most_retweeted_category_spa,
+      item.most_retweeted_category_eng,
       parseInt(item.tweetsNumber),
       // item.user_accounts_verified,
-      item.most_retweeted_category_desc_spa
+      item.most_retweeted_category_desc_eng
     )
   )
   rows = rows.map((item, index) => {

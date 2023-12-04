@@ -84,7 +84,7 @@ function SelectorComparative () {
           className="btn"
           disabled={thereIsError}
         >
-          COMPARAR
+          COMPARE
         </Button>
       </div>
       {!firstTime && (

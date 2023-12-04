@@ -27,11 +27,11 @@ function ComparativeUserViewContainer ({ period, usuario, context }) {
 
     <ComparativeUserViewContainerStyle usuario={usuario}>
      <Button className='button' variant="contained" onClick={handleClick}>
-        {!open ? 'Abrir' : 'Cerrar'} tablas
+        {!open ? 'Open' : 'Close'} tables
       </Button>
         <CollapsableTableStyled className="table">
           <ButtonToogle usuario={true} name="most-retweet" open={open} setOpen={setOpen}>
-            Usuarios más retuiteados
+          Most retweeted users
           </ButtonToogle>
           <MostRetweetedItems
             period={period}
@@ -41,7 +41,7 @@ function ComparativeUserViewContainer ({ period, usuario, context }) {
         </CollapsableTableStyled>
         <CollapsableTableStyled className="table" >
           <ButtonToogle usuario={true} name="most-replied" open={open} setOpen={setOpen}>
-            Usuarios que más han recibido respuesta
+          Most replied users
           </ButtonToogle>
 
           <MostRepliedItems
@@ -53,7 +53,7 @@ function ComparativeUserViewContainer ({ period, usuario, context }) {
 
         <CollapsableTableStyled className="table">
           <ButtonToogle name="most-ht" usuario={true} open={open} setOpen={setOpen}>
-            Hashtags más usados
+          Most used Hashtags
           </ButtonToogle>
 
           <HtMostUsedItems
@@ -64,7 +64,7 @@ function ComparativeUserViewContainer ({ period, usuario, context }) {
         </CollapsableTableStyled>
         <CollapsableTableStyled className="table">
           <ButtonToogle usuario={true} name="most-mentioned" open={open} setOpen={setOpen}>
-            Usuarios más mencionados
+          Most mentioned users
           </ButtonToogle>
 
           <MostMentionedItems

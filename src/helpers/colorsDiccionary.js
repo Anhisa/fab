@@ -1,82 +1,96 @@
 export const colorsDictionary = [
+  // ht categories
   {
     category: 'COVID-19',
     color: '#007C1F'
   },
   {
-    category: 'PROMOCIÓN RPCh',
+    category: 'PRC PROMOTION',
     color: '#FF3366'
   },
   {
-    category: 'SOLIDARIDAD INTERNACIONAL Y COOPERACIÓN SUR - SUR',
+    category: 'INTERNATIONAL SOLIDARITY AND SOUTH-SOUTH COOPERATION',
     color: '#9966FF'
   },
   {
-    category: 'AVANCES TECNOLÓGICOS RPCh',
+    category: 'TECHNOLOGICAL ADVANCES PRC',
     color: '#65327E'
   },
   {
-    category: 'ORGANISMOS FOROS Y ESPACIOS MULTILATERALES',
+    category: 'ORGANISMS FORUMS AND MULTILATERAL SPACES',
     color: '#666600'
   },
   {
-    category: 'RELACIONES BINACIONALES RPCh - ALC',
+    category: 'BINATIONAL RELATIONS PRC - LAC',
     color: '#6699FF'
   },
   {
-    category: 'GOBIERNO RPCh',
+    category: 'PRC GOVERNMENT',
     color: '#33CC99'
   },
   {
-    category: 'EE.UU.',
+    category: 'U.S.A.',
     color: '#996633'
   },
   {
-    category: 'VERACIDAD INFORMACIÓN',
+    category: 'TRUTH INFORMATION',
     color: '#CCAAFF'
   },
   {
-    category: 'Ciudadano',
+    category: 'ENVIRONMENT AND BIODIVERSITY',
+    color: '#ff9900'
+  },
+  {
+    category: 'PRC COMPANIES',
+    color: '#AFFaaf'
+  },
+  {
+    category: 'LAC COMPANIES',
+    color: '#5a815a'
+  },
+  // analisis categories
+  {
+    category: 'Citizen.',
     color: '#0042A1'
   },
   {
-    category: 'Gobiernos y Entidades Gubernamentales ALC',
+    category: 'LAC Governments and Government Entities. ',
     color: '#669999'
   },
   {
-    category: 'Cuenta Suspendida o Eliminada',
+    category: 'Suspended or Deleted Account',
     color: '#cccccc'
   },
   {
-    category: 'Empresas y Organizaciones Privadas ALC',
+    category: 'LAC Companies and Private Organizations',
     color: '#006699'
   },
   {
-    category: 'Medios de comunicación y Sites de Promoción RPCh',
+    category: 'Media and Promotion Sites of PRC.',
     color: '#0099ff'
   },
   {
-    category: 'Organizaciones Binacionales RPCh - ALC',
+    category: 'Binational Organizations PRC - LAC',
     color: '#663300'
   },
   {
-    category: 'Centros de Investigación y Educación Superior ALC',
+    category: 'LAC Research and Higher Education Centers',
     color: '#669900'
   },
   {
-    category: 'Influencers',
+    category: 'Influencers.',
     color: '#990099'
   },
   {
-    category: 'Organismos Foros y Espacios Multilaterales',
+    category: 'Multilateral Organizations, Forums, and Spaces',
     color: '#666600'
   },
   {
-    category: 'Medios de Comunicación ALC',
+    category: 'LAC Media.',
     color: '#006600'
   },
   {
-    category: 'Gobierno RPCh',
+    category: 'PRC government.',
     color: '#33CC99'
   },
   {
@@ -84,44 +98,39 @@ export const colorsDictionary = [
     color: '#cccccc'
   },
   {
-    category: 'MEDIO AMBIENTE Y BIODIVERSIDAD',
-    color: '#ff9900'
-  },
-  {
-    category: 'Amplificador de Contenido',
+    category: 'Content Amplifier',
     color: '#a399CC'
   },
   {
-    category: 'Cuenta suspendida o Eliminada',
-    color: '#CFa'
-  },
-  {
-    category: 'Gobiernos Extranjeros',
+    category: 'Foreign governments.',
     color: '#ff99aa'
   },
   {
-    category: 'BOT',
+    category: 'BOTs',
     color: '#cc11cc'
   },
   {
-    category: 'Medios de Comunicación Extranjeros',
-
+    category: 'Foreign Media.',
     color: '#ABC'
   },
   {
-    category: 'Empresas Extranjeras',
+    category: 'Foreign Companies',
     color: '#aa11ff'
   },
   {
-    category: 'Ciudadano RPCh o Taiwán',
+    category: 'PRC or Taiwanese citizen',
     color: '#aaafff'
   },
   {
-    category: 'EMPRESAS ALC',
-    color: '#AFFaaf'
+    category: 'PRC Companies.',
+    color: '#1ffa11'
   },
   {
-    category: 'Empresas RPCh',
-    color: '#1ffa11'
+    category: 'Foreign Research and Higher Education Centers',
+    color: '#ff99cc'
+  },
+  {
+    category: 'PRC Civil Organizations',
+    color: '#004d4d'
   }
 ]

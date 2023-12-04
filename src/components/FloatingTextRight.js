@@ -9,13 +9,13 @@ const FloatingTextRight = memo(function memoNameMap ({ currentMap }) {
   if (!currentMap) {
     return (
       <FloatingTextRightIslandStyled>
-        <p>El Caribe</p>
+        <p>The Caribbean</p>
       </FloatingTextRightIslandStyled>
     )
   } else {
     return (
       <FloatingTextRightStyled>
-        <p>América Latina Continental</p>
+        <p>Continental Latin America</p>
       </FloatingTextRightStyled>
     )
   }

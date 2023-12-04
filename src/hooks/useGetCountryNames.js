@@ -16,7 +16,7 @@ const useGetCountryNames = () => {
           (country) => country.country_id === countryId
         )
 
-        const countryName = country.country_name_spa
+        const countryName = country.country_name_eng
 
         const countryInId = country.country_id
 

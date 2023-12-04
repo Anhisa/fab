@@ -34,8 +34,8 @@ export function HtMostUsedItem ({ newData, periodId }) {
   if (account) {
     accountInfo.push(account.official_account)
     // accountInfo.push(account.period_id);
-    accountInfo.push(account.official_account_name_spa)
-    accountInfo.push(account.most_retweeted_category_desc_spa)
+    accountInfo.push(account.official_account_name_eng)
+    accountInfo.push(account.most_retweeted_category_desc_eng)
   }
 
   function createData (
@@ -60,11 +60,11 @@ export function HtMostUsedItem ({ newData, periodId }) {
 
   const rows = newData.map((item) =>
     createData(
-      item.official_account_name_spa,
+      item.official_account_name_eng,
       item.ht,
-      item.ht_category_spa,
+      item.ht_category_eng,
       parseInt(item.ht_mentions_number),
-      item.ht_category_desc_spa
+      item.ht_category_desc_eng
     )
   )
 
@@ -110,7 +110,7 @@ export function HtMostUsedItem ({ newData, periodId }) {
             <Collapse in={open} timeout="auto" unmountOnExit>
               <Box sx={{ margin: 1 }}>
                 <Typography variant="h6" gutterBottom component="div">
-                  Descripción de la Categoría
+                  Category Description
                 </Typography>
                 <Table size="small" aria-label="purchases">
                   {/* <TableHead>
@@ -144,23 +144,23 @@ export function HtMostUsedItem ({ newData, periodId }) {
         <h3> {accountInfo[2]} </h3>
         <h3>
           {' '}
-          <Link to={`/diplomacia-digital/${accountInfo[0]}`}>
+          <Link to={`/en/digital-diplomacy/${accountInfo[0]}`}>
             {accountInfo[0]}
           </Link>{' '}
         </h3>
         <h5>
           {/* Periodo de {period.startDate.toString()} a{period.endDate.toString()} */}
         </h5>
-        <h5>Tweets totales periodo - {totaltweets} </h5>
+        <h5>Total Tweets period - {totaltweets} </h5>
         <TableContainer component={Paper}>
           <Table aria-label="collapsible table">
             <TableHead>
               <TableRow>
                 <TableCell />
-                <TableCell>Nombre de la cuenta</TableCell>
+                <TableCell>Account Name</TableCell>
                 <TableCell align="right">Hashtag</TableCell>
-                <TableCell align="right">Categoría</TableCell>
-                <TableCell align="right">Número de Tweets</TableCell>
+                <TableCell align="right">Category</TableCell>
+                <TableCell align="right">Number of Tweets</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -177,7 +177,7 @@ export function HtMostUsedItem ({ newData, periodId }) {
 
 /*
  <div>
-      <h1>cuenta oficial:</h1> <Link to={`/diplomacia-digital/${newData[0].official_account}`}>{newData[0].official_account}</Link>
+      <h1>cuenta oficial:</h1> <Link to={`/en/digital-diplomacy/${newData[0].official_account}`}>{newData[0].official_account}</Link>
       <h1>
         Periodo de {periodId.startDate.toString()} a{' '}
         {periodId.endDate.toString()}
@@ -186,10 +186,10 @@ export function HtMostUsedItem ({ newData, periodId }) {
       {newData.map((data) => (
         <div key={`ht-${data.ht_most_used_id}`}>
           <h2>Hashtag: {data.ht}</h2>
-          <h4>descripción: {data.official_account_name_spa}</h4>
+          <h4>descripción: {data.official_account_name_eng}</h4>
           <span>
-            categoría: {data.ht_category_spa} - descripción de la categoría:{' '}
-            {data.ht_category_desc_spa} - número de menciones:{' '}
+            categoría: {data.ht_category_eng} - descripción de la categoría:{' '}
+            {data.ht_category_desc_eng} - número de menciones:{' '}
             {data.ht_mentions_number} - periodo: {data.period_id}
           </span>
         </div>

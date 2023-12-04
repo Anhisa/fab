@@ -8,7 +8,7 @@ export const columns = [
         fontSize: '0.8rem',
         title: 'Usuario/ Nombre cuenta'
       }}
-    >Usuario / Nombre cuenta</p>,
+    >User / Account</p>,
     selector: (row) => (
       <UserAccount
         userAccount={row.userAccount}
@@ -35,7 +35,7 @@ export const columns = [
     style={{
       fontSize: '0.8rem'
     }}
-    >Categoría</p>,
+    >Category</p>,
     selector: (row) => <b>{row.categoría}</b>,
     sortable: true,
     sortFunction: (a, b) => {
@@ -73,7 +73,7 @@ export const columns = [
     style={{
       fontSize: '0.8rem'
     }}
-    >Número de Tweets</p>,
+    >Number of Tweets</p>,
     selector: (row) => <BarContainer dataBar={row.tweets_number} />,
     id: 'tweetsNumber',
     maxWidth: '450px',
