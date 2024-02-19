@@ -54,7 +54,7 @@ export const colorsDictionary = [
     color: '#0042A1'
   },
   {
-    category: 'LAC Governments and Government Entities. ',
+    category: 'LAC Governments and Government Entities.',
     color: '#669999'
   },
   {
@@ -91,6 +91,10 @@ export const colorsDictionary = [
   },
   {
     category: 'PRC government.',
+    color: '#33CC99'
+  },
+  {
+    category: 'PRC Government.',
     color: '#33CC99'
   },
   {

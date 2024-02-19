@@ -74,7 +74,7 @@ const NavBarHome = memo(function memoNavBar ({ menu, setOpen }) {
           onClick={handleClickAccounts}
           type="button"
         >
-          <p tabIndex={0}>{showMap ? 'COMPARATOR' : 'MAP'}</p>
+          <p tabIndex={0}>{showMap ? 'COMPARISON TOOL' : 'MAP'}</p>
         </MenuButtonStyled>
         <MenuButtonStyled className="menu-item" type="button">
           <a

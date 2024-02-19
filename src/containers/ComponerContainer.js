@@ -67,7 +67,7 @@ export default function ComponentContainer ({ usuario, open }) {
           <ButtonToogle name="most-replied" open={open}>
             {isPeriodComparisonActive
               ? `Users with the highest number of replies from ${periodA.name} to ${periodB.name}`
-              : `Most replied users of ${accountIdA.name} and ${accountIdB.name}`}
+              : `Most replied to users of ${accountIdA.name} and ${accountIdB.name}`}
           </ButtonToogle>
 
           <MostRepliedItems usuario={usuario} context={dataComparing} />

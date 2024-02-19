@@ -17,7 +17,7 @@ const FloatingText = memo(function memoFloatingText ({ setCurrentMap, islands, z
       <FloatingTextIslandsStyled>
         {!zoom && (
           <p className="info">
-            Interactive database of the X accounts (former Twitter) corresponding to PCR’s diplomatic representations and representatives in Latin America and the Caribbean.
+            Interactive database of the X accounts (former Twitter) belonging to the PCR’s diplomatic representatives and representations based in Latin America and the Caribbean. Click on any country or the comparison tool to get started.
           </p>
         )}
         <ButtonFloatingIslandStyled onClick={handleMap} type="button">
@@ -30,7 +30,7 @@ const FloatingText = memo(function memoFloatingText ({ setCurrentMap, islands, z
     <FloatingTextStyled>
       {!zoom && (
         <p className="info" aria-label="info">
-            Interactive database of the X accounts (former Twitter) corresponding to PCR’s diplomatic representations and representatives in Latin America and the Caribbean.
+            Interactive database of the X accounts (former Twitter) belonging to the PCR’s diplomatic representatives and representations based in Latin America and the Caribbean. Click on any country or the comparison tool to get started.
         </p>
       )}
       <ButtonFloatingStyled onClick={handleMap}>

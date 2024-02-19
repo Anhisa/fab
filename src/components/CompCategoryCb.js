@@ -20,7 +20,7 @@ export function CompCategoryCb ({ setCategories }) {
   return (
     <>
     <div className='btnGroup'>
-      <h5>Criterios:</h5>
+      <h5>Criteria:</h5>
       <FormGroup className="row">
         <div className="col-6">
           <FormControlLabel
@@ -31,7 +31,7 @@ export function CompCategoryCb ({ setCategories }) {
           />
           <FormControlLabel
             control={<Checkbox defaultChecked />}
-            label="Users with more responses"
+            label="Users with the most responses"
             name="mostReplied"
             onChange={handleSelect}
           />
