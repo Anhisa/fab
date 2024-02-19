@@ -164,7 +164,7 @@ export const ButtonFloatingIslandStyled = styled.button`
   position: absolute;
   width: 70%;
   height: 40px;
-  bottom: 130px;
+  bottom: 180px;
   margin-bottom: 10px;
   border-radius: 25px;
   background-color: ${({ theme }) => theme.primary};
