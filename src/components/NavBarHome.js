@@ -79,7 +79,7 @@ const NavBarHome = memo(function memoNavBar ({ menu, setOpen }) {
         <MenuButtonStyled className="menu-item" type="button">
           <a
             target="_blank"
-            href="https://fundacionandresbello.org/documento-diplomacia-digital/"
+            href="https://fundacionandresbello.org/documento-diplomacia-digital-ing/"
             rel="noreferrer"
           >
             <p>DOCUMENTS</p>
